@@ -1,0 +1,34 @@
+<p>all-products works!</p>
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Product Name</th>
+        <th scope="col">description</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">delete</th>
+        <th scope="col">edit</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr >
+       
+            <td><input [(ngModel)]="name" /></td>
+            <td><input [(ngModel)]="description" /></td>
+            <td><input [(ngModel)]="quantity" type="number" /></td>
+            <td><button class="btn btn-warning" (click)="cancel()" >Cancel</button></td>
+            <td><button class="btn btn-success" (click)="save()" >Save</button></td>
+        </tr>
+
+      <tr *ngFor="let item of products; let i = index">
+       
+        <td >{{products[i].name}}</td>
+        <td >{{products[i].description}}</td>
+        <td >{{products[i].countInStock}}</td>
+        <td><button class="btn btn-danger" (click)="delete(products[i]._id)">Delete</button></td>
+        <td><button  class="btn btn-primary" (click)="edit(products[i]._id)" >edit</button></td> 
+    </tr>
+    </tbody>
+  </table>

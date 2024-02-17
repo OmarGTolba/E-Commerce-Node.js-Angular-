@@ -1,0 +1,25 @@
+
+
+
+<table  class="table">
+    <thead>
+      <tr>
+        
+          <th scope="col">Name</th>
+          <th scope="col">role</th>
+          <th scope="col">phone</th>
+          <th scope="col">id</th>
+          <th scope="col">email</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of products; let i = index" >
+            <td>{{products[i].name}}</td>
+            <td>{{products[i].role}}</td>
+            <td>{{products[i].phone}}</td>
+            <td>{{products[i]._id}}</td>
+            <td>{{products[i].email}}</td>
+          </tr>
+    
+    </tbody>
+  </table>

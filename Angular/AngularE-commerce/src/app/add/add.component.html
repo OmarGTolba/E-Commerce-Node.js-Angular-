@@ -1,0 +1,12 @@
+<p>add works!</p>
+<!-- product-form.component.html -->
+<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" formControlName="productName" required>
+  
+    <label for="category">Category:</label>
+    <input type="text" id="category" formControlName="category" required>
+  
+    <button type="submit">Submit</button>
+  </form>
+  
