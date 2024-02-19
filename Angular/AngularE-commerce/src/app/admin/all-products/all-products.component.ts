@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProductsService } from '../services/products/products.service';
+import { ProductsService } from '../../services/products/products.service';
 
 @Component({
   selector: 'app-all-products',

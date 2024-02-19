@@ -58,15 +58,15 @@ const login = async (req, res) => {
         if (user.role == 'Admin') {
 
         }
-        role=user.role
+        const {role,_id}=user;
+
         const isValidPassword = await bcrypt.compare(password, user.passwordHash)
 
         if (!isValidPassword)
             return res.status(401).send({ message: "Incorret email or password..." })
 
         const token = jwt.sign({ email }, 'myjwtsecret', { expiresIn: '1h' });
-        console.log(token);
-        res.header({ jwt: token }).send({ token, email, role });
+        res.header({ jwt: token }).send({ token, email, role,_id});
     }
     catch (userLoginError) {
         res.status(500).send(userLoginError.message)

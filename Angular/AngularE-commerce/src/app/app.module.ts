@@ -3,20 +3,22 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './user/login/login.component';
+import { AdminComponent } from './admin/adminHome/admin.component';
 AdminComponent
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
-import { AllProductsComponent } from './all-products/all-products.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { AllCategoriesComponent } from './all-categories/all-categories.component';
-import { AllOrdersComponent } from './all-orders/all-orders.component';
-import { AddComponent } from './add/add.component';
-import { UserComponent } from './user/user.component';
-import { UserProductsComponent } from './user-products/user-products.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { AllProductsComponent } from './admin/all-products/all-products.component';
+import { AllUsersComponent } from './admin/all-users/all-users.component';
+import { AllCategoriesComponent } from './admin/all-categories/all-categories.component';
+import { AllOrdersComponent } from './admin/all-orders/all-orders.component';
+import { AddComponent } from './admin/addProduct/add.component';
+import { UserComponent } from './user/userNav/user.component';
+// import { UserProductsComponent } from './user-products/user-products.component';
+import { HomeComponent } from './user/userHome/home.component';
+import { RegisterComponent } from './user/register/register.component';
+import { OrdersComponent } from './user/userAllOrders/orders.component';
+import { UserOrderComponent } from './user/user-order/user-order.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,10 @@ import { RegisterComponent } from './register/register.component';
     AllOrdersComponent,
     AddComponent,
     UserComponent,
-    UserProductsComponent,
     HomeComponent,
     RegisterComponent,
+    OrdersComponent,
+    UserOrderComponent,
   ],
   imports: [
     BrowserModule,

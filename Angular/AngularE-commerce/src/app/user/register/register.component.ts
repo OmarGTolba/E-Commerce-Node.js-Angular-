@@ -11,25 +11,25 @@ export class RegisterComponent {
   name: string = "";
   email: string = "";
   password: any
-  isChecked: boolean = false;
-  admin=""; 
+  // isChecked: boolean = false;
+  // admin=""; 
 
   constructor(private router: Router, private http: HttpClient) { }
 
   onSubmit() {
     const api = 'http://localhost:3000/api/v1/user';
 
-    if(this.isChecked){
-      this.admin="Admin"
-    }else{
-      this.admin="User"
-    }
+    // if(this.isChecked){
+    //   this.admin="Admin"
+    // }else{
+    //   this.admin="User"
+    // }
 
     const body = {
       name: this.name,
       email: this.email,
       password: this.password,
-      role: this.admin
+      role: "User"
     }
 
     const headers = new HttpHeaders({
@@ -46,7 +46,7 @@ export class RegisterComponent {
           } else {
             this.router.navigate(['user']);
           }
-
+          localStorage.setItem('userId', response._id);
           console.log('register successful:', response);
         } else {
           console.error('register failed: No response received');

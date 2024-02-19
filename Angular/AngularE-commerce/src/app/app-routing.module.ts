@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
-import { AllProductsComponent } from './all-products/all-products.component';
-import { AllUsersComponent } from './all-users/all-users.component';
-import { AllCategoriesComponent } from './all-categories/all-categories.component';
-import { AllOrdersComponent } from './all-orders/all-orders.component';
-import { AddComponent } from './add/add.component';
-import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
-import { UserProductsComponent } from './user-products/user-products.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
+import { AdminComponent } from './admin/adminHome/admin.component';
+import { AllProductsComponent } from './admin/all-products/all-products.component';
+import { AllUsersComponent } from './admin/all-users/all-users.component';
+import { AllCategoriesComponent } from './admin/all-categories/all-categories.component';
+import { AllOrdersComponent } from './admin/all-orders/all-orders.component';
+import { AddComponent } from './admin/addProduct/add.component';
+import { LoginComponent } from './user/login/login.component';
+import { UserComponent } from './user/userNav/user.component';
+import { HomeComponent } from './user/userHome/home.component';
+import { RegisterComponent } from './user/register/register.component';
+import { OrdersComponent } from './user/userAllOrders/orders.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'user', component: UserComponent, children: [
       { path: '', component: HomeComponent },
-      { path: 'getMyProduct', component: UserProductsComponent }
+      { path: 'allOrder', component: OrdersComponent }
     ]
   },
   {
