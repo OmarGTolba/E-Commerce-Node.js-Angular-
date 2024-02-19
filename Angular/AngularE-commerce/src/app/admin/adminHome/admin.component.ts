@@ -13,7 +13,6 @@ constructor(private router:Router) {
   
 }
 getAllProducts(){
-
   this.router.navigate(['admin/products']);  
 }
 

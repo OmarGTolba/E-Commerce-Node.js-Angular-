@@ -17,6 +17,7 @@ import { HomeComponent } from './user/userHome/home.component';
 import { RegisterComponent } from './user/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
+import { ProductComponent } from './user/product/product.component';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './user/search/search.component';
 @NgModule({
