@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login/login.component';
 import { AdminComponent } from './admin/adminHome/admin.component';
-AdminComponent
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { AllProductsComponent } from './admin/all-products/all-products.component';
@@ -19,7 +17,8 @@ import { HomeComponent } from './user/userHome/home.component';
 import { RegisterComponent } from './user/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
-
+import { CommonModule } from '@angular/common';
+import { SearchComponent } from './user/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,10 +34,11 @@ import { UserOrderComponent } from './user/user-order/user-order.component';
     RegisterComponent,
     OrdersComponent,
     UserOrderComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,FormsModule,BrowserModule,HttpClientModule,ReactiveFormsModule,
+    AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule,CommonModule
   ],
   providers: [
     provideClientHydration()
