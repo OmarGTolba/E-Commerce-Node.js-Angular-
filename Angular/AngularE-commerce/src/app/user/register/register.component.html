@@ -1,0 +1,18 @@
+<h2>User register</h2>
+<form (submit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input type="text" id="name"  [(ngModel)]="name" name="name"  required><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email"  [(ngModel)]="email" name="email"  required><br><br>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password"  [(ngModel)]="password" name="password"  required><br><br>
+ 
+  <!-- <input type="checkbox" [(ngModel)]="isChecked" name="isChecked"> register as admin -->
+
+
+  <input type="submit" value="register">
+</form>
+<br>
+<button routerLink="">login</button>

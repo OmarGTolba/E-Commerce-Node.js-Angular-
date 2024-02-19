@@ -33,11 +33,13 @@ export class LoginComponent {
         if (response) {
           const role = response.role;
 
-      //    console.log(response.token);
+         console.log(response);
 
           localStorage.setItem('email', response.email);
           localStorage.setItem('token', response.token);
           localStorage.setItem('role', response.role);
+          localStorage.setItem('userId', response._id);
+
 
           if (role === 'Admin') {
             this.router.navigate(['admin']);

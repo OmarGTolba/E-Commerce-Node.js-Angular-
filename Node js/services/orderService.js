@@ -3,7 +3,7 @@ const orderModel = require("../models/orderModel")
 const OrderItemModel = require("../models/orderItemModel")
 
 
-const getAllOrders=asyncHandler(async (req, res) => {
+const getAllOrders = asyncHandler(async (req, res) => {
     const order = await orderModel.find().populate('user', 'name -_id').populate({
         path: 'orderItemsIds', populate: {
             path: 'product', populate: 'categories'
@@ -11,9 +11,18 @@ const getAllOrders=asyncHandler(async (req, res) => {
     });
     res.status(200).json({ results: order.length, data: order });
 })
+const getUserOrder = asyncHandler(async (req, res) => {
+    const userId = req.params.id;
 
+    const userOrder = await orderModel.find({ user: userId }).populate({
+        path: 'orderItemsIds', populate: {
+            path: 'product', populate: 'categories'
+        }
+    })
+    res.status(200).json({ data: userOrder });
+})
 
-const getOrderById=asyncHandler(async (req, res) => {
+const getOrderById = asyncHandler(async (req, res) => {
     const order = await orderModel.findById(req.params.id).populate('user', 'name -_id').populate({
         path: 'orderItemsIds', populate: {
             path: 'product', populate: 'categories'
@@ -33,7 +42,7 @@ const calculateTotalPrice = async (orderItemIds) => {
     return totalPrice;
 };
 
-const createNewOrder=asyncHandler(async (req, res) => {
+const createNewOrder = asyncHandler(async (req, res) => {
     const orderItemsIds = [];
 
     for (const item of req.body.orderItems) {
@@ -56,7 +65,7 @@ const createNewOrder=asyncHandler(async (req, res) => {
 })
 
 
-const cancelOrder=asyncHandler(async (req, res) => {
+const cancelOrder = asyncHandler(async (req, res) => {
     const orderId = req.params.id;
 
     const updatedOrder = await orderModel.findByIdAndUpdate(
@@ -71,13 +80,8 @@ const cancelOrder=asyncHandler(async (req, res) => {
 
     res.status(200).json({ message: "Order canceled successfully", data: updatedOrder });
 })
- 
-const getUserOrder=asyncHandler(async (req, res) => {
-    const userId = req.params.id;
 
-    const userOrder = await orderModel.find({user:userId})
-    res.status(200).json({ data: userOrder });
-})
+
 
 module.exports = {
     getAllOrders,
