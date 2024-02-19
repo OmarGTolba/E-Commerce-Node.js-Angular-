@@ -10,20 +10,26 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { UserProductsComponent } from './user-products/user-products.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
- {path:'',component:LoginComponent},
- {path:'user',component:UserComponent,children:[
-  {path:'',component:HomeComponent},
-  {path:'getMyProduct',component:UserProductsComponent}
- ]},
-  {path:'admin',component:AdminComponent,children:[
-    {path:'products',component:AllProductsComponent},
-    {path:'categories',component:AllCategoriesComponent},
-    {path:'orders',component:AllOrdersComponent},
-    {path:'addProduct',component:AddComponent},
-    {path:'users',component:AllUsersComponent}
-  ]}
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'user', component: UserComponent, children: [
+      { path: '', component: HomeComponent },
+      { path: 'getMyProduct', component: UserProductsComponent }
+    ]
+  },
+  {
+    path: 'admin', component: AdminComponent, children: [
+      { path: 'products', component: AllProductsComponent },
+      { path: 'categories', component: AllCategoriesComponent },
+      { path: 'orders', component: AllOrdersComponent },
+      { path: 'addProduct', component: AddComponent },
+      { path: 'users', component: AllUsersComponent }
+    ]
+  }
 ];
 
 @NgModule({

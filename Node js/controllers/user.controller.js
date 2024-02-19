@@ -15,6 +15,7 @@ const createNewUse =
             const passwordHash = await bcrypt.hash(password, 10);
             const newUser = await cretateNewUser({ name, email, passwordHash, Products, role })
             res.send(newUser)
+            console.log(newUser)
         }
     }
 

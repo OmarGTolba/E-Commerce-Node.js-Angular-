@@ -16,6 +16,7 @@ import { AddComponent } from './add/add.component';
 import { UserComponent } from './user/user.component';
 import { UserProductsComponent } from './user-products/user-products.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,11 +30,12 @@ import { HomeComponent } from './home/home.component';
     AddComponent,
     UserComponent,
     UserProductsComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,FormsModule,BrowserModule,HttpClientModule,ReactiveFormsModule
+    AppRoutingModule,FormsModule,BrowserModule,HttpClientModule,ReactiveFormsModule,
   ],
   providers: [
     provideClientHydration()
