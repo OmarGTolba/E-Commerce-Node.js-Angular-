@@ -15,14 +15,15 @@ const reviewSchema = mongoose.Schema({
     ref: 'User',
   },
   prdId: {
-    type: String,
-  },
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"Product"  },
 })
 
 reviewSchema.pre(/^find/, function (next) {
   this.populate({ path: 'user', select: 'email name' })
   next()
 })
+
 
 reviewSchema.statics.calcAvgRatingAndCount = async function (productId) {
   const result = await this.aggregate([
