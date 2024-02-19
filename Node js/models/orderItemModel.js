@@ -9,8 +9,6 @@ const OrderItem = mongoose.model('OrderItem', new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref:"Product"
    }
-
-
 }))
 
 module.exports = OrderItem;
