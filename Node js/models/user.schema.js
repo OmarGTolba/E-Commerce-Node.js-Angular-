@@ -6,6 +6,9 @@ const userSchema = new mongoose.Schema({
         minLength: 3,
         maxLength: 512,
     },
+    cart:{
+        
+    },
     email: {
         type: String,
         minLength: 3,
