@@ -20,6 +20,7 @@ import { UserOrderComponent } from './user/user-order/user-order.component';
 import { ProductComponent } from './user/product/product.component';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './user/search/search.component';
+import { CartComponent } from './user/cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { SearchComponent } from './user/search/search.component';
     RegisterComponent,
     OrdersComponent,
     UserOrderComponent,
-    SearchComponent
+    SearchComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

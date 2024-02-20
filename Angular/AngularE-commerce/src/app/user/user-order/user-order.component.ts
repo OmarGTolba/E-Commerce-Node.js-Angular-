@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../services/orders/orders.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-user-order',
@@ -27,8 +28,10 @@ export class UserOrderComponent {
       },
       (error) => {
         console.error('Error fetching orders:', error);
-      }
-    )
+      }
+    )
 
-  }
+  }
 }
+
+
