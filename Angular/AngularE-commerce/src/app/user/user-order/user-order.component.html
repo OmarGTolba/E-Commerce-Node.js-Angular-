@@ -1,1 +1,11 @@
-<p>user-order works!</p>
+<div>
+    <div *ngFor="let item of order.orderItemsIds " >
+       <span> {{item._id}}</span>
+       <span> {{item.quantity}}</span>
+
+    </div>    
+    <div>{{order.city}}</div>
+    <div>{{order.phone}}</div>
+    <div>{{order.status}}</div>
+</div>
+

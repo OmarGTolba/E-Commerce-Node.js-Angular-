@@ -31,8 +31,6 @@ const orderSchema = mongoose.model('Order', new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-
-
 }))
 
 module.exports = orderSchema;

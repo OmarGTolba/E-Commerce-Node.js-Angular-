@@ -33,7 +33,7 @@ export class ProductsService {
 
 
   searchByName(token: string, email: string , name:string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/${name}`
+    const updateUrl = `http://localhost:3000/api/v1/search/product/${name}`
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

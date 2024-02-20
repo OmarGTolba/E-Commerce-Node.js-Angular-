@@ -24,7 +24,4 @@ const cartUserSchema = new mongoose.Schema({
 
 const cartService = mongoose.model('cartService', cartUserSchema);
 
-
 module.exports = cartService;
-
-

@@ -17,6 +17,9 @@ const paymentSchema = mongoose.Schema({
   paidAt: {
     type: Date,
   },
+  orderId:{
+    type: String
+  }
 })
 
 paymentSchema.pre(/^find/, function (next) {
