@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { UserService } from '../../user.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private productService:ProductsService, private userService:UserService){
+  constructor(private productService:ProductsService, private userService:UserService, private router: Router){
     this.getAllProducts()
   }
   products: any[] = [];
@@ -26,5 +27,16 @@ export class HomeComponent {
       }
     )
    
+  }
+
+  getProduct(productId: string) {
+    this.productService.getProductsByID(this.token, this.email, productId).subscribe(
+      (response: any) => {
+        this.router.navigate(['user/product', productId]);
+      },
+      (error) => {
+        console.error('Error fetching order:', error);
+      }
+    )
   }
 }

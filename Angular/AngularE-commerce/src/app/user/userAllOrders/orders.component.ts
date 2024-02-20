@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../services/orders/orders.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -7,7 +8,7 @@ import { OrdersService } from '../../services/orders/orders.service';
   styleUrl: './orders.component.css'
 })
 export class OrdersComponent implements OnInit {
-  constructor(private orderServices: OrdersService) { }
+  constructor(private orderServices: OrdersService, private router: Router) { }
   orders: any[] = []
 
 
@@ -23,18 +24,17 @@ export class OrdersComponent implements OnInit {
     this.orderServices.getUserOrder(this.token, this.email, this.userId).subscribe(
       (response: any) => {
         this.orders = response.data;
-        console.log(response);
       },
       (error) => {
         console.error('Error fetching orders:', error);
       }
     )
   }
-  getOrder(orderId:string) {
+  
+  getOrder(orderId: string) {
     this.orderServices.getOrderByID(this.token, this.email, orderId).subscribe(
       (response: any) => {
-        // this.orders = response.data;
-        console.log(response);
+        this.router.navigate(['user/order', orderId]);
       },
       (error) => {
         console.error('Error fetching order:', error);

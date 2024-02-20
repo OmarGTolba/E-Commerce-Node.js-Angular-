@@ -11,6 +11,8 @@ import { UserComponent } from './user/userNav/user.component';
 import { HomeComponent } from './user/userHome/home.component';
 import { RegisterComponent } from './user/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
+import { UserOrderComponent } from './user/user-order/user-order.component';
+import { ProductComponent } from './user/product/product.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,7 +20,9 @@ const routes: Routes = [
   {
     path: 'user', component: UserComponent, children: [
       { path: '', component: HomeComponent },
-      { path: 'allOrder', component: OrdersComponent }
+      { path: 'allOrder', component: OrdersComponent },
+      { path: 'order/:orderId', component: UserOrderComponent },
+      { path: 'product/:productId', component: ProductComponent }
     ]
   },
   {
