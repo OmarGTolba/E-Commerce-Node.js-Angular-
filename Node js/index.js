@@ -6,6 +6,7 @@ const productRouter =require('./routes/productRouter')
 const categoryRouter =require('./routes/categoriesRouter')
 const ordeRouter =require('./routes/orderRouter')
 const searchRouter=require("./routes/searchRouter")
+const cartRouter=require('./routes/cart.routes');
 
 const {auth}=require("./middleware/auth")
 const {admin}=require("./middleware/admin")
@@ -53,7 +54,7 @@ app.listen(3000,()=>{
 // // app.use(admin);
 // app.use(`${process.env.API_URL}products/`,productRouter)
 
-
+app.use(`${process.env.API_URL}cart`,cartRouter);
 app.use(`${process.env.API_URL}products`,productRouter)
 app.use(`${process.env.API_URL}categories`,categoryRouter)
 app.use(`${process.env.API_URL}orders`,ordeRouter)
