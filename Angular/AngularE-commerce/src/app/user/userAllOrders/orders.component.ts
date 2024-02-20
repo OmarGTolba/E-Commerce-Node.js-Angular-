@@ -9,8 +9,7 @@ import { UserService } from '../../user.service';
   styleUrl: './orders.component.css'
 })
 export class OrdersComponent implements OnInit {
-  constructor(private orderServices: OrdersService, private router: Router) { }
-  constructor(private orderServices: OrdersService, private userService:UserService) {}
+  constructor(private orderServices: OrdersService, private router: Router, private userService:UserService) { }
   orders: any[] = []
 
 

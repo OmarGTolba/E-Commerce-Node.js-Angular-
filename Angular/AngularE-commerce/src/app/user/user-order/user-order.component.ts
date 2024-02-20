@@ -9,22 +9,29 @@ import { UserService } from '../../user.service';
   styleUrl: './user-order.component.css'
 })
 export class UserOrderComponent {
-constructor(private userService:UserService) {this.getCart()}
+  orderId: string="";
+  token = localStorage.getItem('token') || '';
+  email = localStorage.getItem('email') || '';
+  order:any;
 
-cart:any[] = []
-token = localStorage.getItem('token') || '';
-email = localStorage.getItem('email') || '';
-userId = localStorage.getItem('userId') || ''
+  constructor(private route: ActivatedRoute ,private orderServices: OrdersService,) { }
 
-getCart(){
-  this.userService.getUserCart(this.token, this.email, this.userId).subscribe(
-    (response: any) => {
-      this.cart = response?.items
-      console.log(this.cart);
-    },
-    (error) => {
-      console.error('Error fetching orders:', error);
-    }
-  )    
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.orderId = params['orderId'];
+      
+    });
+    this.orderServices.getOrderByID(this.token,this.email,this.orderId).subscribe(
+      (response: any) => {
+        this.order = response.data;
+        console.log(this.order)
+      },
+      (error) => {
+        console.error('Error fetching orders:', error);
+      }
+    )
+
+  }
 }
-}
+
+
