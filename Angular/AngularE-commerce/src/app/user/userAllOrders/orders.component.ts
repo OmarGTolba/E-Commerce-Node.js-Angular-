@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../services/orders/orders.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,7 +8,7 @@ import { OrdersService } from '../../services/orders/orders.service';
   styleUrl: './orders.component.css'
 })
 export class OrdersComponent implements OnInit {
-  constructor(private orderServices: OrdersService) { }
+  constructor(private orderServices: OrdersService, private userService:UserService) {}
   orders: any[] = []
 
 
