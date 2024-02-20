@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'user', component: UserComponent, children: [
       { path: '', component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
-      { path: 'search/:name', component: SearchComponent }
+      { path: 'search/:name', component: SearchComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
       { path: 'product/:productId', component: ProductComponent }
