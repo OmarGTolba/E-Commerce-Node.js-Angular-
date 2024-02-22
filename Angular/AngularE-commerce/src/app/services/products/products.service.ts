@@ -20,6 +20,17 @@ export class ProductsService {
   }
 
 
+  getReviewsByID(token: string, email: string , id:string): Observable<any[]> {
+    const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${id}/reviews`
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.get<any[]>(updateUrl, { headers });
+  }
+
+
   getProductsByID(token: string, email: string , id:string): Observable<any[]> {
     const updateUrl = `http://localhost:3000/api/v1/products/${id}`
     const headers = new HttpHeaders({
@@ -62,5 +73,8 @@ export class ProductsService {
     });
     return this.http.delete<any[]>(updateUrl, { headers });
   }
+
+
+
 }
 

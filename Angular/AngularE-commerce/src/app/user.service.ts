@@ -18,6 +18,7 @@ export class UserService {
     return this.http.get<any[]>(updateUrl, { headers });
   }
 
+  
   getUserCart(token: string, email: string , id:string ): Observable<any[]> {
     const updateUrl = `http://localhost:3000/api/v1/cart?user=${id}`
     const headers = new HttpHeaders({

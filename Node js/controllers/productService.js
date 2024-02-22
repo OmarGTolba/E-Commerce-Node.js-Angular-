@@ -3,17 +3,33 @@ const productModel = require("../models/productModel")
 const categoryModule = require("../models/categoryModel")
 const Product = require('../models/productModel')
 
+const Rating = require('../models/rating.model')
+const { number } = require('joi')
+
 const getAllProducts=asyncHandler(async (req, res) => {
     const productList = await productModel.find() //retrive just name 
     res.status(200).json({ results: productList.length, data: productList });
 })
 
 const getProductById=asyncHandler(async (req, res) => {
-    const id = req.params.id
-    const productList = await productModel.findById({ _id: id }).populate('categories')
-    res.status(200).json({ results: productList.length, data: productList });
-
+     prdId =  ""
+    prdId = req.params.id
+    const products = await productModel.find();
+        const hamada = await productModel.findById({ _id: prdId }).populate('categories')
+    console.log(prdId);
+   x = await Product.findById(prdId)
+    console.log(x.rating); 
+z = await Rating.findOne({prdId})  //null
+console.log(z.ratingsAvg);
+const Updates = await productModel.updateOne({ _id: prdId }, { $set: { rating: z.ratingsAvg } });
+    res.status(200).json({ results: hamada.length, data:  Updates });
 })
+
+
+
+
+
+
 
 const addNewProduct= asyncHandler(async (req, res) => {
     const category = await categoryModule.findById(req.body.categories)
@@ -31,6 +47,8 @@ const updateProduct=asyncHandler(async (req, res) => {
     const Updates = await productModel.updateOne({_id:id},req.body)
     res.send(Updates)
 })
+
+
 
 const deleteProduct=asyncHandler(async (req, res) => {
     const {id} =req.params
@@ -53,5 +71,4 @@ module.exports = {
     addNewProduct,
     updateProduct,
     deleteProduct
-
 }

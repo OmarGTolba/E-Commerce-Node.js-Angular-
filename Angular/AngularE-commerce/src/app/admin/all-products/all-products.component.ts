@@ -25,7 +25,7 @@ export class AllProductsComponent {
     this.productService.getAllProducts(this.token, this.email).subscribe(
       (response: any) => {
         this.products = response.data;
-    //    console.log(this.products);
+      console.log(this.products);
       },
       (error) => {
         console.error('Error fetching products:', error);
@@ -74,6 +74,9 @@ const body = { name: this.name, description: this.description, countInStock: thi
       }
     );
   }
+
+
+
 
   delete(x: any) {
     const token = localStorage.getItem('token') || '';

@@ -26,7 +26,6 @@ export class HomeComponent {
         console.error('Error fetching products:', error);
       }
     )
-   
   }
 
   getProduct(productId: string) {

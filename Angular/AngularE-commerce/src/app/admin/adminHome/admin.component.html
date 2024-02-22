@@ -10,7 +10,7 @@
             <a class="nav-link active" id="addProducts" routerLink="/admin/addProduct">add</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [(ngModel)]="allProducts" (click)="getAllProducts()" >All Products</a>
+            <a class="nav-link" [(ngModel)]="allProducts"  name="fieldName" ngDefaultControl (click)="getAllProducts()" >All Products</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="getAllUsers()" id="getAllUsers">All Users</a>

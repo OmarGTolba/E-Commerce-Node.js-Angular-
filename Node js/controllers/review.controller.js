@@ -1,4 +1,4 @@
-const Review = require('../models/review.model')
+
 const User = require('../models/user.schema')
 const {
   addReview,
@@ -6,6 +6,10 @@ const {
   showRating,
 } = require('../services/review.service')
 const { validateNewReview } = require('../validation/review.validator')
+
+
+
+
 
 const addNewReview = async (req, res) => {
   const id = req.params.id
