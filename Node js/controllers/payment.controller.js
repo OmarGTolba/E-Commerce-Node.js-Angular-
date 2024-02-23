@@ -45,13 +45,18 @@ checkoutSession = async (req, res) => {
         quantity: 1,
     })),
     mode: 'payment',
-    success_url: `${req.protocol}://${req.get('host')}/orders?success=true`,
-    cancel_url: `${req.protocol}://${req.get('host')}/cart?canceled=true`,
+    // success_url: `${req.protocol}://${req.get('host')}/orders?success=true`,
+    // cancel_url: `${req.protocol}://${req.get('host')}/cart?canceled=true`,
     customer_email: await findUserEmailById(req.body.user),
   })
   res.status(200).json({ status: 'success', session })
 }
 
+
+const result = (x) =>{
+  console.log(x);
+
+}
 module.exports = {
   checkoutSession,
   getAllPayments,

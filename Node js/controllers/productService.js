@@ -22,7 +22,7 @@ const getProductById=asyncHandler(async (req, res) => {
 z = await Rating.findOne({prdId})  //null
 console.log(z.ratingsAvg);
 const Updates = await productModel.updateOne({ _id: prdId }, { $set: { rating: z.ratingsAvg } });
-    res.status(200).json({ results: hamada.length, data:  Updates });
+    res.status(200).json({ results: hamada.length, data:  hamada });
 })
 
 
