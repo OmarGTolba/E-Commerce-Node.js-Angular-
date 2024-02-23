@@ -11,10 +11,10 @@ const searchForProduct = asyncHandler(async (req, res) => {
 const searchForCategory = asyncHandler(async (req, res) => {
     const name = req.params.name;
     const categoryList = await categoryModel.find({name});
-    x = await categoryList.id
-    console.log(x);
-    const productList = await productModel.find({categories:categoryList[0]._id});
-    res.status(200).json({ results: categoryList.length, data: productList});
+
+    const productList = await productModel.find({categories:categoryList._id});
+
+    res.status(200).json({ results: categoryList.length, data: productList });
 })
 
 

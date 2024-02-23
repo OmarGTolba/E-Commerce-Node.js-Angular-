@@ -78,7 +78,7 @@ const getProducts = async (req,res)=>{
     const token = req.headers["jwt"];
     const payLoad = await jwt.verify(token, "myjwtsecret")
     const { email } = payLoad;
-    const userCourses = await User.findOne({email}).populate("Products")
+    const userCourses = await User.findOne({email})
     res.send(userCourses)
     }
 
