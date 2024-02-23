@@ -49,9 +49,9 @@ app.listen(3000,()=>{
     console.log(`listening on ${3000}`);
 })
  
-// app.use(auth);
+//  app.use(auth);
 // app.use(`${process.env.API_URL}/products/:category`,getProductsByCategory)
-// // app.use(admin);
+//  app.use(admin);
 // app.use(`${process.env.API_URL}products/`,productRouter)
 
 app.use(`${process.env.API_URL}cart`,cartRouter);
