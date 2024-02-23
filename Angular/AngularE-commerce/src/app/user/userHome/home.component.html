@@ -1,16 +1,12 @@
 <p>home works!</p>
 
-<div class="container d-flex m-auto mt-5 justify-content-between">
-
+<div class="container d-flex m-auto mt-5 flex-wrap  ">
   <div *ngFor="let item of products; let i = index" class="card" (click)="getProduct(item._id)" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+    <img [src]="item.images[0]" class="card-img-top " alt="...">
     <div class="card-body">
       <h5 class="card-title">{{products[i].name}}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card'scontent.</p>
       <a href="#" class="btn btn-primary">Add Product</a>
     </div>
   </div>
-
-
 </div>
