@@ -10,7 +10,7 @@ const searchForProduct = asyncHandler(async (req, res) => {
 const searchForCategory = asyncHandler(async (req, res) => {
     const name = req.params.name;
     const categoryList = await categoryModel.find({name});
-    const productList = await productModel.find({categor:categoryList._id});
+    const productList = await productModel.find({categories:categoryList._id});
 
     res.status(200).json({ results: categoryList.length, data: productList });
 })
