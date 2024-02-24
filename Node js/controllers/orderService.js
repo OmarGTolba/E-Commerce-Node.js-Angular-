@@ -36,8 +36,9 @@ const calculateTotalPrice = async (orderItemIds) => {
     let totalPrice = 0;
 
     for (const item of orderItemIds) {
-        const orderItem = await OrderItemModel.findById(item).populate('product', 'price');
+        const orderItem = await OrderItemModel.findOne(item).populate('product');
         totalPrice += orderItem.product.price * orderItem.quantity;
+      
     }
 
     return totalPrice;
@@ -53,6 +54,7 @@ const createNewOrder=asyncHandler(async (req, res) => {
         orderItemsIds.push(newItem._id);
 
     }
+
 
     const totalPrice = await calculateTotalPrice(orderItemsIds);
 
