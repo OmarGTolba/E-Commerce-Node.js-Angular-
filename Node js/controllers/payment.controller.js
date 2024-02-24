@@ -19,17 +19,17 @@ const findUserEmailById = async (userId) => {
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
-//TODO: Get checkout session from stripe and send it as response
 
+let result;
+let order ;
 checkoutSession = async (req, res) => {
-  const order = await orderSchema.findById(req.body.orderId).populate({
+   order = await orderSchema.findById(req.body.orderId).populate({
     path: 'orderItemsIds', populate: {
         path: 'product', populate: 'categories'
 }})
   if(!order){
       res.status(404).send({message: `there is no order with this id ${req.body.orderId}`})
   }
-
   const totalPrice = order.totalPrice;
   const session = await stripe.checkout.sessions.create({
     // line_items: req.body.order?.map((item) => ({
@@ -45,19 +45,29 @@ checkoutSession = async (req, res) => {
         quantity: 1,
     })),
     mode: 'payment',
-    // success_url: `${req.protocol}://${req.get('host')}/orders?success=true`,
-    // cancel_url: `${req.protocol}://${req.get('host')}/cart?canceled=true`,
+    success_url: `${req.protocol}://${req.get('host')}/orders?success=true`,
+    cancel_url: `${req.protocol}://${req.get('host')}/cart?canceled=true`,
     customer_email: await findUserEmailById(req.body.user),
   })
   res.status(200).json({ status: 'success', session })
+  result = res.statusCode
+  console.log(result);
+
+
 }
 
+const getResult = (req, res) =>{
+  if(result == 200){
+    res.status(200).send("payment suucceeded")
+  }else{
+    res.status(400).send("payment failed")
 
-const result = (x) =>{
-  console.log(x);
+  }
 
 }
+
 module.exports = {
   checkoutSession,
   getAllPayments,
+  getResult
 }
