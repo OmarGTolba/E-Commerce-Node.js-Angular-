@@ -6,7 +6,7 @@ const getCart = async (req, res) => {
     // const user = await User.findOne({ email }).populate("product_id");
     // const cart_obj = await cartService.find().populate("product_id");
     const user = req.query.user;
-    const userCart =await cartService.findOne({user}).populate('items.product_id').populate('user')
+    const userCart =await cartService.findOne({user}).populate('items.product_id')
     res.json(userCart);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -23,11 +23,15 @@ const addToCart = async (req, res) => {
       cart = await cartService.create({ user, items: [] });
     }
 
-    const existingItemIndex = cart.items.findIndex(item => item.product_id.equals(product_id));
-    if (existingItemIndex !== -1) {
-     
-      cart.items[existingItemIndex].quantity += quantity;
-    } else {
+    const existingItemIndex = cart.items.findIndex(item => {
+      return item.product_id && item.product_id.equals(product_id);
+    });
+     if (existingItemIndex !== -1) {
+      cart.items[existingItemIndex].quantity += parseInt(quantity) ;
+     console.log(
+      cart.items[existingItemIndex].quantity); 
+    
+  } else {
       cart.items.push({ product_id, quantity });
     }
     await cartService.updateOne({ user }, cart);

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const orderSchema = mongoose.model('Order', new mongoose.Schema({
+
     orderItemsIds: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OrderItem',
@@ -9,15 +10,15 @@ const orderSchema = mongoose.model('Order', new mongoose.Schema({
 
     city: {
         type: String,
-        required: true,
+   //   required: true,
     },
     phone: {
         type: String,
-        required: true,
+     //   required: true,
     },
     status: {
         type: String,
-        required: true,
+      //  required: true,
         default: 'Pending',
     },
     totalPrice: {
