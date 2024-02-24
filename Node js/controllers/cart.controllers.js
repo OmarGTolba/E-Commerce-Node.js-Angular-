@@ -54,7 +54,10 @@ const updateCartItem = async (req, res) => {
       return res.status(404).json({ message: "Cart not found" });
     }
     
-    const cartItem = userCart.items.find(item => item.product_id.equals(product_id));
+     const cartItem = userCart.items.findIndex(item => {
+      return item.product_id && item.product_id.equals(product_id);
+    });
+    
     
     if (!cartItem) {
       return res.status(404).json({ message: "Cart item not found" });
@@ -81,8 +84,10 @@ const removeFromCart = async (req, res) => {
       return res.status(404).json({ message: "Cart not found" });
     }
 
-    const index = userCart.items.findIndex(item => item.product_id.equals(product_id));
-
+    const index = userCart.items.findIndex(item => {
+      return item.product_id && item.product_id.equals(product_id);
+    });
+  
     if (index === -1) {
       return res.status(404).json({ message: "Cart item not found" });
     }
