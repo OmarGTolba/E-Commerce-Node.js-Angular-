@@ -17,9 +17,6 @@ const paymentRouter = require('./routes/payment.router.js')
 // const { getProductsByCategory } = require('./controllers/category.controllers');
 const ejs = require('ejs')
 
-
-
-
 app.use(cors());
 app.use((req,res,next)=>{
     
@@ -33,9 +30,6 @@ app.use((req,res,next)=>{
 app.use(express.json())
 app.use(express.static("public"))
 app.use(`${process.env.API_URL}user`,userRouter)
-
-// app.use(auth)
-app.use(`${process.env.API_URL}payment`, paymentRouter)
 
 
 app.set('view engine', 'ejs');
@@ -54,8 +48,12 @@ app.listen(3000,()=>{
 //  app.use(admin);
 // app.use(`${process.env.API_URL}products/`,productRouter)
 
-app.use(`${process.env.API_URL}cart`,cartRouter);
-app.use(`${process.env.API_URL}products`,productRouter)
-app.use(`${process.env.API_URL}categories`,categoryRouter)
-app.use(`${process.env.API_URL}orders`,ordeRouter)
 app.use(`${process.env.API_URL}search`,searchRouter)
+app.use(`${process.env.API_URL}products`, productRouter)
+
+app.use(auth);
+
+app.use(`${process.env.API_URL}payment`, paymentRouter)
+app.use(`${process.env.API_URL}cart`, cartRouter);
+app.use(`${process.env.API_URL}categories`, categoryRouter)
+app.use(`${process.env.API_URL}orders`, ordeRouter)
