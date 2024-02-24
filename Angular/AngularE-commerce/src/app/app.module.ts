@@ -21,6 +21,8 @@ import { ProductComponent } from './user/product/product.component';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './user/search/search.component';
 import { CartComponent } from './user/cart/cart.component';
+import { MatTabsModule } from '@angular/material/tabs';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { CartComponent } from './user/cart/cart.component';
     AllCategoriesComponent,
     AllOrdersComponent,
     AddComponent,
+    ProductComponent,
     UserComponent,
     HomeComponent,
     RegisterComponent,
@@ -40,8 +43,8 @@ import { CartComponent } from './user/cart/cart.component';
     CartComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,FormsModule,HttpClientModule,ReactiveFormsModule,CommonModule
+    BrowserModule,MatTabsModule,
+    AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule
   ],
   providers: [
     provideClientHydration()
