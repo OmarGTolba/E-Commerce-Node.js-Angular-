@@ -1,5 +1,6 @@
 // const Cart = require("../models/cart.model");
 const cartService = require("../models/cart.model");
+const Product = require("../models/productModel");
 
 const getCart = async (req, res) => {
   try {
@@ -26,14 +27,13 @@ const addToCart = async (req, res) => {
     const existingItemIndex = cart.items.findIndex(item => {
       return item.product_id && item.product_id.equals(product_id);
     });
-     if (existingItemIndex !== -1) {
-      cart.items[existingItemIndex].quantity += parseInt(quantity) ;
-     console.log(
-      cart.items[existingItemIndex].quantity); 
-    
-  } else {
+
+    if (existingItemIndex !== -1) {
+      cart.items[existingItemIndex].quantity += parseInt(quantity) ; 
+    } else {
       cart.items.push({ product_id, quantity });
     }
+
     await cartService.updateOne({ user }, cart);
 
     res.status(201).send("Product added to the cart successfully.");
@@ -42,6 +42,10 @@ const addToCart = async (req, res) => {
   }
 };
 
+// const confirmOrder=async()=>{
+//   const product = await Product.findById({_id:product_id })
+//   const upateCount = await Product.updateOne({_id:product._id }, {$set:{countInStock: product.countInStock-quantity}})
+// }
 
 const updateCartItem = async (req, res) => {
   try {
