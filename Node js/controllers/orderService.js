@@ -74,6 +74,7 @@ const getUserOrder = asyncHandler(async (req, res) => {
     // Retrieve user's cart items 
 
     const userCarts = await cartService.find({ user: userId }).populate('items.product_id');
+    console.log(userCarts[0].items[0].quantity);
 
     if (!userCarts || userCarts.length === 0) {
         return res.status(400).json({ message: "No carts found for the user" });
@@ -94,10 +95,10 @@ const getUserOrder = asyncHandler(async (req, res) => {
             orderItemsIds.push(newItem._id);
     
             // Update the total price based on the product price and quantity
-            // totalPrice = (newItem.product.price)
-            const price = (await newItem.populate('product')).product.price
-            totalPrice+=price*quantity
+            //    const price = (await newItem.populate('product')).product.price
+            //    totalPrice+=price*quantity
         }
+        totalPrice += userCarts[0].items[0].product_id.price *userCarts[0].items[0].quantity
     }
     
     // Additional order details

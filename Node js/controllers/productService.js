@@ -12,16 +12,10 @@ const getAllProducts=asyncHandler(async (req, res) => {
 })
 
 const getProductById=asyncHandler(async (req, res) => {
-     prdId =  ""
-    prdId = req.params.id
-    const products = await productModel.find();
+
+ let   prdId = req.params.id
         const hamada = await productModel.findById({ _id: prdId }).populate('categories')
-    console.log(prdId);
-   x = await Product.findById(prdId)
-    console.log(x.rating); 
-z = await Rating.findOne({prdId})  //null
-console.log(z.ratingsAvg);
-const Updates = await productModel.updateOne({ _id: prdId }, { $set: { rating: z.ratingsAvg } });
+
     res.status(200).json({ results: hamada.length, data:  hamada });
 })
 

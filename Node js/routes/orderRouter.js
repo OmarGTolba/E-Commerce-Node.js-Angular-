@@ -6,9 +6,9 @@ const{getAllOrders,getOrderById,createNewOrder,cancelOrder,getUserOrder}=require
 
 router.get('/', getAllOrders)
 
-router.get('/:id',getOrderById )
+router.get('/:id',getOrderById)
 
-router.get('/:id/user',getUserOrder )
+router.get('/:id/user',getUserOrder)
 
 router.post('/', createNewOrder);
 

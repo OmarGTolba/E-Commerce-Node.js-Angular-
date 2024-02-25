@@ -1,4 +1,3 @@
-// const Cart = require("../models/cart.model");
 const cartService = require("../models/cart.model");
 
 const getCart = async (req, res) => {
@@ -23,8 +22,8 @@ const addToCart = async (req, res) => {
       cart = await cartService.create({ user, items: [] });
     }
 
-    const existingItemIndex = cart.items.findIndex(item => {
-      return item.product_id && item.product_id.equals(product_id);
+    const existingItemIndex =  cart.items.findIndex( async(item) => {
+      return  item.product_id && item.product_id.equals(product_id);
     });
      if (existingItemIndex !== -1) {
       cart.items[existingItemIndex].quantity += parseInt(quantity) ;
@@ -45,25 +44,30 @@ const addToCart = async (req, res) => {
 
 const updateCartItem = async (req, res) => {
   try {
-    const {product_id}=req.params;
-    const { quantity } = req.body;
+    const {product_id}=req.body;
+    const {quantity} = req.body;
     const user = req.query.user;
     const userCart = await cartService.findOne({ user: user }).populate('items.product_id').populate('user');
-    
     if (!userCart) {
       return res.status(404).json({ message: "Cart not found" });
     }
+  
+      console.log(userCart.items);
+    // const cartItem = userCart.items.find(item => item.product_id.equals(product_id));
     
-    const cartItem = userCart.items.find(item => item.product_id.equals(product_id));
-    
-    if (!cartItem) {
+    const cartItem =  userCart.items.findIndex((item) => {
+      console.log(item._id);
+      return  item._id && item._id.equals(product_id);
+    });
+console.log(cartItem);
+    if (cartItem ==-1 ) {
       return res.status(404).json({ message: "Cart item not found" });
     }
     
-    cartItem.quantity = quantity;
-
+    console.log(cartItem);
+    console.log(quantity);
+    userCart.items[cartItem].quantity = quantity;
     await userCart.save();
-
 
     res.json(userCart);
   } catch (error) {
