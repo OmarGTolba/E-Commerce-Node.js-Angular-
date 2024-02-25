@@ -3,6 +3,9 @@ const orderModel = require("../models/orderModel")
 const OrderItemModel = require("../models/orderItemModel")
 const cartService = require("../models/cart.model")
 const User = require("../models/user.schema")
+const Product = require('../models/productModel')
+const orderSchema = require('../models/orderModel')
+
 const getAllOrders=asyncHandler(async (req, res) => {
     const order = await orderModel.find().populate('user', 'name -_id').populate({
         path: 'orderItemsIds', populate: {
@@ -11,16 +14,16 @@ const getAllOrders=asyncHandler(async (req, res) => {
     });
     res.status(200).json({ results: order.length, data: order });
 })
-// const getUserOrder=asyncHandler(async (req, res) => {
-//     const userId = req.params.id;
+const getUserOrders=asyncHandler(async (req, res) => { 
 
-//     const userOrder = await orderModel.find({user:userId}).populate('user', 'name -_id').populate({
-//         path: 'orderItemsIds', populate: {
-//             path: 'product', populate: 'categories'
-//         }
-//     });
-//     res.status(200).json({ data: userOrder });
-// })
+    const userOrder = await orderModel.find({user:userId}).populate('user', 'name -_id').populate({
+        path: 'orderItemsIds', populate: {
+            path: 'product', populate: 'categories'
+        }
+    });
+    res.status(200).json({ data: userOrder });
+})
+
 
 
 const getOrderById=asyncHandler(async (req, res) => {
@@ -38,7 +41,6 @@ const calculateTotalPrice = async (orderItemIds) => {
     for (const item of orderItemIds) {
         const orderItem = await OrderItemModel.findOne(item).populate('product');
         totalPrice += orderItem.product.price * orderItem.quantity;
-      
     }
 
     return totalPrice;
@@ -52,10 +54,7 @@ const createNewOrder=asyncHandler(async (req, res) => {
         const newItem = await OrderItemModel.create({ quantity, product });
 
         orderItemsIds.push(newItem._id);
-
     }
-
-
     const totalPrice = await calculateTotalPrice(orderItemsIds);
 
     const { city, phone, status, user, dateOrdered } = req.body;
@@ -149,5 +148,5 @@ module.exports = {
     getOrderById,
     createNewOrder,
     cancelOrder,
-    getUserOrder
+    getUserOrder,getUserOrders,
 }
