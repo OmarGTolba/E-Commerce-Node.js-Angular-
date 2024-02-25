@@ -2,6 +2,7 @@ const orderSchema = require('../models/orderModel')
 const Payment = require('../models/payment.model')
 const User = require('../models/user.schema')
 const productModel = require("../models/productModel")
+const Product = require('../models/productModel')
 
 const getAllPayments = async (req, res) => {
   const payments = await Payment.find()
@@ -56,9 +57,14 @@ checkoutSession = async (req, res) => {
 
 }
 
-const getResult = (req, res) =>{
+const getResult = async(req, res) =>{
   if(result == 200){
     res.status(200).send("payment suucceeded")
+      const orderUpdate = orderSchema.findByIdAndUpdate(order._id, {$set: {status: "success"}})
+      order.orderItemsIds.forEach(async(Ele) => {
+        const product = await Product.findById({_id:Ele.product._id })
+        const upateCount = await Product.updateOne({_id: product.product_id}, {$set:{countInStock: product.countInStock - Ele.quantity }})
+      });
   }else{
     res.status(400).send("payment failed")
 
@@ -66,8 +72,11 @@ const getResult = (req, res) =>{
 
 }
 
+
+
 module.exports = {
   checkoutSession,
   getAllPayments,
-  getResult
+  getResult,
+  
 }
