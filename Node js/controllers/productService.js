@@ -12,8 +12,8 @@ const getAllProducts = asyncHandler(async (req, res) => {
 })
 
 const getProductById = asyncHandler(async (req, res) => {
-    prdId = ""
-    prdId = req.params.id
+    
+    let prdId = req.params.id
     const products = await productModel.find();
 
     const hamada = await productModel.findById({ _id: prdId }).populate('categories')

@@ -16,7 +16,6 @@ router.get('/:id/user/orders',getUserOrders )
 
 router.post('/', auth, createNewOrder);
 
-
 router.patch('/:id/cancel', auth, cancelOrder);
 
 module.exports = router;
