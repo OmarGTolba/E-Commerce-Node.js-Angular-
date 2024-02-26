@@ -18,6 +18,7 @@ export class ProductComponent {
   product: any;
   quantity = 0;
   size = 'choose size';
+  value: number = 0;
 
   constructor(private route: ActivatedRoute, private cartServices: CartService, private productServices: ProductsService) { }
 

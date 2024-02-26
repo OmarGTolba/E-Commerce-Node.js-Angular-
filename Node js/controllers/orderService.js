@@ -14,8 +14,9 @@ const getAllOrders=asyncHandler(async (req, res) => {
     });
     res.status(200).json({ results: order.length, data: order });
 })
-const getUserOrders=asyncHandler(async (req, res) => { 
 
+const getUserOrders=asyncHandler(async (req, res) => { 
+    const userId=req.params.id;
     const userOrder = await orderModel.find({user:userId}).populate('user', 'name -_id').populate({
         path: 'orderItemsIds', populate: {
             path: 'product', populate: 'categories'
@@ -46,25 +47,25 @@ const calculateTotalPrice = async (orderItemIds) => {
     return totalPrice;
 };
 
-const createNewOrder=asyncHandler(async (req, res) => {
-    const orderItemsIds = [];
+// const createNewOrder=asyncHandler(async (req, res) => {
+//     const orderItemsIds = [];
 
-    for (const item of req.body.orderItems) {
-        let { quantity, product } = item;
-        const newItem = await OrderItemModel.create({ quantity, product });
+//     for (const item of req.body.orderItems) {
+//         let { quantity, product } = item;
+//         const newItem = await OrderItemModel.create({ quantity, product });
 
-        orderItemsIds.push(newItem._id);
-    }
-    const totalPrice = await calculateTotalPrice(orderItemsIds);
+//         orderItemsIds.push(newItem._id);
+//     }
+//     const totalPrice = await calculateTotalPrice(orderItemsIds);
 
-    const { city, phone, status, user, dateOrdered } = req.body;
-    const newOrder = await orderModel.create({ orderItemsIds, city, phone, status, totalPrice, user, dateOrdered });
+//     const { city, phone, status, user, dateOrdered } = req.body;
+//     const newOrder = await orderModel.create({ orderItemsIds, city, phone, status, totalPrice, user, dateOrdered });
 
-    if (!newOrder) {
-        return res.status(400).send("the order can't be created");
-    }
-    res.status(200).json({ data: newOrder });
-})
+//     if (!newOrder) {
+//         return res.status(400).send("the order can't be created");
+//     }
+//     res.status(200).json({ data: newOrder });
+// })
 
 
 const getUserOrder = asyncHandler(async (req, res) => {
@@ -146,7 +147,6 @@ const cancelOrder=asyncHandler(async (req, res) => {
 module.exports = {
     getAllOrders,
     getOrderById,
-    createNewOrder,
     cancelOrder,
     getUserOrder,getUserOrders,
 }

@@ -5,6 +5,7 @@ const Product = require('../models/productModel')
 
 const Rating = require('../models/rating.model')
 const { number } = require('joi')
+const { validateAddProduct } = require('../validation/product.valisator')
 
 const getAllProducts = asyncHandler(async (req, res) => {
     const productList = await productModel.find() //retrive just name 
@@ -12,7 +13,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
 })
 
 const getProductById = asyncHandler(async (req, res) => {
-    
+
     let prdId = req.params.id
     const products = await productModel.find();
 
@@ -22,12 +23,12 @@ const getProductById = asyncHandler(async (req, res) => {
     x = await Product.findById(prdId)
     console.log(x.rating);
 
-    z = await Rating.findOne({ prdId }) 
+    z = await Rating.findOne({ prdId })
     // console.log(z.ratingsAvg);
 
     if (z !== null) {
         const Updates = await productModel.updateOne({ _id: prdId }, { $set: { rating: z.ratingsAvg } });
-    } 
+    }
 
 
     res.status(200).json({ results: hamada.length, data: hamada });
@@ -40,6 +41,12 @@ const getProductById = asyncHandler(async (req, res) => {
 
 
 const addNewProduct = asyncHandler(async (req, res) => {
+    const { error } = validateAddProduct(req.body)
+    if (error) {
+        res.status(400).send({ message: error })
+        return;
+    }
+
     const category = await categoryModule.findById(req.body.categories)
     if (!category) return res.status(400).send("invalid category")
 
