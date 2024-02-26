@@ -1,24 +1,24 @@
 const User = require("../models/user.schema")
 
-const cretateNewUser =async  (user)=>{
-   try{
-   return  await  User.create(user)
+const cretateNewUser = async (user) => {
+    try {
+        return await User.create(user)
+    }
+    catch (err) {
+        console.log(err);
+        return;
+    }
 }
-catch(err){
-    console.log(err);
-    return;
-   }
-}
-const findUserService = async (email)=>{
-    return  await User.findOne({email})
+const findUserService = async (email) => {
+    return await User.findOne({ email })
 
 }
-const getAllUsers = async ()=>{
-    return  await User.find()
-        
-   }
-   
- 
+const getAllUsers = async () => {
+    return await User.find()
+
+}
+
+
 
 
 

@@ -5,7 +5,7 @@ const User = require("../models/user.schema")
 
 const createNewUse =
     async (req, res) => {
-        const { name, email, password, Products, role } = req.body
+        const { name, email, password, role } = req.body
         if (!email || !name) {
             return res.send("Invalid")
         }
@@ -13,7 +13,7 @@ const createNewUse =
         if (user) { res.send({ message: "this email is already exist.." }) }
         else {
             const passwordHash = await bcrypt.hash(password, 10);
-            const newUser = await cretateNewUser({ name, email, passwordHash, Products, role })
+            const newUser = await cretateNewUser({ name, email, passwordHash, role })
             res.send(newUser)
             console.log(newUser)
         }
@@ -30,7 +30,7 @@ const updateUser = async (req, res) => {
     const { email } = payLoad;
     const user = await User.findOne({ email })
     if (!user) {
-        res.status(404).send(`there is no book with id ${req.params.id}`); return;
+        res.status(404).send(`there is no user with id ${req.params.id}`); return;
     }
 
     const Updates = await User.updateOne({ email }, req.body)
@@ -74,13 +74,13 @@ const login = async (req, res) => {
 }
 
 
-const getProducts = async (req,res)=>{   
-    const token = req.headers["jwt"];
-    const payLoad = await jwt.verify(token, "myjwtsecret")
-    const { email } = payLoad;
-    const userCourses = await User.findOne({email})
-    res.send(userCourses)
-    }
+// const getProducts = async (req,res)=>{   
+//     const token = req.headers["jwt"];
+//     const payLoad = await jwt.verify(token, "myjwtsecret")
+//     const { email } = payLoad;
+//     const userCourses = await User.findOne({email})
+//     res.send(userCourses)
+//     }
 
 
 
