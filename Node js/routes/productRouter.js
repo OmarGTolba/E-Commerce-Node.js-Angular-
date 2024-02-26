@@ -8,8 +8,8 @@ const router = express.Router()
 
 router.get('/', getAllProducts)
 
-router.get('/:id', auth, getProductById)
-router.patch('/:id', admin, updateProduct)
+router.get('/:id', getProductById)
+router.patch('/:id', updateProduct)
 
 router.post('/', admin, addNewProduct)
 router.delete('/:id',deleteProduct)
