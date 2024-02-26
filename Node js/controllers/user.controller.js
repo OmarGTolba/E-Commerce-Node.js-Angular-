@@ -74,6 +74,14 @@ const login = async (req, res) => {
 }
 
 
+
+const getUserById= async (req,res)=>{
+    const {id}=req.params;
+const user =await User.findOne({_id:id})
+    res.send(user)
+}
+
+
 // const getProducts = async (req,res)=>{   
 //     const token = req.headers["jwt"];
 //     const payLoad = await jwt.verify(token, "myjwtsecret")
@@ -85,5 +93,5 @@ const login = async (req, res) => {
 
 
 module.exports = {
-    createNewUse, login, findAllUsers, updateUser,getProducts
+    createNewUse, login, findAllUsers, updateUser,getProducts,getUserById
 }

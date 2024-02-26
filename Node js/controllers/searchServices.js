@@ -4,13 +4,13 @@ const categoryModel=require("../models/categoryModel")
 
 const searchForProduct = asyncHandler(async (req, res) => {
     const name = req.params.name;
-    const productList = await productModel.find({name});
+    const productList = await productModel.find({name:{"$regex":name,"$options":"i"}});
     
     res.status(200).json({ results: productList.length, data: productList });
 })
 const searchForCategory = asyncHandler(async (req, res) => {
     const name = req.params.name;
-    const categoryList = await categoryModel.find({name});
+    const categoryList = await categoryModel.find({name:{"$regex":name,"$options":"i"}});
 
     const productList = await productModel.find({categories:categoryList._id});
 
