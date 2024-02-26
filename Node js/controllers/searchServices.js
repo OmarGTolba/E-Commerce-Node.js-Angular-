@@ -12,9 +12,17 @@ const searchForCategory = asyncHandler(async (req, res) => {
     const name = req.params.name;
     const categoryList = await categoryModel.find({name:{"$regex":name,"$options":"i"}});
 
-    const productList = await productModel.find({categories:categoryList._id});
+let productList=[]; 
+let product=[] ;
+for (let index = 0; index < categoryList.length; index++) {
+   console.log(categoryList.length);
+    product.push(await productModel.find({categories:categoryList[index]._id})) 
+}
+console.log(product); 
+// console.log(productList);
 
-    res.status(200).json({ results: categoryList.length, data: productList });
+
+    res.status(200).json({ results: categoryList.length, data: product });
 })
 
 
