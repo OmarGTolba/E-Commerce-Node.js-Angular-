@@ -29,7 +29,6 @@ app.use((req,res,next)=>{
 
 app.use(express.json())
 app.use(express.static("public"))
-app.use(`${process.env.API_URL}user`,userRouter)
 
 
 app.set('view engine', 'ejs');
@@ -42,16 +41,17 @@ app.get("/ejs",(req,res)=>{
 app.listen(3000,()=>{
     console.log(`listening on ${3000}`);
 })
- 
+
 //  app.use(auth);
 // app.use(`${process.env.API_URL}/products/:category`,getProductsByCategory)
-//  app.use(admin);
 // app.use(`${process.env.API_URL}products/`,productRouter)
 
 app.use(`${process.env.API_URL}search`,searchRouter)
 app.use(`${process.env.API_URL}products`, productRouter)
+app.use(`${process.env.API_URL}user`,userRouter)
 
-app.use(auth);
+//app.use(auth);
+//  app.use(admin);
 
 app.use(`${process.env.API_URL}payment`, paymentRouter)
 app.use(`${process.env.API_URL}cart`, cartRouter);
