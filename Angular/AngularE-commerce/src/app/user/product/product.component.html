@@ -55,7 +55,8 @@
          <div class="quantity">
             <button type="button" (click)="min()" class="btn btn-danger" [disabled]="quantity === 0">-</button>
             <input type="text" [value]="quantity">
-            <button type="button" (click)="plus()" class="btn btn-success" [disabled]="quantity === product.countInStock">+</button>
+            <button type="button" (click)="plus()" class="btn btn-success"
+               [disabled]="quantity === product.countInStock">+</button>
 
          </div>
 
@@ -73,28 +74,53 @@
 
    <div class="section2">
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-         
+
          <li class="nav-item" role="presentation">
-           <button class="btn active" id="pills-discription-tab" data-bs-toggle="pill" data-bs-target="#pills-discription" type="button" role="tab" aria-controls="pills-discription" aria-selected="false">discription</button>
+            <button class="btn active" id="pills-discription-tab" data-bs-toggle="pill"
+               data-bs-target="#pills-discription" type="button" role="tab" aria-controls="pills-discription"
+               aria-selected="false">discription</button>
          </li>
          <li class="nav-item" role="presentation">
-           <button class="btn" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button" role="tab" aria-controls="pills-review" aria-selected="false" (click)="showReview(product._id)">review</button>
+            <button class="btn" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button"
+               role="tab" aria-controls="pills-review" aria-selected="false"
+               (click)="showReview(product._id)">review</button>
          </li>
-       
-       </ul>
-       <div class="tab-content" id="pills-tabContent">
-         <div class="tab-pane fade show active" id="pills-discription" role="tabpanel" aria-labelledby="pills-discription-tab" tabindex="0"> 
+
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+         <div class="tab-pane fade show active" id="pills-discription" role="tabpanel"
+            aria-labelledby="pills-discription-tab" tabindex="0">
             <p>{{ product.description }}</p>
             <p>{{product.brand}}</p>
          </div>
          <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab" tabindex="0">
-            <div  *ngFor="let item of reviews; let i = index">
-               <p>{{item.rating}}</p>
-               <p>{{item.title}}</p>
-               <p>{{item.user.name}}</p>
-               <p>{{item.user.email}}</p>
+            <div *ngFor="let item of reviews; let i = index">
+
+               <div class="row justify-content-center my-3">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
+                     <img class=" profileIcon" src="../../../assets/iamges/istockphoto-1495088043-612x612-removebg-preview.png" />
+                  </div>
+                  <div class="col-7">
+
+                     <div class="row">
+                        <p class="col">{{item.user.name}}</p>
+                        <mat-slider
+                        thumbLabel
+                        tickInterval="1"
+                        min="0"
+                        max="5"
+                        step="1"
+                        [(ngModel)]="value">
+                      </mat-slider>
+                      
+                     </div>
+                     <p>{{item.title}}</p>
+
+                  </div>
+
+               </div>
             </div>
          </div>
-       </div>
+      </div>
    </div>
 </div>

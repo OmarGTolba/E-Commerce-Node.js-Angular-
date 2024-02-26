@@ -22,6 +22,8 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './user/search/search.component';
 import { CartComponent } from './user/cart/cart.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSliderModule } from '@angular/material/slider';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -43,11 +45,12 @@ import { MatTabsModule } from '@angular/material/tabs';
     CartComponent
   ],
   imports: [
-    BrowserModule,MatTabsModule,
+    BrowserModule,MatTabsModule,MatSliderModule,
     AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
