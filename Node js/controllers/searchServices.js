@@ -14,7 +14,7 @@ const searchForCategory = asyncHandler(async (req, res) => {
 
     const productList = await productModel.find({categories:categoryList._id});
 
-    res.status(200).json({ results: categoryList.length, data: productList });
+    res.status(200).json({ results: productList.length, data: productList });
 })
 
 

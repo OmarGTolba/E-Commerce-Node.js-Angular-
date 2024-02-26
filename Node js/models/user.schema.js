@@ -27,12 +27,6 @@ const userSchema = new mongoose.Schema({
         enum: ['Admin', 'User'],
         default: 'User'
     },
-    // Products: [
-    //     {
-    //       type: mongoose.Schema.Types.ObjectId,
-    //       ref: 'Product',  // Ensure this matches the model name for your product
-    //     },
-    //   ],
 });
 
 const User = mongoose.model('User', userSchema);

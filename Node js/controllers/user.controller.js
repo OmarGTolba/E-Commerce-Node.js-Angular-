@@ -1,10 +1,16 @@
-const { cretateNewUser, getAllUsers, findUserService, getuserBooks, getUserProducts } = require("../services/user.service")
+const { cretateNewUser, getAllUsers, findUserService } = require("../services/user.service")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require("../models/user.schema")
+const { validateAddUsers } = require("../validation/user.validator")
 
 const createNewUse =
     async (req, res) => {
+        const { error } = validateAddUsers(req.body)
+        if (error) {
+            res.status(400).send({ message: error })
+            return;
+        }
         const { name, email, password, role } = req.body
         if (!email || !name) {
             return res.send("Invalid")
@@ -58,7 +64,7 @@ const login = async (req, res) => {
         if (user.role == 'Admin') {
 
         }
-        const {role,_id}=user;
+        const { role, _id } = user;
 
         const isValidPassword = await bcrypt.compare(password, user.passwordHash)
 
@@ -66,7 +72,7 @@ const login = async (req, res) => {
             return res.status(401).send({ message: "Incorret email or password..." })
 
         const token = jwt.sign({ email }, 'myjwtsecret', { expiresIn: '1h' });
-        res.header({ jwt: token }).send({ token, email, role,_id});
+        res.header({ jwt: token }).send({ token, email, role, _id });
     }
     catch (userLoginError) {
         res.status(500).send(userLoginError.message)
@@ -75,9 +81,9 @@ const login = async (req, res) => {
 
 
 
-const getUserById= async (req,res)=>{
-    const {id}=req.params;
-const user =await User.findOne({_id:id})
+const getUserById = async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findOne({ _id: id })
     res.send(user)
 }
 
@@ -93,5 +99,5 @@ const user =await User.findOne({_id:id})
 
 
 module.exports = {
-    createNewUse, login, findAllUsers, updateUser,getProducts,getUserById
+    createNewUse, login, findAllUsers, updateUser, getUserById
 }
