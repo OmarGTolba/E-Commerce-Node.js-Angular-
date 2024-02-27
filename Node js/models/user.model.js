@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         minLength: 3,
         maxLength: 512,
+        required: true
     },
     cart:{
         
@@ -13,26 +14,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         minLength: 3,
         maxLength: 512,
-        // Add email format validation if needed
+        required: true
     },
     passwordHash: {
         type: String,
         minLength: 3,
         maxLength: 512,
-        // Use a secure password hashing algorithm (e.g., bcrypt)
     },
-  
     role: {
         type: String,
         enum: ['Admin', 'User'],
         default: 'User'
     },
-    Products: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Product',  // Ensure this matches the model name for your product
-        },
-      ],
 });
 
 const User = mongoose.model('User', userSchema);

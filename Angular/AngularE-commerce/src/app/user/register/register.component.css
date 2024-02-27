@@ -1,0 +1,116 @@
+.container{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    left: 112px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  form {
+    max-width: 800px;
+    position: relative;
+    padding: 20px;
+    border: 1px solid #717fe0;
+    border-radius: 20px;
+    background-color: #717fe0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+    z-index: 1;
+  }
+  h2 {
+    font-size: 50px;
+    color: #ffffff;
+    text-align: center;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: rgba(250, 250, 250, 0.5);
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  input[type="submit"],
+  button {
+    width: calc(100% - 20px);
+    padding: 15px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: block;
+    margin: 10px;
+    position: relative;
+    z-index: 2;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  input[type="submit"] {
+    background-color: #717fe0;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  }
+  .wave {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url("../../../assets/images/wave.jpeg");
+    background-size: 600px 150px;
+    z-index: -3;
+    opacity: 0.7;
+    animation: Wave 4s ease-in-out infinite;
+  }
+  .wave#wave1 {
+    background-position-x: 200px;
+    opacity: 0.5;
+    z-index: -2;
+  }
+  
+  .wave#wave2 {
+    background-position-x: 400px;
+    opacity: 0.6;
+    z-index: -1;
+  }
+  @keyframes Wave {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(15px);
+    }
+  }
+  
+  button {
+    background-color: #ffffff;
+    color: #717fe0;
+    border: 2px solid #717fe0; 
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  }
+  
+  button:hover {
+    background-color: #717fe0;
+    color: #ffffff;
+     border: 1px solid #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  }
+  input[type="submit"]:hover{
+    background-color: #5f6cc2;
+    color: #ffffff;
+     border: 1px solid #ffffff;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  }

@@ -1,10 +1,7 @@
 const cartService = require("../models/cart.model");
-const Product = require("../models/productModel");
 
 const getCart = async (req, res) => {
   try {
-    // const user = await User.findOne({ email }).populate("product_id");
-    // const cart_obj = await cartService.find().populate("product_id");
     const user = req.query.user;
     const userCart =await cartService.findOne({user}).populate('items.product_id')
     res.json(userCart);
@@ -41,18 +38,11 @@ const addToCart = async (req, res) => {
   }
 };
 
-// const confirmOrder=async()=>{
-//   const product = await Product.findById({_id:product_id })
-//   const upateCount = await Product.updateOne({_id:product._id }, {$set:{countInStock: product.countInStock-quantity}})
-// }
-
 const updateCartItem = async (req, res) => {
   try {
     const {product_id}=req.params;
     const { quantity } = req.body;
     const user = req.query.user;
-console.log(user);
-console.log(product_id);
     const userCart = await cartService.findOne({ user: user })
     if (!userCart) {
       return res.status(404).json({ message: "Cart not found" });
