@@ -1,8 +1,9 @@
 const asyncHandler = require('express-async-handler')
 const orderModel = require('../models/order.model')
 const OrderItemModel = require('../models/orderItem.model')
-const cartService = require('../models/cart.model')
+const Cart = require('../models/cart.model')
 const User = require('../models/user.model')
+const Cartservices=require('../services/cart.service')
 
 const getAllOrders = asyncHandler(async (req, res) => {
   const order = await orderModel
@@ -47,43 +48,10 @@ const getOrderById = asyncHandler(async (req, res) => {
   res.status(200).json({ data: order })
 })
 
-const calculateTotalPrice = async (orderItemIds) => {
-  let totalPrice = 0
-
-  for (const item of orderItemIds) {
-    const orderItem = await OrderItemModel.findOne(item).populate('product')
-    totalPrice += orderItem.product.price * orderItem.quantity
-  }
-
-  return totalPrice
-}
-
-// const createNewOrder=asyncHandler(async (req, res) => {
-//     const orderItemsIds = [];
-
-//     for (const item of req.body.orderItems) {
-//         let { quantity, product } = item;
-//         const newItem = await OrderItemModel.create({ quantity, product });
-
-//         orderItemsIds.push(newItem._id);
-//     }
-//     const totalPrice = await calculateTotalPrice(orderItemsIds);
-
-//     const { city, phone, status, user, dateOrdered } = req.body;
-//     const newOrder = await orderModel.create({ orderItemsIds, city, phone, status, totalPrice, user, dateOrdered });
-
-//     if (!newOrder) {
-//         return res.status(400).send("the order can't be created");
-//     }
-//     res.status(200).json({ data: newOrder });
-// })
-
 const getUserOrder = asyncHandler(async (req, res) => {
-  const userId = req.params.id // Assuming you have the user ID in the request body
+  const userId = req.params.id 
 
-  // Retrieve user's cart items
-
-  const userCarts = await cartService
+  const userCarts = await Cart
     .find({ user: userId })
     .populate('items.product_id')
   console.log(userCarts[0].items[0].quantity)
@@ -95,13 +63,10 @@ const getUserOrder = asyncHandler(async (req, res) => {
   const orderItemsIds = []
   let totalPrice = 0
 
-  // Loop through all user carts
   for (const userCart of userCarts) {
-    // Loop through cart items in each cart
     for (const cartItem of userCart.items) {
       const { product_id, quantity } = cartItem
 
-      // Assuming product_id is the ID of the product in your OrderItemModel
       const newItem = await OrderItemModel.create({
         quantity,
         product: product_id,
@@ -113,7 +78,6 @@ const getUserOrder = asyncHandler(async (req, res) => {
       userCarts[0].items[0].product_id.price * userCarts[0].items[0].quantity
   }
 
-  // Additional order details
   const { city, phone, status, dateOrdered } = req.body
   let user = await User.find({ _id: userId })
 
@@ -127,13 +91,14 @@ const getUserOrder = asyncHandler(async (req, res) => {
     dateOrdered,
   })
 
-  // Populate order items for the response
   const order = await orderModel
     .findById(newOrder._id)
     .populate('orderItemsIds')
 
+  
   // Clear all user's carts after the order is created
 
+  Cartservices.clearCartService(userId)
   res.status(200).json({ data: order })
 })
 

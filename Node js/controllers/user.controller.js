@@ -29,20 +29,27 @@ const createNewUse = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-  const token = req.headers['jwt']
-  console.log(token)
-  if (!token) {
-    return res.status(401).send({ message: 'un authorized user' })
-  }
-  const payLoad = await jwt.verify(token, 'myjwtsecret')
-  const { email } = payLoad
-  const user = await User.findOne({ email })
-  if (!user) {
-    res.status(404).send(`there is no user with email ${email}`)
+  const token = req.headers["jwt"]
+
+  const { password } = req.body
+  const { error } = validateAddUsers(req.body)
+  if (error) {
+    res.status(400).send({ message: error })
     return
   }
 
-  const Updates = await User.updateOne({ email }, req.body)
+  if (!token) {
+    return res.status(401).send({ "message": "un authorized user" })
+  }
+  const payLoad = await jwt.verify(token, "myjwtsecret")
+  const { email } = payLoad;
+  const user = await User.findOne({ email })
+  if (!user) {
+    res.status(404).send(`there is no user with id ${req.params.id}`); return;
+  }
+  const passwordHash = await bcrypt.hash(password, 10);
+  const Updates = await User.updateOne({ email }, { email: email, passwordHash: passwordHash });
+
   res.send(Updates)
 }
 
@@ -82,13 +89,6 @@ const getUserById = async (req, res) => {
   res.send(user)
 }
 
-// const getProducts = async (req,res)=>{
-//     const token = req.headers["jwt"];
-//     const payLoad = await jwt.verify(token, "myjwtsecret")
-//     const { email } = payLoad;
-//     const userCourses = await User.findOne({email})
-//     res.send(userCourses)
-//     }
 
 module.exports = {
   createNewUse,
