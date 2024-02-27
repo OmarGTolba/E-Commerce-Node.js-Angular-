@@ -7,6 +7,7 @@ const categoryRouter =require('./routes/categories.router.js')
 const ordeRouter =require('./routes/order.router.js')
 const searchRouter=require("./routes/search.router.js")
 const cartRouter=require('./routes/cart.router.js');
+const adminRouter=require('./routes/admin.router.js');
 
 const {auth}=require("./middleware/auth")
 const {admin}=require("./middleware/admin")
@@ -14,6 +15,7 @@ const express = require ('express');
 const app = express()
 const userRouter = require('./routes/user.router.js')
 const paymentRouter = require('./routes/payment.router.js')
+
 const ejs = require('ejs')
 
 app.use(cors());
@@ -44,10 +46,14 @@ app.listen(3000,()=>{
 app.use(`${process.env.API_URL}search`,searchRouter)
 app.use(`${process.env.API_URL}products`, productRouter)
 app.use(`${process.env.API_URL}user`,userRouter)
+app.use(`${process.env.API_URL}categories`, categoryRouter)
 
 app.use(auth);
 
 app.use(`${process.env.API_URL}payment`, paymentRouter)
 app.use(`${process.env.API_URL}cart`, cartRouter);
-app.use(`${process.env.API_URL}categories`, categoryRouter)
 app.use(`${process.env.API_URL}orders`, ordeRouter)
+
+app.use(admin);
+
+app.use(`${process.env.API_URL}admin`, adminRouter)
