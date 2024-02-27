@@ -42,7 +42,6 @@ app.listen(3000,()=>{
     console.log(`listening on ${3000}`);
 })
 
-
 app.use(`${process.env.API_URL}search`,searchRouter)
 app.use(`${process.env.API_URL}products`, productRouter)
 app.use(`${process.env.API_URL}user`,userRouter)
