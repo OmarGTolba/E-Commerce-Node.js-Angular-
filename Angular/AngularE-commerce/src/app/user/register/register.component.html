@@ -1,18 +1,26 @@
-<h2>User register</h2>
-<form (submit)="onSubmit()">
-  <label for="name">Name:</label>
-  <input type="text" id="name"  [(ngModel)]="name" name="name"  required><br><br>
+<div class="container">
+  <form (submit)="onSubmit()">
+    <section>
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <!-- <div class="wave" id="wave4"></div> -->
+    </section>
+    <h2>Register</h2>
+    <!-- <label for="name">Name:</label> -->
+    <input type="text" id="name" [(ngModel)]="name" name="name" required placeholder="enter your name">
 
-  <label for="email">Email:</label>
-  <input type="email" id="email"  [(ngModel)]="email" name="email"  required><br><br>
+    <!-- <label for="email">Email:</label> -->
+    <input type="email" id="email" [(ngModel)]="email" name="email" required placeholder="enter your email">
 
-  <label for="password">Password:</label>
-  <input type="password" id="password"  [(ngModel)]="password" name="password"  required><br><br>
- 
-  <!-- <input type="checkbox" [(ngModel)]="isChecked" name="isChecked"> register as admin -->
+    <!-- <label for="password">Password:</label> -->
+    <input type="password" id="password" [(ngModel)]="password" name="password" required
+      placeholder="enter your password"><br><br>
 
-
-  <input type="submit" value="register">
-</form>
-<br>
-<button routerLink="">login</button>
+    <!-- <input type="checkbox" [(ngModel)]="isChecked" name="isChecked"> register as admin -->
+  
+    <input type="submit" value="register">
+    <button routerLink="" type="button">login</button>
+    
+  </form>
+</div>
