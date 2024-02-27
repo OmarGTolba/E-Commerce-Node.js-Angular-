@@ -1,4 +1,6 @@
+const Cart = require("../models/cart.model");
 const cartService = require("../models/cart.model");
+const Product = require("../models/product.model");
 
 const getCart = async (req, res) => {
   try {
@@ -13,26 +15,35 @@ const getCart = async (req, res) => {
 const addToCart = async (req, res) => {
   try {
     const { user, product_id, quantity } = req.body;
-   
+    
+    const countInStock = await Product.findOne({_id: product_id})
+    
+    const count = countInStock.countInStock
+
     let cart = await cartService.findOne({ user });
 
     if (!cart) {
       cart = await cartService.create({ user, items: [] });
     }
 
-    const existingItemIndex =  cart.items.findIndex( async(item) => {
+    const existingItemIndex =  cart.items.findIndex((item) => {
       return  item.product_id && item.product_id.equals(product_id);
     });
 
-    if (existingItemIndex !== -1) {
+    if (existingItemIndex !== -1 && cart.items[existingItemIndex].quantity + parseInt(quantity) < count) {
+      console.log(cart.items[existingItemIndex].quantity + parseInt(quantity));
       cart.items[existingItemIndex].quantity += parseInt(quantity) ; 
-    } else {
+      await Cart.updateOne({ user }, cart);
+      res.status(201).send("Product added to the cart successfully.");
+    } else if(existingItemIndex == -1 && quantity < count){
       cart.items.push({ product_id, quantity });
+      await Cart.updateOne({ user }, cart);
+      res.status(201).send("Product added to the cart successfully.");
+    } else{
+      res.status(404).send("No more products in the stock");
     }
 
-    await cartService.updateOne({ user }, cart);
-
-    res.status(201).send("Product added to the cart successfully.");
+   
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

@@ -54,7 +54,7 @@
 
          <div class="quantity">
             <button type="button" (click)="min()" class="btn btn-danger" [disabled]="quantity === 0">-</button>
-            <input type="text" [value]="quantity">
+            <input type="text" [value]="quantity" title="quantity">
             <button type="button" (click)="plus()" class="btn btn-success"
                [disabled]="quantity === product.countInStock">+</button>
 
