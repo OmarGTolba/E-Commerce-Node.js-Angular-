@@ -11,7 +11,6 @@ module.exports = router
 const app =express()
 
 
-// app.use(auth)
  router.get("/",getAllProducts)
  router.get("/:id", auth, getProductById)
  router.post("/", auth, AddProduct)

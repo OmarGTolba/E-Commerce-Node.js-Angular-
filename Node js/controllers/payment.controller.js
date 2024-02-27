@@ -1,8 +1,7 @@
-const orderSchema = require('../models/orderModel')
+const orderSchema = require('../models/order.model')
 const Payment = require('../models/payment.model')
-const User = require('../models/user.schema')
-const productModel = require("../models/productModel")
-const Product = require('../models/productModel')
+const User = require('../models/user.model')
+const Product = require('../models/product.model')
 
 const getAllPayments = async (req, res) => {
   const payments = await Payment.find()
@@ -20,21 +19,22 @@ const findUserEmailById = async (userId) => {
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
-
-let result;
-let order;
+let result
+let order
 checkoutSession = async (req, res) => {
   order = await orderSchema.findById(req.body.orderId).populate({
-    path: 'orderItemsIds', populate: {
-      path: 'product', populate: 'categories'
-    }
+    path: 'orderItemsIds',
+    populate: {
+      path: 'product',
+      populate: 'categories',
+    },
   })
   if (!order) {
-    res.status(404).send({ message: `there is no order with this id ${req.body.orderId}` })
+    res
+      .status(404)
+      .send({ message: `there is no order with this id ${req.body.orderId}` })
   }
-  const totalPrice = order.totalPrice;
   const session = await stripe.checkout.sessions.create({
-    // line_items: req.body.order?.map((item) => ({
     line_items: order.orderItemsIds?.map((item) => ({
       price_data: {
         currency: 'egp',
@@ -53,31 +53,28 @@ checkoutSession = async (req, res) => {
   })
   res.status(200).json({ status: 'success', session })
   result = res.statusCode
-  console.log(result);
-
-
 }
 
 const getResult = async (req, res) => {
   if (result == 200) {
-    res.status(200).send("payment suucceeded")
-    const orderUpdate = orderSchema.findByIdAndUpdate(order._id, { $set: { status: "success" } })
+    res.status(200).send('payment suucceeded')
+    const orderUpdate = orderSchema.findByIdAndUpdate(order._id, {
+      $set: { status: 'success' },
+    })
     order.orderItemsIds.forEach(async (Ele) => {
       const product = await Product.findById({ _id: Ele.product._id })
-      const upateCount = await Product.updateOne({ _id: product.product_id }, { $set: { countInStock: product.countInStock - Ele.quantity } })
-    });
+      const upateCount = await Product.updateOne(
+        { _id: product.product_id },
+        { $set: { countInStock: product.countInStock - Ele.quantity } },
+      )
+    })
   } else {
-    res.status(400).send("payment failed")
-
+    res.status(400).send('payment failed')
   }
-
 }
-
-
 
 module.exports = {
   checkoutSession,
   getAllPayments,
   getResult,
-
 }

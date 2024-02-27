@@ -9,6 +9,5 @@ router.get("/:id",getUserById)
 router.post("/",createNewUse)
 router.post("/login",login)
 router.patch("/profile",updateUser)
-// router.get("/get",getProducts)
 
 module.exports = router;
