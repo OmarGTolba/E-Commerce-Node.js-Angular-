@@ -2,7 +2,7 @@ const Cart = require('../models/cart.model')
 
 const getCartService = async (user) => {
   try {
-    return await Cart.findOne({ user })
+    return await Cart.findOne({ user }).populate('items.product_id')
   } catch (error) {
     throw new Error('Failed to get cart')
   }

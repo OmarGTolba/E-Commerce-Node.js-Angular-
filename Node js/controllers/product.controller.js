@@ -4,6 +4,7 @@ const categoryModule = require('../models/category.model')
 const Product = require('../models/product.model')
 
 const Rating = require('../models/rating.model')
+const { number } = require('joi')
 const { validateAddProduct } = require('../validation/product.validator')
 
 const getAllProducts = asyncHandler(async (req, res) => {

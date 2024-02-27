@@ -8,6 +8,6 @@ router.get("/",findAllUsers)
 router.get("/:id",getUserById)
 router.post("/",createNewUse)
 router.post("/login",login)
-router.patch("/profile",updateUser)
+router.patch("/profile/:id",updateUser)
 
 module.exports = router;
