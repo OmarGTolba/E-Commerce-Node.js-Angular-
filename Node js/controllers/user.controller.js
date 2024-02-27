@@ -38,7 +38,7 @@ const updateUser = async (req, res) => {
   const { email } = payLoad
   const user = await User.findOne({ email })
   if (!user) {
-    res.status(404).send(`there is no user with id ${req.params.id}`)
+    res.status(404).send(`there is no user with email ${email}`)
     return
   }
 
