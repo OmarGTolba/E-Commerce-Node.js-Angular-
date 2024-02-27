@@ -16,7 +16,6 @@ const searchForCategory = asyncHandler(async (req, res) => {
     name: { $regex: name, $options: 'i' },
   })
 
-  let productList = []
   let product = []
   for (let index = 0; index < categoryList.length; index++) {
     console.log(categoryList.length)
