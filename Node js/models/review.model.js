@@ -4,11 +4,13 @@ const Rating = require('./rating.model')
 const reviewSchema = mongoose.Schema({
   title: {
     type: String,
+    reuired: true
   },
   rating: {
     type: Number,
     min: 1,
     max: 5,
+    required: true
   },
   user: {
     type: mongoose.Schema.ObjectId,
@@ -16,7 +18,13 @@ const reviewSchema = mongoose.Schema({
   },
   prdId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref:"Product"  },
+    ref:"Product" ,
+    required: true
+  },
+  date:{
+    type: Date,
+    default: Date.now,
+  }
 })
 
 reviewSchema.pre(/^find/, function (next) {

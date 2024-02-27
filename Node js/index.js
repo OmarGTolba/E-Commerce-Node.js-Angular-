@@ -2,11 +2,11 @@ require('dotenv').config()
 require("./db")
 
 var cors = require('cors');
-const productRouter =require('./routes/productRouter')
-const categoryRouter =require('./routes/categoriesRouter')
-const ordeRouter =require('./routes/orderRouter')
-const searchRouter=require("./routes/searchRouter")
-const cartRouter=require('./routes/cart.routes');
+const productRouter =require('./routes/product.router.js')
+const categoryRouter =require('./routes/categories.router.js')
+const ordeRouter =require('./routes/order.router.js')
+const searchRouter=require("./routes/search.router.js")
+const cartRouter=require('./routes/cart.router.js');
 
 const {auth}=require("./middleware/auth")
 const {admin}=require("./middleware/admin")
@@ -14,12 +14,10 @@ const express = require ('express');
 const app = express()
 const userRouter = require('./routes/user.router.js')
 const paymentRouter = require('./routes/payment.router.js')
-// const { getProductsByCategory } = require('./controllers/category.controllers');
 const ejs = require('ejs')
 
 app.use(cors());
 app.use((req,res,next)=>{
-    
     req.header("Access-Control-Allow-Origin", "*");
     req.header("Access-Control-Allow-Origin", "*");
     req.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
@@ -42,16 +40,12 @@ app.listen(3000,()=>{
     console.log(`listening on ${3000}`);
 })
 
-//  app.use(auth);
-// app.use(`${process.env.API_URL}/products/:category`,getProductsByCategory)
-// app.use(`${process.env.API_URL}products/`,productRouter)
 
 app.use(`${process.env.API_URL}search`,searchRouter)
 app.use(`${process.env.API_URL}products`, productRouter)
 app.use(`${process.env.API_URL}user`,userRouter)
 
-//app.use(auth);
-//  app.use(admin);
+app.use(auth);
 
 app.use(`${process.env.API_URL}payment`, paymentRouter)
 app.use(`${process.env.API_URL}cart`, cartRouter);

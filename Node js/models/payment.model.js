@@ -16,6 +16,7 @@ const paymentSchema = mongoose.Schema({
   },
   paidAt: {
     type: Date,
+    default: Date.now,
   },
   orderId:{
     type: String

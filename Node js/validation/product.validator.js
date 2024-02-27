@@ -8,7 +8,6 @@ const validateAddProduct=(user)=>{
         price:joi.number().required(),
     })
     return schema.validate(user)
-
 }
 
 module.exports={validateAddProduct}

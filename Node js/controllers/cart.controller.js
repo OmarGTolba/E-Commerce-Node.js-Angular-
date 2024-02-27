@@ -1,10 +1,8 @@
 const cartService = require("../models/cart.model");
-const Product = require("../models/productModel");
+const Product = require("../models/product.model");
 
 const getCart = async (req, res) => {
   try {
-    // const user = await User.findOne({ email }).populate("product_id");
-    // const cart_obj = await cartService.find().populate("product_id");
     const user = req.query.user;
     const userCart =await cartService.findOne({user}).populate('items.product_id')
     res.json(userCart);

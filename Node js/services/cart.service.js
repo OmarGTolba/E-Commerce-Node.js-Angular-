@@ -1,17 +1,22 @@
+const Cart = require('../models/cart.model')
 
+const getCartService = async (user) => {
+  try {
+    return await Cart.findOne({ user }).populate('items.product_id')
+  } catch (error) {
+    throw new Error('Failed to get cart')
+  }
+}
 
-const Cart = require('../models/cart.model');
+const addToCartService = async (cart) => {
+    return await Cart.create(cart)
+}
 
-const getCartService = async (email) => {
-    try {
-        return await Cart.findOne({email }).populate('products');
-    } catch (error) {
-        throw new Error('Failed to get cart');
-    }
-};
-
-
+const clearCartService = async(user)=>{
+    return await Cart.deleteMany({ user: user})
+}
 module.exports = {
-
-    getCartService
-};
+  getCartService,
+  addToCartService,
+  clearCartService
+}

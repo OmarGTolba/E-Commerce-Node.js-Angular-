@@ -6,9 +6,7 @@ const {
   removeFromCart,
   getCart,
   clearCart,
-} = require("../controllers/cart.controllers");
-// const { auth } = require('../middleware/auth');
-// const {getUserProducts} =require('../controllers/user.controllers')
+} = require("../controllers/cart.controller");
 
 router.post("/", addToCart);
 router.get("/",getCart)
