@@ -22,6 +22,9 @@ const createNewUse =
 
 const updateUser = async (req, res) => {
     const token = req.headers["jwt"]
+    
+    const { password} = req.body
+console.log(password);
     console.log(token);
     if (!token) {
         return res.status(401).send({ "message": "un authorized user" })
@@ -32,8 +35,10 @@ const updateUser = async (req, res) => {
     if (!user) {
         res.status(404).send(`there is no book with id ${req.params.id}`); return;
     }
-
-    const Updates = await User.updateOne({ email }, req.body)
+    const passwordHash = await bcrypt.hash(password, 10);
+      console.log(passwordHash);
+      const Updates = await User.updateOne({ email },{ email: email, passwordHash: passwordHash }    );
+    
     res.send(Updates)
 }
 

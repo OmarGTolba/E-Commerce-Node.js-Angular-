@@ -25,6 +25,7 @@ export class AddComponent {
     const email = localStorage.getItem('email') || '';
    // console.log(category);
 
+ console.log(category);
  
   
       this.http.post<any[]>(url,{ name: productName, categories: category }, {
