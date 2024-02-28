@@ -10,7 +10,7 @@ router.get('/', admin, getAllOrders)
 
 router.get('/:id', auth, getOrderById )
 
-router.get('/:id/user', auth, getUserOrder )
+router.post('/:id/user', auth, getUserOrder )
 
 router.get('/:id/user/orders',auth,getUserOrders )
 

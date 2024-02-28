@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
-const productModel = require('../models/productModel')
-const categoryModel = require("../models/categoryModel")
+const productModel = require('../models/product.model')
+const categoryModel = require("../models/category.model")
 
 const searchForProduct = asyncHandler(async (req, res) => {
     const name = req.params.name;
