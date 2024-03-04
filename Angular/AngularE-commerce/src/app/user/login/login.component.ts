@@ -28,8 +28,11 @@ export class LoginComponent {
 
     const body = { email: this.email, password: this.password };
 
-    this.http.post(url, body, { headers })
-      .subscribe((response: any) => {
+    this.http.post(url, body, { headers }).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe((response: any) => {
         if (response) {
           const role = response.role;
 

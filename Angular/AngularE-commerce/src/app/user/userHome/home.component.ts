@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,24 +18,26 @@ export class HomeComponent {
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   getAllProducts(): void {
-    this.productService.getAllProducts(this.token, this.email).subscribe(
+    this.productService.getAllProducts(this.token, this.email).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
       (response: any) => {
         this.products = response.data;
         console.log(this.products);
-      },
-      (error) => {
-        console.error('Error fetching products:', error);
       }
     )
   }
 
   getProduct(productId: string) {
-    this.productService.getProductsByID(this.token, this.email, productId).subscribe(
+    this.productService.getProductsByID(this.token, this.email, productId).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
       (response: any) => {
         this.router.navigate(['user/product', productId]);
-      },
-      (error) => {
-        console.error('Error fetching order:', error);
       }
     )
   }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-all-orders',
@@ -24,15 +25,13 @@ export class AllOrdersComponent {
           jwt: token,
           email: email,
         }
-      }).subscribe(
+      }).pipe(
+        catchError((error) => {
+          return (error);
+        })
+      ).subscribe(
         (response:any) => {
           this.orders = response;
-          
-     //     console.log(this.orders);
-          
-        },
-        (error) => {
-          console.error('Error fetching books:', error);
         }
       );
     }

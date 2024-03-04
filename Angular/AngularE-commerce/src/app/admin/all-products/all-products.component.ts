@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/products/products.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-all-products',
@@ -19,38 +20,38 @@ export class AllProductsComponent {
   products: any[] = [];
   updatedId: any;
 
-   token = localStorage.getItem('token') || '';
-   email = localStorage.getItem('email') || '';
+  token = localStorage.getItem('token') || '';
+  email = localStorage.getItem('email') || '';
   getAllProducts(): void {
-    this.productService.getAllProducts(this.token, this.email).subscribe(
+    this.productService.getAllProducts(this.token, this.email).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
       (response: any) => {
         this.products = response.data;
-      console.log(this.products);
-      },
-      (error) => {
-        console.error('Error fetching products:', error);
+        console.log(this.products);
       }
     )
   }
 
   edit(x: any) {
     let updated: any;
-    this.updatedId =x
+    this.updatedId = x
     const url = `http://localhost:3000/api/v1/products/${x}`;
-    this.productService.getProductsByID(this.token,this.email,x)
-    .subscribe(
-      (response: any) => {
-        updated = response.data;
-      //  console.log(updated.name);
-        this.name = updated.name;
-        this.description = updated.description
-        this.quantity = updated.countInStock
+    this.productService.getProductsByID(this.token, this.email, x).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
+        (response: any) => {
+          updated = response.data;
+          this.name = updated.name;
+          this.description = updated.description
+          this.quantity = updated.countInStock
 
-      },
-      (error) => {
-        console.error('Error fetching books:', error);
-      }
-    );
+        }
+      );
     ////////////////////////////////////////////////////////////////////////////////////////
   }
 
@@ -62,8 +63,8 @@ export class AllProductsComponent {
     const email = localStorage.getItem('email') || '';
 
     const updateUrl = `http://localhost:3000/api/v1/products/${this.updatedId}`;
-const body = { name: this.name, description: this.description, countInStock: this.quantity }
-  this.productService.updateProduct(this.email,token,this.updatedId,body).subscribe(
+    const body = { name: this.name, description: this.description, countInStock: this.quantity }
+    this.productService.updateProduct(this.email, token, this.updatedId, body).subscribe(
       (response: any) => {
 
         this.getAllProducts()
@@ -84,16 +85,16 @@ const body = { name: this.name, description: this.description, countInStock: thi
 
     const updateUrl = `http://localhost:3000/api/v1/products/${x}`;
 
-    this.productService.deleteProduct(this.token,this.email,x)
- .subscribe(
-      (response: any) => {
+    this.productService.deleteProduct(this.token, this.email, x)
+      .subscribe(
+        (response: any) => {
 
-        this.getAllProducts()
-      },
-      (error) => {
-        console.error('Error fetching books:', error);
-      }
-    );
+          this.getAllProducts()
+        },
+        (error) => {
+          console.error('Error fetching books:', error);
+        }
+      );
   }
 
   cancel() {

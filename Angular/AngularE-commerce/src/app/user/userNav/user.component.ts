@@ -3,6 +3,7 @@ import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
 
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -18,13 +19,13 @@ searchInput:any;
 token = localStorage.getItem('token') || '';
 email = localStorage.getItem('email') || '';
 getAllProducts(): void {
-  this.productService.getAllProducts(this.token, this.email).subscribe(
+  this.productService.getAllProducts(this.token, this.email).pipe(
+    catchError((error) => {
+      return (error);
+    })
+  ).subscribe(
     (response: any) => {
       this.products = response.data;
-     // console.log(this.products);
-    },
-    (error) => {
-      console.error('Error fetching products:', error);
     }
   )
  

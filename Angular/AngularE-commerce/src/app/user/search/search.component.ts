@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../services/products/products.service';
+import { catchError } from 'rxjs';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -24,13 +25,14 @@ ngOnInit() {
 }
 
 getAllProducts(): void {
-  this.productService.searchByName(this.token, this.email ,this.name ).subscribe(
+  this.productService.searchByName(this.token, this.email ,this.name ).pipe(
+    catchError((error) => {
+      return (error);
+    })
+  ).subscribe(
     (response: any) => {
       this.products = response.data;
       console.log(this.products);
-    },
-    (error) => {
-      console.error('Error fetching products:', error);
     }
   )
 
