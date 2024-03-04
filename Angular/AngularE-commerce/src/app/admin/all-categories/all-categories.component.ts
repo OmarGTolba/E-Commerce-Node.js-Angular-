@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-all-categories',
@@ -7,9 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './all-categories.component.css'
 })
 export class AllCategoriesComponent {
-  
-  
-  constructor(private http:HttpClient) {
+
+
+  constructor(private http: HttpClient) {
     this.getAllCategories()
   }
   categories: any[] = [];
@@ -26,15 +27,13 @@ export class AllCategoriesComponent {
         jwt: token,
         email: email,
       }
-    }).subscribe(
-      (response:any) => {
+    }).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
+      (response: any) => {
         this.categories = response.data;
-        
-    //    console.log(this.categories);
-        
-      },
-      (error) => {
-        console.error('Error fetching books:', error);
       }
     );
   }

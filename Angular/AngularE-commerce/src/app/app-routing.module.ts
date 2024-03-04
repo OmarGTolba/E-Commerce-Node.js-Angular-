@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin/adminHome/admin.component';
+import { AdminComponent } from './admin/adminNav/admin.component';
 import { AllProductsComponent } from './admin/all-products/all-products.component';
 import { AllUsersComponent } from './admin/all-users/all-users.component';
 import { AllCategoriesComponent } from './admin/all-categories/all-categories.component';

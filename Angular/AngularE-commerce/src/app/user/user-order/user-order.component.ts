@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../services/orders/orders.service';
 import { UserService } from '../../user.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-user-order',
@@ -21,14 +22,15 @@ export class UserOrderComponent {
       this.orderId = params['orderId'];
       
     });
-    this.orderServices.getOrderByID(this.token,this.email,this.orderId).subscribe(
+    this.orderServices.getOrderByID(this.token,this.email,this.orderId).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
       (response: any) => {
         this.order = response.data;
         console.log(this.order)
-      },
-      (error) => {
-        console.error('Error fetching orders:', error);
-      }
+      }
     )
 
   }

@@ -3,7 +3,7 @@ const {auth}=require("../middleware/auth")
 const {admin}=require("../middleware/admin")
 
 const router = express.Router()
-const{getAllOrders,getOrderById,createNewOrder,cancelOrder,getUserOrder,getUserOrders}=require('../controllers/order.controller')
+const{getAllOrders,getOrderById,updateStatusOfOrder,getUserOrder,getUserOrders}=require('../controllers/order.controller')
 
 
 router.get('/', admin, getAllOrders)
@@ -16,6 +16,7 @@ router.get('/:id/user/orders',auth,getUserOrders )
 
 // router.post('/', auth, createNewOrder);
 
-router.patch('/:id/cancel', auth, cancelOrder);
+router.patch('/:id/:name', auth, updateStatusOfOrder);
+
 
 module.exports = router;

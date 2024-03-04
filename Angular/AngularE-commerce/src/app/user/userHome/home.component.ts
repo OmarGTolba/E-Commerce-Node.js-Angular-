@@ -4,6 +4,8 @@ import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
 import { Router } from '@angular/router';
 import { MatSort, Sort } from '@angular/material/sort';
+import { catchError } from 'rxjs';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -27,16 +29,16 @@ export class HomeComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   getAllProducts(): void {
-    this.productService.getAllProducts(this.token, this.email).subscribe(
+    this.productService.getAllProducts(this.token, this.email).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
       (response: any) => {
         this.products= response.data
   //    this.sortbyName()
         this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
         this.loading = false; // Set loading to false when data is loaded
-      },
-      (error) => {
-        console.error('Error fetching products:', error);
-        this.loading = false; // Handle loading state in case of an error
       }
     );
   }
@@ -59,12 +61,13 @@ export class HomeComponent {
   
 
   getProduct(productId: string) {
-    this.productService.getProductsByID(this.token, this.email, productId).subscribe(
+    this.productService.getProductsByID(this.token, this.email, productId).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
       (response: any) => {
         this.router.navigate(['user/product', productId]);
-      },
-      (error) => {
-        console.error('Error fetching order:', error);
       }
     );
   }

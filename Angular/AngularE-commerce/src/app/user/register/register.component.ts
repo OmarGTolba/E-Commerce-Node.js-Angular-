@@ -11,19 +11,11 @@ export class RegisterComponent {
   name: string = "";
   email: string = "";
   password: any
-  // isChecked: boolean = false;
-  // admin=""; 
 
   constructor(private router: Router, private http: HttpClient) { }
 
   onSubmit() {
     const api = 'http://localhost:3000/api/v1/user';
-
-    // if(this.isChecked){
-    //   this.admin="Admin"
-    // }else{
-    //   this.admin="User"
-    // }
 
     const body = {
       name: this.name,
@@ -53,6 +45,5 @@ export class RegisterComponent {
         }
       });
 
-    console.log()
   }
 }
