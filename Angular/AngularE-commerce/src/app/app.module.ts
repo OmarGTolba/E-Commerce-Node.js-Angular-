@@ -25,6 +25,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     CartComponent
   ],
   imports: [
-    BrowserModule,MatTabsModule,MatSliderModule,
+    BrowserModule,MatTabsModule,MatSliderModule,MatTabsModule,MatSliderModule, MatPaginatorModule, MatSlideToggleModule,
     AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule
   ],
   providers: [
