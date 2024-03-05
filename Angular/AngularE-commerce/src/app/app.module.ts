@@ -3,7 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login/login.component';
-import { AdminComponent } from './admin/adminHome/admin.component';
+import { AdminComponent } from './admin/adminNav/admin.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { AllProductsComponent } from './admin/all-products/all-products.component';

@@ -6,6 +6,7 @@ const validateAddProduct=(user)=>{
         description:joi.string().min(5).max(100).required(),
         countInStock:joi.required(),
         price:joi.number().required(),
+        categories:joi.string().required()
     })
     return schema.validate(user)
 }

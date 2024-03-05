@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../services/products/products.service';
 import { CartService } from '../../services/cart/cart.service';
+import { catchError } from 'rxjs/operators';
+import {  throwError } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -27,16 +29,16 @@ export class ProductComponent {
       this.productId = params['productId'];
 
     });
+    this.productServices.getProductsByID(this.token, this.email, this.productId).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe((response: any) => {
+      this.product = response.data;
+      console.log(this.product);
+    });
     
-    this.productServices.getProductsByID(this.token, this.email, this.productId).subscribe(
-      (response: any) => {
-        this.product = response.data;
-        console.log(this.product)
-      },
-      (error) => {
-        console.error('Error fetching orders:', error);
-      }
-    )
+    
   }
 
   min() {
@@ -54,12 +56,13 @@ export class ProductComponent {
   body = { "quantity": this.quantity, "product_id": this.productId, "user": this.userId }
 
   AddToCart() {
-    this.cartServices.addToCart(this.token, this.email, this.body).subscribe(
+    this.cartServices.addToCart(this.token, this.email, this.body).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
       (response: any) => {
         this.reviews=response
-      },
-      (error) => {
-        console.error('Error fetching orders:', error);
       }
     )
 
@@ -67,14 +70,16 @@ export class ProductComponent {
   }
 
   showReview(id: string){
-   this.productServices.getReviewsByID(this.token,this.email,id).subscribe(
+   this.productServices.getReviewsByID(this.token,this.email,id).pipe(
+    catchError((error) => {
+      return (error);
+    })
+  ).subscribe(
     (response: any) => {
       this.reviews=response
       console.log(this.reviews)
-    },
-    (error) => {
-      console.error('Error fetching orders:', error);
     }
+    
   )
 
   }

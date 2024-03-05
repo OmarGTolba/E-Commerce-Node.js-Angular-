@@ -102,12 +102,13 @@ const getUserOrder = asyncHandler(async (req, res) => {
   res.status(200).json({ data: order })
 })
 
-const cancelOrder = asyncHandler(async (req, res) => {
+const updateStatusOfOrder = asyncHandler(async (req, res) => {
   const orderId = req.params.id
+  const status= req.params.name
 
   const updatedOrder = await orderModel.findByIdAndUpdate(
     orderId,
-    { $set: { status: 'canceled' } },
+    { $set: { status: status } },
     { new: true },
   )
 
@@ -117,13 +118,14 @@ const cancelOrder = asyncHandler(async (req, res) => {
 
   res
     .status(200)
-    .json({ message: 'Order canceled successfully', data: updatedOrder })
+    .json({ message: 'Done successfully', data: updatedOrder })
 })
+
 
 module.exports = {
   getAllOrders,
   getOrderById,
-  cancelOrder,
+  updateStatusOfOrder,
   getUserOrder,
   getUserOrders,
 }
