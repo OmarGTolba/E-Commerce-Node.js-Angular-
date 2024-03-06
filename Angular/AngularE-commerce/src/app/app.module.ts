@@ -20,6 +20,7 @@ import { UserOrderComponent } from './user/user-order/user-order.component';
 import { ProductComponent } from './user/productDetails/product.component';
 import { CommonModule } from '@angular/common';
 // import { SearchComponent } from './user/search/search.component';
+// import { SearchComponent } from './user/search/search.component';
 import { CartComponent } from './user/cart/cart.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
@@ -46,6 +47,7 @@ import { ProductCardComponent } from './user/product-card/product-card.component
     RegisterComponent,
     OrdersComponent,
     UserOrderComponent,
+    // SearchComponent,
     CartComponent,
     ProductPageComponent,
     ProductCardComponent

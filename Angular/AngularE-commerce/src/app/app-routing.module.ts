@@ -13,6 +13,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
 import { ProductComponent } from './user/productDetails/product.component';
 // import { SearchComponent } from './user/search/search.component';
+// import { SearchComponent } from './user/search/search.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { CartComponent } from './user/cart/cart.component';
 import { ProductCardComponent } from './user/product-card/product-card.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       // { path: 'search/:name', component: SearchComponent },
       { path: 'search', component: HomeComponent }
+     
     ]
   },
   {
