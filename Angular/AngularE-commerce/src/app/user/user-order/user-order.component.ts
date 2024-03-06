@@ -31,7 +31,7 @@ export class UserOrderComponent {
         this.order = response.data;
         console.log(this.order)
       }
-    )
+   )
 
   }
 }
