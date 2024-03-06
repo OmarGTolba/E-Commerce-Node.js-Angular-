@@ -5,6 +5,7 @@ const {
   addNewProduct,
   updateProduct,
   deleteProduct,
+  topRating
 } = require('../controllers/product.controller')
 
 const {
@@ -28,5 +29,7 @@ router.delete('/:id', admin, deleteProduct)
 router.post('/:id/reviews', auth, addNewReview)
 router.get('/:id/reviews', getReviews)
 router.post('/:id/ratings', getRating)
+router.get('/topRating', topRating)
+
 
 module.exports = router

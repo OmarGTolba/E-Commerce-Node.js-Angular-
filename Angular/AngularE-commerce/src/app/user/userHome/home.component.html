@@ -1,20 +1,4 @@
-<!-- home.component.html -->
 
-<p>home works!</p>
-
-<div  class="container d-flex m-auto mt-5 flex-wrap">
-  <div *ngFor="let item of displayedProducts" class="card" (click)="getProduct(item._id)">
-    <img [src]="item.images[0]" class="card-img-top card_img" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{ item.name }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Add Product</a>
-    </div>
-  </div>
-  
-  <mat-paginator [length]="products.length" [pageSize]="2" [pageSizeOptions]="[3, 10, 15, 20]"
-                 (page)="onPageChange($event)"></mat-paginator>
-</div>
-<button (click)="sortbyName()">sortbyname</button>
+<app-product-card></app-product-card>
 
 
