@@ -53,7 +53,7 @@ export class UserComponent {
               (response: any) => {
                 this.productService.products = response.data;
                 console.log(this.productService.products);
-                this.router.navigate([`user/${searchInput}`]);
+                this.router.navigate([`user/search/${searchInput}`]);
               }
               )
               return of([]);
@@ -72,7 +72,7 @@ export class UserComponent {
       this.products = searchResults;
     });
   }
-
+//on
   // search() {
   //   this.productService.searchByName(this.token, this.email ,this.name ).pipe(
   //     catchError((error) => {

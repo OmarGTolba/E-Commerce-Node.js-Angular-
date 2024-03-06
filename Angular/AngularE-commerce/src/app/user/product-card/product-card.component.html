@@ -1,0 +1,10 @@
+    <div class="product-card " [@cardAnimation] (click)="getProduct(product._id)">
+        <img class="product-image"   [src]="product.images[0]" alt="...">
+        <div >
+            <h5 class="product-name">{{ product.name }}</h5>
+           <button>Add to cart</button>
+        </div>
+    </div>
+
+
+
