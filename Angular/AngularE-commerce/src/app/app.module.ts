@@ -20,9 +20,10 @@ import { HomeComponent } from './user/userHome/home.component';
 import { RegisterComponent } from './user/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
-import { ProductComponent } from './user/product/product.component';
+import { ProductComponent } from './user/productDetails/product.component';
 import { CommonModule } from '@angular/common';
-import { SearchComponent } from './user/search/search.component';
+// import { SearchComponent } from './user/search/search.component';
+// import { SearchComponent } from './user/search/search.component';
 import { CartComponent } from './user/cart/cart.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
@@ -30,6 +31,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProductPageComponent } from './user/product-page/product-page.component';
+import { ProductCardComponent } from './user/product-card/product-card.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { ProfileComponent } from './user/profile/profile.component';
@@ -52,6 +55,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RegisterComponent,
     OrdersComponent,
     UserOrderComponent,
+    // SearchComponent,
+    CartComponent,
+    ProductPageComponent,
+    ProductCardComponent
     SearchComponent,
     CartComponent,
     NotFoundComponent,
