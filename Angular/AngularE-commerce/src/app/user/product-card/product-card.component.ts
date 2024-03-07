@@ -3,11 +3,21 @@ import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
+import { trigger, transition, style, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrl: './product-card.component.css'
+  styleUrl: "../../app.component.css",
+  animations: [
+    trigger('cardAnimation', [
+      transition('void => *', [
+        style({ opacity: 0, transform: 'translateY(-50px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'none' }))
+      ])
+    ])
+  ]
 })
 export class ProductCardComponent {
   constructor(

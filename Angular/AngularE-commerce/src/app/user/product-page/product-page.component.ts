@@ -41,6 +41,8 @@ export class ProductPageComponent {
       }
     );
   }
+
+  
   
 
   sortbyName():void{

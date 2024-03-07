@@ -13,10 +13,10 @@ import { RegisterComponent } from './user/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
 import { ProductComponent } from './user/productDetails/product.component';
 // import { SearchComponent } from './user/search/search.component';
-// import { SearchComponent } from './user/search/search.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { CartComponent } from './user/cart/cart.component';
 import { ProductCardComponent } from './user/product-card/product-card.component';
+import { ProductPageComponent } from './user/product-page/product-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -24,16 +24,15 @@ const routes: Routes = [
   {
     path: 'user', component: UserComponent, children: [
       { path: '', component: HomeComponent },
-      { path: ':name', component: HomeComponent },
+      // { path: ':name', component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
-      // { path: 'search/:name', component: SearchComponent },
+      { path: 'search/:name', component: ProductPageComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
       { path: 'product/:productId', component: ProductComponent },
-      { path: 'products', component: ProductCardComponent },
+      { path: 'products', component: ProductPageComponent },
       { path: 'cart', component: CartComponent },
-      // { path: 'search/:name', component: SearchComponent },
-      { path: 'search', component: HomeComponent }
+      // { path: 'search', component: HomeComponent }
      
     ]
   },

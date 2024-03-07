@@ -19,6 +19,7 @@ const { admin } = require('../middleware/admin')
 const router = express.Router()
 
 router.get('/', getAllProducts)
+router.get('/topRating', topRating)
 
 router.get('/:id', getProductById)
 router.patch('/:id', admin, updateProduct)
@@ -29,7 +30,6 @@ router.delete('/:id', admin, deleteProduct)
 router.post('/:id/reviews', auth, addNewReview)
 router.get('/:id/reviews', getReviews)
 router.post('/:id/ratings', getRating)
-router.get('/topRating', topRating)
 
 
 module.exports = router

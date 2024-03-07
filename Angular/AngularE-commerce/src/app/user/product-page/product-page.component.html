@@ -1,6 +1,8 @@
-<div *ngFor="let item of displayedProducts">
+<div class="cont" >
+    <div *ngFor="let item of displayedProducts"  > 
+        <app-product-card [product]="item"></app-product-card>
+    </div>
 
-    <app-product-card [product]="item"></app-product-card>
 </div>
 
 <mat-paginator [length]="products.length" [pageSize]="2" [pageSizeOptions]="[3, 10, 15, 20]"
