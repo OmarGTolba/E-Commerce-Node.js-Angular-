@@ -21,7 +21,7 @@ export class RegisterComponent {
       name: this.name,
       email: this.email,
       password: this.password,
-      role: "User"
+      // role: "User"
     }
 
     const headers = new HttpHeaders({

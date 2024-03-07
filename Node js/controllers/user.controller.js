@@ -1,7 +1,4 @@
-const {
-  cretateNewUser,
-  findUserService,
-} = require('../services/user.service')
+const { cretateNewUser, findUserService } = require('../services/user.service')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user.model')
@@ -13,7 +10,7 @@ const createNewUse = async (req, res) => {
     res.status(400).send({ message: error })
     return
   }
-  const { name, email, password, role } = req.body
+  const { name, email, password, role, address, phone } = req.body
   if (!email || !name) {
     return res.send('Invalid')
   }
@@ -22,14 +19,20 @@ const createNewUse = async (req, res) => {
     res.send({ message: 'this email is already exist..' })
   } else {
     const passwordHash = await bcrypt.hash(password, 10)
-    const newUser = await cretateNewUser({ name, email, passwordHash, role })
+    const newUser = await cretateNewUser({
+      name,
+      email,
+      passwordHash,
+      role,
+      address,
+      phone,
+    })
     res.send(newUser)
-    console.log(newUser)
   }
 }
 
 const updateUser = async (req, res) => {
-  const token = req.headers["jwt"]
+  const token = req.headers['jwt']
 
   const { password } = req.body
   const { error } = validateAddUsers(req.body)
@@ -39,16 +42,40 @@ const updateUser = async (req, res) => {
   }
 
   if (!token) {
-    return res.status(401).send({ "message": "un authorized user" })
+    return res.status(401).send({ message: 'un authorized user' })
   }
-  const payLoad = await jwt.verify(token, "myjwtsecret")
-  const { email } = payLoad;
+  const payLoad = await jwt.verify(token, 'myjwtsecret')
+  const { email } = payLoad
   const user = await User.findOne({ email })
   if (!user) {
-    res.status(404).send(`there is no user with id ${req.params.id}`); return;
+    res.status(404).send(`there is no user with id ${req.params.id}`)
+    return
   }
-  const passwordHash = await bcrypt.hash(password, 10);
-  const Updates = await User.updateOne({ email }, { email: email, passwordHash: passwordHash });
+  const passwordHash = await bcrypt.hash(password, 10)
+  const Updates = await User.updateOne(
+    { email },
+    { email: email, passwordHash: passwordHash },
+  )
+
+  res.send(Updates)
+}
+
+const updateUserInfo = async (req, res) => {
+  const token = req.headers['jwt']
+
+  const { name, phone, address } = req.body
+
+  if (!token) {
+    return res.status(401).send({ message: 'unauthorized user' })
+  }
+  const payLoad = await jwt.verify(token, 'myjwtsecret')
+  const { email } = payLoad
+  const user = await User.findOne({ email })
+  if (!user) {
+    res.status(404).send(`there is no user with id ${req.params.id}`)
+    return
+  }
+  const Updates = await User.updateOne({ email }, { name, phone, address })
 
   res.send(Updates)
 }
@@ -76,7 +103,7 @@ const login = async (req, res) => {
     if (!isValidPassword)
       return res.status(401).send({ message: 'Incorret email or password...' })
 
-    const token = jwt.sign({ email }, 'myjwtsecret', { expiresIn: '1h' })
+    const token = jwt.sign({ email }, 'myjwtsecret', { expiresIn: '1d' })
     res.header({ jwt: token }).send({ token, email, role, _id })
   } catch (userLoginError) {
     res.status(500).send(userLoginError.message)
@@ -89,11 +116,11 @@ const getUserById = async (req, res) => {
   res.send(user)
 }
 
-
 module.exports = {
   createNewUse,
   login,
   findAllUsers,
   updateUser,
   getUserById,
+  updateUserInfo,
 }

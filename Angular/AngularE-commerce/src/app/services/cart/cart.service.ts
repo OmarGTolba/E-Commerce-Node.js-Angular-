@@ -19,6 +19,4 @@ export class CartService {
     });
     return this.http.post<any[]>(this.baseUrl, body,{ headers });
   }
-
-
 }

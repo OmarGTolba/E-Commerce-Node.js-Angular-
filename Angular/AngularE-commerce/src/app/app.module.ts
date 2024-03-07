@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login/login.component';
@@ -26,10 +29,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProductPageComponent } from './user/product-page/product-page.component';
 import { ProductCardComponent } from './user/product-card/product-card.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { NgToastModule } from 'ng-angular-popup';
+import { ProfileComponent } from './user/profile/profile.component';
+import { FavoritesComponent } from './user/favorites/favorites.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -51,15 +59,26 @@ import { ProductCardComponent } from './user/product-card/product-card.component
     CartComponent,
     ProductPageComponent,
     ProductCardComponent
+    SearchComponent,
+    CartComponent,
+    NotFoundComponent,
   ],
   imports: [
-    BrowserModule,MatTabsModule,MatSliderModule,MatTabsModule,MatSliderModule, MatPaginatorModule, MatSlideToggleModule,
-    AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule
+    BrowserModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+    NgToastModule
   ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration(), provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

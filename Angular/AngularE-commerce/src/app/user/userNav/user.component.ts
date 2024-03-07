@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
 
@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
 export class UserComponent {
   constructor(private productService: ProductsService, private userService: UserService, private router: Router) {
