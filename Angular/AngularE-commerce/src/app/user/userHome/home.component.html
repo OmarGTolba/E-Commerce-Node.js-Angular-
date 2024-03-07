@@ -1,7 +1,3 @@
-<!-- home.component.html -->
-
-<p>home works!</p>
-
 <div  class="container d-flex m-auto mt-5 flex-wrap">
   <div *ngFor="let item of displayedProducts" class="card" (click)="getProduct(item._id)">
     <img [src]="item.images[0]" class="card-img-top card_img" alt="...">

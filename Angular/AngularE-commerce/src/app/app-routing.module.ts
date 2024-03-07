@@ -15,20 +15,23 @@ import { ProductComponent } from './user/product/product.component';
 import { SearchComponent } from './user/search/search.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { CartComponent } from './user/cart/cart.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { FavoritesComponent } from './user/favorites/favorites.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: LoginComponent, pathMatch: "full" },
   { path: 'register', component: RegisterComponent },
   {
     path: 'user', component: UserComponent, children: [
       { path: '', component: HomeComponent },
-      { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: SearchComponent },
-      { path: 'allOrder', component: OrdersComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
       { path: 'product/:productId', component: ProductComponent },
       { path: 'cart', component: CartComponent },
-      { path: 'search/:name', component: SearchComponent }
+      { path: 'profile', component: ProfileComponent,loadChildren: ()=> import("./profile/profile.module").then(m => m.ProfileModule)},
+      { path: 'search/:name', component: SearchComponent },
     ]
   },
   {
@@ -39,7 +42,8 @@ const routes: Routes = [
       { path: 'addProduct', component: AddComponent },
       { path: 'users', component: AllUsersComponent }
     ]
-  }
+  },
+  { path: "**", component: NotFoundComponent}
 ];
 
 @NgModule({

@@ -35,7 +35,6 @@ export class ProductComponent {
       })
     ).subscribe((response: any) => {
       this.product = response.data;
-      console.log(this.product);
     });
     
     
