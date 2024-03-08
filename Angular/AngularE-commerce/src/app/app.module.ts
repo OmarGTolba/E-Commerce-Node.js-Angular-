@@ -25,11 +25,15 @@ import { CartComponent } from './user/cart/cart.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatIconModule } from '@angular/material/icon';
 
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProductPageComponent } from './user/product-page/product-page.component';
 import { ProductCardComponent } from './user/product-card/product-card.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
+
 
 @NgModule({
   declarations: [
@@ -54,7 +58,7 @@ import { ProductCardComponent } from './user/product-card/product-card.component
   ],
   imports: [
     BrowserModule,MatTabsModule,MatSliderModule,MatTabsModule,MatSliderModule, MatPaginatorModule, MatSlideToggleModule,
-    AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule
+    AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule,MatIconModule,NgxSkeletonLoaderModule
   ],
   providers: [
     provideClientHydration(),

@@ -52,6 +52,24 @@ const DelFromFav = asyncHandler(async (req, res) => {
     }
 })
 
+const isFav=asyncHandler(async (req, res) => {
+    const { userId, id } = req.params
+
+    const product = await Product.findOne({ _id: id })
+
+    if (!product) {
+        res.status(404).send(`there is no product with id ${req.params.id}`)
+        return
+    }
+
+    const user = await User.findOne({ _id: userId })
+
+    const favorites = user.FavProduct;
+    const isFavorite = favorites.includes(id);
+
+    res.status(200).json({ isFavorite });
+})
+
 
 
 
@@ -59,5 +77,6 @@ module.exports = {
     getUserFavProduct,
     AddNewFavProduct,
     DelFromFav,
+    isFav
 
 }

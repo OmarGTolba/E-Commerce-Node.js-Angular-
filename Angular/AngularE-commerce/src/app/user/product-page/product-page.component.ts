@@ -1,31 +1,57 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
-  styleUrl: './product-page.component.css'
+  styleUrls: ["./product-page.component.css"]
 })
-export class ProductPageComponent {
-  constructor(
+export class ProductPageComponent implements OnInit{
+   name:string|null='';
+  
+  
+   constructor(
     private productService: ProductsService,
     private userService: UserService,
+    private route: ActivatedRoute,
     private router: Router
   ) {
+
+    this.route.paramMap.subscribe(params => {
+         this.name = params.get('name');
+         if (this.name) {
+           this.search();
+         } else {
+           this.getAllProducts();
+         }
+    })
     this.getAllProducts();
+   
   }
 
+
+  
   products: any[] = [];
   displayedProducts: any;
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   loading = true; // Initialize loading to true
-
+  skeletonLoading=true
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.skeletonLoading = false;
+  }, 2000); 
+  this.paginator._intl.itemsPerPageLabel="Test String";  
+}
+  
+
+
 
   getAllProducts(): void {
     this.productService.getAllProducts(this.token, this.email).pipe(
@@ -35,14 +61,28 @@ export class ProductPageComponent {
     ).subscribe(
       (response: any) => {
         this.products= response.data
-  //    this.sortbyName()
         this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
         this.loading = false; // Set loading to false when data is loaded
+
       }
     );
   }
 
-  
+  search() {
+    this.productService.searchByName(this.token, this.email ,this.name! ).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
+      (response: any) => {
+        this.products = response.data;
+        this.displayedProducts=this.products
+        console.log(this.products);
+      }
+    )
+     
+  }
+ 
   
 
   sortbyName():void{
@@ -52,12 +92,11 @@ export class ProductPageComponent {
     this.loading = false; // Set loading to false when data is loaded
   }
 
-  sortbyPrice():void{
-    
-    this.products = this.products.sort((a: any, b: any) => a.Price.localeCompare(b.name));
+  sortByPrice(): void {
+    this.products = this.products.sort((a: any, b: any) => a.price - b.price);
     this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
     this.loading = false; // Set loading to false when data is loaded
-  }
+}
 
   
 

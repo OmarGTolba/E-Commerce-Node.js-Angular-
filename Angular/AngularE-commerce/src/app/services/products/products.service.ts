@@ -76,7 +76,33 @@ products:any[]=[]
     return this.http.delete<any[]>(updateUrl, { headers });
   }
 
+  AddToFav(token: string, email: string ,userId:string, id:string): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.post<any[]>(updateUrl, { headers });
+  }
+  removeFromFav(token: string, email: string ,userId:string, id:string): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.delete<any[]>(updateUrl, { headers });
+  }
 
-
+  isFav(token: string, email: string ,userId:string, id:string): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.get<any[]>(updateUrl, { headers });
+  }
 }
 

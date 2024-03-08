@@ -1,10 +1,31 @@
-<div class="cont" >
-    <div *ngFor="let item of displayedProducts"  > 
-        <app-product-card [product]="item"></app-product-card>
+<div class="hero">
+    <div class="container">
+        <h1>Products</h1>
     </div>
-
 </div>
 
-<mat-paginator [length]="products.length" [pageSize]="2" [pageSizeOptions]="[3, 10, 15, 20]"
+
+<div class="dropdown">
+    <button class="dropbtn">
+        <mat-icon>sort</mat-icon>Sort By
+    </button>
+    <div class="dropdown-content">
+        <p (click)="sortbyName()">Sort by name</p>
+        <p (click)="sortByPrice()">Sort by price </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of displayedProducts">
+            <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"
+                *ngIf="skeletonLoading"></ngx-skeleton-loader>
+            <ng-container *ngIf="!skeletonLoading">
+                <app-product-card [product]="item"></app-product-card>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<mat-paginator [length]="products.length" [pageSize]="4" class="pag" [pageSizeOptions]="[6, 10]"
     (page)="onPageChange($event)"></mat-paginator>
-<button (click)="sortbyName()">sortbyname</button>

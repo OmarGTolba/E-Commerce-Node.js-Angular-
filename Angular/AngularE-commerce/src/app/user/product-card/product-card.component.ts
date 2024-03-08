@@ -2,14 +2,15 @@ import { Component, Input } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CartService } from '../../services/cart/cart.service';
 
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrl: "../../app.component.css",
+  styleUrl: "./product-card.component.css",
   animations: [
     trigger('cardAnimation', [
       transition('void => *', [
@@ -22,14 +23,24 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class ProductCardComponent {
   constructor(
     private productService: ProductsService,
-    private userService: UserService,
+    private cartService: CartService,
     private router: Router
   ) {
   }
   @Input() product: any;
 
+  productFav: boolean = false;
+
+ 
+
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
+  userId = localStorage.getItem('userId') || '';
+
+
+  ngOnInit() {
+    this.isFav()
+  }
   
 
   getProduct(productId: string) {
@@ -43,5 +54,72 @@ export class ProductCardComponent {
       }
     );
   }
+
+  toggleFavorite(): void {
+    if (this.productFav) {
+      this.removeFromFav(this.product._id);
+    } else {
+      this.addToFav(this.product._id);
+    }
+    this.productFav = !this.productFav;
+  }
+
+  addToFav(productId: string ) {
+    this.productService.AddToFav(this.token, this.email,this.userId, productId).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
+      (response: any) => {
+        console.log(response)
+      }
+    );
+  }
+
+  removeFromFav(productId: string){
+    this.productService.removeFromFav(this.token, this.email,this.userId, productId).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
+      (response: any) => {
+        console.log(response)
+      }
+    );
+  }
+
+  isFav() {
+    this.productService.isFav(this.token, this.email,this.userId, this.product._id).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
+      (response: any) => {
+       if(response.isFavorite == false){
+        this.productFav=false
+       }
+       else{
+        this.productFav=true;
+       }
+       console.log(response)
+      }
+    );
+  }
+
+  AddToCart() {
+    const body = { quantity: 1, product_id: this.product._id, user: this.userId };
+   
+    this.cartService.addToCart(this.token, this.email, this.userId, body).pipe(
+        catchError((error) => {
+            return of(error);
+        })
+    ).subscribe(
+        (response: any) => {
+            console.log(response);
+        }
+    );
+}
+
+
 
 }

@@ -53,16 +53,17 @@ export class ProductComponent {
     this.size = size
   }
 
-  body = { "quantity": this.quantity, "product_id": this.productId, "user": this.userId }
-
+  
+  body = { quantity: 1, product_id: this.productId, user: this.userId }
   AddToCart() {
-    this.cartServices.addToCart(this.token, this.email, this.body).pipe(
+    this.cartServices.addToCart(this.token, this.email, this.userId, this.body).pipe(
       catchError((error) => {
         return (error);
       })
-    ).subscribe(
-      (response: any) => {
-        this.reviews=response
+      ).subscribe(
+        (response: any) => {
+          this.reviews=response
+          console.log(this.body)
       }
     )
 

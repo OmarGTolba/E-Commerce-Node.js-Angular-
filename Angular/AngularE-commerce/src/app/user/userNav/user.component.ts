@@ -40,7 +40,7 @@ export class UserComponent {
 
   initSearchForm(): void {
     this.searchFormControl.valueChanges.pipe(
-      debounceTime(1000), // Debounce to wait for 300 milliseconds after the last keystroke
+      debounceTime(500), // Debounce to wait for 300 milliseconds after the last keystroke
       distinctUntilChanged(), // Only emit when the value has changed
       switchMap((searchInput: string): Observable<any[]> => {
         if (searchInput ) {
@@ -59,7 +59,7 @@ export class UserComponent {
               return of([]);
             } else {
               this.getAllProducts();
-              this.router.navigate([`user/`]);
+              this.router.navigate([`user/products`]);
               return of([]); // If no search input, return an empty array
             }
       }),
