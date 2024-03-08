@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Your profile</h2>
+  <div class="rounded position-fixed left-0 bottom-0 col-5 h-50">
+    <h3
+      style="margin-top: 90px; margin-bottom: 20px"
+      class="text-center text-white"
+    >
+      {{ username }}
+    </h3>
+    <img
+      src="../../../assets/images/pexels-pixabay-459976.jpg"
+      class="rounded-circle"
+      style="width: 180px; height: 180px"
+      alt=""
+    />
+    <div
+      class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-start justify-content-md-evenly gap-2 gap-md-0 h-100"
+    >
+      <a routerLink="edit" [routerLinkActive]="'active'" class="rounded"
+        >Edit profile</a
+      >
+      <a routerLink="allOrder" [routerLinkActive]="'active'" class="rounded"
+        >Your orders</a
+      >
+      <a routerLink="favorites" class="rounded" [routerLinkActive]="'active'"
+        >Favourites</a
+      >
+    </div>
+  </div>
+    <router-outlet></router-outlet>
+</div>

@@ -1,4 +1,9 @@
 .order{
     cursor: pointer;
-    padding: 50px ;
+    padding: 20px ;
+    background-color: #749b8c;
+}
+
+span{
+    color: #f8b810;
 }
