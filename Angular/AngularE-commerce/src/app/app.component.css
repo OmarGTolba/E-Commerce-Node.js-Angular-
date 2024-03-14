@@ -902,3 +902,24 @@ textarea {
 .mat-paginator .mat-paginator-range-label {
   display: none;
 }
+
+
+
+.testimonal_image{
+  /* position: relative; */
+width: 150px;
+height: 150px;
+display: flex;
+justify-content: center;
+margin: auto;
+}
+
+
+
+.carousel-caption{
+  position: relative !important;
+  margin: 15px auto;
+  text-align: center;
+  left: 0 !important;
+  right: 0 !important;
+}

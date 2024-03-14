@@ -7,6 +7,7 @@ import { CartService } from '../../services/cart/cart.service';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({
+
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
