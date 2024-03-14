@@ -1,0 +1,38 @@
+div.inp {
+  background-color: #749b8c;
+}
+input {
+  background-color: #749b8c;
+  outline: none;
+  border: 0;
+}
+.yellow {
+  color: #f8b810;
+}
+button {
+  background-color: #f8b810;
+  color: white;
+  bottom: -18px;
+  left: 50%;
+  outline: none;
+  border: 0;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+i {
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .container {
+    position: relative !important;
+    width: 80%;
+    margin: auto;
+    gap: 0;
+    padding: 0 !important;
+  }
+}

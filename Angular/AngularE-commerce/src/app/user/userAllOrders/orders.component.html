@@ -1,12 +1,31 @@
-<div>hi</div>
-<div *ngFor="let order of orders; let i = index" (click)="getOrder(order._id)" class="order">
-    <div *ngFor="let item of order.orderItemsIds " >
-       <span> {{item._id}}</span>
-       <span> {{item.quantity}}</span>
-
-    </div>    
-    <div>{{order.city}}</div>
-    <div>{{order.phone}}</div>
-    <div>{{order.status}}</div>
+<div class="position-fixed col-5 container" style="right: 0" *ngIf="!isLoading">
+  <div
+    class="d-flex flex-column col-12 gap-2 rounded position-relative p-3 p-sm-4"
+    style="background-color: #3b5d50"
+  >
+  <div *ngIf="orders.length==0" class="text-white">
+    No orders available
+  </div>
+    <div
+      *ngFor="let order of orders; let i = index"
+      (click)="getOrder(order._id)"
+      class="order"
+    > 
+      <div class="text-white"><span>Order status:</span> {{ order.status }}</div>
+      <div class="text-white"><span>Order date:</span> {{ order.dateOrdered }}</div>
+    </div>
+  </div>
 </div>
-
+<div class="position-fixed col-5 bg-light" style="right: 0" *ngIf="isLoading">
+  <div class="d-flex flex-column col-12 gap-2 p-5 rounded position-relative">
+    <div>
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        animation="pulse"
+        [theme]="{ height: '100px' }"
+      >
+      </ngx-skeleton-loader>
+    </div>
+  </div>
+</div>

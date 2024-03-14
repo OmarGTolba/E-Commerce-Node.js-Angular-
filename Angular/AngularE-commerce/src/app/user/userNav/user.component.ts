@@ -1,46 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
-import { UserService } from '../../user.service';
-
 import { Router } from '@angular/router';
 import { Observable, catchError } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ProfileService } from '../../services/profile/profile.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
-export class UserComponent {
-  constructor(private productService: ProductsService, private userService: UserService, private router: Router) {
+export class UserComponent implements OnInit {
+  lang: string;
+  constructor(
+    private productService: ProductsService,
+    private profileService: ProfileService,
+    private router: Router,
+    private translateService: TranslateService
+  ) {
     this.getAllProducts();
     this.initSearchForm();
+    this.lang = localStorage.getItem('lang') || 'en';
+    this.translateService.setDefaultLang(this.lang);
+    this.translateService.use(this.lang);
   }
-
 
   products: any[] = [];
   searchInput: any;
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
+  id = localStorage.getItem('userId') || '';
+
   searchFormControl = new FormControl();
-  getAllProducts(): void {
-    this.productService.getAllProducts(this.token, this.email).pipe(
-      catchError((error) => {
-        return (error);
-      })
-    ).subscribe(
-      (response: any) => {
-        this.productService.products = response.data;
-      }
-    )
-
+  username = '';
+  ngOnInit(): void {
+    this.profileService.getUserInfo(this.id).subscribe({
+      next: (res) => {
+        this.username = res.name;
+      },
+      error: () => {
+        this.username = '';
+      },
+    });
   }
-
+  getAllProducts(): void {
+    this.productService
+      .getAllProducts(this.token, this.email)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
+        this.productService.products = response.data;
+      });
+  }
+  changeLang() {
+    this.lang = this.lang === 'en' ? 'ar' : 'en';
+    localStorage.setItem('lang', this.lang);
+    this.translateService.use(this.lang);
+  }
+  logout() {
+    localStorage.setItem('email', '');
+    localStorage.setItem('token', '');
+    localStorage.setItem('userId', '');
+  }
   initSearchForm(): void {
     this.searchFormControl.valueChanges.pipe(
-      debounceTime(1000), // Debounce to wait for 300 milliseconds after the last keystroke
+      debounceTime(500), // Debounce to wait for 300 milliseconds after the last keystroke
       distinctUntilChanged(), // Only emit when the value has changed
       switchMap((searchInput: string): Observable<any[]> => {
         if (searchInput ) {
@@ -59,7 +89,7 @@ export class UserComponent {
               return of([]);
             } else {
               this.getAllProducts();
-              this.router.navigate([`user/`]);
+              this.router.navigate([`user/products`]);
               return of([]); // If no search input, return an empty array
             }
       }),
@@ -72,7 +102,7 @@ export class UserComponent {
       this.products = searchResults;
     });
   }
-//on
+  //on
   // search() {
   //   this.productService.searchByName(this.token, this.email ,this.name ).pipe(
   //     catchError((error) => {
@@ -84,7 +114,5 @@ export class UserComponent {
   //       console.log(this.products);
   //     }
   //   )
-     
   // }
-
 }

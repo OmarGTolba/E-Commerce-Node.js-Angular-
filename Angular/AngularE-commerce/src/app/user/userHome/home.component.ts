@@ -1,13 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, ViewChild } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { catchError } from 'rxjs';
 import { AppModule } from '../../app.module';
-
+import { ProductCardComponent } from '../product-card/product-card.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['../../app.component.css'],
+  styleUrls: ['../../app.component.css']
 })
 export class HomeComponent {
   
