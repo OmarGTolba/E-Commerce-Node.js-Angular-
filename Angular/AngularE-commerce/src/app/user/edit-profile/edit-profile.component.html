@@ -1,7 +1,11 @@
-<div class="position-fixed col-5 col-md-5" style="right: 0">
+<div
+  class="position-fixed col-5 col-md-5 container edit"
+  style="right: 0"
+  *ngIf="userData.name"
+>
   <form
     [formGroup]="editFormGroup"
-    class="d-flex flex-column col-12 gap-2 p-5 rounded position-relative"
+    class="d-flex flex-column col-12 gap-2 p-3 py-5 text-left p-sm-5 rounded position-relative"
     style="background-color: #3b5d50"
   >
     <div>
@@ -142,5 +146,80 @@
     >
       update
     </button>
+  </form>
+</div>
+<div
+  class="position-fixed col-5 col-md-5 container bg-light"
+  style="right: 0"
+  *ngIf="!userData.name"
+>
+  <form
+    class="d-flex flex-column col-12 gap-2 p-3 py-5 text-left p-sm-5 rounded position-relative"
+  >
+    <div>
+      <div class="rounded p-2">
+        <div class="text-white col-11">
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="{ height: '40px' }"
+          >
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="rounded p-2">
+        <div class="text-white col-11">
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="{ height: '40px' }"
+          >
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="rounded p-2">
+        <div class="text-white col-11">
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="{ height: '40px' }"
+          >
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="rounded p-2">
+        <div class="text-white col-11">
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="{ height: '40px' }"
+          >
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div class="position-absolute rounded py-2 px-4">
+      <div class="rounded p-2">
+        <div class="text-white col-11">
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            animation="pulse"
+            [theme]="{ height: '40px' }"
+          >
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
   </form>
 </div>

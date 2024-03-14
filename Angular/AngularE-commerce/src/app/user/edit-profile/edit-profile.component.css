@@ -26,3 +26,13 @@ button {
 i {
   cursor: pointer;
 }
+
+@media (max-width: 576px) {
+  .container {
+    position: relative !important;
+    width: 80%;
+    margin: auto;
+    gap: 0;
+    padding: 0 !important;
+  }
+}

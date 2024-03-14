@@ -11,6 +11,7 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class FavoritesComponent implements OnInit{
   favorites:any[] = []
+  isLoading = false
   id = localStorage.getItem("userId") || ""
   constructor(private favoriteService: FavoritesService, private router: Router, private toast:NgToastService,private route:ActivatedRoute
     ){}
@@ -21,12 +22,14 @@ getProduct(id:string){
   this.router.navigate(['/user/product', id]);
 }
 getFavProducts(){
+  this.isLoading = true;
   this.favoriteService.getUserFavProduct(this.id).pipe(
     catchError((error) => {
       return (error);
     })
   ).subscribe((res) => {
-    this.favorites = res as any[]; ;
+    this.favorites = res as any[];
+    this.isLoading = false;
   });
 }
 deleteFavPrd(e:Event,prd:string){

@@ -8,6 +8,7 @@ const validateAddUsers = (user) => {
     phone: joi.string(),
     address: joi.string(),
     FavProduct: joi.array(),
+    role:joi.string()
   })
   return schema.validate(user)
 }

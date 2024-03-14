@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login/login.component';
 import { AdminComponent } from './admin/adminNav/admin.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { AllProductsComponent } from './admin/all-products/all-products.component';
 import { AllUsersComponent } from './admin/all-users/all-users.component';
 import { AllCategoriesComponent } from './admin/all-categories/all-categories.component';
@@ -34,13 +34,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProductPageComponent } from './user/product-page/product-page.component';
 import { ProductCardComponent } from './user/product-card/product-card.component';
-import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { NgToastModule } from 'ng-angular-popup';
-import { ProfileComponent } from './user/profile/profile.component';
-import { FavoritesComponent } from './user/favorites/favorites.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http, "../assets/i18n/", '.json')
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,10 +59,11 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     RegisterComponent,
     OrdersComponent,
     UserOrderComponent,
-    // SearchComponent,
     CartComponent,
     // ProductPageComponent,
     // ProductCardComponent,
+    ProductPageComponent,
+    ProductCardComponent,
     CartComponent,
     NotFoundComponent,
   ],
@@ -92,6 +95,16 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     CommonModule,
     MatIconModule,
     NgxSkeletonLoaderModule,
+    NgToastModule,
+    NgxSkeletonLoaderModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],

@@ -1,31 +1,72 @@
-<div class="container">
-  <h2>Your profile</h2>
-  <div class="rounded position-fixed left-0 bottom-0 col-5 h-50">
-    <h3
-      style="margin-top: 90px; margin-bottom: 20px"
-      class="text-center text-white"
-    >
+<div class="container" *ngIf="username">
+  <h2 class="m-4 my-4 mx-md-0 text-left">Your profile</h2>
+  <div class="rounded position-fixed left-0 bottom-0 col-5 p-3 profile">
+    <h3 class="text-center text-white">
       {{ username }}
     </h3>
     <img
       src="../../../assets/images/pexels-pixabay-459976.jpg"
       class="rounded-circle"
-      style="width: 180px; height: 180px"
       alt=""
     />
     <div
-      class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-start justify-content-md-evenly gap-2 gap-md-0 h-100"
+      class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-start justify-content-md-evenly gap-2 gap-md-0 flex-wrap h-100 btns"
     >
-      <a routerLink="edit" [routerLinkActive]="'active'" class="rounded"
+      <a
+        routerLink="edit"
+        [routerLinkActive]="'active'"
+        class="rounded my-2 link"
         >Edit profile</a
       >
-      <a routerLink="allOrder" [routerLinkActive]="'active'" class="rounded"
+      <a
+        routerLink="allOrder"
+        [routerLinkActive]="'active'"
+        class="rounded my-2 link"
         >Your orders</a
       >
-      <a routerLink="favorites" class="rounded" [routerLinkActive]="'active'"
+      <a
+        routerLink="favorites"
+        class="rounded my-2 link text-center"
+        [routerLinkActive]="'active'"
         >Favourites</a
       >
     </div>
   </div>
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>
+<div class="container" *ngIf="!username">
+  <h2 class="m-4 my-4 mx-md-0 text-left">
+    <ngx-skeleton-loader [theme]="{width: '25%'}" count="1" appearance="line" animation="pulse">
+    </ngx-skeleton-loader>
+  </h2>
+  <div class="rounded position-fixed left-0 bottom-0 col-5 p-3 bg-light">
+    <h3 class="text-center text-white">
+      <ngx-skeleton-loader count="1" appearance="line" animation="pulse" [theme]="{width: '25%'}">
+      </ngx-skeleton-loader>
+    </h3>
+    <div class="img">
+      <ngx-skeleton-loader
+        [theme]="{ width: '180px', height: '180px' }"
+        count="1"
+        appearance="circle"
+      />
+    </div>
+    <div
+      class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-start justify-content-md-evenly gap-2 gap-md-0 flex-wrap h-100 btns"
+    >
+      <a class="rounded my-2">
+        <ngx-skeleton-loader count="1" appearance="line" animation="pulse">
+        </ngx-skeleton-loader
+      ></a>
+      <a class="rounded my-2">
+        <ngx-skeleton-loader count="1" appearance="line" animation="pulse">
+        </ngx-skeleton-loader
+      ></a>
+      <a class="rounded my-2">
+        <ngx-skeleton-loader count="1" appearance="line" animation="pulse">
+        </ngx-skeleton-loader
+      ></a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
 </div>
