@@ -69,41 +69,38 @@ export class UserComponent implements OnInit {
     localStorage.setItem('userId', '');
   }
   initSearchForm(): void {
-    this.searchFormControl.valueChanges
-      .pipe(
-        debounceTime(1000), // Debounce to wait for 300 milliseconds after the last keystroke
-        distinctUntilChanged(), // Only emit when the value has changed
-        switchMap((searchInput: string): Observable<any[]> => {
-          if (searchInput) {
-            this.searchInput = searchInput;
-            this.productService
-              .searchByName(this.token, this.email, searchInput)
-              .pipe(
-                catchError((error) => {
-                  return error;
-                })
-              )
-              .subscribe((response: any) => {
+    this.searchFormControl.valueChanges.pipe(
+      debounceTime(500), // Debounce to wait for 300 milliseconds after the last keystroke
+      distinctUntilChanged(), // Only emit when the value has changed
+      switchMap((searchInput: string): Observable<any[]> => {
+        if (searchInput ) {
+          this.searchInput = searchInput
+          this.productService.searchByName(this.token, this.email ,searchInput ).pipe(
+            catchError((error) => {
+              return (error);
+            })
+            ).subscribe(
+              (response: any) => {
                 this.productService.products = response.data;
                 console.log(this.productService.products);
                 this.router.navigate([`user/search/${searchInput}`]);
-              });
-            return of([]);
-          } else {
-            this.getAllProducts();
-            this.router.navigate([`user/`]);
-            return of([]); // If no search input, return an empty array
-          }
-        }),
-        catchError((error) => {
-          console.error('Error during search:', error);
-          return of([]); // Return an empty array in case of an error
-        })
-      )
-      .subscribe((searchResults) => {
-        //   this.router.navigate([`user/search`]);
-        this.products = searchResults;
-      });
+              }
+              )
+              return of([]);
+            } else {
+              this.getAllProducts();
+              this.router.navigate([`user/products`]);
+              return of([]); // If no search input, return an empty array
+            }
+      }),
+      catchError((error) => {
+        console.error('Error during search:', error);
+        return of([]); // Return an empty array in case of an error
+      })
+    ).subscribe((searchResults) => {
+     //   this.router.navigate([`user/search`]);
+      this.products = searchResults;
+    });
   }
   //on
   // search() {

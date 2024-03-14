@@ -1,76 +1,109 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ProductsService } from '../../services/products/products.service';
 import { UserService } from '../../user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
-  styleUrl: './product-page.component.css'
+  styleUrls: ['./product-page.component.css'],
 })
 export class ProductPageComponent {
-  constructor(
-    private productService: ProductsService,
-    private userService: UserService,
-    private router: Router
-  ) {
-    this.getAllProducts();
-  }
+  name: string | null = '';
 
   products: any[] = [];
   displayedProducts: any;
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  loading = true; // Initialize loading to true
-
+  // loading = true; // Initialize loading to true
+  skeletonLoading = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  getAllProducts(): void {
-    this.productService.getAllProducts(this.token, this.email).pipe(
-      catchError((error) => {
-        return (error);
-      })
-    ).subscribe(
-      (response: any) => {
-        this.products= response.data
-  //    this.sortbyName()
-        this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
-        this.loading = false; // Set loading to false when data is loaded
+  constructor(
+    private productService: ProductsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.route.paramMap.subscribe((params) => {
+      this.name = params.get('name');
+      if (this.name) {
+        this.search();
+      } else {
+        this.getAllProducts();
       }
+    });
+    this.getAllProducts();
+  }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.skeletonLoading = false;
+    }, 2000);
+    // this.paginator._intl.itemsPerPageLabel = 'Test String';
+  }
+
+  getAllProducts(): void {
+    // this.skeletonLoading = true;
+    this.productService
+      .getAllProducts(this.token, this.email)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
+        this.products = response.data;
+        this.displayedProducts = this.products.slice(
+          0,
+          this.paginator.pageSize
+        );
+        // this.loading = false; // Set loading to false when data is loaded
+      });
+    // this.skeletonLoading = false;
+  }
+
+  search() {
+    this.productService
+      .searchByName(this.token, this.email, this.name!)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
+        this.products = response.data;
+        this.displayedProducts = this.products;
+        console.log(this.products);
+      });
+  }
+
+  sortbyName(): void {
+    this.products = this.products.sort((a: any, b: any) =>
+      a.name.localeCompare(b.name)
     );
-  }
-
-  
-  
-
-  sortbyName():void{
-    
-    this.products = this.products.sort((a: any, b: any) => a.name.localeCompare(b.name));
     this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
-    this.loading = false; // Set loading to false when data is loaded
+    // this.loading = false; // Set loading to false when data is loaded
   }
 
-  sortbyPrice():void{
-    
-    this.products = this.products.sort((a: any, b: any) => a.Price.localeCompare(b.name));
+  sortByPrice(): void {
+    this.products = this.products.sort((a: any, b: any) => a.price - b.price);
     this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
-    this.loading = false; // Set loading to false when data is loaded
+    // this.loading = false; // Set loading to false when data is loaded
   }
-
-  
 
   getProduct(productId: string) {
-    this.productService.getProductsByID(this.token, this.email, productId).pipe(
-      catchError((error) => {
-        return (error);
-      })
-    ).subscribe(
-      (response: any) => {
+    this.productService
+      .getProductsByID(this.token, this.email, productId)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
         this.router.navigate(['user/product', productId]);
-      }
-    );
+      });
   }
 
   onPageChange(event: any): void {
@@ -78,7 +111,4 @@ export class ProductPageComponent {
     const endIndex = startIndex + event.pageSize;
     this.displayedProducts = this.products.slice(startIndex, endIndex);
   }
-
-
-
 }

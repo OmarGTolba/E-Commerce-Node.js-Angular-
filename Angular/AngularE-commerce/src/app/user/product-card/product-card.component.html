@@ -1,10 +1,24 @@
-    <div class="product-card " [@cardAnimation] (click)="getProduct(product._id)">
-        <img class="product-image"   [src]="product.images[0]" alt="...">
-        <div >
-            <h5 class="product-name">{{ product.name }}</h5>
-           <button>Add to cart</button>
+<section class="section-products">
+    <div id="product-1" class="single-product">
+        <div class="part-1">
+            <ul>
+                <li (click)="getProduct(product._id)"><mat-icon>visibility</mat-icon>
+                </li>
+                <li [class.favorite]="productFav">
+                    <mat-icon class="heart-icon" [class.filled]="productFav"
+                        (click)="toggleFavorite()">favorite</mat-icon>
+                </li>
+            </ul>
+            <img [src]="product.images[0]" alt="Product Image">
         </div>
+        <div class="part-2">
+            <h3 class="product-title">{{ product.name }}</h3>
+            <!-- <h4 class="product-old-price">${{ product.price }}</h4> -->
+            <h4 class="product-price">${{ product.price }}</h4>
+        </div>
+        <button class="view" (click)="AddToCart()">
+            {{ added ? 'Added successfully ✔' : 'Add to cart 🛒' }}
+        </button>
     </div>
 
-
-
+</section>

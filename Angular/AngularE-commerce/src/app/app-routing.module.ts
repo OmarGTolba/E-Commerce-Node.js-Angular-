@@ -11,15 +11,10 @@ import { UserComponent } from './user/userNav/user.component';
 import { HomeComponent } from './user/userHome/home.component';
 import { RegisterComponent } from './user/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
-import { ProductComponent } from './user/productDetails/product.component';
-// import { SearchComponent } from './user/search/search.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { CartComponent } from './user/cart/cart.component';
-import { ProductCardComponent } from './user/product-card/product-card.component';
 import { ProductPageComponent } from './user/product-page/product-page.component';
-import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
 import { ProfileComponent } from './user/profile/profile.component';
-import { FavoritesComponent } from './user/favorites/favorites.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -30,22 +25,25 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: '', component: HomeComponent },
-      // { path: ':name', component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'allOrder', component: OrdersComponent },
-      // { path: 'search/:name', component: SearchComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
-      { path: 'product/:productId', component: ProductComponent },
-      { path: 'products', component: ProductPageComponent },
       { path: 'cart', component: CartComponent },
-      // { path: 'search', component: HomeComponent }
-
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('./modules/products/products.module').then(
+            (m) => m.ProductsModule
+          ),
+      },
       {
         path: 'profile',
         component: ProfileComponent,
         loadChildren: () =>
-          import('./profile/profile.module').then((m) => m.ProfileModule),
+          import('./modules/profile/profile.module').then(
+            (m) => m.ProfileModule
+          ),
       },
     ],
   },

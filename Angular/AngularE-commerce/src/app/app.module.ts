@@ -28,6 +28,7 @@ import { CartComponent } from './user/cart/cart.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -52,13 +53,15 @@ export function HttpLoaderFactory(http: HttpClient){
     AllCategoriesComponent,
     AllOrdersComponent,
     AddComponent,
-    ProductComponent,
+    // ProductComponent,
     UserComponent,
     HomeComponent,
     RegisterComponent,
     OrdersComponent,
     UserOrderComponent,
     CartComponent,
+    // ProductPageComponent,
+    // ProductCardComponent,
     ProductPageComponent,
     ProductCardComponent,
     CartComponent,
@@ -77,6 +80,21 @@ export function HttpLoaderFactory(http: HttpClient){
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
+    NgToastModule,
+    BrowserModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatIconModule,
+    NgxSkeletonLoaderModule,
     NgToastModule,
     NgxSkeletonLoaderModule,
     HttpClientModule,
