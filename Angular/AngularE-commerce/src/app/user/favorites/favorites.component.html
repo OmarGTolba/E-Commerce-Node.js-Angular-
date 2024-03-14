@@ -1,4 +1,4 @@
-<div class="position-fixed col-5" style="right: 0">
+<div class="position-fixed col-5 fav" style="right: 0" *ngIf="!isLoading">
   <div
     class="d-flex flex-column col-12 gap-2 p-5 rounded position-relative"
     style="background-color: #3b5d50"
@@ -26,6 +26,19 @@
           ></i>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="position-fixed col-5 bg-light" style="right: 0" *ngIf="isLoading">
+  <div class="d-flex flex-column col-12 gap-2 p-5 rounded position-relative">
+    <div>
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        animation="pulse"
+        [theme]="{ height: '100px' }"
+      >
+      </ngx-skeleton-loader>
     </div>
   </div>
 </div>

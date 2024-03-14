@@ -23,40 +23,48 @@ import { FavoritesComponent } from './user/favorites/favorites.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: "full" },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   {
-    path: 'user', component: UserComponent, children: [
+    path: 'user',
+    component: UserComponent,
+    children: [
       { path: '', component: HomeComponent },
       // { path: ':name', component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'allOrder', component: OrdersComponent },
-      { path: 'search/:name', component: SearchComponent },
+      // { path: 'search/:name', component: SearchComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
       { path: 'product/:productId', component: ProductComponent },
       { path: 'products', component: ProductPageComponent },
       { path: 'cart', component: CartComponent },
       // { path: 'search', component: HomeComponent }
-     
-      { path: 'profile', component: ProfileComponent,loadChildren: ()=> import("./profile/profile.module").then(m => m.ProfileModule)},
-      { path: 'search/:name', component: SearchComponent },
-    ]
+
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        loadChildren: () =>
+          import('./profile/profile.module').then((m) => m.ProfileModule),
+      },
+    ],
   },
   {
-    path: 'admin', component: AdminComponent, children: [
+    path: 'admin',
+    component: AdminComponent,
+    children: [
       { path: 'products', component: AllProductsComponent },
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
-      { path: 'users', component: AllUsersComponent }
-    ]
+      { path: 'users', component: AllUsersComponent },
+    ],
   },
-  { path: "**", component: NotFoundComponent}
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

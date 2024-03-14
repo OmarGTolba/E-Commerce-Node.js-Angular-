@@ -12,7 +12,7 @@ import { catchError } from 'rxjs';
 export class OrdersComponent implements OnInit {
   constructor(private orderServices: OrdersService, private router: Router, private userService:UserService) { }
   orders: any[] = []
-
+  isLoading = false;
 
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
@@ -23,6 +23,7 @@ export class OrdersComponent implements OnInit {
   }
 
   getUserOrders() {
+    this.isLoading = true
     this.orderServices.getUserOrders(this.token, this.email, this.userId).pipe(
       catchError((error) => {
         return (error);
@@ -30,6 +31,7 @@ export class OrdersComponent implements OnInit {
     ).subscribe(
       (response: any) => {
         this.orders = response.data;
+        this.isLoading = false
       }
     )
   }

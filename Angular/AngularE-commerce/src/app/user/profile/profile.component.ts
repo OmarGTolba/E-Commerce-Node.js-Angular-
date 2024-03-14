@@ -9,7 +9,9 @@ import { ProfileService } from '../../services/profile/profile.service';
 export class ProfileComponent implements OnInit{
   id = localStorage.getItem('userId') || '';
   username = '';
-  constructor(private profileService: ProfileService){}
+
+  constructor(private profileService: ProfileService){
+  }
   ngOnInit(): void {
     this.profileService.getUserInfo(this.id).subscribe({
       next: (res) => {

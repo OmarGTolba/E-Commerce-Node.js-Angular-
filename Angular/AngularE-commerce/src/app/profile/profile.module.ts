@@ -5,6 +5,8 @@ import { ProfileComponent } from '../user/profile/profile.component';
 import { EditProfileComponent } from '../user/edit-profile/edit-profile.component';
 import { FavoritesComponent } from '../user/favorites/favorites.component';
 import { OrdersComponent } from '../user/userAllOrders/orders.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 const routes: Routes=[
@@ -21,6 +23,8 @@ const routes: Routes=[
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    NgxSkeletonLoaderModule,
     RouterModule.forChild(routes)
   ]
 })
