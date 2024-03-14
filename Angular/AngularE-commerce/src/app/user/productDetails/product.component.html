@@ -72,11 +72,11 @@
                      <button type="button" (click)="min()" [class.disabled-input]="quantity === 1">-</button>
                      <input type="text" [value]="quantity" title="quantity">
                      <button type="button" (click)="plus()"
-                        [class.disabled-input]="quantity >= product.countInStock">+</button>
+                        [class.disabled-input]="quantity > product.countInStock">+</button>
 
                   </div>
 
-                  <p *ngIf="quantity >= product.countInStock" class="text-danger">No more in stock</p>
+                  <p *ngIf="quantity > product.countInStock" class="text-danger my-2">No more in stock</p>
                </div>
 
                <button class="add-btn col-2" type="button" [class.disabled-input]="added === true"
