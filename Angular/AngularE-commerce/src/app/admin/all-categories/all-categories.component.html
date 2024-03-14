@@ -1,18 +1,17 @@
-<p>all-categories works!</p>
 
-<table  class="table">
-    <thead>
-      <tr>
-        
-        <th scope="col">Name</th>
-        <th scope="col">id</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of categories; let i = index">
-            <td>{{categories[i].name}}</td>
-            <td>{{categories[i]._id}}</td>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <table class="table table-striped" style="width: 50%; border-collapse: collapse;">
+      <thead>
+          <tr>
+              <th scope="col">Name</th>
+              <th scope="col">ID</th>
           </tr>
-    
-    </tbody>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of categories; let i = index">
+              <td>{{categories[i].name}}</td>
+              <td>{{categories[i]._id}}</td>
+          </tr>
+      </tbody>
   </table>
+</div>
