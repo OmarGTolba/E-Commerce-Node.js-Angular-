@@ -16,10 +16,19 @@
 </div>
 
 <div class="container">
+    <div class="row" *ngIf="skeletonLoading">
+        <ngx-skeleton-loader class="col-lg-4 col-xl-3" *ngIf="skeletonLoading"
+            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader class="col-lg-4 col-xl-3"
+            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader class="col-lg-4 col-xl-3"
+            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+        <ngx-skeleton-loader class="col-lg-4 col-xl-3"
+            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+    </div>
+
     <div class="row">
         <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of displayedProducts">
-            <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"
-                *ngIf="skeletonLoading"></ngx-skeleton-loader>
             <ng-container *ngIf="!skeletonLoading">
                 <app-product-card [product]="item"></app-product-card>
             </ng-container>

@@ -6,6 +6,10 @@ import { EditProfileComponent } from '../../user/edit-profile/edit-profile.compo
 import { FavoritesComponent } from '../../user/favorites/favorites.component';
 import { OrdersComponent } from '../../user/userAllOrders/orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  NgxSkeletonLoaderComponent,
+  NgxSkeletonLoaderModule,
+} from 'ngx-skeleton-loader';
 
 const routes: Routes = [
   { path: '', redirectTo: 'edit', pathMatch: 'full' },
@@ -15,6 +19,11 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [EditProfileComponent, ProfileComponent, FavoritesComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    NgxSkeletonLoaderModule,
+    ReactiveFormsModule,
+  ],
 })
 export class ProfileModule {}

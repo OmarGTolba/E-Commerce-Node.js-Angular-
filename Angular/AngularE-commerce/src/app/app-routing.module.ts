@@ -16,6 +16,7 @@ import { CartComponent } from './user/cart/cart.component';
 import { ProductPageComponent } from './user/product-page/product-page.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProductComponent } from './user/productDetails/product.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -29,14 +30,9 @@ const routes: Routes = [
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
+      { path: 'products', component: ProductPageComponent },
+      { path: 'product/:productId', component: ProductComponent },
       { path: 'cart', component: CartComponent },
-      {
-        path: 'products',
-        loadChildren: () =>
-          import('./modules/products/products.module').then(
-            (m) => m.ProductsModule
-          ),
-      },
       {
         path: 'profile',
         component: ProfileComponent,

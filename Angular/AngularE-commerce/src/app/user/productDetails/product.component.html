@@ -70,13 +70,13 @@
                <div class="col">
                   <div class="quantity">
                      <button type="button" (click)="min()" [class.disabled-input]="quantity === 1">-</button>
-                     <input type="text" [value]="quantity" title="quantity">
+                     <input type="text" disabled [value]="quantity" title="quantity">
                      <button type="button" (click)="plus()"
-                        [class.disabled-input]="quantity > product.countInStock">+</button>
+                        [class.disabled-input]="quantity === product.countInStock">+</button>
 
                   </div>
 
-                  <p *ngIf="quantity > product.countInStock" class="text-danger my-2">No more in stock</p>
+                  <p *ngIf="quantity === product.countInStock" class="text-danger my-2">No more in stock</p>
                </div>
 
                <button class="add-btn col-2" type="button" [class.disabled-input]="added === true"
@@ -142,7 +142,7 @@
          <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab" tabindex="0">
             <div id="review" class="carousel review ">
 
-               <ngx-skeleton-loader [theme]="{margin:'10px 0', height: '20px', width: '100%', borderRadius: '50%' }"
+               <ngx-skeleton-loader [theme]="{margin:'10px 0', height: '100px', width: '18%', borderRadius: '50%' }"
                   *ngIf="skeletonLoading"></ngx-skeleton-loader>
                <ngx-skeleton-loader [theme]="{margin:'10px 0', height: '20px', width: '100%', borderRadius: '4px' }"
                   *ngIf="skeletonLoading"></ngx-skeleton-loader>
@@ -169,11 +169,11 @@
                                  <div>
                                     <div>
                                        <p>{{item.user.name}}</p>
-                                       <mat-icon [ngClass]="{'selected': currentRating >= 1}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': currentRating >= 2}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': currentRating >= 3}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': currentRating >= 4}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': currentRating >= 5}">star</mat-icon>
+                                       <mat-icon [ngClass]="{'selected': item.rating >= 1}">star</mat-icon>
+                                       <mat-icon [ngClass]="{'selected': item.rating >= 2}">star</mat-icon>
+                                       <mat-icon [ngClass]="{'selected': item.rating >= 3}">star</mat-icon>
+                                       <mat-icon [ngClass]="{'selected': item.rating >= 4}">star</mat-icon>
+                                       <mat-icon [ngClass]="{'selected': item.rating >= 5}">star</mat-icon>
                                     </div>
 
                                  </div>

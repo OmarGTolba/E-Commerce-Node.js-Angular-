@@ -18,14 +18,17 @@ export class ProductPageComponent {
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   // loading = true; // Initialize loading to true
-  skeletonLoading = true;
+  skeletonLoading = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private productService: ProductsService,
     private route: ActivatedRoute,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit() {
+    this.skeletonLoading = true;
     this.route.paramMap.subscribe((params) => {
       this.name = params.get('name');
       if (this.name) {
@@ -34,18 +37,14 @@ export class ProductPageComponent {
         this.getAllProducts();
       }
     });
-    this.getAllProducts();
-  }
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.skeletonLoading = false;
-    }, 2000);
-    // this.paginator._intl.itemsPerPageLabel = 'Test String';
+    this.getAllProducts();
+    // setTimeout(() => {
+    //   this.skeletonLoading = false;
+    // }, 2000);
   }
 
   getAllProducts(): void {
-    // this.skeletonLoading = true;
     this.productService
       .getAllProducts(this.token, this.email)
       .pipe(
@@ -59,9 +58,9 @@ export class ProductPageComponent {
           0,
           this.paginator.pageSize
         );
-        // this.loading = false; // Set loading to false when data is loaded
+
+        this.skeletonLoading = false;
       });
-    // this.skeletonLoading = false;
   }
 
   search() {
