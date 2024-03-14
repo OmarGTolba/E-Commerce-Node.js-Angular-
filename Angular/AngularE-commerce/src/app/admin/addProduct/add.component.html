@@ -1,16 +1,15 @@
-<p>add works!</p>
-<!-- product-form.component.html -->
-<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+<div class="form-container">
+  <form [formGroup]="productForm" (ngSubmit)="addProduct()">
     <label for="productName">Product Name:</label>
     <input type="text" id="productName" formControlName="productName" required>
 
-    <select  id="category" formControlName="category">
-      <option value="65ccf9145b64247d1bc64607">Men's</option>
-      <option value="65ccf92a5b64247d1bc64609">women's</option>
-      <option value="65ccf9335b64247d1bc6460b">kid's</option>
+    <select id="category" formControlName="category">
+      <option value="65ccf9145b64247d1bc64607">Bed Room</option>
+      <option value="65ccf92a5b64247d1bc64609">Dining Rooms</option>
+      <option value="65ccf9335b64247d1bc6460b">SIDEBOARDS, CONSOLES & CABINETS</option>
+      <option value="65d909e1c3d459aacb6afbc8">Sofa set</option>
     </select>
-    
 
     <button type="submit">Submit</button>
   </form>
-  
+</div>
