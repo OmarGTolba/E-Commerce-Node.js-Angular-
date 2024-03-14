@@ -1,0 +1,47 @@
+.price{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+.dis{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5em;
+}
+.name{
+    font-size: 2em;
+
+}
+.add{
+    width: 40% !important;
+    margin: 30px auto;
+    /* display: flex;
+    justify-content: center; */
+}
+.quantity{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+.quantity input{
+    width: 50px;
+    text-align: center;
+    padding: 5px 0 ;
+}
+
+.section2{
+    width: 100%;
+    margin: 100px auto ;
+    border: 1px solid rgb(147, 147, 147);
+    padding: 15px 150px;
+    /* text-align: center; */
+}
+.section2 ul{
+    display: flex;
+    justify-content: center;
+}
+.profileIcon{
+    width: 50px;
+}

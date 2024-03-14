@@ -1,0 +1,126 @@
+<div class="container my-5 w-75">
+   <div class="row">
+      <div id="carouselExample" class="carousel slide col ">
+         <div class="carousel-inner">
+            <div class="carousel">
+               <div *ngFor="let item of product.images; let i = index" class="carousel-item" [class.active]="i === 0">
+                  <img [src]="item" class="d-block w-100" alt="...">
+               </div>
+            </div>
+         </div>
+         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+         </button>
+         <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+         </button>
+      </div>
+
+
+      <div class="col-7 m-5">
+         <p class="name">{{product.name}}</p>
+         <p class="price"> ${{product.price}}</p>
+         <!-- <p> {{product.brand}}</p> -->
+
+         <div>
+            <p class="d-inline-flex gap-1">
+               <button class="btn dis" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                  aria-expanded="false" aria-controls="collapseExample">
+                  description
+                  <i class="bi bi-caret-down"></i>
+
+               </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+               <div class="card card-body">
+                  {{ product.description }} </div>
+            </div>
+
+         </div>
+
+         <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               {{size}}
+            </button>
+            <ul class="dropdown-menu">
+               <li class="dropdown-item" (click)="selectSize('S')">S</li>
+               <li class="dropdown-item" (click)="selectSize('M')">M</li>
+               <li class="dropdown-item" (click)="selectSize('L')">L</li>
+               <li class="dropdown-item" (click)="selectSize('XL')">XL</li>
+            </ul>
+         </div>
+
+         <div class="quantity">
+            <button type="button" (click)="min()" class="btn btn-danger" [disabled]="quantity === 0">-</button>
+            <input type="text" [value]="quantity" title="quantity">
+            <button type="button" (click)="plus()" class="btn btn-success"
+               [disabled]="quantity === product.countInStock">+</button>
+
+         </div>
+
+         <p *ngIf="quantity === product.countInStock" class="text-danger">No more in stock</p>
+
+         <button class="btn btn-primary add" type="button" (click)="AddToCart()">
+            Add to cart
+         </button>
+
+
+      </div>
+
+   </div>
+
+
+   <div class="section2">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+         <li class="nav-item" role="presentation">
+            <button class="btn active" id="pills-discription-tab" data-bs-toggle="pill"
+               data-bs-target="#pills-discription" type="button" role="tab" aria-controls="pills-discription"
+               aria-selected="false">discription</button>
+         </li>
+         <li class="nav-item" role="presentation">
+            <button class="btn" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button"
+               role="tab" aria-controls="pills-review" aria-selected="false"
+               (click)="showReview(product._id)">review</button>
+         </li>
+
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+         <div class="tab-pane fade show active" id="pills-discription" role="tabpanel"
+            aria-labelledby="pills-discription-tab" tabindex="0">
+            <p>{{ product.description }}</p>
+            <p>{{product.brand}}</p>
+         </div>
+         <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab" tabindex="0">
+            <div *ngFor="let item of reviews; let i = index">
+
+               <div class="row justify-content-center my-3">
+                  <div class="col-2 d-flex justify-content-center align-items-center">
+                     <img alt="" class=" profileIcon" src="../../../assets/images/istockphoto-1495088043-612x612-removebg-preview.png" />
+                  </div>
+                  <div class="col-7">
+
+                     <div class="row">
+                        <p class="col">{{item.user.name}}</p>
+                        <mat-slider
+                        thumbLabel
+                        tickInterval="1"
+                        min="0"
+                        max="5"
+                        step="1"
+                        [(ngModel)]="value">
+                      </mat-slider>
+                      
+                     </div>
+                     <p>{{item.title}}</p>
+
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

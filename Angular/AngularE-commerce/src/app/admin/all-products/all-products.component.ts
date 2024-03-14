@@ -64,7 +64,7 @@ export class AllProductsComponent {
 
     const updateUrl = `http://localhost:3000/api/v1/products/${this.updatedId}`;
     const body = { name: this.name, description: this.description, countInStock: this.quantity }
-    this.productService.updateProduct(this.email, token, this.updatedId, body).subscribe(
+    this.productService.updateProduct(this.token,this.email,  this.updatedId, body).subscribe(
       (response: any) => {
 
         this.getAllProducts()

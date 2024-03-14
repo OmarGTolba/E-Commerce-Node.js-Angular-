@@ -80,11 +80,20 @@ const deleteProduct = asyncHandler(async (req, res) => {
   const { id } = req.params
   const product = await productModel.findOne({ _id: id })
   if (!product) {
-    res.status(404).send(`there is no book with id ${req.params.id}`)
+    res.status(404).send(`there is no product with id ${req.params.id}`)
     return
   }
   await productModel.deleteOne({ _id: id })
   res.send(product)
+})
+
+const topRating= asyncHandler(async (req, res) => {
+  const topProducts = await productModel.find().sort({ rating: -1 }).limit(3);
+    if (!topProducts || topProducts.length === 0) {
+      return res.status(404).send(`There are no products.`);
+    }
+    console.log(topProducts)
+    res.send(topProducts);
 })
 
 module.exports = {
@@ -93,4 +102,5 @@ module.exports = {
   addNewProduct,
   updateProduct,
   deleteProduct,
+  topRating
 }

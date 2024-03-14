@@ -1,0 +1,10 @@
+<div class="cont" >
+    <div *ngFor="let item of displayedProducts"  > 
+        <app-product-card [product]="item"></app-product-card>
+    </div>
+
+</div>
+
+<mat-paginator  [hidePageSize]="true" [length]="products.length" [pageSize]="2" [pageSizeOptions]="[3, 10, 15, 20]"
+    (page)="onPageChange($event)"></mat-paginator>
+<button (click)="sortbyName()">sortbyname</button>

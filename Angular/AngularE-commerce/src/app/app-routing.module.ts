@@ -8,29 +8,32 @@ import { AllOrdersComponent } from './admin/all-orders/all-orders.component';
 import { AddComponent } from './admin/addProduct/add.component';
 import { LoginComponent } from './auth/login/login.component';
 import { UserComponent } from './user/userNav/user.component';
-// import { HomeComponent } from './user/userHome/home.component';
+import { HomeComponent } from './user/userHome/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
-// import { ProductComponent } from './user/product/product.component';
+import { ProductComponent } from './user/productDetails/product.component';
 // import { SearchComponent } from './user/search/search.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { CartComponent } from './user/cart/cart.component';
+import { ProductCardComponent } from './user/product-card/product-card.component';
+import { ProductPageComponent } from './user/product-page/product-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
     path: 'user', component: UserComponent, children: [
-    //  { path: ':name', component: HomeComponent },
+      { path: '', component: HomeComponent },
+      // { path: ':name', component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
-      // { path: 'search/:name', component: SearchComponent },
+      { path: 'search/:name', component: ProductPageComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
-      // { path: 'product/:productId', component: ProductComponent },
+      { path: 'product/:productId', component: ProductComponent },
+      { path: 'products', component: ProductPageComponent },
       { path: 'cart', component: CartComponent },
-      // { path: 'search/:name', component: SearchComponent },
-      // { path: 'search', component: HomeComponent },
-      // { path: '', component: HomeComponent }
+      // { path: 'search', component: HomeComponent }
+     
     ]
   },
   {

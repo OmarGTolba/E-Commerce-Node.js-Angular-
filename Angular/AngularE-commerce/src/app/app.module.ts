@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,8 +17,10 @@ import { UserComponent } from './user/userNav/user.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
+import { ProductComponent } from './user/productDetails/product.component';
 // import { ProductComponent } from './user/product/product.component';
 import { CommonModule } from '@angular/common';
+// import { SearchComponent } from './user/search/search.component';
 // import { SearchComponent } from './user/search/search.component';
 import { CartComponent } from './user/cart/cart.component';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -27,26 +29,28 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProductPageComponent } from './user/product-page/product-page.component';
+import { ProductCardComponent } from './user/product-card/product-card.component';
 import { AuthModule } from './auth/auth.module';
+import { HomeComponent } from './user/userHome/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    
     AdminComponent,
     AllProductsComponent,
     AllUsersComponent,
     AllCategoriesComponent,
     AllOrdersComponent,
     AddComponent,
-    // ProductComponent,
+    ProductComponent,
     UserComponent,
-    // HomeComponent,
-    
     OrdersComponent,
     UserOrderComponent,
-    // SearchComponent,
-    CartComponent
+    CartComponent,
+    ProductPageComponent,
+    ProductCardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,MatTabsModule,MatSliderModule,MatTabsModule,MatSliderModule, MatPaginatorModule, MatSlideToggleModule,
@@ -56,6 +60,11 @@ import { AuthModule } from './auth/auth.module';
     provideClientHydration(),
     provideAnimationsAsync()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+  
+    NO_ERRORS_SCHEMA
+  ]
+  
 })
 export class AppModule { }
