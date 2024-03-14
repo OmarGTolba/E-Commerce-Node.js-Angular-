@@ -28,6 +28,7 @@ import { CartComponent } from './user/cart/cart.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -38,6 +39,7 @@ import { NgToastModule } from 'ng-angular-popup';
 import { ProfileComponent } from './user/profile/profile.component';
 import { FavoritesComponent } from './user/favorites/favorites.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AllCategoriesComponent,
     AllOrdersComponent,
     AddComponent,
-    ProductComponent,
+    // ProductComponent,
     UserComponent,
     HomeComponent,
     RegisterComponent,
@@ -57,9 +59,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     UserOrderComponent,
     // SearchComponent,
     CartComponent,
-    ProductPageComponent,
-    ProductCardComponent
-    SearchComponent,
+    // ProductPageComponent,
+    // ProductCardComponent,
     CartComponent,
     NotFoundComponent,
   ],
@@ -76,7 +77,21 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    NgToastModule
+    NgToastModule,
+    BrowserModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatIconModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],
