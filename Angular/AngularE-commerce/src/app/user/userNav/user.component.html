@@ -1,85 +1,28 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/user">Home</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/user/getMyProduct">My Products</a>
-          </li> -->
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            routerLink="/user/profile/allOrder"
-            >My Orders</a
-          >
-        </li>
+<nav class="custom-navbar navbar navbar navbar-expand-md position-fixed w-100 " arial-label="Furni navigation bar">
 
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            routerLink="/user/products"
-            >Products</a
-          >
-        </li>
+	<div class="container">
+		<a class="navbar-brand text-white" >Furni<span>.</span></a>
 
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/user/cart"
-            >cart</a
-          >
-        </li>
-        <li>
-          <button class="btn" (click)="changeLang()">
-            {{ lang }}
-          </button>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ "greeting" | translate }}, {{ username }}
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a class="dropdown-item" routerLink="/user/profile"
-                >Edit profile</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/user/profile/allOrder"
-                >My orders</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/user/profile/favorites"
-                >Favourites</a
-              >
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" routerLink="/" (click)="logout()">{{
-                token ? "Logout" : "Log in"
-              }}</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+			aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsFurni">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+				<li class="nav-item" #homenav  >
+					<a class="nav-link"  (click)="setActive(homenav)"  routerLink="/user">Home</a>
+				</li>
+				<li class="nav-item" #pronav ><a class="nav-link" #pronav (click)="setActive(pronav)"
+            [ngClass]="{'active': isActive(pronav)}" routerLink="/user/products">Products</a></li>
+				<li><a class="nav-link"  href="about.html">About us</a></li>
+				<li><a class="nav-link" href="services.html">Services</a></li>
+				<li class="nav-item" #catnav><a  class="nav-link" routerLink="/user/categories" (click)="setActive(catnav)"
+          [ngClass]="{'active': isActive(catnav)}">Categories</a></li>
+				<li><a class="nav-link" href="contact.html">Contact us</a></li>
+			</ul>
+
+
       <form class="d-flex" role="search">
         <input
           class="form-control me-2"
@@ -88,8 +31,31 @@
           aria-label="Search"
         />
       </form>
-    </div>
-  </div>
+
+			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+				<li><a class="nav-link" routerLink="/user/profile"><img src="../../assets/images/user.svg"></a></li>
+				<li><a class="nav-link" routerLink="/user/cart"><img src="../../../assets/images/cart.svg"></a></li>
+			</ul>
+      
+		</div>
+	</div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <router-outlet></router-outlet>

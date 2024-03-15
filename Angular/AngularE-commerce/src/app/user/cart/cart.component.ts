@@ -7,7 +7,7 @@ import { OrdersService } from '../../services/orders/orders.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
+  styleUrl: '../../app.component.css',
 })
 export class CartComponent implements OnInit{
   constructor(
@@ -45,8 +45,9 @@ export class CartComponent implements OnInit{
       })
     })
   }
-  
+  total:number = 0;
   getCart() {
+    this.total = 0
     this.userService
       .getUserCart(this.token, this.email, this.userId)
       .pipe(
@@ -57,10 +58,13 @@ export class CartComponent implements OnInit{
       .subscribe((response: any) => {
         this.cart = response?.items;
         console.log(this.cart);
-
-        this.cart[0].quantity = this.quantity;
-        console.log(this.cart[0].product_id._id);
+        this.cart.forEach(element => {
+          this.total += element.quantity * element.product_id.price;
+        });
+        // this.cart[0].quantity = this.quantity;
+        // console.log(this.cart[0].product_id._id);
       });
+
   }
   pay() {
     this.paymentService
@@ -79,7 +83,17 @@ export class CartComponent implements OnInit{
         },
       });
   }
+plus(i:any){
+  console.log(i);
+  
+  this.updateQuantity(i,++i.quantity)
+}
 
+minus(i:any){
+  console.log(i);
+  
+  this.updateQuantity(i,--i.quantity)
+}
   updateQuantity(item: any, newQuantity: number) {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
@@ -90,12 +104,41 @@ export class CartComponent implements OnInit{
     console.log(newQuantity);
 
     this.userService
-      .updateUserCart(this.email, token, this.userId, item.product_id._id, body)
+      .updateUserCart( token,this.email, this.userId, item.product_id._id, body)
       .pipe(
         catchError((error) => {
           return error;
         })
       )
-      .subscribe((response: any) => {});
+      .subscribe((response: any) => {
+        console.log(response);
+        
+        this.getCart()
+      });
+  }
+  
+  
+  
+  deleteCart(item: any) {
+    const token = localStorage.getItem('token') || '';
+    const email = localStorage.getItem('email') || '';
+    
+    
+  console.log(item);
+  
+  
+  this.userService
+  .deleteCartItem( token,this.email, this.userId, item.product_id._id)
+  .pipe(
+      catchError((error) => {
+        return error;
+      })
+      )
+      .subscribe((response: any) => {
+        console.log(response);
+        
+      this.getCart()
+    });
   }
 }
+

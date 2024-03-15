@@ -43,6 +43,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './user/userHome/home.component';
+import { CategoriesComponent } from './user/categories/categories.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -69,7 +70,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CartComponent,
     NotFoundComponent,
     ProductCardComponent,
-HomeComponent    
+HomeComponent,
+CategoriesComponent    
   ],
   imports: [
     BrowserModule,

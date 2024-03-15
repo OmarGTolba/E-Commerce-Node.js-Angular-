@@ -1,16 +1,35 @@
-<div class="container" *ngIf="username">
-  <h2 class="m-4 my-4 mx-md-0 text-left">Your profile</h2>
-  <div class="rounded position-fixed left-0 bottom-0 col-5 p-3 profile">
+
+<div class="hero">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5">
+        <div class="intro-excerpt">
+          <h1>Profile</h1>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mb-5 p-5   position-relative col-12 d-flex justify-content-between" *ngIf="username">
+  
+
+
+ <div class="profile_nav  rounded   h-25 left-0 bottom-0 col-6  position-relative  p-3 profile">
     <h3 class="text-center text-white">
       {{ username }}
     </h3>
     <img
       src="../../../assets/images/pexels-pixabay-459976.jpg"
-      class="rounded-circle"
+      class="rounded-circle position-absolute"
       alt=""
     />
     <div
-      class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-start justify-content-md-evenly gap-2 gap-md-0 flex-wrap h-100 btns"
+      class="d-flex flex-column flex-md-row align-items-center align-items-md-start 
+      justify-content-start justify-content-md-evenly gap-2 gap-md-0 flex-wrap h-100 btns"
     >
       <a
         routerLink="edit"
@@ -32,14 +51,16 @@
       >
     </div>
   </div>
-  <router-outlet></router-outlet>
-</div>
-<div class="container" *ngIf="!username">
+  <div class="col-6">  <router-outlet></router-outlet>
+  </div>
+
+  </div>
+<div class="containerm" *ngIf="!username">
   <h2 class="m-4 my-4 mx-md-0 text-left">
     <ngx-skeleton-loader [theme]="{width: '25%'}" count="1" appearance="line" animation="pulse">
     </ngx-skeleton-loader>
   </h2>
-  <div class="rounded position-fixed left-0 bottom-0 col-5 p-3 bg-light">
+  <div class="rounded position-fixed  left-0 bottom-25 col-5 p-3 bg-light">
     <h3 class="text-center text-white">
       <ngx-skeleton-loader count="1" appearance="line" animation="pulse" [theme]="{width: '25%'}">
       </ngx-skeleton-loader>

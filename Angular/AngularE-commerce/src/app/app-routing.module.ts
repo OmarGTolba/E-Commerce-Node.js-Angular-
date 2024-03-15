@@ -19,6 +19,7 @@ import { ProductPageComponent } from './user/product-page/product-page.component
 import { ProfileComponent } from './user/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductComponent } from './user/productDetails/product.component';
+import { CategoriesComponent } from './user/categories/categories.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'products', component: ProductPageComponent },
       { path: 'product/:productId', component: ProductComponent },
       { path: 'products', component: ProductPageComponent },
+      { path: 'categories', component: CategoriesComponent },
       { path: 'cart', component: CartComponent },
       {
         path: 'profile',

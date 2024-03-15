@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
 import { Router } from '@angular/router';
 import { Observable, catchError } from 'rxjs';
@@ -11,11 +11,12 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css',
+  styleUrls: ['../../app.component.css']
 })
 export class UserComponent implements OnInit {
   lang: string;
   constructor(
+    private elRef: ElementRef, private renderer: Renderer2,
     private productService: ProductsService,
     private profileService: ProfileService,
     private router: Router,
@@ -115,4 +116,17 @@ export class UserComponent implements OnInit {
   //     }
   //   )
   // }
+  setActive(element: HTMLElement) {
+    // Remove active class from all navigation items
+    const navItems: NodeListOf<HTMLElement> = this.elRef.nativeElement.querySelectorAll('.nav-item');
+    navItems.forEach((item: HTMLElement) => {
+      this.renderer.removeClass(item, 'active');
+    });
+    // Add active class to the clicked navigation item
+    this.renderer.addClass(element, 'active');
+  }
+
+  isActive(element: HTMLElement): boolean {
+    return element.classList.contains('active');
+  }
 }
