@@ -8,7 +8,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login/login.component';
 import { AdminComponent } from './admin/adminNav/admin.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+} from '@angular/common/http';
 import { AllProductsComponent } from './admin/all-products/all-products.component';
 import { AllUsersComponent } from './admin/all-users/all-users.component';
 import { AllCategoriesComponent } from './admin/all-categories/all-categories.component';
@@ -40,8 +44,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-export function HttpLoaderFactory(http: HttpClient){
-  return new TranslateHttpLoader(http, "../assets/i18n/", '.json')
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
   declarations: [
@@ -59,11 +63,12 @@ export function HttpLoaderFactory(http: HttpClient){
     RegisterComponent,
     OrdersComponent,
     UserOrderComponent,
-    CartComponent,
+    // CartComponent,
     // ProductPageComponent,
     // ProductCardComponent,
     ProductPageComponent,
     ProductCardComponent,
+    ProductComponent,
     CartComponent,
     NotFoundComponent,
   ],
@@ -99,12 +104,12 @@ export function HttpLoaderFactory(http: HttpClient){
     NgxSkeletonLoaderModule,
     HttpClientModule,
     TranslateModule.forRoot({
-      loader:{
+      loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],

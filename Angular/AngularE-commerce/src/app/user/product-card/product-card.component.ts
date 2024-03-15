@@ -48,7 +48,7 @@ export class ProductCardComponent {
         })
       )
       .subscribe((response: any) => {
-        this.router.navigate(['user/products/product', productId]);
+        this.router.navigate(['user/product', productId]);
       });
   }
 

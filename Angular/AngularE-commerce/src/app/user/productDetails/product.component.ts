@@ -30,7 +30,7 @@ export class ProductComponent {
 
   reviewForm: FormGroup;
 
-  skeletonLoading = true;
+  skeletonLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -49,10 +49,7 @@ export class ProductComponent {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.skeletonLoading = false;
-    }, 2000);
-
+    this.skeletonLoading = true;
     this.route.params.subscribe((params) => {
       this.productId = params['productId'];
     });
@@ -66,6 +63,7 @@ export class ProductComponent {
       )
       .subscribe((response: any) => {
         this.product = response.data;
+        this.skeletonLoading = false;
       });
 
     this.productServices
@@ -189,6 +187,7 @@ export class ProductComponent {
       rating: this.reviewValue,
       user: this.userId,
     };
+    console.log(body);
     this.productServices
       .addReview(this.token, this.email, this.productId, body)
       .pipe(
@@ -221,6 +220,7 @@ export class ProductComponent {
   }
 
   showReview(id: string) {
+    this.skeletonLoading = true;
     this.productServices
       .getReviewsByID(this.token, this.email, id)
       .pipe(
@@ -231,6 +231,7 @@ export class ProductComponent {
       .subscribe((response: any) => {
         this.reviews = response;
         console.log(this.reviews);
+        this.skeletonLoading = false;
       });
   }
 }
