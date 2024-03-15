@@ -68,5 +68,9 @@
   .mat-mdc-paginator-container{
     display: none !important;
   }
+
+  /* ::ng-deep{
+    display: none;
+  }
   
-  
+   */

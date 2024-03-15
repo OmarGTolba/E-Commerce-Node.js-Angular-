@@ -25,7 +25,7 @@ const createNewUse = async (req, res) => {
       passwordHash,
       role,
       address,
-      phone,
+      phone
     })
     res.send(newUser)
   }

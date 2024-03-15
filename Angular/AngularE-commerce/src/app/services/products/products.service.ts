@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
-  
-  constructor(private http:HttpClient) { }
-  
-  baseUrl = 'http://localhost:3000/api/v1/products'
+  constructor(private http: HttpClient) {}
+
+  baseUrl = 'http://localhost:3000/api/v1/products';
   getAllProducts(token: string, email: string): Observable<any[]> {
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
@@ -19,9 +18,8 @@ export class ProductsService {
     return this.http.get<any[]>(this.baseUrl, { headers });
   }
 
-
-  getReviewsByID(token: string, email: string , id:string): Observable<any[]> {
-    const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${id}/reviews`
+  getReviewsByID(token: string, email: string, id: string): Observable<any[]> {
+    const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -30,54 +28,23 @@ export class ProductsService {
     return this.http.get<any[]>(updateUrl, { headers });
   }
 
-
-  getProductsByID(token: string, email: string , id:string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token, 
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
-  }
-
-
-
-products:any[]=[]
-  searchByName(token: string, email: string , name:string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/product/${name}`
+  addReview(
+    token: string,
+    email: string,
+    id: string,
+    body: any
+  ): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
       email: email,
     });
-    return this.http.get<any[]>(updateUrl, { headers });
+    return this.http.post<any[]>(updateUrl, body, { headers });
   }
 
-  updateProduct(token: string, email: string , id:string, body:any): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.patch<any[]>(updateUrl, body,{ headers },);
-  }
-
-  
-  
-  deleteProduct(token: string, email: string , id:string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.delete<any[]>(updateUrl, { headers });
-  }
-
-  AddToFav(token: string, email: string ,userId:string, id:string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`
+  getRatingByID(token: string, email: string, id: string): Observable<any[]> {
+    const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${id}/ratings`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -85,8 +52,45 @@ products:any[]=[]
     });
     return this.http.post<any[]>(updateUrl, { headers });
   }
-  removeFromFav(token: string, email: string ,userId:string, id:string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`
+
+  getProductsByID(token: string, email: string, id: string): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.get<any[]>(updateUrl, { headers });
+  }
+
+  products: any[] = [];
+  searchByName(token: string, email: string, name: string): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/search/product/${name}`;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.get<any[]>(updateUrl, { headers });
+  }
+
+  updateProduct(
+    token: string,
+    email: string,
+    id: string,
+    body: any
+  ): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.patch<any[]>(updateUrl, body, { headers });
+  }
+
+  deleteProduct(token: string, email: string, id: string): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -95,8 +99,42 @@ products:any[]=[]
     return this.http.delete<any[]>(updateUrl, { headers });
   }
 
-  isFav(token: string, email: string ,userId:string, id:string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`
+  AddToFav(
+    token: string,
+    email: string,
+    userId: string,
+    id: string
+  ): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.post<any[]>(updateUrl, { headers });
+  }
+  removeFromFav(
+    token: string,
+    email: string,
+    userId: string,
+    id: string
+  ): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.delete<any[]>(updateUrl, { headers });
+  }
+
+  isFav(
+    token: string,
+    email: string,
+    userId: string,
+    id: string
+  ): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -105,4 +143,3 @@ products:any[]=[]
     return this.http.get<any[]>(updateUrl, { headers });
   }
 }
-

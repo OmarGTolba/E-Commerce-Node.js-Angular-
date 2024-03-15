@@ -41,8 +41,6 @@ import { FavoritesComponent } from './user/favorites/favorites.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +51,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     AllCategoriesComponent,
     AllOrdersComponent,
     AddComponent,
-    ProductComponent,
+    // ProductComponent,
     UserComponent,
     HomeComponent,
     RegisterComponent,
@@ -61,9 +59,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     UserOrderComponent,
     // SearchComponent,
     CartComponent,
-    ProductPageComponent,
-    ProductCardComponent
-    ,
+    // ProductPageComponent,
+    // ProductCardComponent,
     CartComponent,
     NotFoundComponent,
   ],
@@ -80,9 +77,21 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    NgToastModule
-    BrowserModule,MatTabsModule,MatSliderModule,MatTabsModule,MatSliderModule, MatPaginatorModule, MatSlideToggleModule,
-    AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule,MatIconModule,NgxSkeletonLoaderModule
+    NgToastModule,
+    BrowserModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatTabsModule,
+    MatSliderModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatIconModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],
