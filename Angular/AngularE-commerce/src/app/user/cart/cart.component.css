@@ -14,9 +14,14 @@
     .card-registration .select-arrow {
     top: 13px;
     }
-    
+    button{
+        background-color: #f8b810;
+        color: black;
+        
+    }
     .bg-grey {
-    background-color: #eae8e8;
+    background-color: #3b5d50;
+    color: white;
     }
     
     @media (min-width: 992px) {
@@ -32,3 +37,10 @@
     border-bottom-right-radius: 16px;
     }
     }
+
+
+ #form1{
+    margin: 5px;
+    width: 100%;
+    padding: 5px;
+ }

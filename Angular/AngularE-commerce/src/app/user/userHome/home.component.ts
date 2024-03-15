@@ -14,6 +14,7 @@ export class HomeComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   products: any[] = [];
+  categories: any[] = [];
   displayedProducts: any;
   
   token = localStorage.getItem('token') || '';
@@ -23,6 +24,7 @@ export class HomeComponent {
    
   ) {
     this.getAllProducts();
+    this.getAllCategories()
   }
   getAllProducts(): void {
     this.productService.getAllProducts(this.token, this.email).pipe(
@@ -40,5 +42,26 @@ export class HomeComponent {
       }
     );
   }
+
+
+getAllCategories(){
+  this.productService.getAllCategories(this.token, this.email).pipe(
+      
+    ((error) => {
+      return (error);
+    })
+  ).subscribe(
+    (response: any) => {
+      this.categories= response.data
+//    this.sortbyName()
+console.log(this.categories);
+
+this.categories = this.categories.slice(0, 3);
+    
+     // this.loading = false; // Set loading to false when data is loaded
+    }
+  );
+
+}
 
 }

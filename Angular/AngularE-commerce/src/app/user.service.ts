@@ -39,4 +39,18 @@ export class UserService {
     return this.http.patch<any[]>(updateUrl, body,{ headers },);
   }
 
+
+
+
+  deleteCartItem(token: string, email: string , id:string , productId:string ): Observable<any[]> {  
+    const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.delete<any[]>(updateUrl, { headers: headers})
+  }
+
+
 }

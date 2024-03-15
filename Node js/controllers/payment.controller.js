@@ -2,6 +2,7 @@ const orderSchema = require('../models/order.model')
 const Payment = require('../models/payment.model')
 const User = require('../models/user.model')
 const Product = require('../models/product.model')
+const { getUserOrder } = require('./order.controller')
 
 const getAllPayments = async (req, res) => {
   const payments = await Payment.find()
@@ -21,7 +22,9 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 let result
 let order
+
 checkoutSession = async (req, res) => {
+  
   order = await orderSchema.findById(req.body.orderId).populate({
     path: 'orderItemsIds',
     populate: {
@@ -44,17 +47,16 @@ checkoutSession = async (req, res) => {
           description: item.product.description,
         },
       },
-      quantity: 1,
+      quantity: item.quantity,
     })),
     mode: 'payment',
-    success_url: `http://localhost:4200/user/?success=true`,
-    cancel_url: `http://localhost:4200/user/?canceled=true`,
+    success_url:' http://localhost:4200/user/?success=true',
+    cancel_url: 'http://localhost:4200/user/?canceled=true',
     customer_email: await findUserEmailById(req.body.user),
   })
   res.status(200).json({ status: 'success', session })
   result = res.statusCode
 }
-
 const getResult = async (req, res) => {
   if (result == 200) {
     res.status(200).send('payment succeeded')
