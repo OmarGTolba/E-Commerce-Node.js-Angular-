@@ -49,7 +49,7 @@ export class CartComponent implements OnInit{
   getCart() {
     this.total = 0
     this.userService
-      .getUserCart(this.token, this.email, this.userId)
+    .getUserCart(this.token, this.email, this.userId)
       .pipe(
         catchError((error) => {
           return error;
@@ -60,60 +60,107 @@ export class CartComponent implements OnInit{
         console.log(this.cart);
         this.cart.forEach(element => {
           this.total += element.quantity * element.product_id.price;
+          this.userService.total = this.total;
+          console.log(this.userService.total);
+          
+          
         });
         // this.cart[0].quantity = this.quantity;
         // console.log(this.cart[0].product_id._id);
       });
-
-  }
-  pay() {
-    this.paymentService
+      
+    }
+    pay() {
+      this.paymentService
       .showPayment(this.token, this.body)
       .pipe(
         catchError((error) => {
           return throwError(error);
         })
-      )
-      .subscribe({
-        next: (response: any) => {
-          window.open(response.session.url, '_blank');
-        },
-        error: (err) => {
-          console.error('Payment error:', err);
-        },
-      });
+        )
+        .subscribe({
+          next: (response: any) => {
+            window.open(response.session.url, '_blank');
+          },
+          error: (err) => {
+            console.error('Payment error:', err);
+          },
+        });
+      }
+      plus(i:any){
+        console.log(i);
+        
+        this.updateQuantity(i,++i.quantity)
+        console.log(this.userService.total);
+  
+
+      }
+      
+      minus(i:any){
+        console.log(i);
+        
+        this.updateQuantity(i,--i.quantity)
+      
+        this.userService.total = this.total;
+              
+      }
+      updateQuantity(item: any, newQuantity: number) {
+        const token = localStorage.getItem('token') || '';
+        const email = localStorage.getItem('email') || '';
+        
+        // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
+        const body = { quantity: newQuantity };
+        console.log(item);
+        console.log(newQuantity);
+        
+        this.userService
+        .updateUserCart( token,this.email, this.userId, item.product_id._id, body)
+        .pipe(
+          catchError((error) => {
+            return error;
+          })
+          )
+          .subscribe({
+            next: (response: any) => {
+              console.log(response);
+              this.userService.total = this.total;
+              console.log(this.userService.total);
+              this.getCart()
+              console.log(this.total);
+
+            },
+            error: (err) => {
+              console.error('Payment error:', err);
+            }
+          });
+        }
+  
+    
+    
+    makeOrder() {
+      const token = localStorage.getItem('token') || '';
+      const email = localStorage.getItem('email') || '';
+
+      // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
+   const body = 
+   {
+     city:"Alexandria",
+    phone:"01060702328"
   }
-plus(i:any){
-  console.log(i);
-  
-  this.updateQuantity(i,++i.quantity)
-}
-
-minus(i:any){
-  console.log(i);
-  
-  this.updateQuantity(i,--i.quantity)
-}
-  updateQuantity(item: any, newQuantity: number) {
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-
-    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
-    const body = { quantity: newQuantity };
-    console.log(item);
-    console.log(newQuantity);
-
-    this.userService
-      .updateUserCart( token,this.email, this.userId, item.product_id._id, body)
+  this.userService
+      .getUserOrder( token,email, this.userId, body)
       .pipe(
         catchError((error) => {
           return error;
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
-        
-        this.getCart()
+        console.log(response.data._id)
+        this.body = {
+          user: this.userId,
+          orderId: response.data._id,
+        };        
+
       });
   }
   
@@ -137,8 +184,10 @@ minus(i:any){
       .subscribe((response: any) => {
         console.log(response);
         
-      this.getCart()
+        this.getCart()
     });
   }
+
+  
 }
 

@@ -20,6 +20,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductComponent } from './user/productDetails/product.component';
 import { CategoriesComponent } from './user/categories/categories.component';
+import { CheckoutComponent } from './user/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -40,6 +41,7 @@ const routes: Routes = [
       { path: 'products', component: ProductPageComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'cart', component: CartComponent },
+      { path: 'checkout', component: CheckoutComponent },
       {
         path: 'profile',
         component: ProfileComponent,
