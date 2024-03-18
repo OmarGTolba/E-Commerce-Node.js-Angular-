@@ -31,6 +31,7 @@ export class ProductComponent {
   reviewForm: FormGroup;
 
   skeletonLoading = false;
+  ReviewskeletonLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -220,7 +221,7 @@ export class ProductComponent {
   }
 
   showReview(id: string) {
-    this.skeletonLoading = true;
+    this.ReviewskeletonLoading = true;
     this.productServices
       .getReviewsByID(this.token, this.email, id)
       .pipe(
@@ -231,7 +232,7 @@ export class ProductComponent {
       .subscribe((response: any) => {
         this.reviews = response;
         console.log(this.reviews);
-        this.skeletonLoading = false;
+        this.ReviewskeletonLoading = false;
       });
   }
 }

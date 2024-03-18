@@ -11,8 +11,6 @@ import { UserComponent } from './user/userNav/user.component';
 import { HomeComponent } from './user/userHome/home.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { OrdersComponent } from './user/userAllOrders/orders.component';
-// import { ProductComponent } from './user/productDetails/product.component';
-// // import { SearchComponent } from './user/search/search.component';
 import { UserOrderComponent } from './user/user-order/user-order.component';
 import { CartComponent } from './user/cart/cart.component';
 import { ProductPageComponent } from './user/product-page/product-page.component';
@@ -30,7 +28,6 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: '', component: HomeComponent },
-      // { path: ':name', component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/:name', component: ProductPageComponent },

@@ -1,7 +1,8 @@
-<nav class="custom-navbar navbar navbar navbar-expand-md position-fixed w-100 " arial-label="Furni navigation bar">
+<nav class="custom-navbar navbar navbar navbar-expand-md position-fixed top-0 w-100 "
+	arial-label="Furni navigation bar">
 
 	<div class="container">
-		<a class="navbar-brand text-white" >Furni<span>.</span></a>
+		<a class="navbar-brand text-white">Furni<span>.</span></a>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
 			aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,33 +11,29 @@
 
 		<div class="collapse navbar-collapse" id="navbarsFurni">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0 custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-				<li class="nav-item" #homenav  >
-					<a class="nav-link"  (click)="setActive(homenav)"  routerLink="/user">Home</a>
+				<li class="nav-item" #homenav>
+					<a class="nav-link" (click)="setActive(homenav)" routerLink="/user">Home</a>
 				</li>
-				<li class="nav-item" #pronav ><a class="nav-link" #pronav (click)="setActive(pronav)"
-            [ngClass]="{'active': isActive(pronav)}" routerLink="/user/products">Products</a></li>
-				<li><a class="nav-link"  href="about.html">About us</a></li>
+				<li class="nav-item" #pronav><a class="nav-link" #pronav (click)="setActive(pronav)"
+						[ngClass]="{'active': isActive(pronav)}" routerLink="/user/products">Products</a></li>
+				<li><a class="nav-link" href="about.html">About us</a></li>
 				<li><a class="nav-link" routerLink="/user/allOrder">Orders</a></li>
-				<li class="nav-item" #catnav><a  class="nav-link" routerLink="/user/categories" (click)="setActive(catnav)"
-          [ngClass]="{'active': isActive(catnav)}">Categories</a></li>
+				<li class="nav-item" #catnav><a class="nav-link" routerLink="/user/categories"
+						(click)="setActive(catnav)" [ngClass]="{'active': isActive(catnav)}">Categories</a></li>
 				<li><a class="nav-link" href="contact.html">Contact us</a></li>
 			</ul>
 
 
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          [formControl]="searchFormControl"
-          placeholder="Search"
-          aria-label="Search"
-        />
-      </form>
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" [formControl]="searchFormControl" placeholder="Search"
+					aria-label="Search" />
+			</form>
 
 			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 				<li><a class="nav-link" routerLink="/user/profile"><img src="../../assets/images/user.svg"></a></li>
 				<li><a class="nav-link" routerLink="/user/cart"><img src="../../../assets/images/cart.svg"></a></li>
 			</ul>
-      
+
 		</div>
 	</div>
 </nav>

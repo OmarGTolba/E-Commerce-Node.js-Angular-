@@ -71,9 +71,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CartComponent,
     NotFoundComponent,
     ProductCardComponent,
-HomeComponent,
-CategoriesComponent,
-CheckoutComponent    
+    HomeComponent,
+    CategoriesComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +84,7 @@ CheckoutComponent
     AuthModule,
     AppRoutingModule,
     FormsModule,
-  MatIconModule,
+    MatIconModule,
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
