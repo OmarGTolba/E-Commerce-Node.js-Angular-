@@ -44,6 +44,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './user/userHome/home.component';
 import { CategoriesComponent } from './user/categories/categories.component';
+import { CheckoutComponent } from './user/checkout/checkout.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -71,7 +72,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotFoundComponent,
     ProductCardComponent,
 HomeComponent,
-CategoriesComponent    
+CategoriesComponent,
+CheckoutComponent    
   ],
   imports: [
     BrowserModule,

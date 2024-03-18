@@ -28,6 +28,11 @@ export class UserService {
     });
     return this.http.get<any[]>(updateUrl, { headers });
   }
+total:any ;
+  
+  
+  
+  
 
   updateUserCart(token: string, email: string , id:string , productId:string , body:any): Observable<any[]> {  
     const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`
@@ -37,6 +42,17 @@ export class UserService {
       email: email,
     });
     return this.http.patch<any[]>(updateUrl, body,{ headers },);
+  }
+
+  
+  getUserOrder(token: string, email: string , id:string ,  body:any): Observable<any[]> {  
+    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/user`
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.post<any[]>(updateUrl, body,{ headers },);
   }
 
 

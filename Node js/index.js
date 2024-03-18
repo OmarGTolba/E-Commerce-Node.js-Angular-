@@ -22,7 +22,7 @@ const ejs = require("ejs");
 app.use(cors());
 app.use((req, res, next) => {
   req.header("Access-Control-Allow-Origin", "*");
-  req.header("Access-Control-Allow-Origin", "*");
+  req.header("Access-Control-Allo w-Origin", "*");
   req.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   req.header(
     "Access-Control-Allow-Headers",
