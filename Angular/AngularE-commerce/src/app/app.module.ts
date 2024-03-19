@@ -70,8 +70,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CartComponent,
     NotFoundComponent,
     ProductCardComponent,
-HomeComponent,
-CategoriesComponent    
+    HomeComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +82,7 @@ CategoriesComponent
     AuthModule,
     AppRoutingModule,
     FormsModule,
-  MatIconModule,
+    MatIconModule,
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
