@@ -33,7 +33,7 @@ const checkoutSession = async (req, res) => {
   if (!order) {
     res
       .status(404)
-      .send({ message: ` there is no order with this id ${req.body.orderId}` });
+      .send({ message: `there is no order with this id ${req.body.orderId} ` });
   }
   const session = await stripe.checkout.sessions.create({
     line_items: order.orderItemsIds?.map((item) => ({

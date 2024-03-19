@@ -54,7 +54,7 @@ const getUserOrder = asyncHandler(async (req, res) => {
   const userCarts = await Cart
     .find({ user: userId })
     .populate('items.product_id')
-  console.log(userCarts[0].items[0].quantity)
+  // console.log(userCarts[0].items[0].quantity)
 
   if (!userCarts || userCarts.length === 0) {
     return res.status(400).json({ message: 'No carts found for the user' })

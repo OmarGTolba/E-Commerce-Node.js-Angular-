@@ -59,12 +59,11 @@
                     [theme]="{ height: '20px', width: '30%', borderRadius: '4px' }"></ngx-skeleton-loader>
                 </td>
 
-
               </tr>
+
 
               <tr *ngFor="let item of cart; let i = index">
                 <ng-container *ngIf="!SkeletonLoading">
-
                   <td class="product-thumbnail">
                     <img src={{item.product_id.images[0]}} alt="Image" class="img-fluid">
                   </td>
@@ -103,7 +102,7 @@
       <div class="col-md-6">
         <div class="row mb-5">
           <div class="col-md-6 mb-3 mb-md-0">
-            <button class="btn btn-black btn-sm btn-block">Clear Cart</button>
+            <button (click)="makeOrder()" class="btn btn-black btn-sm btn-block">Make Order</button>
           </div>
           <div class="col-md-6">
             <button routerLink="/user" class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
@@ -151,14 +150,8 @@
               <div class="col-md-12">
 
 
-                <!-- <button class="btn btn-black btn-lg py-3 btn-block" (click)="pay()">Proceed To Checkout</button> -->
-
-                <button class="btn btn-black btn-lg py-3 btn-block">Confirm the order</button>
-                <!-- have 2 inputs and checkount btn call function 
-                  1-> getuserorder to create order 
-                  2->call pay() 
-                -->
-
+                <button class="btn btn-black btn-lg py-3 btn-block" routerLink="/user/checkout">Proceed To
+                  Checkout</button>
               </div>
             </div>
           </div>

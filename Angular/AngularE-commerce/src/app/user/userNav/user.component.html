@@ -17,7 +17,7 @@
 				<li class="nav-item" #pronav><a class="nav-link" #pronav (click)="setActive(pronav)"
 						[ngClass]="{'active': isActive(pronav)}" routerLink="/user/products">Products</a></li>
 				<li><a class="nav-link" href="about.html">About us</a></li>
-				<li><a class="nav-link" href="services.html">Services</a></li>
+				<li><a class="nav-link" routerLink="/user/allOrder">Orders</a></li>
 				<li class="nav-item" #catnav><a class="nav-link" routerLink="/user/categories"
 						(click)="setActive(catnav)" [ngClass]="{'active': isActive(catnav)}">Categories</a></li>
 				<li><a class="nav-link" href="contact.html">Contact us</a></li>

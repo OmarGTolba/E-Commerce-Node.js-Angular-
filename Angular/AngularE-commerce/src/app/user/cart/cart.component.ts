@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
   show = false;
   userOrder = '';
   body = {};
+  total: number = 0;
   ngOnInit(): void {
     console.log('hello');
 
@@ -47,7 +48,6 @@ export class CartComponent implements OnInit {
         });
       });
   }
-  total: number = 0;
   getCart() {
     this.SkeletonLoading = true;
     this.total = 0;
@@ -63,12 +63,13 @@ export class CartComponent implements OnInit {
         console.log(this.cart);
         this.cart.forEach((element) => {
           this.total += element.quantity * element.product_id.price;
+          this.userService.total = this.total;
+          console.log(this.userService.total);
         });
         this.SkeletonLoading = false;
-        // this.cart[0].quantity = this.quantity;
-        // console.log(this.cart[0].product_id._id);
       });
   }
+
   pay() {
     this.paymentService
       .showPayment(this.token, this.body)
@@ -85,6 +86,24 @@ export class CartComponent implements OnInit {
           console.error('Payment error:', err);
         },
       });
+  }
+
+  makeOrder() {
+    const token = localStorage.getItem('token') || '';
+    const email = localStorage.getItem('email') || '';
+
+    const body = {
+      city: 'Alexandria',
+      phone: '01060702328',
+    };
+    this.userService.getUserOrder(token, email, this.userId, body).subscribe({
+      next: (response: any) => {
+        window.open(response.session.url, '_blank');
+      },
+      error: (err) => {
+        console.error('Payment error:', err);
+      },
+    });
   }
   plus(i: any) {
     console.log(i);
@@ -114,9 +133,11 @@ export class CartComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
-
-        this.getCart();
+        console.log(response.data._id);
+        this.body = {
+          user: this.userId,
+          orderId: response.data._id,
+        };
       });
   }
 
