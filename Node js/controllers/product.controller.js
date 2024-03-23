@@ -4,7 +4,6 @@ const categoryModule = require('../models/category.model')
 const Product = require('../models/product.model')
 
 const Rating = require('../models/rating.model')
-const { number } = require('joi')
 const { validateAddProduct } = require('../validation/product.validator')
 
 const getAllProducts = asyncHandler(async (req, res) => {
@@ -45,26 +44,34 @@ const addNewProduct = asyncHandler(async (req, res) => {
   if (!category) return res.status(400).send('invalid category')
 
   const {
-    name,
-    description,
+    name_en,
+    name_ar,
+    description_en,
+    description_ar,
     categories,
-    brand,
+    brand_en,
+    brand_ar,
     price,
     countInStock,
     rating,
     numReviews,
     isFeatured,
+    images
   } = req.body
   const newProduct = await productModel.create({
-    name,
-    description,
+    name_en,
+    name_ar,
+    description_en,
+    description_ar,
     categories,
-    brand,
+    brand_en,
+    brand_ar,
     price,
     countInStock,
     rating,
     numReviews,
     isFeatured,
+    images
   })
   res.status(201).json({ data: newProduct })
 })
@@ -87,13 +94,13 @@ const deleteProduct = asyncHandler(async (req, res) => {
   res.send(product)
 })
 
-const topRating= asyncHandler(async (req, res) => {
-  const topProducts = await productModel.find().sort({ rating: -1 }).limit(3);
-    if (!topProducts || topProducts.length === 0) {
-      return res.status(404).send(`There are no products.`);
-    }
-    console.log(topProducts)
-    res.send(topProducts);
+const topRating = asyncHandler(async (req, res) => {
+  const topProducts = await productModel.find().sort({ rating: -1 }).limit(3)
+  if (!topProducts || topProducts.length === 0) {
+    return res.status(404).send(`There are no products.`)
+  }
+  console.log(topProducts)
+  res.send(topProducts)
 })
 
 module.exports = {
@@ -102,5 +109,5 @@ module.exports = {
   addNewProduct,
   updateProduct,
   deleteProduct,
-  topRating
+  topRating,
 }

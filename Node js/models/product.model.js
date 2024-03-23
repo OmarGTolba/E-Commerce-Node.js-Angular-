@@ -1,63 +1,70 @@
-const { number } = require('joi');
+const { number } = require('joi')
 const mongoose = require('mongoose')
 
-
-const productSchema =new mongoose.Schema({
-    name: {
-        type: String,
-        required: [true, "Product required"],
-        maxlength: [32, 'Too long Product name'],
-        minlength: [3, 'Too short Product name']
-    },
-    description: {
-        type: String,
-    },
-    images: [{
-        type: String,
-    }],
-    brand: {
-        type: String,
-        default: ""
-    },
-    price: {
-        type: Number,
-        default: 0
-    },
-    categories:
+const productSchema = new mongoose.Schema({
+  name_en: {
+    type: String,
+    required: [true, 'Product required'],
+    maxlength: [32, 'Too long Product name'],
+    minlength: [3, 'Too short Product name'],
+  },
+  name_ar: {
+    type: String,
+    required: [true, 'Product required'],
+  },
+  description_en: {
+    type: String,
+  },
+  description_ar: {
+    type: String,
+  },
+  images: [
     {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true,
+      type: String,
+    },
+  ],
+  brand_en: {
+    type: String,
+    default: '',
+  },
+  brand_ar: {
+    type: String,
+    default: '',
+  },
+  price: {
+    type: Number,
+    default: 0,
+  },
+  categories: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+  },
+  countInStock: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 255,
+  },
+  rating: {
+    type: Number,
+    default: 0,
+  },
+  numReviews: {
+    type: Number,
+    default: 0,
+  },
+  isFeatured: {
+    type: Boolean,
+    default: false,
+  },
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
 
-    },
-    countInStock: {
-        type: Number,
-        required: true,
-        min: 0,
-        max: 255
-
-    },
-    rating: {
-        type: Number,
-        default: 0
-    },
-    numReviews: {
-        type: Number,
-        default: 0
-    },
-    isFeatured: {
-        type: Boolean,
-        default: false
-    },
-    dateCreated: {
-        type: Date,
-        default: Date.now,
-    },
-
-    image: String,
-
+  image: String,
 })
-const Product = mongoose.model('Product',productSchema)
+const Product = mongoose.model('Product', productSchema)
 
-
-module.exports = Product;
+module.exports = Product

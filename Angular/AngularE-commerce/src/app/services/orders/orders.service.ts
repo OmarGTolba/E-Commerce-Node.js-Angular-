@@ -53,9 +53,6 @@ export class OrdersService {
   }
 
 
-  //createnewOrder
-
-  
   cancelOrder(token: string, email: string , id:string): Observable<any[]> {
     const updateUrl = `http://localhost:3000/api/v1/orders/${id}/cancel`
     const headers = new HttpHeaders({

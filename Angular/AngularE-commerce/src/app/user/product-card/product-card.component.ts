@@ -30,7 +30,7 @@ export class ProductCardComponent {
   @Input() product: any;
 
   productFav: boolean = false;
-
+  lang = localStorage.getItem("lang") || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';

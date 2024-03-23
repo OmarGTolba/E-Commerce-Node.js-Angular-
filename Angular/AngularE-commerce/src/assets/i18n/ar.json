@@ -1,3 +1,7 @@
 {
-    "greeting": "مرحباً"
+    "description": "الوصف",
+    "add to cart": "اضافة الي العربة",
+    "add to fav": "اضافة الي المضلة",
+    "reviews": "تقييمات",
+    "add review": "اضافة تقييم"
 }
