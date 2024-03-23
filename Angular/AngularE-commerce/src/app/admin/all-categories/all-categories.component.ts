@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { catchError } from 'rxjs';
+import { Category } from '../../Models/categoriesInterface';
 
 @Component({
   selector: 'app-all-categories',
@@ -13,7 +14,7 @@ export class AllCategoriesComponent {
   constructor(private http: HttpClient) {
     this.getAllCategories()
   }
-  categories: any[] = [];
+  categories: Category[] = [];
   getAllCategories(): void {
 
     const url = 'http://localhost:3000/api/v1/categories';

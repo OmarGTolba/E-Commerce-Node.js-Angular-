@@ -87,6 +87,18 @@ export class ProductsService {
     return this.http.get<any[]>(updateUrl, { headers });
   }
 
+
+  searchByCategory(token: string, email: string, name: string): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/search/category/${name}`;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.get<any[]>(updateUrl, { headers });
+  }
+
+
   updateProduct(
     token: string,
     email: string,

@@ -16,7 +16,7 @@ router.get('/:id/user/orders',auth,getUserOrders )
 
 // router.post('/', auth, createNewOrder);
 
-router.patch('/:id/:name', auth, updateStatusOfOrder);
+router.patch('/:id/:name', updateStatusOfOrder);
 
 
 module.exports = router;

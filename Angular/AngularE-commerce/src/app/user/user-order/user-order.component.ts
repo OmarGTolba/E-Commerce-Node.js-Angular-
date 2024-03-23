@@ -16,7 +16,7 @@ export class UserOrderComponent {
   order:any;
 
   constructor(private route: ActivatedRoute ,private orderServices: OrdersService,) { }
-
+imgsrc:string = "https://i.imgur.com/TAzli1U.jpg" 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.orderId = params['orderId'];
@@ -30,9 +30,13 @@ export class UserOrderComponent {
       (response: any) => {
         this.order = response.data;
         console.log(this.order)
+        this.imgsrc = this.order?.orderItemsIds[0].product.images[0]
       }
    )
 
+ }
+ changeImg(i:string){
+  this.imgsrc = i
  }
 }
 

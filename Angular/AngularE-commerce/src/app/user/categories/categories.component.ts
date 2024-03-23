@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products/products.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -32,4 +33,7 @@ export class CategoriesComponent {
         this.SkeletonLoading = false;
       });
   }
+
+  
+
 }

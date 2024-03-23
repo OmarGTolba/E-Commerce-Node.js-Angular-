@@ -8,11 +8,15 @@
   </div>
     <div
       *ngFor="let order of orders; let i = index"
-      (click)="getOrder(order._id)"
-      class="order"
+      
+      class="order d-flex justify-content-between"
+
     > 
-      <div class="text-white"><span>Order status:</span> {{ order.status }}</div>
+    <div (click)="getOrder(order._id)">
+      <div class="text-white">  <span>Order status:</span> {{ order.status }}</div>
       <div class="text-white"><span>Order date:</span> {{ order.dateOrdered }}</div>
+    </div>
+      <button class="bg-danger rounded border-0 text-white py-2 px-3" *ngIf="order.status !== 'cancel'" (click)="cancelOrder(order._id)">Cancel</button>
     </div>
   </div>
 </div>

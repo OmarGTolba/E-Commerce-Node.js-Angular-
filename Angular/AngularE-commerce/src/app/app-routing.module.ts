@@ -34,6 +34,8 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: ProductPageComponent },
+      { path: 'search/category/:catname', component: ProductPageComponent },
+      { path: 'allOrder', component: OrdersComponent },
       { path: 'order/:orderId', component: UserOrderComponent },
       { path: 'products', component: ProductPageComponent },
       { path: 'product/:productId', component: ProductComponent },
