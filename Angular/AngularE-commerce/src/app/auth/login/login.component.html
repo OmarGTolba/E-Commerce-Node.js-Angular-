@@ -1,21 +1,25 @@
 <div class="container">
-  <form (submit)="onLoginSubmit()">
-    <section>
-      <div class="wave" id="wave1"></div>
-      <div class="wave" id="wave2"></div>
-      <div class="wave" id="wave3"></div>
-      <!-- <div class="wave" id="wave4"></div> -->
-    </section>
-    <h2>Login</h2>
-    <!-- <label for="email">Email:</label> -->
-    <input type="email" id="email" [(ngModel)]="email" name="fieldName"  required placeholder="enter your email">
+  <form (submit)="onLoginSubmit()" [formGroup]="loginForm" class="login-form">
+    <h1>Login</h1>
+    <input type="email" formControlName="email" placeholder="Enter your email" [(ngModel)]="email">
+    <small *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="error-border">
+      <span class="error-message">Email is required!</span>
+    </small>
+    <small *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched" >
+      <span class="error-message">Email should be valid!</span>
+    </small>
+    <input type="password" formControlName="password" placeholder="Enter your password" [(ngModel)]="password">
+    <small *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched" class="error-border">
+      <span class="error-message">Password is required!</span>
+    </small>
+    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary" style="padding: 10px; background-color: #3b5d50; border: none; font-size: 15px; margin-top: 10px; margin-bottom: 20px; border-radius: 5px; cursor: pointer;">Login</button>
+    <a routerLink="/forgot-password" class="mb-2">Forgot password?</a>
+    <div class="mt-2" class="account">
+      Don't have an account? <a routerLink="/register">Register here.</a>
+    </div>
 
-    <!-- <label for="password">Password:</label> -->
-    <input type="password" id="password"  [(ngModel)]="password" name="fieldName"  required placeholder="enter your password">
-
-    <input type="submit" value="Login">
-    <button type="button" routerLink="/register">register</button>
   </form>
+  <div class="plant-img" ></div>
   <br>
-  
+
 </div>

@@ -15,7 +15,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProductComponent {
   productId: string = '';
   product: any;
-
+  lang = localStorage.getItem("lang") || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';

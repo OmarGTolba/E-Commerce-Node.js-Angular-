@@ -1,230 +1,441 @@
 <div class="container my-5 pa">
-   <div class="row">
+  <div class="row">
+    <div id="carouselExample" class="carousel slide col-12 col-xl">
+      <ngx-skeleton-loader
+        [theme]="{
+          margin: '40px 0',
+          height: '600px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+        *ngIf="skeletonLoading"
+      ></ngx-skeleton-loader>
+      <ng-container *ngIf="!skeletonLoading">
+        <div class="carousel-inner">
+          <div class="carousel">
+            <div
+              *ngFor="let item of product.images; let i = index"
+              class="carousel-item"
+              [class.active]="i === 0"
+            >
+              <img [src]="item" class="d-block w-100" alt="..." />
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </ng-container>
+    </div>
 
-      <div id="carouselExample" class="carousel slide col-12 col-xl ">
-         <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '600px', width: '100%', borderRadius: '4px' }"
-            *ngIf="skeletonLoading"></ngx-skeleton-loader>
-         <ng-container *ngIf="!skeletonLoading">
+    <div class="col-12 col-xl-6" [ngClass]="{ 'text-end': lang == 'ar' }">
+      <ngx-skeleton-loader
+        [theme]="{
+          margin: '40px 0',
+          height: '20px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+        *ngIf="skeletonLoading"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        [theme]="{
+          margin: '40px 0',
+          height: '10px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+        *ngIf="skeletonLoading"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        [theme]="{
+          margin: '40px 0',
+          height: '10px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+        *ngIf="skeletonLoading"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        [theme]="{
+          margin: '40px 0',
+          height: '100px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+        *ngIf="skeletonLoading"
+      ></ngx-skeleton-loader>
+
+      <ngx-skeleton-loader
+        [theme]="{
+          margin: '40px 0',
+          height: '20px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+        *ngIf="skeletonLoading"
+      ></ngx-skeleton-loader>
+
+      <ng-container *ngIf="!skeletonLoading">
+        <p class="name">
+          {{ lang == "ar" ? product.name_ar : product.name_en }}
+        </p>
+        <p class="price">${{ product.price }}</p>
+        <div
+          class="d-flex justify-content-start align-items-center my-3"
+          [ngClass]="{ 'justify-content-end': lang == 'ar' }"
+        >
+          <!-- <span class="me-3 fs-4">{{currentRating}}</span> -->
+          <mat-icon [ngClass]="{ selected: currentRating >= 1 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: currentRating >= 2 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: currentRating >= 3 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: currentRating >= 4 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: currentRating >= 5 }">star</mat-icon>
+        </div>
+        <div>
+          <p class="d-inline-flex gap-1">
+            <button
+              class="btn discription"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="true"
+              aria-controls="collapseExample"
+            >
+            {{"description" | translate}}
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+          </p>
+          <div class="collapse pb-5 show" id="collapseExample">
+            <div class="card card-body">
+              {{
+                lang == "ar" ? product.description_ar : product.description_en
+              }}
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center align-items-center">
+          <div class="col">
+            <div class="quantity">
+              <button
+                type="button"
+                (click)="min()"
+                [class.disabled-input]="quantity === 1"
+              >
+                -
+              </button>
+              <input type="text" disabled [value]="quantity" title="quantity" />
+              <button
+                type="button"
+                (click)="plus()"
+                [class.disabled-input]="quantity === product.countInStock"
+              >
+                +
+              </button>
+            </div>
+
+            <p
+              *ngIf="quantity === product.countInStock"
+              class="text-danger my-2"
+            >
+              No more in stock
+            </p>
+          </div>
+
+          <button
+            class="add-btn col-2"
+            type="button"
+            [class.disabled-input]="added === true"
+            (click)="AddToCart()"
+          >
+            {{ added ? "Added successfully ✔" : 'add to cart' | translate  }} <span *ngIf="!added">🛒</span>
+          </button>
+        </div>
+
+        <div
+          class="d-inline-flex justify-content-start align-items-center gap-3 mt-3 p-3 fav"
+          (click)="toggleFavorite()"
+        >
+          <div class="d-flex" [class.favorite]="productFav">
+            <mat-icon class="heart-icon" [class.filled]="productFav"
+              >favorite</mat-icon
+            >
+          </div>
+          <div>{{"add to fav" | translate}}</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="section2">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="btn active"
+          id="pills-discription-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-discription"
+          type="button"
+          role="tab"
+          aria-controls="pills-discription"
+          aria-selected="false"
+        >
+          {{"description" | translate}}
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="btn"
+          id="pills-review-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-review"
+          type="button"
+          role="tab"
+          aria-controls="pills-review"
+          aria-selected="false"
+          (click)="showReview(product._id)"
+        >
+          {{'reviews' | translate}}
+        </button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button
+          class="btn"
+          id="pills-add-review-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#pills-add-review"
+          type="button"
+          role="tab"
+          aria-controls="pills-add-review"
+          aria-selected="false"
+        >
+          {{"add review" | translate}}
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div
+        class="tab-pane fade show active review description"
+        id="pills-discription"
+        role="tabpanel"
+        aria-labelledby="pills-discription-tab"
+        tabindex="0"
+      >
+        <ngx-skeleton-loader
+          [theme]="{
+            margin: '20px 0',
+            height: '20px',
+            width: '100%',
+            borderRadius: '4px'
+          }"
+          *ngIf="skeletonLoading"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{
+            margin: '20px 0',
+            height: '20px',
+            width: '100%',
+            borderRadius: '4px'
+          }"
+          *ngIf="skeletonLoading"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{
+            margin: '20px 0',
+            height: '20px',
+            width: '100%',
+            borderRadius: '4px'
+          }"
+          *ngIf="skeletonLoading"
+        ></ngx-skeleton-loader>
+
+        <ng-container *ngIf="!skeletonLoading">
+          <p>
+            {{ lang == "ar" ? product.description_ar : product.description_en }}
+          </p>
+          <p class="fw-bold fs-4 my-3"> {{ lang == "ar" ? product.brand_ar : product.brand_en }}</p>
+        </ng-container>
+      </div>
+
+      <div
+        class="tab-pane fade"
+        id="pills-review"
+        role="tabpanel"
+        aria-labelledby="pills-review-tab"
+        tabindex="0"
+      >
+        <div id="review" class="carousel review">
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '10px 0',
+              height: '100px',
+              width: '18%',
+              borderRadius: '50%'
+            }"
+            *ngIf="skeletonLoading"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '10px 0',
+              height: '20px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+            *ngIf="skeletonLoading"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '10px 0',
+              height: '20px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+            *ngIf="skeletonLoading"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '10px 0',
+              height: '20px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+            *ngIf="skeletonLoading"
+          ></ngx-skeleton-loader>
+
+          <ng-container *ngIf="!skeletonLoading">
             <div class="carousel-inner">
-               <div class="carousel">
-                  <div *ngFor="let item of product.images; let i = index" class="carousel-item"
-                     [class.active]="i === 0">
-                     <img [src]="item" class="d-block w-100" alt="...">
-                  </div>
-               </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-               <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-               <span class="visually-hidden">Next</span>
-            </button>
-         </ng-container>
-      </div>
-
-      <div class="col-12 col-xl-6 ">
-
-         <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-            *ngIf="skeletonLoading"></ngx-skeleton-loader>
-         <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '10px', width: '100%', borderRadius: '4px' }"
-            *ngIf="skeletonLoading"></ngx-skeleton-loader>
-         <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '10px', width: '100%', borderRadius: '4px' }"
-            *ngIf="skeletonLoading"></ngx-skeleton-loader>
-         <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '100px', width: '100%', borderRadius: '4px' }"
-            *ngIf="skeletonLoading"></ngx-skeleton-loader>
-
-         <ngx-skeleton-loader [theme]="{margin:'40px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-            *ngIf="skeletonLoading"></ngx-skeleton-loader>
-
-         <ng-container *ngIf="!skeletonLoading">
-
-            <p class="name">{{product.name}}</p>
-            <p class="price"> ${{product.price}}</p>
-            <div class="d-flex justify-content-start align-items-center my-3">
-               <!-- <span class="me-3 fs-4">{{currentRating}}</span> -->
-               <mat-icon [ngClass]="{'selected': currentRating >= 1}">star</mat-icon>
-               <mat-icon [ngClass]="{'selected': currentRating >= 2}">star</mat-icon>
-               <mat-icon [ngClass]="{'selected': currentRating >= 3}">star</mat-icon>
-               <mat-icon [ngClass]="{'selected': currentRating >= 4}">star</mat-icon>
-               <mat-icon [ngClass]="{'selected': currentRating >= 5}">star</mat-icon>
-            </div>
-            <div>
-               <p class="d-inline-flex gap-1">
-                  <button class="btn discription" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
-                     description
-                     <mat-icon>keyboard_arrow_down</mat-icon>
-                  </button>
-               </p>
-               <div class="collapse pb-5 show" id="collapseExample">
-                  <div class="card card-body">
-                     {{ product.description }}
-                  </div>
-               </div>
-
-            </div>
-
-            <div class="row justify-content-center align-items-center">
-               <div class="col">
-                  <div class="quantity">
-                     <button type="button" (click)="min()" [class.disabled-input]="quantity === 1">-</button>
-                     <input type="text" disabled [value]="quantity" title="quantity">
-                     <button type="button" (click)="plus()"
-                        [class.disabled-input]="quantity === product.countInStock">+</button>
-
-                  </div>
-
-                  <p *ngIf="quantity === product.countInStock" class="text-danger my-2">No more in stock</p>
-               </div>
-
-               <button class="add-btn col-2" type="button" [class.disabled-input]="added === true"
-                  (click)="AddToCart()">
-                  {{ added ? 'Added successfully ✔' : 'Add to cart 🛒' }}
-
-               </button>
-
-            </div>
-
-            <div class="d-inline-flex justify-content-start align-items-center gap-3 mt-3 p-3 fav"
-               (click)="toggleFavorite()">
-               <div class="d-flex" [class.favorite]="productFav">
-                  <mat-icon class="heart-icon" [class.filled]="productFav">favorite</mat-icon>
-               </div>
-               <div>Add to favorite</div>
-            </div>
-         </ng-container>
-
-      </div>
-
-   </div>
-
-
-   <div class="section2">
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-         <li class="nav-item" role="presentation">
-            <button class="btn active" id="pills-discription-tab" data-bs-toggle="pill"
-               data-bs-target="#pills-discription" type="button" role="tab" aria-controls="pills-discription"
-               aria-selected="false">Discription</button>
-         </li>
-         <li class="nav-item" role="presentation">
-            <button class="btn" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button"
-               role="tab" aria-controls="pills-review" aria-selected="false"
-               (click)="showReview(product._id)">Reviews</button>
-         </li>
-
-         <li class="nav-item" role="presentation">
-            <button class="btn" id="pills-add-review-tab" data-bs-toggle="pill" data-bs-target="#pills-add-review"
-               type="button" role="tab" aria-controls="pills-add-review" aria-selected="false">Add review</button>
-         </li>
-
-      </ul>
-      <div class="tab-content" id="pills-tabContent">
-         <div class="tab-pane fade show active review description " id="pills-discription" role="tabpanel"
-            aria-labelledby="pills-discription-tab" tabindex="0">
-            <ngx-skeleton-loader [theme]="{margin:'20px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-               *ngIf="skeletonLoading"></ngx-skeleton-loader>
-            <ngx-skeleton-loader [theme]="{margin:'20px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-               *ngIf="skeletonLoading"></ngx-skeleton-loader>
-            <ngx-skeleton-loader [theme]="{margin:'20px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-               *ngIf="skeletonLoading"></ngx-skeleton-loader>
-
-            <ng-container *ngIf="!skeletonLoading">
-
-               <p>{{ product.description }}</p>
-               <p class="fw-bold fs-4 my-3">{{product.brand}}</p>
-            </ng-container>
-         </div>
-
-
-         <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab" tabindex="0">
-            <div id="review" class="carousel review ">
-
-               <ngx-skeleton-loader [theme]="{margin:'10px 0', height: '100px', width: '18%', borderRadius: '50%' }"
-                  *ngIf="skeletonLoading"></ngx-skeleton-loader>
-               <ngx-skeleton-loader [theme]="{margin:'10px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-                  *ngIf="skeletonLoading"></ngx-skeleton-loader>
-               <ngx-skeleton-loader [theme]="{margin:'10px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-                  *ngIf="skeletonLoading"></ngx-skeleton-loader>
-               <ngx-skeleton-loader [theme]="{margin:'10px 0', height: '20px', width: '100%', borderRadius: '4px' }"
-                  *ngIf="skeletonLoading"></ngx-skeleton-loader>
-
-               <ng-container *ngIf="!skeletonLoading">
-
-
-                  <div class="carousel-inner">
-                     <div class="carousel ">
-
-                        <div *ngFor="let item of reviews; let i = index" class="carousel-item" [class.active]="i === 0">
-                           <div>
-
-                              <div class=" d-flex justify-content-center align-items-center">
-                                 <img alt="" class=" profileIcon"
-                                    src="../../../assets/images/istockphoto-1495088043-612x612-removebg-preview.png" />
-                              </div>
-                              <div>
-
-                                 <div>
-                                    <div>
-                                       <p>{{item.user.name}}</p>
-                                       <mat-icon [ngClass]="{'selected': item.rating >= 1}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': item.rating >= 2}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': item.rating >= 3}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': item.rating >= 4}">star</mat-icon>
-                                       <mat-icon [ngClass]="{'selected': item.rating >= 5}">star</mat-icon>
-                                    </div>
-
-                                 </div>
-                                 <p>{{item.title}}</p>
-
-                              </div>
-                              <div>{{i+1}} of {{reviews.length}}</div>
-
-                           </div>
+              <div class="carousel">
+                <div
+                  *ngFor="let item of reviews; let i = index"
+                  class="carousel-item"
+                  [class.active]="i === 0"
+                >
+                  <div>
+                    <div
+                      class="d-flex justify-content-center align-items-center"
+                    >
+                      <img
+                        alt=""
+                        class="profileIcon"
+                        src="../../../assets/images/istockphoto-1495088043-612x612-removebg-preview.png"
+                      />
+                    </div>
+                    <div>
+                      <div>
+                        <div>
+                          <p>{{ item.user.name }}</p>
+                          <mat-icon [ngClass]="{ selected: item.rating >= 1 }"
+                            >star</mat-icon
+                          >
+                          <mat-icon [ngClass]="{ selected: item.rating >= 2 }"
+                            >star</mat-icon
+                          >
+                          <mat-icon [ngClass]="{ selected: item.rating >= 3 }"
+                            >star</mat-icon
+                          >
+                          <mat-icon [ngClass]="{ selected: item.rating >= 4 }"
+                            >star</mat-icon
+                          >
+                          <mat-icon [ngClass]="{ selected: item.rating >= 5 }"
+                            >star</mat-icon
+                          >
                         </div>
-                     </div>
+                      </div>
+                      <p>{{ item.title }}</p>
+                    </div>
+                    <div>{{ i + 1 }} of {{ reviews.length }}</div>
                   </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#review" data-bs-slide="prev">
-                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#review" data-bs-slide="next">
-                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Next</span>
-                  </button>
-               </ng-container>
-
+                </div>
+              </div>
             </div>
-         </div>
-
-
-         <div class="tab-pane fade review" id="pills-add-review" role="tabpanel" aria-labelledby="pills-add-review-tab"
-            tabindex="0">
-
-            <form [formGroup]="reviewForm" (ngSubmit)="addReview() ">
-
-               <div class="d-flex justify-content-center align-items-center">
-                  <label class="fw-bold" for="title">Review : </label>
-                  <textarea id="title" formControlName="title" required></textarea>
-
-               </div>
-               <div class="my-3">
-                  <mat-icon (click)="setRating(1)" [ngClass]="{'selected': reviewValue >= 1}">star</mat-icon>
-                  <mat-icon (click)="setRating(2)" [ngClass]="{'selected': reviewValue >= 2}">star</mat-icon>
-                  <mat-icon (click)="setRating(3)" [ngClass]="{'selected': reviewValue >= 3}">star</mat-icon>
-                  <mat-icon (click)="setRating(4)" [ngClass]="{'selected': reviewValue >= 4}">star</mat-icon>
-                  <mat-icon (click)="setRating(5)" [ngClass]="{'selected': reviewValue >= 5}">star</mat-icon>
-               </div>
-
-
-               <button class="submitReview" type="submit">Submit</button>
-            </form>
-
-         </div>
-
-
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#review"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#review"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </ng-container>
+        </div>
       </div>
-   </div>
+
+      <div
+        class="tab-pane fade review"
+        id="pills-add-review"
+        role="tabpanel"
+        aria-labelledby="pills-add-review-tab"
+        tabindex="0"
+      >
+        <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
+          <div class="d-flex justify-content-center align-items-center">
+            <label class="fw-bold" for="title">Review : </label>
+            <textarea id="title" formControlName="title" required></textarea>
+          </div>
+          <div class="my-3">
+            <mat-icon
+              (click)="setRating(1)"
+              [ngClass]="{ selected: reviewValue >= 1 }"
+              >star</mat-icon
+            >
+            <mat-icon
+              (click)="setRating(2)"
+              [ngClass]="{ selected: reviewValue >= 2 }"
+              >star</mat-icon
+            >
+            <mat-icon
+              (click)="setRating(3)"
+              [ngClass]="{ selected: reviewValue >= 3 }"
+              >star</mat-icon
+            >
+            <mat-icon
+              (click)="setRating(4)"
+              [ngClass]="{ selected: reviewValue >= 4 }"
+              >star</mat-icon
+            >
+            <mat-icon
+              (click)="setRating(5)"
+              [ngClass]="{ selected: reviewValue >= 5 }"
+              >star</mat-icon
+            >
+          </div>
+
+          <button class="submitReview" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

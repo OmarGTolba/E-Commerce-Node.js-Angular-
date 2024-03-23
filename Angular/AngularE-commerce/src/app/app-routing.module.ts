@@ -20,10 +20,14 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductComponent } from './user/productDetails/product.component';
 import { CategoriesComponent } from './user/categories/categories.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent},
+  { path: 'reset-password/:id/:token', component: ResetPasswordComponent},
   {
     path: 'user',
     component: UserComponent,

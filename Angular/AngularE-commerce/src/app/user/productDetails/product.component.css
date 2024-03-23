@@ -121,3 +121,6 @@ li .active {
   background-color: whitesmoke;
   color: #3b5d50;
 }
+.name {
+  display: contents !important;
+}
