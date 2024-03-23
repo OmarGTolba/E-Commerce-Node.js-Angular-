@@ -12,6 +12,7 @@ import { catchError } from 'rxjs';
 })
 export class ProductPageComponent {
   name: string | null = '';
+  catname: string | null = '';
 
   products: any[] = [];
   displayedProducts: any;
@@ -31,14 +32,24 @@ export class ProductPageComponent {
     this.skeletonLoading = true;
     this.route.paramMap.subscribe((params) => {
       this.name = params.get('name');
+      this.catname = params.get('catname');
       if (this.name) {
         this.search();
-      } else {
-        this.getAllProducts();
+console.log('aaaaaa');
+}
+else if(this.catname){
+  this.searchByCategory();
+  console.log("caaaaaaaaat");
+  
+ 
+}
+else {
+  this.getAllProducts();
+  console.log('bbbba');
       }
     });
 
-    this.getAllProducts();
+    // this.getAllProducts();
     // setTimeout(() => {
     //   this.skeletonLoading = false;
     // }, 2000);
@@ -54,10 +65,13 @@ export class ProductPageComponent {
       )
       .subscribe((response: any) => {
         this.products = response.data;
+        console.log(this.products);
+        
         this.displayedProducts = this.products.slice(
           0,
           this.paginator.pageSize
         );
+
 
         this.skeletonLoading = false;
       });
@@ -75,6 +89,22 @@ export class ProductPageComponent {
         this.products = response.data;
         this.displayedProducts = this.products;
         console.log(this.products);
+        this.skeletonLoading = false
+      });
+  }
+  searchByCategory() {
+    this.productService
+      .searchByCategory(this.token, this.email, this.catname!)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
+        this.products = response.data;
+        this.displayedProducts = this.products[0];
+        console.log(this.products[0]);
+        this.skeletonLoading = false
       });
   }
 

@@ -47,4 +47,19 @@ export class OrdersComponent implements OnInit {
       }
     )
   }
+
+
+  cancelOrder(orderId: string) {
+    this.orderServices.cancelOrder(this.token, this.email, orderId).pipe(
+      catchError((error) => {
+        return (error);
+      })
+    ).subscribe(
+      (response: any) => {
+        this.getUserOrders()
+  
+ }
+    )
+  }
+  
 }

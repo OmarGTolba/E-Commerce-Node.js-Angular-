@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/products/products.service';
 import { catchError } from 'rxjs';
-
+import { Product } from '../../Models/products';
 @Component({
   selector: 'app-all-products',
   templateUrl: './all-products.component.html',
@@ -17,7 +17,7 @@ export class AllProductsComponent {
     this.getAllProducts();
 
   }
-  products: any[] = [];
+  products: Product[] = [];
   updatedId: any;
 
   token = localStorage.getItem('token') || '';
@@ -61,7 +61,6 @@ export class AllProductsComponent {
   save() {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
-
     const updateUrl = `http://localhost:3000/api/v1/products/${this.updatedId}`;
     const body = { name: this.name, description: this.description, countInStock: this.quantity }
     this.productService.updateProduct(this.token,this.email,  this.updatedId, body).subscribe(

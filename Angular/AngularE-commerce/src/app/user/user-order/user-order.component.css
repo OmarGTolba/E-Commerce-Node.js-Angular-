@@ -1,0 +1,18 @@
+
+tr,td,th{
+    background-color: transparent !important;
+  }
+
+  .container{
+    margin-top: 100px !important;
+  }
+
+  .user{
+    background-color: #3b5d50;
+  }
+
+  .product_img{
+    width: 150px;
+    height: 150px;
+  }
+
