@@ -23,10 +23,6 @@ let result;
 let order;
 
 const checkoutSession = async (req, res) => {
-let result;
-let order;
-
-const checkoutSession = async (req, res) => {
   order = await orderSchema.findById(req.body.orderId).populate({
     path: "orderItemsIds",
     populate: {
@@ -81,5 +77,5 @@ const getResult = async (req, res) => {
 module.exports = {
   checkoutSession,
   getAllPayments,
-  getResult,
+  getResult
 }
