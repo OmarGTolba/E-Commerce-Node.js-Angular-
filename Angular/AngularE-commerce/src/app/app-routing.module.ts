@@ -21,6 +21,8 @@ import { CategoriesComponent } from './user/categories/categories.component';
 import { CheckoutComponent } from './user/checkout/checkout.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { AboutComponent } from './user/about/about.component';
+import { ContactComponent } from './user/contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
@@ -42,6 +44,8 @@ const routes: Routes = [
       { path: 'categories', component: CategoriesComponent },
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
       {
         path: 'profile',
         component: ProfileComponent,

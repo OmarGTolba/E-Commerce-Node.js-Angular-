@@ -45,6 +45,8 @@ import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './user/userHome/home.component';
 import { CategoriesComponent } from './user/categories/categories.component';
 import { CheckoutComponent } from './user/checkout/checkout.component';
+import { AboutComponent } from './user/about/about.component';
+import { ContactComponent } from './user/contact/contact.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -74,6 +76,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     CategoriesComponent,
     CheckoutComponent,
+    AboutComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
