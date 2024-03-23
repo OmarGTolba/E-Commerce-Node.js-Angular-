@@ -19,10 +19,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductComponent } from './user/productDetails/product.component';
 import { CategoriesComponent } from './user/categories/categories.component';
 import { CheckoutComponent } from './user/checkout/checkout.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent},
+  { path: 'reset-password/:id/:token', component: ResetPasswordComponent},
   {
     path: 'user',
     component: UserComponent,
@@ -35,7 +39,6 @@ const routes: Routes = [
       { path: 'order/:orderId', component: UserOrderComponent },
       { path: 'products', component: ProductPageComponent },
       { path: 'product/:productId', component: ProductComponent },
-      { path: 'products', component: ProductPageComponent },
       { path: 'categories', component: CategoriesComponent },
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent },

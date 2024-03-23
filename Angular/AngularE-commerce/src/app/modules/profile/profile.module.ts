@@ -5,7 +5,7 @@ import { ProfileComponent } from '../../user/profile/profile.component';
 import { EditProfileComponent } from '../../user/edit-profile/edit-profile.component';
 import { FavoritesComponent } from '../../user/favorites/favorites.component';
 import { OrdersComponent } from '../../user/userAllOrders/orders.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
   NgxSkeletonLoaderComponent,
   NgxSkeletonLoaderModule,

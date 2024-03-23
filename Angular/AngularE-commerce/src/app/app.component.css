@@ -1,17 +1,11 @@
-/*
-* Template Name: UntreeStore
-* Template Author: Untree.co
-* Author URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 body {
   overflow-x: hidden;
   position: relative;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   line-height: 28px;
   color: #6a6a6a;
@@ -37,7 +31,8 @@ a.more {
 
 .custom-navbar {
   background: #3b5d50 !important;
-  padding: 10px 0;
+  /* padding-top: 20px;
+  padding-bottom: 20px; */
 }
 .custom-navbar .navbar-brand {
   font-size: 32px;
@@ -72,7 +67,7 @@ a.more {
 }
 @media (min-width: 768px) {
   .custom-navbar .custom-navbar-nav li a:before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 8px;
@@ -92,11 +87,12 @@ a.more {
 }
 .custom-navbar .custom-navbar-nav li a:hover:before {
   width: calc(100% - 16px);
+  background-color: #f9bf29;
 }
-.custom-navbar .custom-navbar-nav li.active a {
+.custom-navbar .custom-navbar-nav li a.active {
   opacity: 1;
 }
-.custom-navbar .custom-navbar-nav li.active a:before {
+.custom-navbar .custom-navbar-nav li a.active:before {
   width: calc(100% - 16px);
 }
 .custom-navbar .custom-navbar-cta {
@@ -106,7 +102,7 @@ a.more {
   -ms-flex-direction: row;
   flex-direction: row;
 }
-@media (min-width: 768px) {
+@media (min-width: 1120px) {
   .custom-navbar .custom-navbar-cta {
     margin-left: 40px !important;
   }
@@ -115,10 +111,19 @@ a.more {
   margin-left: 0px;
   margin-right: 0px;
 }
-.custom-navbar .custom-navbar-cta li:first-child {
+.custom-navbar .custom-navbar-cta li:not(last-child) {
   margin-right: 20px;
 }
-
+li span {
+  position: absolute;
+  right: -9px;
+  bottom: -2px;
+  color: #f8b810;
+  font-weight: 600;
+}
+li {
+  position: relative;
+}
 .hero {
   background: #3b5d50;
   padding: calc(4rem - 30px) 0 0rem 0;
@@ -190,7 +195,7 @@ a.more {
   }
 }
 .hero .hero-img-wrap:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 255px;
   height: 217px;
@@ -320,7 +325,7 @@ a.more {
   left: 0;
   right: 0;
   position: absolute;
-  content: "";
+  content: '';
   background: #dce5e4;
   height: 0%;
   z-index: -1;
@@ -349,7 +354,7 @@ a.more {
 }
 .why-choose-section .img-wrap:before {
   position: absolute;
-  content: "";
+  content: '';
   width: 255px;
   height: 217px;
   /* background-image: url("../images/dots-yellow.svg"); */
@@ -373,7 +378,7 @@ a.more {
   margin-bottom: 20px;
 }
 .feature .icon:before {
-  content: "";
+  content: '';
   width: 33px;
   height: 33px;
   position: absolute;
@@ -404,7 +409,7 @@ a.more {
 }
 .we-help-section .imgs-grid:before {
   position: absolute;
-  content: "";
+  content: '';
   width: 255px;
   height: 217px;
   /* background-image: url("../images/dots-green.svg"); */
@@ -461,7 +466,7 @@ a.more {
   padding-left: 20px;
 }
 .custom-list li:before {
-  content: "";
+  content: '';
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -502,7 +507,7 @@ a.more {
   position: relative;
 }
 .popular-product .product-item-sm .thumbnail:before {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 20px;
   background: #dce5e4;
@@ -615,7 +620,7 @@ a.more {
   left: 0;
   top: 0;
   position: absolute;
-  content: "";
+  content: '';
   border-radius: 50%;
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
@@ -705,7 +710,11 @@ a.more {
 .footer-section .subscription-form .form-control {
   height: 50px;
   border-radius: 10px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 .footer-section .subscription-form .form-control:active,
 .footer-section .subscription-form .form-control:focus {
@@ -789,7 +798,7 @@ a.more {
 .form-control {
   /* height: 50px; */
   border-radius: 10px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 .form-control:active,
 .form-control:focus {
@@ -890,7 +899,7 @@ textarea {
 }
 .thankyou-icon:before {
   position: absolute;
-  content: "";
+  content: '';
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -950,6 +959,13 @@ textarea {
   text-align: center;
   left: 0 !important;
   right: 0 !important;
+}
+
+.testbtn-pre:hover .carousel-control-next-icon,
+.cc:hover .carousel-control-prev-icon {
+  color: white;
+  filter: none;
+  -webkit-filter: none;
 }
 
 a {

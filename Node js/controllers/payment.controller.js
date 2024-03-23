@@ -1,7 +1,7 @@
-const orderSchema = require("../models/order.model");
-const Payment = require("../models/payment.model");
-const User = require("../models/user.model");
-const Product = require("../models/product.model");
+const orderSchema = require('../models/order.model')
+const Payment = require('../models/payment.model')
+const User = require('../models/user.model')
+const Product = require('../models/product.model')
 
 const getAllPayments = async (req, res) => {
   const payments = await Payment.find();
@@ -47,18 +47,18 @@ const checkoutSession = async (req, res) => {
       },
       quantity: 1,
     })),
-    mode: "payment",
-    success_url: `${req.protocol}://${req.get("host")}/orders?success=true`,
-    cancel_url: `${req.protocol}://${req.get("host")}/cart?canceled=true`,
+    mode: 'payment',
+    success_url: `${req.protocol}://${req.get('host')}/orders?success=true`,
+    cancel_url: `${req.protocol}://${req.get('host')}/cart?canceled=true`,
     customer_email: await findUserEmailById(req.body.user),
-  });
-  res.status(200).json({ status: "success", session });
-  result = res.statusCode;
-};
+  })
+  res.status(200).json({ status: 'success', session })
+  result = res.statusCode
+}
 
 const getResult = async (req, res) => {
   if (result == 200) {
-    res.status(200).send("payment suucceeded");
+    res.status(200).send('payment suucceeded')
     const orderUpdate = orderSchema.findByIdAndUpdate(order._id, {
       $set: { status: "success" },
     });
@@ -77,5 +77,5 @@ const getResult = async (req, res) => {
 module.exports = {
   checkoutSession,
   getAllPayments,
-  getResult,
-};
+  getResult
+}

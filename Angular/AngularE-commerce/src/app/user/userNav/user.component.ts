@@ -63,6 +63,7 @@ export class UserComponent implements OnInit {
     this.lang = this.lang === 'en' ? 'ar' : 'en';
     localStorage.setItem('lang', this.lang);
     this.translateService.use(this.lang);
+    window.location.reload()
   }
   logout() {
     localStorage.setItem('email', '');

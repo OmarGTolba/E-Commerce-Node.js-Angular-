@@ -25,4 +25,10 @@ export class ProfileService {
   
     return this.httpClient.patch<IUser>("http://localhost:3000/api/v1/user/profile/update", data, {headers})
   }
+  forgotPassword(data: { email: string; }){
+    return this.httpClient.post<{email: string}>("http://localhost:3000/api/v1/user/password/forgotPassword", data)
+  }
+  resetPassword(id: string, token: string, data: {password: string}){
+    return this.httpClient.post<{password: string}>(`http://localhost:3000/api/v1/user/password/reset-password/${id}/${token}`, data)
+  }
 }
