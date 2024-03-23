@@ -4,40 +4,32 @@ import { ProductsService } from '../../services/products/products.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrl: '../../app.component.css'
+  styleUrl: '../../app.component.css',
 })
 export class CategoriesComponent {
-
   categories: any[] = [];
-  
+
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  constructor(
-    private productService: ProductsService
-   
-  ) {
-    this.getAllCategories()
+
+  SkeletonLoading = false;
+
+  constructor(private productService: ProductsService) {
+    this.getAllCategories();
   }
 
-
-  
-getAllCategories(){
-
-
-  
-  this.productService.getAllCategories(this.token, this.email).pipe(
-      
-    ((error) => {
-      return (error);
-    })
-  ).subscribe(
-    (response: any) => {
-      this.categories= response.data
-//    this.sortbyName()
-console.log(this.categories);    
-     // this.loading = false; // Set loading to false when data is loaded
-    }
-  );
-
-}
+  getAllCategories() {
+    this.SkeletonLoading = true;
+    this.productService
+      .getAllCategories(this.token, this.email)
+      .pipe((error) => {
+        return error;
+      })
+      .subscribe((response: any) => {
+        this.categories = response.data;
+        //    this.sortbyName()
+        console.log(this.categories);
+        this.SkeletonLoading = false;
+      });
+  }
 }

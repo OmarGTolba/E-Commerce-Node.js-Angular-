@@ -9,7 +9,8 @@ import { OrdersService } from '../../services/orders/orders.service';
   templateUrl: './cart.component.html',
   styleUrl: '../../app.component.css',
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit {
+  SkeletonLoading = false;
   constructor(
     private userService: UserService,
     private paymentService: PaymentService,
@@ -17,7 +18,6 @@ export class CartComponent implements OnInit{
   ) {
     this.getCart();
   }
-  
 
   cart: any[] = [];
   token = localStorage.getItem('token') || '';
@@ -25,29 +25,32 @@ export class CartComponent implements OnInit{
   userId = localStorage.getItem('userId') || '';
   quantity: any = 0;
   show = false;
-  userOrder =""
-  body={}
+  userOrder = '';
+  body = {};
+  total: number = 0;
   ngOnInit(): void {
-    console.log("hello");
-    
-    this.orderService.getUserOrders(this.token,this.email,this.userId).subscribe((res)=>{
-      res.data.forEach((order)=>{
-        console.log(order.status);
-        
-        if(order.status.toLowerCase() == 'pending'){
-          this.userOrder = order._id
-          console.log(this.userOrder);
-          this.body = {
-            user: this.userId,
-            orderId: this.userOrder,
-          };
-        }
-      })
-    })
+    console.log('hello');
+
+    this.orderService
+      .getUserOrders(this.token, this.email, this.userId)
+      .subscribe((res) => {
+        res.data.forEach((order) => {
+          console.log(order.status);
+
+          if (order.status.toLowerCase() == 'pending') {
+            this.userOrder = order._id;
+            console.log(this.userOrder);
+            this.body = {
+              user: this.userId,
+              orderId: this.userOrder,
+            };
+          }
+        });
+      });
   }
-  total:number = 0;
   getCart() {
-    this.total = 0
+    this.SkeletonLoading = true;
+    this.total = 0;
     this.userService
       .getUserCart(this.token, this.email, this.userId)
       .pipe(
@@ -58,14 +61,15 @@ export class CartComponent implements OnInit{
       .subscribe((response: any) => {
         this.cart = response?.items;
         console.log(this.cart);
-        this.cart.forEach(element => {
+        this.cart.forEach((element) => {
           this.total += element.quantity * element.product_id.price;
+          this.userService.total = this.total;
+          console.log(this.userService.total);
         });
-        // this.cart[0].quantity = this.quantity;
-        // console.log(this.cart[0].product_id._id);
+        this.SkeletonLoading = false;
       });
-
   }
+
   pay() {
     this.paymentService
       .showPayment(this.token, this.body)
@@ -83,17 +87,35 @@ export class CartComponent implements OnInit{
         },
       });
   }
-plus(i:any){
-  console.log(i);
-  
-  this.updateQuantity(i,++i.quantity)
-}
 
-minus(i:any){
-  console.log(i);
-  
-  this.updateQuantity(i,--i.quantity)
-}
+  makeOrder() {
+    const token = localStorage.getItem('token') || '';
+    const email = localStorage.getItem('email') || '';
+
+    const body = {
+      city: 'Alexandria',
+      phone: '01060702328',
+    };
+    this.userService.getUserOrder(token, email, this.userId, body).subscribe({
+      next: (response: any) => {
+        window.open(response.session.url, '_blank');
+      },
+      error: (err) => {
+        console.error('Payment error:', err);
+      },
+    });
+  }
+  plus(i: any) {
+    console.log(i);
+
+    this.updateQuantity(i, ++i.quantity);
+  }
+
+  minus(i: any) {
+    console.log(i);
+
+    this.updateQuantity(i, --i.quantity);
+  }
   updateQuantity(item: any, newQuantity: number) {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
@@ -104,7 +126,29 @@ minus(i:any){
     console.log(newQuantity);
 
     this.userService
-      .updateUserCart( token,this.email, this.userId, item.product_id._id, body)
+      .updateUserCart(token, this.email, this.userId, item.product_id._id, body)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
+        console.log(response.data._id);
+        this.body = {
+          user: this.userId,
+          orderId: response.data._id,
+        };
+      });
+  }
+
+  deleteCart(item: any) {
+    const token = localStorage.getItem('token') || '';
+    const email = localStorage.getItem('email') || '';
+
+    console.log(item);
+
+    this.userService
+      .deleteCartItem(token, this.email, this.userId, item.product_id._id)
       .pipe(
         catchError((error) => {
           return error;
@@ -112,33 +156,8 @@ minus(i:any){
       )
       .subscribe((response: any) => {
         console.log(response);
-        
-        this.getCart()
+
+        this.getCart();
       });
   }
-  
-  
-  
-  deleteCart(item: any) {
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-    
-    
-  console.log(item);
-  
-  
-  this.userService
-  .deleteCartItem( token,this.email, this.userId, item.product_id._id)
-  .pipe(
-      catchError((error) => {
-        return error;
-      })
-      )
-      .subscribe((response: any) => {
-        console.log(response);
-        
-      this.getCart()
-    });
-  }
 }
-

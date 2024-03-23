@@ -7,61 +7,57 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['../../app.component.css']
+  styleUrls: ['../../app.component.css'],
 })
 export class HomeComponent {
-  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   products: any[] = [];
   categories: any[] = [];
   displayedProducts: any;
-  
+
+  productSkeletonLoading = false;
+  catSkeletonLoading = false;
+
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  constructor(
-    private productService: ProductsService
-   
-  ) {
+  constructor(private productService: ProductsService) {
     this.getAllProducts();
-    this.getAllCategories()
+    this.getAllCategories();
   }
   getAllProducts(): void {
-    this.productService.getAllProducts(this.token, this.email).pipe(
-      
-      ((error) => {
-        return (error);
+    this.productSkeletonLoading = true;
+    this.productService
+      .getAllProducts(this.token, this.email)
+      .pipe((error) => {
+        return error;
       })
-    ).subscribe(
-      (response: any) => {
-        this.products= response.data
-  //    this.sortbyName()
-  this.displayedProducts = this.products.slice(0, 3);
-      
-       // this.loading = false; // Set loading to false when data is loaded
-      }
-    );
+      .subscribe((response: any) => {
+        this.products = response.data;
+        //    this.sortbyName()
+        this.displayedProducts = this.products.slice(0, 3);
+        this.productSkeletonLoading = false;
+
+        // this.loading = false; // Set loading to false when data is loaded
+      });
   }
 
+  getAllCategories() {
+    this.catSkeletonLoading = true;
+    this.productService
+      .getAllCategories(this.token, this.email)
+      .pipe((error) => {
+        return error;
+      })
+      .subscribe((response: any) => {
+        this.categories = response.data;
+        //    this.sortbyName()
+        console.log(this.categories);
 
-getAllCategories(){
-  this.productService.getAllCategories(this.token, this.email).pipe(
-      
-    ((error) => {
-      return (error);
-    })
-  ).subscribe(
-    (response: any) => {
-      this.categories= response.data
-//    this.sortbyName()
-console.log(this.categories);
+        this.categories = this.categories.slice(0, 3);
+        this.catSkeletonLoading = false;
 
-this.categories = this.categories.slice(0, 3);
-    
-     // this.loading = false; // Set loading to false when data is loaded
-    }
-  );
-
-}
-
+        // this.loading = false; // Set loading to false when data is loaded
+      });
+  }
 }
