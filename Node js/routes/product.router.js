@@ -12,6 +12,7 @@ const {
   addNewReview,
   getReviews,
   getRating,
+  updateReviews,
 } = require('../controllers/review.controller')
 const { auth } = require('../middleware/auth')
 const { admin } = require('../middleware/admin')
@@ -29,6 +30,7 @@ router.delete('/:id', admin, deleteProduct)
 
 router.post('/:id/reviews', auth, addNewReview)
 router.get('/:id/reviews', getReviews)
+router.patch('/:id/reviews', updateReviews)
 router.post('/:id/ratings', getRating)
 
 

@@ -13,6 +13,13 @@ const showReview = async(id)=>{
     return await Review.find({prdId: id})
 }
 
+
+const showReviewByID = async(id)=>{
+    return await Review.findById({id})
+}
+
+
+
 const showRating = async(id)=>{
     return await Rating.find({prdId: id})
 }
