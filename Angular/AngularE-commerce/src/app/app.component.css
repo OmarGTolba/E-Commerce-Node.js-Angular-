@@ -127,7 +127,7 @@ li {
 .hero {
   background: #3b5d50;
   padding: 3.5rem;
-  /* padding-top: 150px !important; */
+  padding-top: 150px !important;
 }
 @media (min-width: 768px) {
   .hero {
