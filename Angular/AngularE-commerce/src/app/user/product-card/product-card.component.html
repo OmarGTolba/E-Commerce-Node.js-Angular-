@@ -16,8 +16,10 @@
       </ul>
       <img [src]="product.images[0]" alt="Product Image" />
     </div>
-    <div class="part-2"  [ngClass]="{ 'text-end': lang == 'ar' }">
-      <h3 class="product-title">{{ lang == "ar" ? product.name_ar : product.name_en }}</h3>
+    <div class="part-2" [ngClass]="{ 'text-end': lang == 'ar' }">
+      <h3 class="product-title">
+        {{ lang == "ar" ? product.name_ar : product.name_en }}
+      </h3>
       <!-- <h4 class="product-old-price">${{ product.price }}</h4> -->
       <h4 class="product-price">${{ product.price }}</h4>
     </div>

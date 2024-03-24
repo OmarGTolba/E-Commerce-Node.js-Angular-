@@ -27,7 +27,7 @@
             routerLinkActive="active"
             routerLink="/user"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Home</a
+            >{{ "Home" | translate }}</a
           >
         </li>
         <li class="nav-item" #pronav>
@@ -36,7 +36,7 @@
             #pronav
             routerLinkActive="active"
             routerLink="/user/products"
-            >Products</a
+            >{{ "Products" | translate }}</a
           >
         </li>
         <li class="nav-item" #catnav>
@@ -44,12 +44,15 @@
             class="nav-link"
             routerLink="/user/categories"
             routerLinkActive="active"
-            >Categories</a
+            >{{ "Categories" | translate }}</a
           >
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active" routerLink="/user/about"
-            >About</a
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/user/about"
+            >{{ "About" | translate }}</a
           >
         </li>
         <li>
@@ -57,15 +60,19 @@
             class="nav-link"
             routerLinkActive="active"
             routerLink="/user/contact"
-            >Contact</a
+            >{{ "Contact" | translate }}</a
           >
         </li>
       </ul>
 
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" [formControl]="searchFormControl" placeholder="Search"
-					aria-label="Search" />
-			</form>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          [formControl]="searchFormControl"
+          placeholder="Search"
+          aria-label="Search"
+        />
+      </form>
 
       <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
         <li>
