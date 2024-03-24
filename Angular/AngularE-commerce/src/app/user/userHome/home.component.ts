@@ -19,6 +19,7 @@ export class HomeComponent {
   productSkeletonLoading = false;
   catSkeletonLoading = false;
 
+  lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   constructor(private productService: ProductsService) {

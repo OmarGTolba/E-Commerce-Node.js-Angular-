@@ -114,6 +114,28 @@ export class ProductsService {
     return this.http.patch<any[]>(updateUrl, body, { headers });
   }
 
+
+
+
+
+  updateReview(
+    token: string,
+    email: string,
+    id: string,
+    body: any
+  ): Observable<any[]> {
+    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=UTF-8',
+      jwt: token,
+      email: email,
+    });
+    return this.http.patch<any[]>(updateUrl, body, { headers });
+  }
+
+
+
+
   deleteProduct(token: string, email: string, id: string): Observable<any[]> {
     const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
     const headers = new HttpHeaders({
@@ -152,6 +174,8 @@ export class ProductsService {
     });
     return this.http.delete<any[]>(updateUrl, { headers });
   }
+
+
 
   isFav(
     token: string,

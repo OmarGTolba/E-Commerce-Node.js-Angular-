@@ -5,3 +5,5 @@ const {searchForProduct, searchForCategory}=require("../controllers/search.contr
 router.get('/product/:name', searchForProduct)
 router.get('/category/:name', searchForCategory)
 module.exports = router;
+
+

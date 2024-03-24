@@ -1,16 +1,16 @@
-const { number } = require('joi')
-const mongoose = require('mongoose')
+const { number } = require("joi");
+const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
   name_en: {
     type: String,
-    required: [true, 'Product required'],
-    maxlength: [32, 'Too long Product name'],
-    minlength: [3, 'Too short Product name'],
+    required: [true, "Product required"],
+    maxlength: [32, "Too long Product name"],
+    minlength: [3, "Too short Product name"],
   },
   name_ar: {
     type: String,
-    required: [true, 'Product required'],
+    required: [true, "Product required"],
   },
   description_en: {
     type: String,
@@ -25,11 +25,11 @@ const productSchema = new mongoose.Schema({
   ],
   brand_en: {
     type: String,
-    default: '',
+    default: "",
   },
   brand_ar: {
     type: String,
-    default: '',
+    default: "",
   },
   price: {
     type: Number,
@@ -37,7 +37,7 @@ const productSchema = new mongoose.Schema({
   },
   categories: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Category',
+    ref: "Category",
     required: true,
   },
   countInStock: {
@@ -64,7 +64,7 @@ const productSchema = new mongoose.Schema({
   },
 
   image: String,
-})
-const Product = mongoose.model('Product', productSchema)
+});
+const Product = mongoose.model("Product", productSchema);
 
-module.exports = Product
+module.exports = Product;

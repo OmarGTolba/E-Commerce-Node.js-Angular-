@@ -61,7 +61,7 @@
 		<div class="row">
 
 			<!-- Start Column 1 -->
-			<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+			<div class="col-md-10 col-lg-3 mb-5 mb-lg-0">
 				<h2 class="mb-4 section-title">Crafted with excellent material.</h2>
 				<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate
 					velit imperdiet dolor tempor tristique. </p>
@@ -71,7 +71,7 @@
 
 			<!-- Start Column 2 -->
 
-			<div class="row col-12 col-md-9" *ngIf="productSkeletonLoading">
+			<div class="row col-12 col-lg-6" *ngIf="productSkeletonLoading">
 				<ngx-skeleton-loader class="col"
 					[theme]="{margin:'40px 0', height: '450px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
 				<ngx-skeleton-loader class="col"
@@ -79,7 +79,7 @@
 				<ngx-skeleton-loader class="col"
 					[theme]="{margin:'40px 0', height: '450px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
 			</div>
-			<div *ngFor="let item of displayedProducts" class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+			<div *ngFor="let item of displayedProducts" class="col-10 col-md-3 mb-5 mb-md-0">
 				<ng-container *ngIf="!productSkeletonLoading">
 
 					<app-product-card [product]="item"></app-product-card>
@@ -341,8 +341,8 @@
 					<div class="post-entry">
 						<a href="#" class="post-thumbnail"><img src={{item.icon}} alt="Image"
 								class="img-fluid catimg h-50"></a>
-						<div class="post-content-entry">
-							<h3><a href="#">{{item.name}}</a></h3>
+						<div class="post-content-entry" [ngClass]="{'text-end':lang == 'ar'}">
+							<h3><a href="#">{{lang == "en" ? item.name_en : item.name_ar}}</a></h3>
 							<div class="meta">
 								<span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19,
 										2021</a></span>
@@ -382,7 +382,7 @@
 							<input type="email" class="form-control" placeholder="Enter your email">
 						</div>
 						<div class="col-auto">
-							<button class="btn btn-primary">
+							<button type="button" class="btn btn-primary" title="btn">
 								<span class="fa fa-paper-plane"></span>
 							</button>
 						</div>

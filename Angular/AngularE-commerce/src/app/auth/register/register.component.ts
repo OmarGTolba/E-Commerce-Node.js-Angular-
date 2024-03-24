@@ -43,7 +43,7 @@ export class RegisterComponent {
           if (role === 'Admin') {
             this.router.navigate(['admin']);
           } else {
-            this.router.navigate(['user']);
+            this.router.navigate(['/']);
           }
           localStorage.setItem('userId', response._id);
           console.log('Register successful:', response);
@@ -59,10 +59,10 @@ export class RegisterComponent {
           console.error('Register failed: No response received');
         }
       }, (error) => {
-        console.error('Error occurred:', error);
+        console.error('Error occurred:', error.error.message);
         this.toast.error({
-          detail: 'An error occurred while registering.',
-          summary: 'Error',
+          detail: 'Error',
+          summary: error.error.message || "Registeration failed",
           duration: 5000,
           position: 'topRight',
         });
