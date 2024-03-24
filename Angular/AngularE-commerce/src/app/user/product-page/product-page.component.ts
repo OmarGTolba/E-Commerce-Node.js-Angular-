@@ -8,7 +8,7 @@ import { catchError } from 'rxjs';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.css'],
+  styleUrls: ['./product-page.component.css', '../../app.component.css'],
 })
 export class ProductPageComponent {
   name: string | null = '';
@@ -60,6 +60,7 @@ export class ProductPageComponent {
         this.products = response.data;
         console.log(this.products);
 
+
         this.displayedProducts = this.products.slice(
           0,
           this.paginator.pageSize
@@ -82,6 +83,7 @@ export class ProductPageComponent {
         this.displayedProducts = this.products;
         console.log(this.products);
         this.skeletonLoading = false;
+        this.skeletonLoading = false;
       });
   }
   searchByCategory() {
@@ -96,6 +98,7 @@ export class ProductPageComponent {
         this.products = response.data;
         this.displayedProducts = this.products[0];
         console.log(this.products[0]);
+        this.skeletonLoading = false;
         this.skeletonLoading = false;
       });
   }

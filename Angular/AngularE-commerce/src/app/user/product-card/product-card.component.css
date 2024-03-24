@@ -3,9 +3,9 @@ body {
   color: #444444;
 }
 
-.section-products {
+/* .section-products {
   padding: 80px 0 0;
-}
+} */
 
 .section-products .single-product {
   margin-bottom: 26px;
@@ -83,6 +83,15 @@ body {
   color: #fe302f;
   cursor: pointer;
 }
+.section-products .single-product .part-1 .offer {
+  background-color: #fe302f;
+  position: absolute;
+  top: 0;
+  padding: 5px 20px;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-weight: bold;
+}
 .section-products .single-product .part-2 {
   padding: 0 20px 20px;
   height: 100px;
@@ -101,6 +110,7 @@ body {
   padding: 0 7px;
   margin-right: 2px;
   opacity: 0.6;
+  text-decoration: line-through;
 }
 
 .section-products .single-product .part-2 .product-old-price::after {

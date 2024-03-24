@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-product',
@@ -15,6 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProductComponent {
   productId: string = '';
   product: any;
+  review:any;
   lang = localStorage.getItem("lang") || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
@@ -220,7 +222,24 @@ export class ProductComponent {
       });
   }
 
+
+updateReview(id:any){
+  console.log(this.review);
+  
+  const body ={
+"title":this.review
+  }
+this.productServices.updateReview(this.token,this.email,id,body) .subscribe((response: any) => {
+  
+  console.log(response);
+this.showReview(this.product_id)  
+});
+
+}  
+product_id :any;
   showReview(id: string) {
+    console.log(this.userId);
+    this.product_id = id
     this.ReviewskeletonLoading = true;
     this.productServices
       .getReviewsByID(this.token, this.email, id)

@@ -1,3 +1,4 @@
+const Review = require('../models/review.model')
 const {
   addReview,
   showReview,
@@ -30,8 +31,25 @@ const getRating = async (req, res) => {
   res.send(rating)
 }
 
+
+const updateReviews = (async (req, res) => {
+  const id = req.params.id
+  const Updates = await Review.updateOne({ _id: id }, req.body)
+  res.send(Updates)
+})
+
+const getReviewById = (async (req, res) => {
+  const id = req.params.id
+  const Updates = await Review.updateOne({ _id: id }, req.body)
+  res.send(Updates)
+})
+
+
+
+
 module.exports = {
   addNewReview,
   getReviews,
   getRating,
+  updateReviews
 }
