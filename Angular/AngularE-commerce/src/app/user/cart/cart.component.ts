@@ -30,6 +30,7 @@ export class CartComponent implements OnInit{
   ngOnInit(): void {
     console.log("hello");
     
+    console.log(this.token,this.email,this.userId);
     this.orderService.getUserOrders(this.token,this.email,this.userId).subscribe((res)=>{
       
       res.data.forEach((order)=>{
