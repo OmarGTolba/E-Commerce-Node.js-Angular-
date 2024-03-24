@@ -7,7 +7,6 @@ import { CartService } from '../../services/cart/cart.service';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({
-
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
@@ -30,7 +29,7 @@ export class ProductCardComponent {
   @Input() product: any;
 
   productFav: boolean = false;
-  lang = localStorage.getItem("lang") || 'en';
+  lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
@@ -112,6 +111,7 @@ export class ProductCardComponent {
       product_id: this.product._id,
       user: this.userId,
     };
+    console.log(body);
 
     this.cartService
       .addToCart(this.token, this.email, this.userId, body)

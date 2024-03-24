@@ -125,3 +125,7 @@ li .active {
 .name {
   display: contents !important;
 }
+.carousel-control-prev,
+.carousel-control-next {
+  opacity: 1 !important;
+}
