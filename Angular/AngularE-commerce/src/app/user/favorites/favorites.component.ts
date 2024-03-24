@@ -11,6 +11,8 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class FavoritesComponent implements OnInit{
   favorites:any[] = []
+  lang = localStorage.getItem("lang") || 'en';
+
   isLoading = false
   id = localStorage.getItem("userId") || ""
   constructor(private favoriteService: FavoritesService, private router: Router, private toast:NgToastService,private route:ActivatedRoute

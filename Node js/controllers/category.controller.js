@@ -13,7 +13,8 @@ const getCategoryById = asyncHandler(async (req, res) => {
 
 const updateCategory = asyncHandler(async (req, res) => {
   const category = {
-    name: req.body.name,
+    name_en: req.body.name_en,
+    name_ar: req.body.name_ar,
     icon: req.body.icon,
     color: req.body.color,
   }
@@ -25,8 +26,8 @@ const updateCategory = asyncHandler(async (req, res) => {
 })
 
 const addNewCategory = asyncHandler(async (req, res) => {
-  let { name, icon, color } = req.body
-  const newcategory = await categoryModule.create({ name, icon, color })
+  let { name_en, name_ar, icon, color } = req.body
+  const newcategory = await categoryModule.create({ name_en, name_ar, icon, color })
   res.status(201).json({ data: newcategory })
 })
 

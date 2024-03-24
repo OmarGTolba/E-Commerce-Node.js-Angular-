@@ -35,17 +35,10 @@ export class ProductPageComponent {
       this.catname = params.get('catname');
       if (this.name) {
         this.search();
-console.log('aaaaaa');
-}
-else if(this.catname){
-  this.searchByCategory();
-  console.log("caaaaaaaaat");
-  
- 
-}
-else {
-  this.getAllProducts();
-  console.log('bbbba');
+      } else if (this.catname) {
+        this.searchByCategory();
+      } else {
+        this.getAllProducts();
       }
     });
 
@@ -66,12 +59,11 @@ else {
       .subscribe((response: any) => {
         this.products = response.data;
         console.log(this.products);
-        
+
         this.displayedProducts = this.products.slice(
           0,
           this.paginator.pageSize
         );
-
 
         this.skeletonLoading = false;
       });
@@ -89,7 +81,7 @@ else {
         this.products = response.data;
         this.displayedProducts = this.products;
         console.log(this.products);
-        this.skeletonLoading = false
+        this.skeletonLoading = false;
       });
   }
   searchByCategory() {
@@ -104,7 +96,7 @@ else {
         this.products = response.data;
         this.displayedProducts = this.products[0];
         console.log(this.products[0]);
-        this.skeletonLoading = false
+        this.skeletonLoading = false;
       });
   }
 
