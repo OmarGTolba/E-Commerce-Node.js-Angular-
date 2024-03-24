@@ -1,6 +1,6 @@
 .pa {
   font-family: emoji;
-  margin-top: 7em;
+  margin-top: 7em !important;
 }
 .price {
   font-weight: 700;
@@ -124,4 +124,8 @@ li .active {
 }
 .name {
   display: contents !important;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  opacity: 1 !important;
 }

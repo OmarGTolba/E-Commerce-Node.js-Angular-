@@ -359,7 +359,10 @@
                         </div>
                       </div>
                       <p>{{ item.title }}</p>
+                   <input *ngIf="item.user._id == userId" type="text" [value]="item.title"  [(ngModel)]="review">
                     </div>
+                    <button *ngIf="item.user._id == userId">Edit</button>
+                    <button  (click) ="updateReview(item._id)" *ngIf="item.user._id == userId" >update</button>
                     <div>{{ i + 1 }} of {{ reviews.length }}</div>
                   </div>
                 </div>

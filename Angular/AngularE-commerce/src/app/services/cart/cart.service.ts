@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class CartService {
 
   constructor(private http: HttpClient) { }
+  cart: any[] = [];
 
 
   addToCart(token: string, email: string, userId: string, body: any): Observable<any[]> {
