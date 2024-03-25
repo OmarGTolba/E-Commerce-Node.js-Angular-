@@ -2,19 +2,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  styleUrls: ['./add.component.css'],
 })
 export class AddComponent {
   productForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {
     this.productForm = this.fb.group({
       productName: ['', Validators.required],
-      category: ['', Validators.required]
+      category: ['', Validators.required],
     });
   }
 
@@ -23,26 +28,23 @@ export class AddComponent {
     const { productName, category } = this.productForm.value;
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
-   // console.log(category);
-
-//  console.log(category);
- 
-  
-      this.http.post<any[]>(url,{ name: productName, categories: category }, {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          jwt: token,
-          email: email,
+    this.http
+      .post<any[]>(
+        url,
+        { name: productName, categories: category },
+        {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            jwt: token,
+            email: email,
+          },
         }
-      }).subscribe(
-        (response:any) => {
-          
-       //   console.log(response);
-          
-        },
-        (error) => {
-          console.error('Error fetching books:', error);
-        }
-      );
-    }
+      )
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {});
+  }
 }

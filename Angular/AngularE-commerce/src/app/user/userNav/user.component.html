@@ -33,6 +33,22 @@
 
 
       <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+        <form class="form-outline" data-mdb-input-init>
+          <input id="search-focus" placeholder="Search" [formControl]="searchFormControl" type="search" id="form1"
+            class="form-control" />
+        </form>
+
+
+        <li class="parentCart">
+          <span class="quantity">{{cartLength}}</span>
+          <a class="nav-link" routerLink="/user/cart"><img src="../../../assets/images/cart.svg" alt="" /></a>
+        </li>
+        <li (click)="changeLang()">
+          <a class="nav-link">
+            <img src="../../../assets/images/earth.svg" alt=""
+              style="width: 23px; cursor: pointer; background-color: #3b5d50" /></a>
+          <span>{{ lang.toUpperCase() }}</span>
+        </li>
         <ng-container *ngIf="loggedin; else signInButton">
           <li>
             <div class="dropdown">
@@ -54,26 +70,9 @@
             </button>
           </li>
         </ng-template>
-        <li class="parentCart">
-          <span class="quantity">{{cartLength}}</span>
-          <a class="nav-link" routerLink="/user/cart"><img src="../../../assets/images/cart.svg" alt="" /></a>
-        </li>
-        <li (click)="changeLang()">
-          <a class="nav-link">
-            <img src="../../../assets/images/earth.svg" alt=""
-              style="width: 23px; cursor: pointer; background-color: #3b5d50" /></a>
-          <span>{{ lang.toUpperCase() }}</span>
-        </li>
       </ul>
 
-      <form class="form-outline" data-mdb-input-init>
-        <input id="search-focus" placeholder="Search" [formControl]="searchFormControl" type="search" id="form1"
-          class="form-control" />
-      </form>
 
-      <!-- <form class="d-flex" role="search">
-        <input class="form-control me-2" [formControl]="searchFormControl" placeholder="Search" aria-label="Search" />
-      </form> -->
     </div>
   </div>
 </nav>

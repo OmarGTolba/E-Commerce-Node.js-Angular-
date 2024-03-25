@@ -34,6 +34,9 @@
             </ng-container>
         </div>
     </div>
+    <div *ngIf="!skeletonLoading && displayedProducts.length === 0">
+        <h3 class="text-center my-5">No products!😥 </h3>
+    </div>
 </div>
 
 <mat-paginator [length]="products.length" [pageSize]="4" class="pag" [pageSizeOptions]="[6, 10]"
