@@ -1,43 +1,79 @@
 <div class="hero">
-    <div class="container ">
-        <h1>Products</h1>
-    </div>
+  <div class="container">
+    <h1>Products</h1>
+  </div>
 </div>
 
-
 <div class="dropdown">
-    <button class="dropbtn">
-        <mat-icon>sort</mat-icon>Sort By
-    </button>
-    <div class="dropdown-content">
-        <p (click)="sortbyName()">Sort by name</p>
-        <p (click)="sortByPrice()">Sort by price </p>
-    </div>
+  <button class="dropbtn">
+    <mat-icon>sort</mat-icon>{{ "sort" | translate }}
+  </button>
+  <div class="dropdown-content">
+    <p (click)="sortbyName()">{{ "sort name" | translate }}</p>
+    <p (click)="sortByPrice()">{{ "sort price" | translate }}</p>
+  </div>
 </div>
 
 <div class="container">
-    <div class="row" *ngIf="skeletonLoading">
-        <ngx-skeleton-loader class="col-lg-4 col-xl-3" *ngIf="skeletonLoading"
-            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-        <ngx-skeleton-loader class="col-lg-4 col-xl-3"
-            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-        <ngx-skeleton-loader class="col-lg-4 col-xl-3"
-            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-        <ngx-skeleton-loader class="col-lg-4 col-xl-3"
-            [theme]="{margin:'40px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-    </div>
+  <div class="row" *ngIf="skeletonLoading">
+    <ngx-skeleton-loader
+      class="col-lg-4 col-xl-3"
+      *ngIf="skeletonLoading"
+      [theme]="{
+        margin: '40px 0',
+        height: '350px',
+        width: '100%',
+        borderRadius: '4px'
+      }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="col-lg-4 col-xl-3"
+      [theme]="{
+        margin: '40px 0',
+        height: '350px',
+        width: '100%',
+        borderRadius: '4px'
+      }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="col-lg-4 col-xl-3"
+      [theme]="{
+        margin: '40px 0',
+        height: '350px',
+        width: '100%',
+        borderRadius: '4px'
+      }"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      class="col-lg-4 col-xl-3"
+      [theme]="{
+        margin: '40px 0',
+        height: '350px',
+        width: '100%',
+        borderRadius: '4px'
+      }"
+    ></ngx-skeleton-loader>
+  </div>
 
-    <div class="row">
-        <div class="col-md-6 col-lg-4 col-xl-3" *ngFor="let item of displayedProducts">
-            <ng-container *ngIf="!skeletonLoading">
-                <app-product-card [product]="item"></app-product-card>
-            </ng-container>
-        </div>
+  <div class="row">
+    <div
+      class="col-md-6 col-lg-4 col-xl-3"
+      *ngFor="let item of displayedProducts"
+    >
+      <ng-container *ngIf="!skeletonLoading">
+        <app-product-card [product]="item"></app-product-card>
+      </ng-container>
     </div>
-    <div *ngIf="!skeletonLoading && displayedProducts.length === 0">
-        <h3 class="text-center my-5">No products!😥 </h3>
-    </div>
+  </div>
+  <div *ngIf="!skeletonLoading && displayedProducts.length === 0">
+    <h3 class="text-center my-5">No products!😥</h3>
+  </div>
 </div>
 
-<mat-paginator [length]="products.length" [pageSize]="4" class="pag" [pageSizeOptions]="[6, 10]"
-    (page)="onPageChange($event)"></mat-paginator>
+<mat-paginator
+  [length]="products.length"
+  [pageSize]="4"
+  class="pag"
+  [pageSizeOptions]="[6, 10]"
+  (page)="onPageChange($event)"
+></mat-paginator>

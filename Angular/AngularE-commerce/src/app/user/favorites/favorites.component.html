@@ -8,7 +8,7 @@
     style="background-color: #3b5d50"
   >
     <div *ngIf="favorites.length == 0" class="text-white">
-      No favorite products
+      {{ "No favorite products" | translate }}"
     </div>
     <div
       class="prd d-flex flex-column flex-lg-row align-items-center justify-space-between gap-2"
@@ -19,8 +19,12 @@
       <div
         class="d-flex flex-column justify-content-between align-items-between w-100"
       >
-        <div class="text-white fs-6 fs-lg-4" [ngClass]="{'text-end': lang=='ar'}">
-          {{ lang == "ar" ? prd.name_ar : prd.name_en }}        </div>
+        <div
+          class="text-white fs-6 fs-lg-4"
+          [ngClass]="{ 'text-end': lang == 'ar' }"
+        >
+          {{ lang == "ar" ? prd.name_ar : prd.name_en }}
+        </div>
         <div class="d-flex justify-content-between align-items-center">
           <div style="color: #f8b810">{{ prd.price }}$</div>
           <i
@@ -32,7 +36,11 @@
     </div>
   </div>
 </div>
-<div class="position-absolute col-5 bg-light my-3" style="right: 0" *ngIf="isLoading">
+<div
+  class="position-absolute col-5 bg-light my-3"
+  style="right: 0"
+  *ngIf="isLoading"
+>
   <div class="d-flex flex-column col-12 gap-2 p-5 rounded position-relative">
     <div>
       <ngx-skeleton-loader
