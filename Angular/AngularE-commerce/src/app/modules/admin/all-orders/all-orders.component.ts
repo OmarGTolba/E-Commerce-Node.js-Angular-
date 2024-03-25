@@ -1,40 +1,103 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { catchError } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
+import { NgToastService } from 'ng-angular-popup';
+import { OrdersService } from '../../../services/orders/orders.service';
 
 @Component({
   selector: 'app-all-orders',
   templateUrl: './all-orders.component.html',
-  styleUrl: './all-orders.component.css'
+  styleUrl: './all-orders.component.css',
 })
 export class AllOrdersComponent {
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private orderService: OrdersService,
+    private toast: NgToastService
+  ) {
     this.getAllOrders();
   }
   orders: any[] = [];
-    getAllOrders(): void {
-  
-      const url = 'http://localhost:3000/api/v1/orders';
-  
-      const token = localStorage.getItem('token') || '';
-      const email = localStorage.getItem('email') || '';
-  
-      this.http.get<any[]>(url, {
+  token = localStorage.getItem('token') || '';
+  email = localStorage.getItem('email') || '';
+
+  getAllOrders(): void {
+    const url = 'https://node-project-5tke.onrender.com/api/v1/orders';
+
+    this.http
+      .get<any[]>(url, {
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
-          jwt: token,
-          email: email,
-        }
-      }).pipe(
+          jwt: this.token,
+          email: this.email,
+        },
+      })
+      .pipe(
         catchError((error) => {
-          return (error);
+          return of(error);
         })
-      ).subscribe(
-        (response:any) => {
-          this.orders = response;
-          console.log(this.orders);
-          
+      )
+
+      .subscribe((response: any) => {
+        this.orders = response.data;
+        console.log(this.orders);
+      });
+  }
+
+  cancel(id: string) {
+    this.orderService
+      .cancelOrder(this.token, this.email, id)
+      .pipe(
+        catchError((error) => {
+          return of(error);
+        })
+      )
+      .subscribe((response: any) => {
+        if (response.status === 500) {
+          this.toast.error({
+            detail: 'ERROR',
+            summary: 'oops error!',
+            duration: 5000,
+            position: 'topRight',
+          });
+          return;
         }
-      );
-    }
+        this.toast.success({
+          detail: 'SUCCESS',
+          summary: 'Order canceled',
+          duration: 5000,
+          position: 'topRight',
+        });
+
+        console.log(response);
+      });
+  }
+  complete(id: string) {
+    this.orderService
+      .confirmeOrder(this.token, this.email, id)
+      .pipe(
+        catchError((error) => {
+          return of(error);
+        })
+      )
+      .subscribe((response: any) => {
+        if (response.status === 500) {
+          this.toast.error({
+            detail: 'ERROR',
+            summary: 'oops error!',
+            duration: 5000,
+            position: 'topRight',
+          });
+          return;
+        }
+        this.toast.success({
+          detail: 'SUCCESS',
+          summary: 'Order confirmed',
+          duration: 5000,
+          position: 'topRight',
+        });
+
+        console.log(response);
+      });
+  }
 }

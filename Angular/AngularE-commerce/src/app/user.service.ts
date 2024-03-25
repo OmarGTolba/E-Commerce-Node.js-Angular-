@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +26,31 @@ export class UserService {
     });
     return this.http.get<any[]>(updateUrl, { headers });
   }
+
+
+  cartLength = new BehaviorSubject(0)
+  
+  getCartCount( token:any, email:any,id:any){
+    this
+    .getUserCart(token, email, id)
+    .pipe(
+      catchError((error) => {
+        // this.cartLength = 0;
+        return of(error);
+      })
+    )
+    .subscribe(async(response: any) => {
+     this.cartLength.next( await response.items.length);
+      
+     console.log(response.items.length);
+     
+      console.log(response);
+    });
+  }
+
+
+
+
   total: any;
 
   updateUserCart(

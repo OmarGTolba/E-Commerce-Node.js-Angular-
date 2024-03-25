@@ -19,7 +19,7 @@
         </tr>
 
       <tr *ngFor="let item of products; let i = index">
-        <td routerLink="/admin/products/{{products[i]._id}}" >{{products[i].name}}</td>
+        <td routerLink="/admin/products/{{products[i]._id}}" >{{products[i].name_en}}</td>
         <td >{{products[i].description}}</td>
         <td >{{products[i].countInStock}}</td>
         <td><button class="btn btn-danger" (click)="delete(products[i]._id)">Delete</button></td>

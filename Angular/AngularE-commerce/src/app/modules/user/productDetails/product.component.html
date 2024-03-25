@@ -216,7 +216,7 @@
                     <div>
                       <div>
                         <div>
-                          <p>{{ item.user.name }}</p>
+                          <p>{{ item.title }}</p>
 
                           <div *ngIf="!editmode">
                             <mat-icon [ngClass]="{ selected: item.rating >= 1 }">star</mat-icon>
@@ -242,8 +242,8 @@
                         <p *ngIf="!editmode" class="h5 ">{{ item.title }} </p>
                         <p *ngIf="editmode"> <input type="text" [(ngModel)]="review"> </p>
                         <div>                        
-                          <mat-icon style="color: blue;" class="mx-3" *ngIf="item.user._id === userId && !editmode" (click)="edit(item)">create</mat-icon>
-                          <mat-icon class="delete-icon" *ngIf="!editmode && item.user._id === userId" (click)="deleteReview(item._id)">delete</mat-icon>
+                          <mat-icon style="color: blue;" class="mx-3" *ngIf="item?.user?._id === userId && !editmode" (click)="edit(item)">create</mat-icon>
+                          <mat-icon class="delete-icon" *ngIf="!editmode && item?.user?._id === userId" (click)="deleteReview(item._id)">delete</mat-icon>
                           <mat-icon *ngIf="editmode" (click)="toggleEditMode()" style="color: red;">clear</mat-icon>
                           <mat-icon  (click)="updateReview(item._id)"  class="mx-3" *ngIf="editmode " style="color: rgb(109, 243, 109);">check</mat-icon>
 

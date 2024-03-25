@@ -5,6 +5,7 @@ import { catchError, of } from 'rxjs';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CartService } from '../../../services/cart/cart.service';
 import { NgToastService } from 'ng-angular-popup';
+import { UserService } from '../../../user.service';
 
 @Component({
 
@@ -25,7 +26,8 @@ export class ProductCardComponent {
     private productService: ProductsService,
     private cartService: CartService,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private userService:UserService
   ) {}
   @Input() product: any;
 
@@ -35,7 +37,7 @@ export class ProductCardComponent {
   email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
   added = false;
-
+  
   ngOnInit() {
     this.isFav();
   }
@@ -134,6 +136,8 @@ export class ProductCardComponent {
       )
       .subscribe((response: any) => {
         if (response.status === 201) {
+          console.log(response);
+          this.userService.getCartCount(this.token,this.email,this.userId)
           this.toast.success({
             detail: 'SUCCESS',
             summary: 'Product added to cart',

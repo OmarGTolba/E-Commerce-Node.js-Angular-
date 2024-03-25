@@ -186,7 +186,7 @@ export class CartComponent implements OnInit{
       )
       .subscribe((response: any) => {
         console.log(response);
-        
+        this.userService.getCartCount(this.token,this.email,this.userId)
         this.getCart()
     });
   }
