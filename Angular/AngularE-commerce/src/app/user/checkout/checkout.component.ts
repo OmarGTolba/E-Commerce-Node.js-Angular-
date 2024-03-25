@@ -86,9 +86,9 @@ console.log(res.name);
   editFormGroup = new FormGroup({
     name: new FormControl({value:"",  disabled: true },[Validators.required, Validators.minLength(3)]),
     email: new FormControl({value:"",  disabled: true }, [Validators.required, Validators.pattern(/^[\w]+@[\w]+.com$/)]),
-    phone: new FormControl({value:"", disabled: false }, Validators.pattern(/^01[0-2]\d{8}$/)),
-    address: new FormControl({value:"",  disabled: false }),
-    city: new FormControl({ value:"", disabled: false }),
+    phone: new FormControl({value:"", disabled: false }, [Validators.pattern(/^01[0-2]\d{8}$/),Validators.required]),
+    address: new FormControl({value:"",  disabled: false },[Validators.required]),
+    city: new FormControl({ value:"", disabled: false },[Validators.required]),
     paymentMethod: new FormControl({  }),
   })
 
