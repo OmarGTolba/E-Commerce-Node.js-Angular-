@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { ProfileService } from '../../services/profile/profile.service';
 import { TranslateService } from '@ngx-translate/core';
 import { CartService } from '../../services/cart/cart.service';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-user',
@@ -23,7 +24,7 @@ export class UserComponent implements OnInit {
     private renderer: Renderer2,
     private productService: ProductsService,
     private profileService: ProfileService,
-    private cartService: CartService,
+    private userService: UserService,
     private router: Router,
     private translateService: TranslateService
   ) {
@@ -32,7 +33,15 @@ export class UserComponent implements OnInit {
     this.lang = localStorage.getItem('lang') || 'en';
     this.translateService.setDefaultLang(this.lang);
     this.translateService.use(this.lang);
-    this.cartLength = cartService.cart.length;
+    this.userService
+      .getUserCart(this.token, this.email, this.id)
+      .subscribe((response: any) => {
+        if (response.status !== 201) {
+          this.cartLength = 0;
+        } else {
+          this.cartLength = response.items.length;
+        }
+      });
   }
 
   products: any[] = [];

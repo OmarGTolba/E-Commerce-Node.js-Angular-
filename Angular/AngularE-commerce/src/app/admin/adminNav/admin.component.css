@@ -12,9 +12,10 @@
 /* Sidebar links */
 .sidebar a {
   display: block;
-  color: black;
+  color: white;
   padding: 16px;
   text-decoration: none;
+  margin: 10px 0;
 }
 
 /* Active/current link */

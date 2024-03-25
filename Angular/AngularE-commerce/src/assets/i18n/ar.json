@@ -1,13 +1,33 @@
 {
-    "Register": "إنشاء حساب",
+  "Register": "إنشاء حساب",
 
   "login": "تسجيل الدخول",
 
   "name": "اسم المستخدم",
 
+  "name error": " برجاء إدخال الاسم",
+
   "email": "البريد الإلكترونى",
 
+  "Phone": "رقم الهاتف ",
+
+  "Address": " العنوان",
+
+  "Phone invalid": "رقم الهاتف غير صحيح ",
+
+  "update": "تحديث",
+
+  "Enter your email": "أدخل البريد الإلكتروني",
+
   "password": "كلمة المرور",
+
+  "Enter your password": "أدخل كلمة المرور ",
+
+  " Write password again": "أعد كتابة كلمة المرور ",
+
+  "Password inputs don't match": "كلمات المرور غير متطابقة ",
+
+  "Change": "تغيير",
 
   "confirmPass": " تأكيد كلمةالمرور",
 
@@ -17,7 +37,7 @@
 
   "email invalid": "بريد إلكتروني غير صالح",
 
-  "rest pass": "أعادة تعيين كلمة المرور",
+  "rest pass": "اعادة تعيين كلمة المرور",
 
   "check email": "برجاء التحقق من البريد الإلكتروني ",
 
@@ -29,6 +49,12 @@
 
   "Register here": "سجل هنا",
 
+  "Already have an account?": "لديك حساب؟ ",
+
+  "login here.": "ادخل إلى حسابك",
+
+  "Enter your name": "أدخل اسمك",
+
   "Home": "الرئيسية",
 
   "About": "من نحن",
@@ -38,6 +64,10 @@
   "Categories": "الأقسام",
 
   "Contact": "تواصل",
+
+  "Your profile": "حسابك",
+
+  "Your orders": "طلباتك",
 
   "My orders": "طلباتي",
 
@@ -153,5 +183,51 @@
 
   "Our team": "طاقم عملنا",
 
-  "Privacy Policy": "سياسة الخصوصية"
+  "Privacy Policy": "سياسة الخصوصية",
+
+  "No favorite products": "لا توجد منتجات مفضلة",
+
+  "checkout": "إتمام الطلب",
+
+  "City": "المدينة",
+
+  "credit/debit Card": "بطاقة الائتمان ",
+
+  "cash on delivery": "دفع عند الاستلام ",
+
+  "Product": "المنتج",
+
+  "Price": "السعر",
+
+  "Quantity": "الكمية",
+
+  "Total": "الإجمالي",
+
+  "Cart Totals": "إجمالي عربة التسوق",
+
+  "Subtotal": "إجمالي الطلب",
+
+  "Image": "صورة",
+
+  "Remove": "إزالة",
+
+  "Clear Cart": "إفراغ  عربة التسوق ",
+
+  "Coupon": "كود خصم",
+
+  "coupon code": "هل لديك كوبون خصم؟ استخدمه هنا",
+
+  "Apply Coupon": "استخدم الكوبون",
+
+  "Continue Shopping": "العودة للتسوق",
+
+  "Proceed To Checkout": "الدفع الان ",
+
+  "Logout": "تسجيل الخروج ",
+
+  "Profile": "حساب المستخدم",
+
+  "Search": "بحث",
+
+  "SignIn": "تسجيل الدخول"
 }

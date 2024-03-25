@@ -27,7 +27,7 @@
             routerLinkActive="active"
             routerLink="/user"
             [routerLinkActiveOptions]="{ exact: true }"
-            >Home</a
+            >{{ "Home" | translate }}</a
           >
         </li>
         <li class="nav-item" #pronav>
@@ -36,7 +36,7 @@
             #pronav
             routerLinkActive="active"
             routerLink="/user/products"
-            >Products</a
+            >{{ "Products" | translate }}</a
           >
         </li>
         <li class="nav-item" #catnav>
@@ -44,12 +44,15 @@
             class="nav-link"
             routerLink="/user/categories"
             routerLinkActive="active"
-            >Categories</a
+            >{{ "Categories" | translate }}</a
           >
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active" routerLink="/user/about"
-            >About</a
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/user/about"
+            >{{ "About" | translate }}</a
           >
         </li>
         <li>
@@ -57,7 +60,7 @@
             class="nav-link"
             routerLinkActive="active"
             routerLink="/user/contact"
-            >Contact</a
+            >{{ "Contact" | translate }}</a
           >
         </li>
       </ul>
@@ -70,13 +73,13 @@
                 ><img src="../../assets/images/user.svg" alt=""
               /></a>
               <div class="dropdown-content">
-                <p routerLink="/user/profile">Profile</p>
+                <p routerLink="/user/profile">{{ "Profile" | translate }}</p>
                 <div
                   class="d-flex align-items-center justify-content-evenly"
                   (click)="logout()"
                 >
-                  Logout
-                  <mat-icon class="icon">logout</mat-icon>
+                  {{ "Logout" | translate }}
+                  <mat-icon class="icon">{{ "Logout" | translate }}</mat-icon>
                 </div>
               </div>
             </div>
@@ -84,7 +87,9 @@
         </ng-container>
         <ng-template #signInButton>
           <li class="d-flex align-items-center justify-content-center">
-            <button class="signIn" (click)="signIn()">SignIn</button>
+            <button class="signIn" (click)="signIn()">
+              {{ "تسجيل الدخول" | translate }}
+            </button>
           </li>
         </ng-template>
         <li class="parentCart">
@@ -107,7 +112,7 @@
       <form class="form-outline" data-mdb-input-init>
         <input
           id="search-focus"
-          placeholder="Search"
+          placeholder="{{ 'Search' | translate }}"
           [formControl]="searchFormControl"
           type="search"
           id="form1"

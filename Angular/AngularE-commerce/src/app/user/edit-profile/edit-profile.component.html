@@ -9,7 +9,7 @@
     style="background-color: #3b5d50"
   >
     <div>
-      <label for="name" class="yellow mb-1">Name</label>
+      <label for="name" class="yellow mb-1">{{ "name" | translate }}</label>
       <div class="rounded p-2 inp">
         <input
           #name
@@ -36,18 +36,18 @@
           class="mb-0 text-danger"
           *ngIf="getFormControl('name').errors['required']"
         >
-          Name is required
+          {{ "name error" | translate }}
         </p>
         <p
           class="mb-0 text-danger"
           *ngIf="getFormControl('name').errors['minlength']"
         >
-          Min length is 3
+          {{ "name valid" | translate }}
         </p>
       </div>
     </div>
     <div>
-      <label for="email" class="yellow mb-1">Email</label>
+      <label for="email" class="yellow mb-1">{{ "email" | translate }}</label>
       <div class="rounded p-2 inp">
         <input
           #userEmail
@@ -75,18 +75,18 @@
           class="mb-0 text-danger"
           *ngIf="getFormControl('email').errors['required']"
         >
-          Email is required
+          {{ "email error" | translate }}
         </p>
         <p
           class="mb-0 text-danger"
           *ngIf="getFormControl('email').errors['pattern']"
         >
-          Invalid Email
+          {{ "email invalid" | translate }}
         </p>
       </div>
     </div>
     <div>
-      <label for="phone" class="yellow mb-1">Phone</label>
+      <label for="phone" class="yellow mb-1">{{ "Phone" | translate }}</label>
       <div class="rounded p-2 inp">
         <input
           #userPhone
@@ -114,12 +114,14 @@
           class="mb-0 text-danger"
           *ngIf="getFormControl('phone').errors['pattern']"
         >
-          Invalid phone number
+          {{ "Phone invalid" | translate }}
         </p>
       </div>
     </div>
     <div>
-      <label for="address" class="yellow mb-1">Address</label>
+      <label for="address" class="yellow mb-1">{{
+        "Address" | translate
+      }}</label>
       <div class="rounded p-2 inp">
         <input
           #address
@@ -144,7 +146,7 @@
       (click)="update()"
       [disabled]="!editFormGroup.valid"
     >
-      update
+      {{ "update" | translate }}
     </button>
   </form>
 </div>

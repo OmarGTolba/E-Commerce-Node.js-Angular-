@@ -1,41 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { Category } from '../../Models/categoriesInterface';
 
 @Component({
   selector: 'app-all-categories',
   templateUrl: './all-categories.component.html',
-  styleUrl: './all-categories.component.css'
+  styleUrl: './all-categories.component.css',
 })
 export class AllCategoriesComponent {
-
-
   constructor(private http: HttpClient) {
-    this.getAllCategories()
+    this.getAllCategories();
   }
   categories: Category[] = [];
   getAllCategories(): void {
-
     const url = 'http://localhost:3000/api/v1/categories';
 
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    this.http.get<any[]>(url, {
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        jwt: token,
-        email: email,
-      }
-    }).pipe(
-      catchError((error) => {
-        return (error);
+    this.http
+      .get<any[]>(url, {
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          jwt: token,
+          email: email,
+        },
       })
-    ).subscribe(
-      (response: any) => {
+      .pipe(
+        catchError((error) => {
+          return of(error);
+        })
+      )
+      .subscribe((response: any) => {
         this.categories = response.data;
-      }
-    );
+      });
   }
 }

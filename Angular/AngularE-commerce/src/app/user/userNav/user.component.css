@@ -16,9 +16,7 @@
   width: 80%;
 }
 .form-outline {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  margin-top: 5px;
 }
 
 @media (min-width: 768px) {
@@ -36,7 +34,7 @@
   position: absolute;
   display: none;
   right: -40px;
-  top: 40px;
+  top: 45px;
   background-color: #f9f9f9;
   min-width: 110px;
   text-align: center;

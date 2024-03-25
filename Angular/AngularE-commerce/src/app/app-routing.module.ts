@@ -23,6 +23,9 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { AboutComponent } from './user/about/about.component';
 import { ContactComponent } from './user/contact/contact.component';
+import { authGuard } from './guard/auth.guard';
+import { adminGuard } from './guard/admin.guard';
+import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
 
 const routes: Routes = [
   {
@@ -39,21 +42,33 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: '', component: HomeComponent , pathMatch: 'full'},
-      { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/category/:catname', component: ProductPageComponent },
-      { path: 'allOrder', component: OrdersComponent },
-      { path: 'order/:orderId', component: UserOrderComponent },
+      {
+        path: 'allOrder',
+        component: OrdersComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'order/:orderId',
+        component: UserOrderComponent,
+        canActivate: [authGuard],
+      },
       { path: 'products', component: ProductPageComponent },
       { path: 'product/:productId', component: ProductComponent },
       { path: 'categories', component: CategoriesComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'checkout', component: CheckoutComponent },
+      { path: 'cart', component: CartComponent, canActivate: [authGuard] },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        canActivate: [authGuard],
+      },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [authGuard],
         loadChildren: () =>
           import('./modules/profile/profile.module').then(
             (m) => m.ProfileModule
@@ -64,11 +79,13 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [adminGuard],
     children: [
       { path: 'products', component: AllProductsComponent },
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
+      { path: 'addCategory', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },
     ],
   },

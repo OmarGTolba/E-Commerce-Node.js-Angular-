@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()" #categoryForm="ngForm" class="d-flex justify-content-center align-items-center">
+    <div>
+        <div class="form-group">
+            <label for="categoryName_en">Category name in english :</label>
+            <input type="text" class="form-control" id="categoryName_en" name="categoryName_en"
+                [(ngModel)]="categoryName_en" required>
+        </div>
+        <div class="form-group">
+            <label for="categoryName_ar">Category name in arabic :</label>
+            <input type="text" class="form-control" id="categoryName_ar" name="categoryName_ar"
+                [(ngModel)]="categoryName_ar" required>
+        </div>
+        <div class="form-group">
+            <label for="categoryImage">Category image :</label>
+            <input type="text" class="form-control" id="categoryImage" name="categoryImage" [(ngModel)]="categoryImage"
+                required>
+        </div>
+        <button type="submit" class="btn" [disabled]="!categoryForm.form.valid">Submit</button>
+
+    </div>
+</form>
