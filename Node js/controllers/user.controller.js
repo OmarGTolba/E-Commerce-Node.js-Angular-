@@ -18,7 +18,7 @@ const createNewUse = async (req, res) => {
   }
   const user = await findUserService(email)
   if (user) {
-    res.send({ message: 'this email is already exist..' })
+    res.status(409).send({ message: 'this email is already exist..' })
   } else {
     const passwordHash = await bcrypt.hash(password, 10)
     const newUser = await cretateNewUser({

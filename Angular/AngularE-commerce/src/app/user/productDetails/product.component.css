@@ -1,6 +1,6 @@
 .pa {
   font-family: emoji;
-  margin-top: 7em;
+  margin-top: 7em !important;
 }
 .price {
   font-weight: 700;

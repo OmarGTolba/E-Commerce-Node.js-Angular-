@@ -341,8 +341,8 @@
 					<div class="post-entry">
 						<a href="#" class="post-thumbnail"><img src={{item.icon}} alt="Image"
 								class="img-fluid catimg h-50"></a>
-						<div class="post-content-entry">
-							<h3><a href="#">{{item.name}}</a></h3>
+						<div class="post-content-entry" [ngClass]="{'text-end':lang == 'ar'}">
+							<h3><a href="#">{{lang == "en" ? item.name_en : item.name_ar}}</a></h3>
 							<div class="meta">
 								<span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19,
 										2021</a></span>
@@ -382,7 +382,7 @@
 							<input type="email" class="form-control" placeholder="Enter your email">
 						</div>
 						<div class="col-auto">
-							<button class="btn btn-primary">
+							<button type="button" class="btn btn-primary" title="btn">
 								<span class="fa fa-paper-plane"></span>
 							</button>
 						</div>
