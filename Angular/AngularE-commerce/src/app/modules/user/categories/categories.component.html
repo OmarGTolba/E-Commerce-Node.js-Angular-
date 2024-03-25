@@ -51,15 +51,15 @@
             </div>
 
 
-            <div *ngFor="let item of categories" [routerLink]="'/user/search/category/' + item?.name_en?.split(' ')[0].slice(0, -1)" class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+            <div *ngFor="let item of categories" [routerLink]="'/user/search/category/' + item.name_en.split(' ')[0].slice(0, -1)" class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                 <ng-container *ngIf="!SkeletonLoading">
 
 
                     <div class="post-entry">
                         <a  class="post-thumbnail"><img src={{item.icon}} alt="Image"
                                 class="img-fluid catimg h-50"></a>
-                        <div class="post-content-entry mb-5">
-                            <h3><a>{{item.name}}</a></h3>
+                        <div class="post-content-entry mb-5"  [ngClass]="{'text-end':lang == 'ar'}">
+                            <h3><a>{{lang == "en" ? item.name_en : item.name_ar}}</a></h3>
                             <div class="meta">
                             </div>
                         </div>

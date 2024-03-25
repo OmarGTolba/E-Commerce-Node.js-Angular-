@@ -59,7 +59,6 @@ export class ProductCardComponent {
     } else {
       this.addToFav(this.product._id);
     }
-    this.productFav = !this.productFav;
   }
 
   addToFav(productId: string) {
@@ -67,10 +66,20 @@ export class ProductCardComponent {
       .AddToFav(this.token, this.email, this.userId, productId)
       .pipe(
         catchError((error) => {
-          return error;
+          return of(error);
         })
       )
       .subscribe((response: any) => {
+        if (response.status === 401) {
+          this.toast.error({
+            detail: 'ERROR',
+            summary: response.error.message,
+            duration: 5000,
+            position: 'topRight',
+          });
+        } else {
+          this.productFav = !this.productFav;
+        }
         console.log(response);
       });
   }
@@ -80,7 +89,7 @@ export class ProductCardComponent {
       .removeFromFav(this.token, this.email, this.userId, productId)
       .pipe(
         catchError((error) => {
-          return error;
+          return of(error);
         })
       )
       .subscribe((response: any) => {
@@ -93,20 +102,23 @@ export class ProductCardComponent {
       .isFav(this.token, this.email, this.userId, this.product._id)
       .pipe(
         catchError((error) => {
-          return error;
+          return of(error);
         })
       )
       .subscribe((response: any) => {
-        if (response.isFavorite == false) {
-          this.productFav = false;
-        } else {
-          this.productFav = true;
+        if (response.status === 201) {
+          if (response.isFavorite == false) {
+            this.productFav = false;
+          } else {
+            this.productFav = true;
+          }
         }
         console.log(response);
       });
   }
 
   AddToCart() {
+    
     const body = {
       quantity: 1,
       product_id: this.product._id,
@@ -133,15 +145,22 @@ export class ProductCardComponent {
           setTimeout(() => {
             this.added = false;
           }, 5000);
-        } else {
+        } else if (response.status === 404){
           this.toast.error({
             detail: 'ERROR',
-            summary: 'Oops the product out of the stock!',
+            summary: response.error.message,
             duration: 5000,
             position: 'topRight',
           });
         }
-        console.log(response);
+        if(!this.token){
+          this.toast.error({
+            detail: 'Please login first',
+            summary: 'Error',
+            duration: 5000,
+            position: 'topRight',
+          }); 
+        }
       });
   }
 }

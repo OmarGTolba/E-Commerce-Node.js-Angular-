@@ -7,37 +7,37 @@ import { catchError } from 'rxjs';
 @Component({
   selector: 'app-user-order',
   templateUrl: './user-order.component.html',
-  styleUrl: './user-order.component.css'
+  styleUrl: './user-order.component.css',
 })
 export class UserOrderComponent {
-  orderId: string="";
+  orderId: string = '';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  order:any;
+  order: any;
 
-  constructor(private route: ActivatedRoute ,private orderServices: OrdersService,) { }
-imgsrc:string = "https://i.imgur.com/TAzli1U.jpg" 
+  constructor(
+    private route: ActivatedRoute,
+    private orderServices: OrdersService
+  ) {}
+  imgsrc: string = 'https://i.imgur.com/TAzli1U.jpg';
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.orderId = params['orderId'];
-      
     });
-    this.orderServices.getOrderByID(this.token,this.email,this.orderId).pipe(
-      catchError((error) => {
-        return (error);
-      })
-    ).subscribe(
-      (response: any) => {
+    this.orderServices
+      .getOrderByID(this.token, this.email, this.orderId)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
         this.order = response.data;
-        console.log(this.order)
-        this.imgsrc = this.order?.orderItemsIds[0].product.images[0]
-      }
-   )
-
- }
- changeImg(i:string){
-  this.imgsrc = i
- }
+        console.log(this.order);
+        this.imgsrc = this.order?.orderItemsIds[0].product.images[0];
+      });
+  }
+  changeImg(i: string) {
+    this.imgsrc = i;
+  }
 }
-
-

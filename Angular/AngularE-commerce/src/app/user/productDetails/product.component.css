@@ -1,0 +1,131 @@
+.pa {
+  font-family: emoji;
+  margin-top: 7em !important;
+}
+.price {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #3b5d50;
+}
+.discription {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5em;
+  border: 1px solid #3b5d50;
+}
+.name {
+  font-size: 2em;
+  font-weight: bold;
+  width: 70%;
+}
+.add-btn {
+  width: 50% !important;
+  border: none;
+  background-color: #3b5d50;
+  color: aliceblue;
+  padding: 15px;
+}
+.add-btn:hover {
+  background-color: #3b5d50a9;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.quantity button {
+  border: none;
+  background-color: #3b5d50;
+  border-radius: 50%;
+  padding: 5px 14px;
+  color: aliceblue;
+}
+.quantity button:hover {
+  cursor: pointer;
+  background-color: #3b5d50a9;
+  transition: all ease-in-out 0.1s;
+}
+
+.quantity input {
+  width: 50px;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.selected {
+  color: gold; /* Change the color of selected stars */
+}
+.favorite {
+  color: #fe302f;
+}
+.fav {
+  cursor: pointer;
+  border: 1px solid #3b5d50;
+}
+.disabled-input {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.section2 {
+  width: 80%;
+  margin: 50px auto;
+}
+.section2 ul {
+  display: flex;
+  justify-content: center;
+}
+.profileIcon {
+  width: 150px;
+}
+.review {
+  width: 87%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #3b5d50;
+  color: whitesmoke;
+  padding: 10px 64px;
+  border-radius: 12px;
+}
+li .active {
+  background-color: #3b5d50;
+  color: whitesmoke;
+}
+
+.description {
+  padding: 45px;
+}
+.description p {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#title {
+  border: none;
+  outline: none;
+  padding: 6px 10px;
+  width: 50%;
+  border-radius: 8px;
+  margin: 20px 20px 0 20px;
+  height: 50px;
+}
+.submitReview {
+  width: 27%;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1px solid whitesmoke;
+  color: whitesmoke;
+  padding: 8px 0;
+  font-size: large;
+}
+.submitReview:hover {
+  background-color: whitesmoke;
+  color: #3b5d50;
+}
+.name {
+  display: contents !important;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  opacity: 1 !important;
+}

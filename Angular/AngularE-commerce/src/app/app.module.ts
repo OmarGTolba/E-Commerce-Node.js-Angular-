@@ -36,6 +36,7 @@ import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './modules/user/userHome/home.component';
 import { UserModule } from './modules/user/user.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -43,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AddcategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -21,53 +21,40 @@ import { CategoriesComponent } from './modules/user/categories/categories.compon
 import { CheckoutComponent } from './modules/user/checkout/checkout.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { authGuard } from './guard/auth.guard';
+import { adminGuard } from './guard/admin.guard';
 import { AboutComponent } from './modules/user/about/about.component';
 import { ContactComponent } from './modules/user/contact/contact.component';
 import { AdminProductsDetailsComponent } from './modules/admin/admin-products-details/admin-products-details.component';
+import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
 
 const routes: Routes = [
-  { path: '', component: UserComponent   ,children: [
-    { path: '',component: HomeComponent } ]},
-  { path: 'register', component: RegisterComponent },
+  {
+    path: '',
+    component: UserComponent,
+    children: [{ path: '', component: HomeComponent }],
+  },
   { path: 'login', component: LoginComponent },
+ 
+  { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'reset-password/:id/:token', component: ResetPasswordComponent},
   {
     path: 'user',
     component: UserComponent,
-    children: [
-      { path: '',component: HomeComponent },
-      { path: 'allOrder', component: OrdersComponent },
-      { path: 'search/:name', component: ProductPageComponent },
-      { path: 'search/category/:catname', component: ProductPageComponent },
-      { path: 'allOrder', component: OrdersComponent },
-      { path: 'order/:orderId', component: UserOrderComponent },
-      { path: 'products', component: ProductPageComponent },
-      { path: 'product/:productId', component: ProductComponent },
-      { path: 'categories', component: CategoriesComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'checkout', component: CheckoutComponent },
-      { path: 'about', component: AboutComponent },
-      { path: 'contact', component: ContactComponent },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        loadChildren: () =>
-          import('./modules/profile/profile.module').then(
-            (m) => m.ProfileModule
-          ),
-      },
-    ],
+   
   },
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [adminGuard],
     children: [
       { path: 'products', component: AllProductsComponent },
       { path: 'products/:id', component: AdminProductsDetailsComponent },
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
+      { path: 'addCategory', component: AddcategoryComponent },
       { path: 'addProduct/:id', component: AddComponent },
       { path: 'users', component: AllUsersComponent },
     ],

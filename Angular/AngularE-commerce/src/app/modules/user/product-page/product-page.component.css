@@ -5,12 +5,10 @@
   margin: 0 auto;
 }
 
-
 .dropbtn {
   padding: 16px;
   font-size: 20px;
   font-weight: 500;
-  /* border: 1px solid #3B5D50; */
   border: none;
   cursor: pointer;
   margin: 30px 60px 0;
@@ -50,7 +48,9 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
+.container {
+  margin-top: 50px;
+}
 @media only screen and (max-width: 800px) {
   .dropdown {
     float: none;
@@ -62,100 +62,4 @@
 
 .mat-mdc-paginator-container {
   display: none !important;
-}
-
-
-
-.hero h1 {
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 30px;
-}
-
-.hero {
-  background: #3b5d50;
-  padding: calc(4rem - 30px) 0 0rem 0;
-  padding-top: 150px !important;
- 
-}
-@media (min-width: 768px) {
-  .hero {
-    padding: calc(4rem - 30px) 0 4rem 0;
-  }
-}
-@media (min-width: 992px) {
-  .hero {
-    padding: calc(8rem - 30px) 0 8rem 0;
-  }
-}
-.hero .intro-excerpt {
-  position: relative;
-  z-index: 4;
-}
-@media (min-width: 992px) {
-  .hero .intro-excerpt {
-    max-width: 450px;
-  }
-}
-.hero h1 {
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 30px;
-}
-@media (min-width: 1400px) {
-  .hero h1 {
-    font-size: 54px;
-  }
-}
-.hero p {
-  color: rgba(255, 255, 255, 0.5);
-  /* margin-botom: 30px; */
-}
-.hero .hero-img-wrap {
-  position: relative;
-}
-.hero .hero-img-wrap img {
-  position: relative;
-  top: 0px;
-  right: 0px;
-  z-index: 2;
-  max-width: 780px;
-  left: -20px;
-}
-@media (min-width: 768px) {
-  .hero .hero-img-wrap img {
-    right: 0px;
-    left: -100px;
-  }
-}
-@media (min-width: 992px) {
-  .hero .hero-img-wrap img {
-    left: 0px;
-    top: -80px;
-    position: absolute;
-    right: -50px;
-  }
-}
-@media (min-width: 1200px) {
-  .hero .hero-img-wrap img {
-    left: 0px;
-    top: -80px;
-    right: -100px;
-  }
-}
-.hero .hero-img-wrap:after {
-  content: "";
-  position: absolute;
-  width: 255px;
-  height: 217px;
-  /* background-image: url("../images/dots-light.svg"); */
-  background-size: contain;
-  background-repeat: no-repeat;
-  right: -100px;
-  top: -0px;
-}
-@media (min-width: 1200px) {
-  .hero .hero-img-wrap:after {
-    top: -40px;
-  }
 }

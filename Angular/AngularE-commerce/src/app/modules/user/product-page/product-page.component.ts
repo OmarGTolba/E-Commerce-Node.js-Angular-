@@ -8,7 +8,7 @@ import { catchError } from 'rxjs';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.css'],
+  styleUrls: ['./product-page.component.css', '../../app.component.css'],
 })
 export class ProductPageComponent {
   name: string | null = '';
@@ -35,17 +35,10 @@ export class ProductPageComponent {
       this.catname = params.get('catname');
       if (this.name) {
         this.search();
-console.log('aaaaaa');
-}
-else if(this.catname){
-  this.searchByCategory();
-  console.log("caaaaaaaaat");
-  
- 
-}
-else {
-  this.getAllProducts();
-  console.log('bbbba');
+      } else if (this.catname) {
+        this.searchByCategory();
+      } else {
+        this.getAllProducts();
       }
     });
 
@@ -66,12 +59,12 @@ else {
       .subscribe((response: any) => {
         this.products = response.data;
         console.log(this.products);
-        
+
+
         this.displayedProducts = this.products.slice(
           0,
           this.paginator.pageSize
         );
-
 
         this.skeletonLoading = false;
       });
@@ -88,8 +81,8 @@ else {
       .subscribe((response: any) => {
         this.products = response.data;
         this.displayedProducts = this.products;
-        console.log(this.products);
-        this.skeletonLoading = false
+        this.skeletonLoading = false;
+        this.skeletonLoading = false;
       });
   }
   searchByCategory() {
@@ -104,13 +97,14 @@ else {
         this.products = response.data;
         this.displayedProducts = this.products[0];
         console.log(this.products[0]);
-        this.skeletonLoading = false
+        this.skeletonLoading = false;
+        this.skeletonLoading = false;
       });
   }
 
   sortbyName(): void {
     this.products = this.products.sort((a: any, b: any) =>
-      a.name.localeCompare(b.name)
+      a.name_en.localeCompare(b.name_en)
     );
     this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
     // this.loading = false; // Set loading to false when data is loaded

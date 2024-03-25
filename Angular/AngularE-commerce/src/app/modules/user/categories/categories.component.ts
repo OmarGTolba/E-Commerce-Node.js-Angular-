@@ -10,6 +10,7 @@ import { catchError } from 'rxjs';
 export class CategoriesComponent {
   categories: any[] = [];
 
+  lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
 

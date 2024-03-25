@@ -1,6 +1,6 @@
 <div class="hero">
   <div class="container">
-    <h1>Your profile</h1>
+    <h1>{{ "Your profile" | translate }}</h1>
   </div>
 </div>
 <div class="container" *ngIf="username">
@@ -21,19 +21,19 @@
         routerLink="edit"
         [routerLinkActive]="'active'"
         class="rounded my-2 link"
-        >Edit profile</a
+        >{{ "Edit" | translate }}</a
       >
       <a
         routerLink="allOrder"
         [routerLinkActive]="'active'"
         class="rounded my-2 link"
-        >Your orders</a
+        >{{ "Your orders" | translate }}</a
       >
       <a
         routerLink="favorites"
         class="rounded my-2 link text-center"
         [routerLinkActive]="'active'"
-        >Favourites</a
+        >{{ "fav" | translate }}</a
       >
     </div>
   </div>
@@ -46,7 +46,12 @@
   </h2> -->
   <div class="rounded position-fixed left-0 bottom-0 col-5 p-3 bg-light">
     <h3 class="text-center text-white">
-      <ngx-skeleton-loader count="1" appearance="line" animation="pulse" [theme]="{width: '25%'}">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        animation="pulse"
+        [theme]="{ width: '25%' }"
+      >
       </ngx-skeleton-loader>
     </h3>
     <div class="img">

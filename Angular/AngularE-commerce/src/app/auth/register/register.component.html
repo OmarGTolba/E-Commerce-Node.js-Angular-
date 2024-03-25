@@ -1,35 +1,81 @@
 <div class="container">
-  <div class="plant-img" ></div>
+  <div class="plant-img"></div>
   <form (submit)="onSubmit()" [formGroup]="registerForm" class="register-form">
-
-    <h1>Register</h1>
-    <!-- <label for="name">Name:</label> -->
-    <input [(ngModel)]="name" name="name" type="text" id="name" formControlName="name" required placeholder="Enter your name">
-    <small *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched" class="error-border">
-      <span class="error-message">Name is required!</span>
+    <h1>{{ "Register" | translate }}</h1>
+    <input
+      [(ngModel)]="name"
+      name="name"
+      type="text"
+      id="name"
+      formControlName="name"
+      required
+      placeholder="{{ 'Enter your name' | translate }}"
+    />
+    <small
+      *ngIf="registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.touched"
+      class="error-border"
+    >
+      <span class="error-message">{{ "name error" | translate }}</span>
     </small>
 
-    <!-- <label for="email">Email:</label> -->
-    <input [(ngModel)]="email" name="email" type="email" id="email" formControlName="email" required placeholder="Enter your email">
-    <small *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched" class="error-border">
-      <span class="error-message">Email is required!</span>
+    <input
+      [(ngModel)]="email"
+      name="email"
+      type="email"
+      id="email"
+      formControlName="email"
+      required
+      placeholder="{{ 'Enter your email' | translate }}"
+    />
+    <small
+      *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched"
+      class="error-border"
+    >
+      <span class="error-message">{{ "email error" | translate }}</span>
     </small>
-    <small *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched" >
-      <span class="error-message">Email should be valid!</span>
+    <small
+      *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched"
+    >
+      <span class="error-message">{{ "email valid" | translate }}</span>
     </small>
 
-    <!-- <label for="password">Password:</label> -->
-    <input [(ngModel)]="password" name="password" type="password" id="password" formControlName="password" required placeholder="Enter your password">
-    <small *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched" class="error-border">
-      <span class="error-message">Password is required!</span>
-    </small>  
+    <input
+      [(ngModel)]="password"
+      name="password"
+      type="password"
+      id="password"
+      formControlName="password"
+      required
+      placeholder="{{ 'Enter your password' | translate }}"
+    />
+    <small
+      *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')?.touched"
+      class="error-border"
+    >
+      <span class="error-message">{{ "password error" | translate }}</span>
+    </small>
 
-  
-    <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" style="padding: 10px; background-color: #3b5d50; border: none; font-size: 15px; margin-top: 10px; margin-bottom: 20px; border-radius: 5px; cursor: pointer;">Register</button>
+    <button
+      type="submit"
+      [disabled]="registerForm.invalid"
+      class="btn btn-primary"
+      style="
+        padding: 10px;
+        background-color: #3b5d50;
+        border: none;
+        font-size: 15px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      "
+    >
+      {{ "Register" | translate }}
+    </button>
 
-    <!-- <button routerLink="">Login</button> -->
     <div class="mt-2" class="account">
-      Already have an account? <a routerLink="">login here.</a>
+      {{ "Already have an account?" | translate }}
+      <a routerLink="">{{ "login here." | translate }}.</a>
     </div>
   </form>
 </div>
