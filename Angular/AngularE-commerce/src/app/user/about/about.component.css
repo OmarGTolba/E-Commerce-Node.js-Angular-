@@ -1,0 +1,99 @@
+/* Add these styles to your global CSS file or component CSS
+.untree_co-section {
+    padding: 100px 0;
+  }
+  
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+  }
+  
+  .untree_co-section .col-lg-3 {
+    position: relative;
+  }
+  
+  .untree_co-section .col-lg-3 img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .untree_co-section .col-lg-3 h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .untree_co-section .col-lg-3 h3 a {
+    color: #333;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .untree_co-section .col-lg-3 .d-block {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .untree_co-section .col-lg-3 p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .untree_co-section .col-lg-3:hover img {
+    transform: scale(1.1);
+  }
+  
+  .untree_co-section .col-lg-3:hover h3 a {
+    color: #3b5d50; 
+  }
+   */
+
+   /* Add these styles to your global CSS file or component CSS */
+
+/* Style for team member cards */
+.untree_co-section .col-lg-3 {
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .untree_co-section .col-lg-3:hover {
+    transform: translateY(-10px);
+     background-color: #eaeceb;
+  }
+  
+  .untree_co-section .col-lg-3 img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .untree_co-section .col-lg-3 h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .untree_co-section .col-lg-3 h3 a {
+    color: #333;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .untree_co-section .col-lg-3 .d-block {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .untree_co-section .col-lg-3 p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .untree_co-section .col-lg-3:hover h3 a {
+    color: #f9bf29; 
+  }
+  

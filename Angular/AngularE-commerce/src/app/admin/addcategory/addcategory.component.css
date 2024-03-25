@@ -1,0 +1,26 @@
+form {
+  background-color: #3b5d50;
+  width: 60%;
+  margin: 0px auto;
+  padding: 50px 0;
+  color: white;
+  border-radius: 0 0 10px 10px;
+}
+label {
+  margin: 10px 0;
+}
+input {
+  width: 300px;
+  outline: none;
+  border: none;
+}
+button {
+  width: fit-content;
+  margin: 30px auto;
+  background-color: #f9bf29;
+  color: white;
+}
+button:hover {
+  background-color: #f9bf29;
+  transform: scale(1.08);
+}

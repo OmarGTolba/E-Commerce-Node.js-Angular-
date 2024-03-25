@@ -4,37 +4,33 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrl: './admin.component.css',
 })
 export class AdminComponent {
-allProducts:any;
+  allProducts: any;
 
-constructor(private router:Router) {
-  
-}
-getAllProducts(){
-  this.router.navigate(['admin/products']);  
-}
+  constructor(private router: Router) {}
+  getAllProducts() {
+    this.router.navigate(['admin/products']);
+  }
 
-getAllUsers(){
+  getAllUsers() {
+    this.router.navigate(['admin/users']);
+  }
 
-  this.router.navigate(['admin/users']);  
-}
+  getAllCategories() {
+    this.router.navigate(['admin/categories']);
+  }
 
-getAllCategories(){
+  getAllOrders() {
+    this.router.navigate(['admin/orders']);
+  }
 
-  this.router.navigate(['admin/categories']);  
-}
+  addProduct() {
+    this.router.navigate(['admin/addProduct']);
+  }
 
-getAllOrders(){
-
-  this.router.navigate(['admin/orders']);  
-}
-
-addProduct(){
-
-  this.router.navigate(['admin/addProduct']);  
-}
-
-
+  addCategory() {
+    this.router.navigate(['admin/addCategory']);
+  }
 }
