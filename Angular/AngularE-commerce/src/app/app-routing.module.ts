@@ -23,12 +23,13 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { AboutComponent } from './user/about/about.component';
 import { ContactComponent } from './user/contact/contact.component';
+import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent},
-  { path: 'reset-password/:id/:token', component: ResetPasswordComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
   {
     path: 'user',
     component: UserComponent,
@@ -64,6 +65,7 @@ const routes: Routes = [
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
+      { path: 'addCategory', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },
     ],
   },
