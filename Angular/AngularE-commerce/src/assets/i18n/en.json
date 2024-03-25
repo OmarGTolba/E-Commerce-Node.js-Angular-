@@ -5,13 +5,29 @@
 
   "name": "Name",
 
+  "name error": " Name is required",
+
   "email": "Email",
+
+  "Phone": " Phone",
+
+  "Address": " Address",
+
+  "Phone invalid": "  Invalid phone number",
+
+  "update": "update",
 
   "Enter your email": "Enter your email",
 
   "password": "Password",
 
   "Enter your password": "Enter your password",
+
+  " Write password again": " Write password again",
+
+  "Password inputs don't match": "Password inputs don't match",
+
+  "Change": "Change",
 
   "confirmPass": "Confirm Password",
 
@@ -33,6 +49,12 @@
 
   "Register here": "Register here.",
 
+  "Already have an account?": "Already have an account?",
+
+  "login here.": "login here.",
+
+  "Enter your name": "Enter your name",
+
   "Home": "Home",
 
   "About": "About",
@@ -42,6 +64,10 @@
   "Categories ": "Categories",
 
   "Contact": "Contact",
+
+  "Your profile": "Your profile",
+
+  "Your orders": "Your orders",
 
   "My orders": "My Orders",
 
@@ -155,5 +181,51 @@
 
   "Our team": "Our team",
 
-  "Privacy Policy": "Privacy Policy"
+  "Privacy Policy": "Privacy Policy",
+
+  "No favorite products": "No favorite products",
+
+  "checkout": "Checkout",
+
+  "address": "address",
+
+  "City": "City",
+
+  "credit/debit Card": "credit/debit Card",
+
+  "cash on delivery": "cash on delivery",
+
+  "Product": "Product",
+
+  "Price": "Price",
+
+  "Quantity": "Quantity",
+
+  "Total": "Total",
+
+  "Cart Totals": "Cart Totals",
+
+  "Subtotal": "Total",
+
+  "Image": "Image",
+
+  "Remove": "Remove",
+
+  "Clear Cart": "Clear Cart",
+
+  "Coupon": "Coupon",
+
+  "coupon code": "Enter your coupon code if you have one.",
+
+  "Continue Shopping": "Continue Shopping",
+
+  "Proceed To Checkout": "Proceed To Checkout",
+
+  "Logout": "Logout",
+
+  "Profile": "Profile",
+
+  "Search": "Search",
+
+  "SignIn": "SignIn"
 }

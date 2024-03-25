@@ -522,9 +522,12 @@
                 alt="Image"
                 class="img-fluid catimg h-50"
             /></a>
-            <div class="post-content-entry">
+            <div
+              class="post-content-entry"
+              [ngClass]="{ 'text-end': lang == 'ar' }"
+            >
               <h3>
-                <a href="#">{{ item.name }}</a>
+                <a href="#">{{ lang == "en" ? item.name_en : item.name_ar }}</a>
               </h3>
               <div class="meta"></div>
             </div>
@@ -564,14 +567,14 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Enter your name"
+                placeholder="{{ 'Enter your name' | translate }}"
               />
             </div>
             <div class="col-auto">
               <input
                 type="email"
                 class="form-control"
-                placeholder="Enter your email"
+                placeholder="{{ 'Enter your email' | translate }}"
               />
             </div>
             <div class="col-auto">

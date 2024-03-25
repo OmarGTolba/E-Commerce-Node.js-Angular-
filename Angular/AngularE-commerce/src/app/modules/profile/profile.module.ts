@@ -10,13 +10,22 @@ import {
   NgxSkeletonLoaderComponent,
   NgxSkeletonLoaderModule,
 } from 'ngx-skeleton-loader';
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {
+  HttpClient,
+  HttpClientModule,
+  provideHttpClient,
+} from '@angular/common/http';
 const routes: Routes = [
   { path: '', redirectTo: 'edit', pathMatch: 'full' },
   { path: 'edit', component: EditProfileComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'allOrder', component: OrdersComponent },
 ];
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [EditProfileComponent, ProfileComponent, FavoritesComponent],
   imports: [
@@ -24,6 +33,13 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgxSkeletonLoaderModule,
     ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
 })
 export class ProfileModule {}

@@ -1,34 +1,34 @@
 <div class="container">
   <form (submit)="onLoginSubmit()" [formGroup]="loginForm" class="login-form">
-    <h1>Login</h1>
+    <h1>{{ "login" | translate }}</h1>
     <input
       type="email"
       formControlName="email"
-      placeholder="Enter your email"
+      placeholder="{{ 'Enter your email' | translate }}"
       [(ngModel)]="email"
     />
     <small
       *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched"
       class="error-border"
     >
-      <span class="error-message">Email is required!</span>
+      <span class="error-message">{{ "email error" | translate }}</span>
     </small>
     <small
       *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched"
     >
-      <span class="error-message">Email should be valid!</span>
+      <span class="error-message">{{ "email valid" | translate }}</span>
     </small>
     <input
       type="password"
       formControlName="password"
-      placeholder="Enter your password"
+      placeholder="{{ 'Enter your password' | translate }}"
       [(ngModel)]="password"
     />
     <small
       *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
       class="error-border"
     >
-      <span class="error-message">Password is required!</span>
+      <span class="error-message">{{ "password error" | translate }}</span>
     </small>
     <button
       type="submit"
@@ -45,11 +45,14 @@
         cursor: pointer;
       "
     >
-      Login
+      {{ "login" | translate }}
     </button>
-    <a routerLink="/forgot-password" class="mb-2">Forgot password?</a>
+    <a routerLink="/forgot-password" class="mb-2">{{
+      "Forgot password" | translate
+    }}</a>
     <div class="mt-2" class="account">
-      Don't have an account? <a routerLink="/register">Register here.</a>
+      {{ "Don't have an account" | translate }}
+      <a routerLink="/register">{{ "Register here" | translate }}</a>
     </div>
   </form>
   <div class="plant-img"></div>
