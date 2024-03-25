@@ -25,15 +25,20 @@ import { AboutComponent } from './user/about/about.component';
 import { ContactComponent } from './user/contact/contact.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },
+  {
+    path: '',
+    component: UserComponent,
+    children: [{ path: '', component: HomeComponent }],
+  },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent},
-  { path: 'reset-password/:id/:token', component: ResetPasswordComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
   {
     path: 'user',
     component: UserComponent,
     children: [
-      { path: '', component: HomeComponent },
+      { path: '', component: HomeComponent , pathMatch: 'full'},
       { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/category/:catname', component: ProductPageComponent },

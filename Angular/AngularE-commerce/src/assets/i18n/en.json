@@ -1,7 +1,157 @@
-{
-    "description": "description",
-    "add to cart": "Add to cart",
-    "add to fav": "Add to fav",
-    "reviews": "Reviews",
-    "add review": "Add review"
-}
+{"login": "Log in",
+
+  "Register": "Register",
+
+  "name": "Name",
+
+  "email": "Email",
+
+  "Enter your email": "Enter your email",
+
+  "password": "Password",
+
+  "Enter your password": "Enter your password",
+
+  "confirmPass": "Confirm Password",
+
+  "email error": "Email is required",
+
+  "email valid": "Email should be valid!",
+
+  "email invalid": "Invalid Email",
+
+  "rest pass": "Reset password",
+
+  "check email": "Please Check your Email",
+
+  "password error": "Password is required!",
+
+  "Forgot password": "Forgot password?",
+
+  "Don't have an account": "Don't have an account?",
+
+  "Register here": "Register here.",
+
+  "Home": "Home",
+
+  "About": "About",
+
+  "Services ": "Services",
+
+  "Categories ": "Categories",
+
+  "Contact": "Contact",
+
+  "My orders": "My Orders",
+
+  "Products": "Products",
+
+  "Cart": "Cart",
+
+  "Edit": "Edit Profil",
+
+  "fav": "Favourites",
+
+  "logout": "Log Out",
+
+  "search": "Search",
+
+  "description": "description",
+
+  "add to cart": "Add to cart",
+
+  "add to fav": "Add to fav",
+
+  "reviews": "Reviews",
+
+  "add review": "Add review",
+
+  "intro": "Modern Interior ",
+
+  "intro2": " Design Studio",
+
+  "intro3": "  Give your home a makeover with our curated collection of furniture!",
+
+  "shop": "Shop Now",
+
+  "explore": "Explore",
+
+  "crafted": "Crafted with excellent material.",
+
+  "crafted2": "Experience the difference of exceptional materials in every piece.",
+
+  "submit": "Submit",
+
+  "pagination": "Items per page",
+
+  "sort": "Sort By",
+
+  "sort name": "Sort By Name",
+
+  "sort price": "Sort By Price",
+
+  "next": "Next",
+
+  "prev": "Previous",
+
+  "why us": "Why Choose Us",
+
+  "why us2": "Elevate your home with timeless design & quality craftsmanship",
+
+  "shipping": "Fast & Free Shipping",
+
+  "shipping2": "Enjoy quick delivery on your order, with no shipping fees.",
+
+  "shoping": "Easy to Shop",
+
+  "shoping2": "Browse, filter, and purchase your dream furniture in just a fewminutes",
+
+  "24/support": "24/7 Support",
+
+  "24/support2": "24/7 Support",
+
+  "Return": "Hassle Free Returns",
+
+  "Return2": "Our hassle-free returns ensure a smooth experience.",
+
+  "categori": "We Help You Make Modern Interior Design",
+
+  "categori2": "Find your perfect pieces & get design guidance.",
+
+  "categori3": "Upgrade your style",
+
+  "categori4": "Find your perfect fit",
+
+  "categori5": "Effortless shopping",
+
+  "categori6": "Modern made easy",
+
+  "chair1": "Nordic Chair",
+
+  "chair details1": "Classic",
+
+  "chair2": "Kruzo Aero Chair",
+
+  "chair details2": "Relax",
+
+  "chair3": "Ergonomic Chair",
+
+  "chair details3": "Comfortable",
+
+  "Our Categories": "Our Categories",
+
+  "View All Categories": "View All Categories",
+
+  "Subscribe to Newsletter": "Subscribe to Newsletter",
+
+  "Support": "Support",
+
+  "Knowledge base": "Knowledge base",
+
+  "Live chat": "Live chat",
+
+  "Jobs": "Jobs",
+
+  "Our team": "Our team",
+
+  "Privacy Policy": "Privacy Policy"}

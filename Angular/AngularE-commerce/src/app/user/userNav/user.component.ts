@@ -80,7 +80,7 @@ export class UserComponent implements OnInit {
     this.loggedin = false;
   }
   signIn() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
   initSearchForm(): void {
     this.searchFormControl.valueChanges

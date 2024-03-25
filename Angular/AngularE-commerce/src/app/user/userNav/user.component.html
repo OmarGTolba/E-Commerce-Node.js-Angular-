@@ -5,41 +5,76 @@
   <div class="container">
     <a class="navbar-brand text-white">Furni<span>.</span></a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
-      aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarsFurni"
+      aria-controls="navbarsFurni"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarsFurni">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+      <ul
+        class="navbar-nav me-auto mb-2 mb-lg-0 custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0"
+      >
         <li class="nav-item" #homenav>
-          <a class="nav-link" routerLinkActive="active" routerLink="/user"
-            [routerLinkActiveOptions]="{ exact: true }">Home</a>
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/user"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
         </li>
         <li class="nav-item" #pronav>
-          <a class="nav-link" #pronav routerLinkActive="active" routerLink="/user/products">Products</a>
+          <a
+            class="nav-link"
+            #pronav
+            routerLinkActive="active"
+            routerLink="/user/products"
+            >Products</a
+          >
         </li>
         <li class="nav-item" #catnav>
-          <a class="nav-link" routerLink="/user/categories" routerLinkActive="active">Categories</a>
+          <a
+            class="nav-link"
+            routerLink="/user/categories"
+            routerLinkActive="active"
+            >Categories</a
+          >
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active" routerLink="/user/about">About</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/about"
+            >About</a
+          >
         </li>
         <li>
-          <a class="nav-link" routerLinkActive="active" routerLink="/user/contact">Contact</a>
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/user/contact"
+            >Contact</a
+          >
         </li>
       </ul>
-
-
 
       <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
         <ng-container *ngIf="loggedin; else signInButton">
           <li>
             <div class="dropdown">
-              <a class="nav-link"><img src="../../assets/images/user.svg" alt="" /></a>
+              <a class="nav-link"
+                ><img src="../../assets/images/user.svg" alt=""
+              /></a>
               <div class="dropdown-content">
                 <p routerLink="/user/profile">Profile</p>
-                <div class="d-flex align-items-center justify-content-evenly " (click)="logout()">
+                <div
+                  class="d-flex align-items-center justify-content-evenly"
+                  (click)="logout()"
+                >
                   Logout
                   <mat-icon class="icon">logout</mat-icon>
                 </div>
@@ -49,26 +84,35 @@
         </ng-container>
         <ng-template #signInButton>
           <li class="d-flex align-items-center justify-content-center">
-            <button class="signIn" (click)="signIn()">
-              SignIn
-            </button>
+            <button class="signIn" (click)="signIn()">SignIn</button>
           </li>
         </ng-template>
         <li class="parentCart">
-          <span class="quantity">{{cartLength}}</span>
-          <a class="nav-link" routerLink="/user/cart"><img src="../../../assets/images/cart.svg" alt="" /></a>
+          <span class="quantity">{{ cartLength }}</span>
+          <a class="nav-link" routerLink="/user/cart"
+            ><img src="../../../assets/images/cart.svg" alt=""
+          /></a>
         </li>
         <li (click)="changeLang()">
           <a class="nav-link">
-            <img src="../../../assets/images/earth.svg" alt=""
-              style="width: 23px; cursor: pointer; background-color: #3b5d50" /></a>
+            <img
+              src="../../../assets/images/earth.svg"
+              alt=""
+              style="width: 23px; cursor: pointer; background-color: #3b5d50"
+          /></a>
           <span>{{ lang.toUpperCase() }}</span>
         </li>
       </ul>
 
       <form class="form-outline" data-mdb-input-init>
-        <input id="search-focus" placeholder="Search" [formControl]="searchFormControl" type="search" id="form1"
-          class="form-control" />
+        <input
+          id="search-focus"
+          placeholder="Search"
+          [formControl]="searchFormControl"
+          type="search"
+          id="form1"
+          class="form-control"
+        />
       </form>
 
       <!-- <form class="d-flex" role="search">
