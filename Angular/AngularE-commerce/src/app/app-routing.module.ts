@@ -28,23 +28,20 @@ import { adminGuard } from './guard/admin.guard';
 import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: '',
+    component: UserComponent,
+    children: [{ path: '', component: HomeComponent }],
+  },
   { path: 'login', component: LoginComponent },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
   {
     path: 'user',
     component: UserComponent,
     children: [
-      { path: '', component: HomeComponent },
-      {
-        path: 'allOrder',
-        component: OrdersComponent,
-        canActivate: [authGuard],
-      },
+      { path: '', component: HomeComponent , pathMatch: 'full'},
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/category/:catname', component: ProductPageComponent },
       {

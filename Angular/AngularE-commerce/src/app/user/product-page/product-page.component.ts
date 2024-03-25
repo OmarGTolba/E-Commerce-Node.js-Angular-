@@ -81,7 +81,6 @@ export class ProductPageComponent {
       .subscribe((response: any) => {
         this.products = response.data;
         this.displayedProducts = this.products;
-        console.log(this.products);
         this.skeletonLoading = false;
         this.skeletonLoading = false;
       });
@@ -105,7 +104,7 @@ export class ProductPageComponent {
 
   sortbyName(): void {
     this.products = this.products.sort((a: any, b: any) =>
-      a.name.localeCompare(b.name)
+      a.name_en.localeCompare(b.name_en)
     );
     this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
     // this.loading = false; // Set loading to false when data is loaded

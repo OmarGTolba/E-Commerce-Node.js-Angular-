@@ -118,6 +118,7 @@ export class ProductCardComponent {
   }
 
   AddToCart() {
+    
     const body = {
       quantity: 1,
       product_id: this.product._id,
@@ -144,7 +145,7 @@ export class ProductCardComponent {
           setTimeout(() => {
             this.added = false;
           }, 5000);
-        } else {
+        } else if (response.status === 404){
           this.toast.error({
             detail: 'ERROR',
             summary: response.error.message,
@@ -152,7 +153,14 @@ export class ProductCardComponent {
             position: 'topRight',
           });
         }
-        console.log(response);
+        if(!this.token){
+          this.toast.error({
+            detail: 'Please login first',
+            summary: 'Error',
+            duration: 5000,
+            position: 'topRight',
+          }); 
+        }
       });
   }
 }
