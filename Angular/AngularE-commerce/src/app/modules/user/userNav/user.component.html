@@ -1,0 +1,95 @@
+<nav
+  class="custom-navbar navbar navbar navbar-expand-md position-sticky w-100 top-0"
+  arial-label="Furni navigation bar"
+>
+  <div class="container">
+    <a class="navbar-brand text-white">Nmosa<span>.</span></a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarsFurni"
+      aria-controls="navbarsFurni"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsFurni">
+      <ul
+        class="navbar-nav me-auto mb-2 mb-lg-0 custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0"
+      >
+        <li class="nav-item" #homenav>
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/user"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item" #pronav>
+          <a
+            class="nav-link"
+            #pronav
+            routerLinkActive="active"
+            routerLink="/user/products"
+            >Products</a
+          >
+        </li>
+        <li class="nav-item" #catnav>
+          <a
+            class="nav-link"
+            routerLink="/user/categories"
+            routerLinkActive="active"
+            >Categories</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" routerLinkActive="active" routerLink="/user/about"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/user/contact"
+            >Contact</a
+          >
+        </li>
+      </ul>
+
+			<form class="d-flex" role="search">
+				<input class="form-control me-2" [formControl]="searchFormControl" placeholder="Search"
+					aria-label="Search" />
+			</form>
+
+      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+        <li>
+          <a class="nav-link" routerLink="/user/profile"
+            ><img src="../../assets/images/user.svg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/user/cart"
+            ><img src="../../../assets/images/cart.svg" alt=""
+          /></a>
+        </li>
+        <li (click)="changeLang()">
+          <a class="nav-link">
+            <img
+              src="../../../assets/images/earth.svg"
+              alt=""
+              style="width: 23px; cursor: pointer; background-color: #3b5d50"
+          /></a>
+          <span>{{ lang.toUpperCase() }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,39 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './admin/adminNav/admin.component';
-import { AllProductsComponent } from './admin/all-products/all-products.component';
-import { AllUsersComponent } from './admin/all-users/all-users.component';
-import { AllCategoriesComponent } from './admin/all-categories/all-categories.component';
-import { AllOrdersComponent } from './admin/all-orders/all-orders.component';
-import { AddComponent } from './admin/addProduct/add.component';
+import { AdminComponent } from './modules/admin/adminNav/admin.component';
+import { AllProductsComponent } from './modules/admin/all-products/all-products.component';
+import { AllUsersComponent } from './modules/admin/all-users/all-users.component';
+import { AllCategoriesComponent } from './modules/admin/all-categories/all-categories.component';
+import { AllOrdersComponent } from './modules/admin/all-orders/all-orders.component';
+import { AddComponent } from './modules/admin/addProduct/add.component';
 import { LoginComponent } from './auth/login/login.component';
-import { UserComponent } from './user/userNav/user.component';
-import { HomeComponent } from './user/userHome/home.component';
+import { UserComponent } from './modules/user/userNav/user.component';
+import { HomeComponent } from './modules/user/userHome/home.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { OrdersComponent } from './user/userAllOrders/orders.component';
-import { UserOrderComponent } from './user/user-order/user-order.component';
-import { CartComponent } from './user/cart/cart.component';
-import { ProductPageComponent } from './user/product-page/product-page.component';
-import { ProfileComponent } from './user/profile/profile.component';
+import { OrdersComponent } from './modules/user/userAllOrders/orders.component';
+import { UserOrderComponent } from './modules/user/user-order/user-order.component';
+import { CartComponent } from './modules/user/cart/cart.component';
+import { ProductPageComponent } from './modules/user/product-page/product-page.component';
+import { ProfileComponent } from './modules/profile/profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ProductComponent } from './user/productDetails/product.component';
-import { CategoriesComponent } from './user/categories/categories.component';
-import { CheckoutComponent } from './user/checkout/checkout.component';
+import { ProductComponent } from './modules/user/productDetails/product.component';
+import { CategoriesComponent } from './modules/user/categories/categories.component';
+import { CheckoutComponent } from './modules/user/checkout/checkout.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { AboutComponent } from './user/about/about.component';
-import { ContactComponent } from './user/contact/contact.component';
+import { AboutComponent } from './modules/user/about/about.component';
+import { ContactComponent } from './modules/user/contact/contact.component';
+import { AdminProductsDetailsComponent } from './modules/admin/admin-products-details/admin-products-details.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, pathMatch: 'full' },
+  { path: '', component: UserComponent   ,children: [
+    { path: '',component: HomeComponent } ]},
   { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'reset-password/:id/:token', component: ResetPasswordComponent},
   {
     path: 'user',
     component: UserComponent,
     children: [
-      { path: '', component: HomeComponent },
+      { path: '',component: HomeComponent },
       { path: 'allOrder', component: OrdersComponent },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/category/:catname', component: ProductPageComponent },
@@ -61,9 +64,11 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: 'products', component: AllProductsComponent },
+      { path: 'products/:id', component: AdminProductsDetailsComponent },
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
+      { path: 'addProduct/:id', component: AddComponent },
       { path: 'users', component: AllUsersComponent },
     ],
   },
