@@ -1,0 +1,110 @@
+<div class="w-75 container d-flex  pe-5 me-5">
+<div class="container w-50 m-0">
+    
+
+    <div class="d-flex justify-content-between py-3 align-items-sm-start">
+
+
+<div class="d-flex startDiv">
+    <h5>number of reviews: </h5>
+    <p>{{product?.numReviews}}</p>
+</div>
+
+
+
+<div class="startDiv d-flex  -3">
+    <h5>price:</h5>
+    <p>{{product?.price}}</p>
+</div>
+
+
+<div class="d-flex endDiv">
+    <p>{{product?.name_ar}}</p>
+    <h5>: اسم المنتج</h5>
+</div>
+
+
+</div>
+
+<div class="d-flex justify-content-between py-3 align-items-sm-start ">
+
+
+
+    <div class="startDiv d-flex ">
+        <h5>Product Name: </h5>
+    <p>{{product?.name_en}}</p>
+    </div>
+
+    <div class="startDiv d-flex ">
+    <h5>Brand: </h5>
+<p>{{product?.brand_en}}</p>
+</div>
+
+<div class="endDiv d-flex ">
+    <p>{{product?.brand_ar}}</p>
+    <h5>:الماركه</h5>
+</div>
+
+
+
+</div>
+
+
+
+<div class="d-flex justify-content-between align-items-sm-start  ">
+
+    <div class="d-flex startDiv w-50 -3 ">
+        <h5 class="m-0 p-0 mx-2  " >Rating: </h5>
+    <p>{{product?.rating}}</p>
+    </div>
+
+    <div class="startDiv d-flex w-50 -3 ">
+    <h5 class="m-0 p-0 mx-2  " >CountInStock: </h5>
+<p>{{product?.countInStock}}</p>
+</div>
+
+<div class="endDiv d-flex -3">
+    <p>{{product?.categories.name_ar}}</p>
+    <h5>:الصنف</h5>
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="d-flex justify-content-between align-items-sm-start  ">
+    <div class="startDiv d-flex -3">
+        <h5>category: </h5>
+    <p>{{product?.categories.name_en}}</p>
+    </div>
+        <div class="endDiv d-flex w-50 -3">
+            <p>{{product?.description_ar}}</p>
+            <h5>:الوصف</h5>
+        </div>        
+    </div>
+    
+    
+
+
+
+<div class="d-flex justify-content-between align-items-sm-start  ">
+    <div class="startDiv d-flex w-50 -3 ">
+        <h5 class="m-0 p-0 mx-2  " >Description: </h5>
+    <p>{{product?.description_en}}</p>
+    </div>
+        
+</div>
+
+
+
+
+</div>
+<div class="w-25 d-flex flex-column  justify-content-between align-content-between p-3 mt-2">
+    <img src="{{product.images[0]}}" class="w-50 " style="height: 30%;" alt="">
+    <img src="{{product.images[1]}}" class="w-50  " style="height: 30%;" alt="">
+    <img src="{{product.images[2]}}" class="w-50  " style="height: 30%;" alt="">
+</div>
+</div>

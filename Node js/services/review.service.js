@@ -19,6 +19,11 @@ const showReviewByID = async(id)=>{
 }
 
 
+const deleteReviewById = async (id) => {
+   
+};
+
+
 
 const showRating = async(id)=>{
     return await Rating.find({prdId: id})
@@ -27,5 +32,6 @@ const showRating = async(id)=>{
 module.exports={
     addReview,
     showReview,
-    showRating
+    showRating,
+    deleteReviewById
 }

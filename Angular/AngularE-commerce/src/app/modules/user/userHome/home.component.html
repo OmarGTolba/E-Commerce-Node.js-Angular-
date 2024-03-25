@@ -1,0 +1,692 @@
+<!-- Start Header/Navigation -->
+<!-- <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+
+	<div class="container">
+		<a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
+			aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsFurni">
+			<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="index.html">Home</a>
+				</li>
+				<li><a class="nav-link" href="shop.html">Shop</a></li>
+				<li><a class="nav-link" href="about.html">About us</a></li>
+				<li><a class="nav-link" href="services.html">Services</a></li>
+				<li><a class="nav-link" href="blog.html">Blog</a></li>
+				<li><a class="nav-link" href="contact.html">Contact us</a></li>
+			</ul>
+
+			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+				<li><a class="nav-link" href="#"><img src="images/user.svg"></a></li>
+				<li><a class="nav-link" href="cart.html"><img src="images/cart.svg"></a></li>
+			</ul>
+		</div>
+	</div>
+
+</nav> -->
+<!-- Start Header/Navigation -->
+
+<!-- End Product Section -->
+
+
+
+
+<div class="hero">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5">
+        <div class="intro-excerpt">
+          <h1>
+            {{ "intro" | translate }}
+            <span clsas="d-block">{{ "intro2" | translate }}</span>
+          </h1>
+          <p class="mb-4">
+            {{ "intro3" | translate }}
+          </p>
+
+          <p>
+            <a href="" class="btn btn-secondary me-2">{{
+              "shop" | translate
+            }}</a
+            ><a href="#" class="btn btn-white-outline">{{
+              "explore" | translate
+            }}</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="hero-img-wrap">
+          <img src="../../../assets/images/couch.png" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Product Section -->
+
+<div class="product-section">
+  <div class="container">
+    <div class="row">
+      <!-- Start Column 1 -->
+      <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+        <h2 class="mb-4 section-title">{{ "crafted" | translate }}</h2>
+        <p class="mb-4">
+          {{ "crafted2" | translate }}
+        </p>
+        <p>
+          <a href="shop.html" class="btn">{{ "explore" | translate }}</a>
+        </p>
+      </div>
+      <!-- End Column 1 -->
+
+      <!-- Start Column 2 -->
+
+      <div class="row col-12 col-md-9" *ngIf="productSkeletonLoading">
+        <ngx-skeleton-loader
+          class="col"
+          [theme]="{
+            margin: '40px 0',
+            height: '450px',
+            width: '100%',
+            borderRadius: '4px'
+          }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          class="col"
+          [theme]="{
+            margin: '40px 0',
+            height: '450px',
+            width: '100%',
+            borderRadius: '4px'
+          }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          class="col"
+          [theme]="{
+            margin: '40px 0',
+            height: '450px',
+            width: '100%',
+            borderRadius: '4px'
+          }"
+        ></ngx-skeleton-loader>
+      </div>
+      <div
+        *ngFor="let item of displayedProducts"
+        class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0"
+      >
+        <ng-container *ngIf="!productSkeletonLoading">
+          <app-product-card [product]="item"></app-product-card>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Product Section -->
+
+<!-- Start Why Choose Us Section -->
+<div class="why-choose-section">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-6">
+        <h2 class="section-title">{{ "why us" | translate }}</h2>
+        <p>{{ "why us2" | translate }}</p>
+
+        <div class="row my-5">
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img
+                  src="../../../assets/images/truck.svg"
+                  alt="Image"
+                  class="imf-fluid"
+                />
+              </div>
+              <h3>{{ "shipping" | translate }}</h3>
+              <p>{{ "shipping2" | translate }}</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img
+                  src="../../../assets/images/bag.svg"
+                  alt="Image"
+                  class="imf-fluid"
+                />
+              </div>
+              <h3>{{ "shoping" | translate }}</h3>
+              <p>
+                {{ "shoping2" | translate }}
+              </p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img
+                  src="../../../assets/images/support.svg"
+                  alt="Image"
+                  class="imf-fluid"
+                />
+              </div>
+              <h3>{{ "24/support" | translate }}</h3>
+              <p>{{ "24/support2" | translate }}</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img
+                  src="../../../assets/images/return.svg"
+                  alt="Image"
+                  class="imf-fluid"
+                />
+              </div>
+              <h3>{{ "Return" | translate }}</h3>
+              <p>{{ "Return2" | translate }}.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="img-wrap">
+          <img
+            src="../../../assets/images/why-choose-us-img.jpg"
+            alt="Image"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="we-help-section">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-7 mb-5 mb-lg-0">
+        <div class="imgs-grid">
+          <div class="grid grid-1">
+            <img src="../../../assets/images/img-grid-1.jpg" alt="Untree.co" />
+          </div>
+          <div class="grid grid-2">
+            <img src="../../../assets/images/img-grid-2.jpg" alt="Untree.co" />
+          </div>
+          <div class="grid grid-3">
+            <img src="../../../assets/images/img-grid-3.jpg" alt="Untree.co" />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 ps-lg-5">
+        <h2 class="section-title mb-4">
+          {{ "categori" | translate }}
+        </h2>
+        <p>{{ "categori2" | translate }}</p>
+
+        <ul class="list-unstyled custom-list my-4">
+          <li>{{ "categori3" | translate }}</li>
+          <li>{{ "categori4" | translate }}</li>
+          <li>{{ "categori5" | translate }}</li>
+          <li>{{ "categori6" | translate }}</li>
+        </ul>
+        <p>
+          <a herf="#" class="btn">{{ "explore" | translate }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popular-product">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="product-item-sm d-flex">
+          <div class="thumbnail">
+            <img
+              src="../../../assets/images/product-1.png"
+              alt="Image"
+              class="img-fluid"
+            />
+          </div>
+          <div class="pt-3">
+            <h3>{{ "chair1" | translate }}</h3>
+            <p>
+              {{ "chair  details1" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="product-item-sm d-flex">
+          <div class="thumbnail">
+            <img
+              src="../../../assets/images/product-2.png"
+              alt="Image"
+              class="img-fluid"
+            />
+          </div>
+          <div class="pt-3">
+            <h3>{{ "chair2" | translate }}</h3>
+            <p>
+              {{ "chair details2" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="product-item-sm d-flex">
+          <div class="thumbnail">
+            <img
+              src="../../../assets/images/product-3.png"
+              alt="Image"
+              class="img-fluid"
+            />
+          </div>
+          <div class="pt-3">
+            <h3>{{ "chair3" | translate }}</h3>
+            <p>
+              {{ "chair  details3" | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Popular Product -->
+
+<!-- Start Testimonial Slider -->
+
+<h1 class="w-50 m-auto text-center position-relative m-5 p-5">Testimonals</h1>
+<div
+  id="carouselExampleDark"
+  class="carousel position-relative w-75 m-auto carousel-dark slide"
+>
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img
+        src="../../../assets/images/person_1.jpg"
+        class="testimonal_image"
+        alt="..."
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>ceo of Hambozo academy.</p>
+        <p class="text-center w-75 m-auto mb-4">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Perspiciatis, ex. Lorem ipsum dolor sit amet consectetur, adipisicing
+          elit. Excepturi necessitatibus inventore officia ducimus? Itaque
+          tempora debitis at culpa! Est architecto distinctio unde impedit
+          voluptas voluptatem quas, fugit eum. Blanditiis, aperiam.
+        </p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img
+        src="../../../assets/images/person_2.jpg"
+        class="testimonal_image"
+        alt="..."
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder .</p>
+        <p class="text-center w-75 m-auto mb-4">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Perspiciatis, ex. Lorem ipsum dolor sit amet consectetur, adipisicing
+          elit. Excepturi necessitatibus inventore officia ducimus? Itaque
+          tempora debitis at culpa! Est architecto distinctio unde impedit
+          voluptas voluptatem quas, fugit eum. Blanditiis, aperiam.
+        </p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img
+        src="../../../assets/images/person_3.jpg"
+        class="testimonal_image"
+        alt="..."
+      />
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder .</p>
+        <p class="text-center w-75 m-auto mb-4">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Perspiciatis, ex. Lorem ipsum dolor sit amet consectetur, adipisicing
+          elit. Excepturi necessitatibus inventore officia ducimus? Itaque
+          tempora debitis at culpa! Est architecto distinctio unde impedit
+          voluptas voluptatem quas, fugit eum. Blanditiis, aperiam.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="testbtn-nex position-absolute">
+    <button
+      class="cc carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon w-100" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+  </div>
+  <div class="testbtn-pre position-absolute">
+    <button
+      class="cc carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<!-- End Testimonial Slider -->
+
+<!-- Start Blog Section -->
+<div class="blog-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-6">
+        <h2 class="section-title">{{ "Our Categories" | translate }}</h2>
+      </div>
+      <div class="col-md-6 text-start text-md-end">
+        <a routerLink="/user/categories" class="more">{{
+          "View All Categories" | translate
+        }}</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row col-12" *ngIf="catSkeletonLoading">
+        <div class="col">
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '20px 0',
+              height: '350px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '5px 0',
+              height: '10px',
+              width: '70%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '5px 0',
+              height: '10px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+        </div>
+        <div class="col">
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '20px 0',
+              height: '350px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '5px 0',
+              height: '10px',
+              width: '70%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '5px 0',
+              height: '10px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+        </div>
+        <div class="col">
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '20px 0',
+              height: '350px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '5px 0',
+              height: '10px',
+              width: '70%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            [theme]="{
+              margin: '5px 0',
+              height: '10px',
+              width: '100%',
+              borderRadius: '4px'
+            }"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+
+      <div
+        *ngFor="let item of categories"
+        class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0"
+      >
+        <ng-container *ngIf="!catSkeletonLoading">
+          <div class="post-entry">
+            <a href="#" class="post-thumbnail"
+              ><img
+                src="{{ item.icon }}"
+                alt="Image"
+                class="img-fluid catimg h-50"
+            /></a>
+            <div
+              class="post-content-entry"
+              [ngClass]="{ 'text-end': lang == 'ar' }"
+            >
+              <h3>
+                <a href="#">{{ lang == "en" ? item.name_en : item.name_ar }}</a>
+              </h3>
+              <div class="meta"></div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Blog Section -->
+
+<!-- Start Footer Section -->
+<footer class="footer-section">
+  <div class="container relative">
+    <div class="sofa-img">
+      <img
+        src="../../../assets/images/sofa.png"
+        alt="Image"
+        class="img-fluid"
+      />
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="subscription-form">
+          <h3 class="d-flex align-items-center">
+            <span class="me-1"
+              ><img
+                src="../../../assets/images/envelope-outline.svg"
+                alt="Image"
+                class="img-fluid" /></span
+            ><span>{{ "Subscribe to Newsletter" | translate }}</span>
+          </h3>
+
+          <form action="#" class="row g-3">
+            <div class="col-auto">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="{{ 'Enter your name' | translate }}"
+              />
+            </div>
+            <div class="col-auto">
+              <input
+                type="email"
+                class="form-control"
+                placeholder="{{ 'Enter your email' | translate }}"
+              />
+            </div>
+            <div class="col-auto">
+              <button class="btn btn-primary">
+                <span class="fa fa-paper-plane"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-5 mb-5">
+      <div class="col-lg-4">
+        <div class="mb-4 footer-logo-wrap">
+          <a href="#" class="footer-logo">Furni<span>.</span></a>
+        </div>
+        <p class="mb-4">
+          {{ "intro3" | translate }}
+        </p>
+
+        <ul class="list-unstyled custom-social">
+          <li>
+            <a href="#"><span class="fa fa-brands fa-facebook-f"></span></a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-brands fa-twitter"></span></a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-brands fa-instagram"></span></a>
+          </li>
+          <li>
+            <a href="#"><span class="fa fa-brands fa-linkedin"></span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="row links-wrap">
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">{{ "About" | translate }} </a>
+              </li>
+              <li>
+                <a href="#">{{ "Services" | translate }}</a>
+              </li>
+              <li>
+                <a href="#">{{ "Contact" | translate }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">{{ "Support" | translate }}</a>
+              </li>
+              <li>
+                <a href="#">{{ "Knowledge base" | translate }}</a>
+              </li>
+              <li>
+                <a href="#">{{ "Live chat" | translate }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li>
+                <a href="#">{{ "Jobs" | translate }}</a>
+              </li>
+              <li>
+                <a href="#">{{ "Our team" | translate }}</a>
+              </li>
+              <li>
+                <a href="#">{{ "Privacy Policy" | translate }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-top copyright">
+      <div class="row pt-4">
+        <div class="col-lg-6">
+          <p class="mb-2 text-center text-lg-start">
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            . All Rights Reserved. &mdash; Designed with love by
+            <a href="https://untree.co">Untree.co</a> Distributed By
+            <a hreff="https://themewagon.com">ThemeWagon</a>
+            <!-- License information: https://untree.co/license/ -->
+          </p>
+        </div>
+
+        <div class="col-lg-6 text-center text-lg-end">
+          <ul class="list-unstyled d-inline-flex ms-auto">
+            <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Footer Section -->
+</footer>

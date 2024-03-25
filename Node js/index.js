@@ -52,8 +52,6 @@ app.use(`${process.env.API_URL}user`, userRouter);
 app.use(`${process.env.API_URL}categories`, categoryRouter);
 app.use(`${process.env.API_URL}orders`, ordeRouter);
 
-app.use(auth);
-
 app.use(`${process.env.API_URL}payment`, paymentRouter);
 app.use(`${process.env.API_URL}cart`, cartRouter);
 

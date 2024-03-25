@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from '../../user/profile/profile.component';
-import { EditProfileComponent } from '../../user/edit-profile/edit-profile.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FavoritesComponent } from '../../user/favorites/favorites.component';
-import { OrdersComponent } from '../../user/userAllOrders/orders.component';
+import { OrdersComponent } from '../user/userAllOrders/orders.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   NgxSkeletonLoaderComponent,
@@ -42,4 +42,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
 })
-export class ProfileModule {}
+export class ProfileModule { }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
