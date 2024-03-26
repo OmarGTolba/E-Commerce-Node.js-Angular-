@@ -8,7 +8,6 @@ import { Product } from '../../../Models/products';
   selector: 'app-all-products',
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.css',
-  styleUrl: './all-products.component.css',
 })
 export class AllProductsComponent {
   name: any;
@@ -17,28 +16,16 @@ export class AllProductsComponent {
   constructor(
     private http: HttpClient,
     private productService: ProductsService
-  ) {
-  constructor(
-    private http: HttpClient,
-    private productService: ProductsService
-  ) {
-    this.getAllProducts();
-  }
+  ) {}
+ 
   products: Product[] = [];
   updatedId: any;
   sort_name = false;
   sort_price = false;
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
+  
   getAllProducts(): void {
-    this.productService
-      .getAllProducts(this.token, this.email)
-      .pipe(
-        catchError((error) => {
-          return error;
-        })
-      )
-      .subscribe((response: any) => {
     this.productService
       .getAllProducts(this.token, this.email)
       .pipe(
@@ -81,7 +68,6 @@ export class AllProductsComponent {
         this.price = updated.price;
         this.quantity = updated.countInStock;
       });
-    ////////////////////////////////////////////////////////////////////////////////////////
   }
 
   save() {
