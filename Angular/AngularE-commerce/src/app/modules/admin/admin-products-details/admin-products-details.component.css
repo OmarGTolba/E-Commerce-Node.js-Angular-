@@ -1,53 +1,106 @@
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch; /* Add this line */
-  }
-  
-  /* Your existing CSS styles */
-  
-  div div div div {
-    width: 30% !important;
-    padding: 20px;
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
 
-    flex-grow: 1;
-    align-items: start;
-    padding: 5px !important;
-    margin: 5px !important;
-    background-color: #749b8c;
-    color: black;
-  
-    /* height: 100% !important; */
-    /* border: 1px solid black; */
-  }
-  div div div{
-    margin: 5px;
-  }
-  
-  div {
-    display: flex;
-    flex-grow: 1;
-    padding: 0 !important;
-    /* height: 100% !important; */
-  }
-  
-  h2 {
-    line-height: 10% !important;
-  }
-  
-  .startDiv {
-    margin-left: 0 !important;
-    text-align: start;
-    height: 100% !important;
-    justify-content: start !important;
-  }
-  
-  .endDiv {
-    margin-left: 0 !important;
-    text-align: end;
-    height: 100% !important;
-    justify-content: end !important;
-  }
-  
 
-  
+
+div div div div {
+  width: 30% !important;
+  padding: 20px;
+  flex-grow: 1;
+  align-items: start;
+  padding: 5px !important;
+  margin: 5px !important;
+  background-color: transparent;
+  color: #3b5d50;
+  border-radius: 12px; */
+/*height: 100% !important;
+    */ /*border: 1px solid black;
+    */
+/* border: 1px solid #f8b810;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+div div div {
+  margin: 5px;
+}
+
+div {
+  display: flex;
+  flex-grow: 1;
+  padding: 0 !important; */
+/* height: 100% !important; */
+/* }
+
+h2 {
+  line-height: 10% !important;
+}
+
+.startDiv {
+  margin-left: 0 !important;
+  text-align: start;
+  height: 100% !important;
+  justify-content: start !important;
+}
+
+.endDiv {
+  margin-left: 0 !important;
+  text-align: end;
+  height: 100% !important;
+  justify-content: end !important;
+}
+
+h5 {
+  margin: 4px;
+}
+p {
+  margin: 4px 0;
+}
+span{
+  font-weight: normal;
+  font-size: 16px;
+} */
+
+.pa {
+  font-family: emoji;
+  margin-top: 7em;
+}
+
+.card {
+  border: none;
+  overflow: hidden;
+}
+.selected {
+  color: gold;
+}
+.thumbnail_images ul {
+  list-style: none;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.thumbnail_images ul li {
+  margin: 5px;
+  padding: 10px;
+  border: 2px solid #eee;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.thumbnail_images ul li:hover {
+  border: 2px solid #000;
+}
+
+.main_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}

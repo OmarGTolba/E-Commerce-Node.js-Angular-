@@ -17,7 +17,7 @@ export class ProductComponent {
   productId: string = '';
   product: any;
   review: any;
-  lang = localStorage.getItem("lang") || 'en';
+  lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
@@ -51,9 +51,8 @@ export class ProductComponent {
     this.reviewValue = rating;
   }
 
-
   imgClick(imgsrc: string) {
-    this.imgSrc = imgsrc
+    this.imgSrc = imgsrc;
   }
 
   ngOnInit(): void {
@@ -72,7 +71,7 @@ export class ProductComponent {
       .subscribe((response: any) => {
         this.product = response.data;
         this.skeletonLoading = false;
-        this.imgSrc = this.product.images[0]
+        this.imgSrc = this.product.images[0];
       });
 
     this.productServices
@@ -228,53 +227,49 @@ export class ProductComponent {
       });
   }
 
-
   updateReview(id: any) {
     console.log(this.review);
 
     const body = {
-      "title": this.review,
-      "rating": this.reviewValue,
+      title: this.review,
+      rating: this.reviewValue,
+    };
+    this.productServices
+      .updateReview(this.token, this.email, id, body)
+      .subscribe((response: any) => {
+        console.log(response);
+        this.showReview(this.product_id);
 
-    }
-    this.productServices.updateReview(this.token, this.email, id, body).subscribe((response: any) => {
-
-      console.log(response);
-      this.showReview(this.product_id)
-
-      this.editmode = false
-    });
-
+        this.editmode = false;
+      });
   }
-
-
-
 
   deleteReview(id: any) {
     console.log(this.userId);
 
-    this.productServices.deleteReview(this.token, this.email, id).subscribe((response: any) => {
-      console.log(response);
-      this.editmode = false
-    });
+    this.productServices
+      .deleteReview(this.token, this.email, id)
+      .subscribe((response: any) => {
+        console.log(response);
+        this.editmode = false;
+      });
     this.showReview(this.product_id);
-
   }
 
   product_id: any;
   editmode: boolean = false;
 
   toggleEditMode() {
-    this.editmode = !this.editmode
+    this.editmode = !this.editmode;
   }
   edit(item: any) {
-    this.reviewValue = item.rating
-    this.review = item.title
-    this.toggleEditMode()
+    this.reviewValue = item.rating;
+    this.review = item.title;
+    this.toggleEditMode();
   }
   showReview(id: string) {
     console.log(this.userId);
-    this.product_id = id
+    this.product_id = id;
     this.ReviewskeletonLoading = true;
     this.productServices
       .getReviewsByID(this.token, this.email, id)
@@ -289,8 +284,4 @@ export class ProductComponent {
         this.ReviewskeletonLoading = false;
       });
   }
-
-
-
-
 }

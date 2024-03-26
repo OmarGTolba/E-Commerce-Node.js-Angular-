@@ -1,32 +1,29 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th rowspan="2" scope="col">Order Id</th>
-      <th rowspan="2" scope="col">Name</th>
-      <th rowspan="2" scope="col">Phone</th>
-      <th rowspan="2" scope="col">Status</th>
-      <th colspan="2" scope="col">Order Items</th>
-      <th rowspan="2" scope="col">Cancel</th>
-      <th rowspan="2" scope="col">Confirm</th>
+      <th scope="col">Order Id</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">City</th>
+      <th scope="col">N.product</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Status</th>
+      <th scope="col">Cancel</th>
+      <th scope="col">Confirm</th>
     </tr>
-    <tr>
-      <th>Product Name</th>
-      <th>Quantity</th>
-    </tr>
+
   </thead>
   <tbody>
     <tr *ngFor="let order of orders">
       <td>{{ order._id }}</td>
       <td>{{ order.user.name }}</td>
       <td>{{ order.phone }}</td>
+      <td>{{ order.city }}</td>
+      <td>{{ order.orderItemsIds.length }}</td>
+      <td>{{ order.totalPrice }}</td>
       <td>{{ order.status }}</td>
-      <td colspan="2">
-        <div class="d-flex gap-5" *ngFor="let item of order.orderItemsIds">
 
-          <p> {{ item.product.name_en || item.product.name_ar }}</p>
-          <p>{{ item.quantity }}</p>
-        </div>
-      </td>
+
       <td (click)="cancel(order._id)">
         <div style="height: 80px;" class="d-flex justify-content-center align-items-center">
           <mat-icon style="cursor: pointer; color: red;">cancel</mat-icon>

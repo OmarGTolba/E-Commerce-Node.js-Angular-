@@ -11,8 +11,6 @@ import { ProductsService } from '../../../services/products/products.service';
 import { ProfileService } from '../../../services/profile/profile.service';
 import { UserService } from '../../../user.service';
 
-
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -36,15 +34,13 @@ export class UserComponent implements OnInit {
     this.lang = localStorage.getItem('lang') || 'en';
     this.translateService.setDefaultLang(this.lang);
     this.translateService.use(this.lang);
-   this.userService.getCartCount(this.token,this.email,this.id)
-  this.userService.cartLength.subscribe({next:((value) => {
-    this.cartLength = value
-  }),})
+    this.userService.getCartCount(this.token, this.email, this.id);
+    this.userService.cartLength.subscribe({
+      next: (value) => {
+        this.cartLength = value;
+      },
+    });
   }
-
-
-
-
 
   products: any[] = [];
   searchInput: any;
@@ -87,6 +83,7 @@ export class UserComponent implements OnInit {
     localStorage.setItem('email', '');
     localStorage.setItem('token', '');
     localStorage.setItem('userId', '');
+    localStorage.clear();
     this.router.navigate(['/user']);
     this.loggedin = false;
     localStorage.clear();
@@ -118,7 +115,7 @@ export class UserComponent implements OnInit {
             return of([]);
           } else {
             this.getAllProducts();
-            this.router.navigate(["user/products"]);
+            this.router.navigate(['user/products']);
             return of([]); // If no search input, return an empty array
           }
         }),

@@ -35,7 +35,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [{ path: '', component: HomeComponent }],
   },
-  { path: 'login', component: LoginComponent ,canActivate: [loginGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
@@ -43,7 +43,7 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
     children: [
-      { path: '', component: HomeComponent , pathMatch: 'full'},
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/category/:catname', component: ProductPageComponent },
       {
@@ -85,12 +85,15 @@ const routes: Routes = [
     children: [
       { path: 'products', component: AllProductsComponent },
       { path: 'products/:id', component: AdminProductsDetailsComponent },
+      { path: 'addProduct/:id', component: AddComponent },
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
       { path: 'addProduct/:id', component: AddComponent },
       { path: 'addCategory', component: AddcategoryComponent },
+      { path: 'updateCategory/:id', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },
+      { path: 'addProduct/:id', component: AddComponent }
     ],
   },
   { path: '', component: NotFoundComponent },

@@ -1,30 +1,45 @@
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Product Name</th>
-        <th scope="col">description</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">delete</th>
-        <th scope="col">edit</th>
-      </tr>
-    </thead>
-    <tbody>
-
-        <tr >       
-            <td><input [(ngModel)]="name" /></td>
-            <td><input [(ngModel)]="description" /></td>
-            <td><input [(ngModel)]="quantity" type="number" /></td>
-            <td><button class="btn btn-warning" (click)="cancel()" >Cancel</button></td>
-            <td><button class="btn btn-success" (click)="save()" >Save</button></td>
-        </tr>
-
-      <tr *ngFor="let item of products; let i = index">
-        <td routerLink="/admin/products/{{products[i]._id}}" >{{products[i].name_en}}</td>
-        <td >{{products[i].description}}</td>
-        <td >{{products[i].countInStock}}</td>
-        <td><button class="btn btn-danger" (click)="delete(products[i]._id)">Delete</button></td>
-        <td><button  class="btn btn-primary" routerLink="/admin/addProduct/{{products[i]._id}}" >edit</button></td> 
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">
+        Product Name
+        <i class="fa-solid fa-arrow-up-z-a" (click)="sortbyName()" [ngClass]="{'yellow': sort_name}"></i>
+      </th>
+      <th scope="col">
+        price
+        <i class="fa-solid fa-arrow-up-wide-short" (click)="sortByPrice()" [ngClass]="{'yellow': sort_price}"></i>
+      </th>
+      <th scope="col">Quantity</th>
+      <th scope="col" class="center">delete</th>
+      <th scope="col" class="center">edit</th>
     </tr>
-
-    </tbody>
-  </table>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of products; let i = index">
+      <td
+        routerLink="/admin/products/{{ products[i]._id }}"
+        style="cursor: pointer"
+      >
+        {{ products[i].name_en }}
+      </td>
+      <td>{{ products[i].price }}</td>
+      <td>{{ products[i].countInStock }}</td>
+      <td class="center">
+        <!-- <button class="btn btn-danger" (click)="delete(products[i]._id)">
+          Delete
+        </button> -->
+        <mat-icon style="cursor: pointer; color: red;" (click)="delete(products[i]._id)">delete</mat-icon>
+      </td>
+      <td class="center edit">
+        <!-- <button
+          class="text-white rounded"
+          style="background-color: #3b5d50"
+          routerLink="/admin/addProduct/{{ products[i]._id }}"
+        >
+          edit
+        </button> -->
+        <mat-icon style="cursor: pointer; color: #3b5d50;" routerLink="/admin/addProduct/{{ products[i]._id }}">edit</mat-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>

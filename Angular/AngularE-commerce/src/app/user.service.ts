@@ -27,29 +27,24 @@ export class UserService {
     return this.http.get<any[]>(updateUrl, { headers });
   }
 
+  cartLength = new BehaviorSubject(0);
 
-  cartLength = new BehaviorSubject(0)
-  
-  getCartCount( token:any, email:any,id:any){
-    this
-    .getUserCart(token, email, id)
-    .pipe(
-      catchError((error) => {
-        // this.cartLength = 0;
-        return of(error);
-      })
-    )
-    .subscribe(async(response: any) => {
-     this.cartLength.next( await response.items.length);
-      
-     console.log(response.items.length);
-     
-      console.log(response);
-    });
+  getCartCount(token: any, email: any, id: any) {
+    this.getUserCart(token, email, id)
+      .pipe(
+        catchError((error) => {
+          // this.cartLength = 0;
+          return of(error);
+        })
+      )
+      .subscribe(async (response: any) => {
+        this.cartLength.next(await response.items.length);
+
+        console.log(response.items.length);
+
+        console.log(response);
+      });
   }
-
-
-
 
   total: any;
 
@@ -97,5 +92,16 @@ export class UserService {
       email: email,
     });
     return this.http.delete<any[]>(updateUrl, { headers: headers });
+  }
+  contact(data: {
+    firstname: string;
+    lastname: string;
+    message: string;
+    email: string;
+  }): Observable<any> {
+    return this.http.post<any>(
+      'https://ecommerce-node-wqwd.onrender.com/api/v1/contact',
+      data
+    );
   }
 }

@@ -1,4 +1,4 @@
-<div class="container my-5 pa">
+<div class="container pa">
   <div class="row">
     <div id="carouselExample" class="carousel slide col-12 col-xl">
       <ngx-skeleton-loader [theme]="{
@@ -8,23 +8,24 @@
           borderRadius: '4px'
         }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
       <ng-container *ngIf="!skeletonLoading">
-       
 
 
 
-<div class="col-md-12 border-end">
-  <div  class="d-flex flex-column justify-content-center">
-      <div class="main_image"> <img src="{{imgSrc}}" id="main_product_image"
-              style="width: 500px !important; height: 500px !important"> </div>
-      <div class="thumbnail_images">
-          <ul id="thumbnail" class="d-flex gap-3">
-              <li  *ngFor="let item of product.images; let i = index" ><img (click)="imgClick(item)" width="70" [src]="item">
- </li>
-  
-          </ul>
-      </div>
-  </div>
-</div>
+
+        <div class="col-md-12 border-end">
+          <div class="d-flex flex-column justify-content-center">
+            <div class="main_image"> <img src="{{imgSrc}}" id="main_product_image"
+                style="width: 500px !important; height: 500px !important"> </div>
+            <div class="thumbnail_images">
+              <ul id="thumbnail" class="d-flex gap-3">
+                <li *ngFor="let item of product.images; let i = index"><img (click)="imgClick(item)" width="70"
+                    [src]="item">
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
       </ng-container>
     </div>
 
@@ -79,7 +80,7 @@
           <p class="d-inline-flex gap-1">
             <button class="btn discription" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
               aria-expanded="true" aria-controls="collapseExample">
-              {{"description" | translate}}
+              {{ "description" | translate }}
               <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
           </p>
@@ -110,7 +111,8 @@
           </div>
 
           <button class="add-btn col-2" type="button" [class.disabled-input]="added === true" (click)="AddToCart()">
-            {{ added ? "Added successfully ✔" : 'add to cart' | translate }} <span *ngIf="!added">🛒</span>
+            {{ added ? "Added successfully ✔" : ("add to cart" | translate) }}
+            <span *ngIf="!added">🛒</span>
           </button>
         </div>
 
@@ -119,7 +121,7 @@
           <div class="d-flex" [class.favorite]="productFav">
             <mat-icon class="heart-icon" [class.filled]="productFav">favorite</mat-icon>
           </div>
-          <div>{{"add to fav" | translate}}</div>
+          <div>{{ "add to fav" | translate }}</div>
         </div>
       </ng-container>
     </div>
@@ -130,20 +132,20 @@
       <li class="nav-item" role="presentation">
         <button class="btn active" id="pills-discription-tab" data-bs-toggle="pill" data-bs-target="#pills-discription"
           type="button" role="tab" aria-controls="pills-discription" aria-selected="false">
-          {{"description" | translate}}
+          {{ "description" | translate }}
         </button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="btn" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button"
           role="tab" aria-controls="pills-review" aria-selected="false" (click)="showReview(product._id)">
-          {{'reviews' | translate}}
+          {{ "reviews" | translate }}
         </button>
       </li>
 
       <li class="nav-item" role="presentation">
         <button class="btn" id="pills-add-review-tab" data-bs-toggle="pill" data-bs-target="#pills-add-review"
           type="button" role="tab" aria-controls="pills-add-review" aria-selected="false">
-          {{"add review" | translate}}
+          {{ "add review" | translate }}
         </button>
       </li>
     </ul>
@@ -151,21 +153,21 @@
       <div class="tab-pane fade show active review description" id="pills-discription" role="tabpanel"
         aria-labelledby="pills-discription-tab" tabindex="0">
         <ngx-skeleton-loader [theme]="{
-            margin: '20px 0',
+            margin: '10px 0',
             height: '20px',
-            width: '100%',
+            width: '70%',
             borderRadius: '4px'
           }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
         <ngx-skeleton-loader [theme]="{
-            margin: '20px 0',
+            margin: '10px 0',
             height: '20px',
-            width: '100%',
+            width: '70%',
             borderRadius: '4px'
           }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
         <ngx-skeleton-loader [theme]="{
-            margin: '20px 0',
+            margin: '10px 0',
             height: '20px',
-            width: '100%',
+            width: '70%',
             borderRadius: '4px'
           }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
 
@@ -173,42 +175,59 @@
           <p>
             {{ lang == "ar" ? product.description_ar : product.description_en }}
           </p>
-          <p class="fw-bold fs-4 my-3"> {{ lang == "ar" ? product.brand_ar : product.brand_en }}</p>
+          <p class="fw-bold fs-4 my-3">
+            {{ lang == "ar" ? product.brand_ar : product.brand_en }}
+          </p>
         </ng-container>
       </div>
 
       <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab" tabindex="0">
         <div id="review" class="carousel review">
-          <ngx-skeleton-loader [theme]="{
+          <ngx-skeleton-loader style="display: block;" [theme]="{
               margin: '10px 0',
               height: '100px',
               width: '18%',
-              borderRadius: '50%'
-            }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
-          <ngx-skeleton-loader [theme]="{
+              borderRadius: '50%' 
+            }" *ngIf="ReviewskeletonLoading"></ngx-skeleton-loader>
+          <ngx-skeleton-loader style="display: block;" [theme]="{
               margin: '10px 0',
               height: '20px',
-              width: '100%',
+              width: '50%',
               borderRadius: '4px'
-            }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
-          <ngx-skeleton-loader [theme]="{
+            }" *ngIf="ReviewskeletonLoading"></ngx-skeleton-loader>
+          <ngx-skeleton-loader style="display: block;" [theme]="{
               margin: '10px 0',
               height: '20px',
-              width: '100%',
+              width: '50%',
               borderRadius: '4px'
-            }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
-          <ngx-skeleton-loader [theme]="{
+            }" *ngIf="ReviewskeletonLoading"></ngx-skeleton-loader>
+          <ngx-skeleton-loader style="display: block;" [theme]="{
               margin: '10px 0',
               height: '20px',
-              width: '100%',
+              width: '50%',
               borderRadius: '4px'
-            }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
+            }" *ngIf="ReviewskeletonLoading"></ngx-skeleton-loader>
 
-          <ng-container *ngIf="!skeletonLoading">
+          <ng-container *ngIf="!ReviewskeletonLoading">
             <div class="carousel-inner">
               <div class="carousel">
                 <div *ngFor="let item of reviews; let i = index" class="carousel-item" [class.active]="i === 0">
-                  <div>
+                  <div style="position: relative;">
+                    <div style="position: absolute; top: 18px; right: 18px;">
+                      <mat-icon
+                        style="margin-right: 55px; color: white; cursor: pointer; font-size: 1.6em; width: fit-content;height: max-content; "
+                        class="mx-3" *ngIf="item?.user?._id === userId && !editmode"
+                        (click)="edit(item)">create</mat-icon>
+                      <mat-icon class="delete-icon"
+                        style="margin-right: 55px; cursor: pointer; font-size: 1.6em; width: fit-content;height: max-content; margin-left: 10px; "
+                        *ngIf="!editmode && item?.user?._id === userId"
+                        (click)="deleteReview(item._id)">delete</mat-icon>
+                      <mat-icon *ngIf="editmode" (click)="toggleEditMode()"
+                        style="margin-right: 55px; color: red; font-size: 1.6em; width: fit-content;height: max-content;">clear</mat-icon>
+                      <mat-icon (click)="updateReview(item._id)" class="mx-3" *ngIf="editmode "
+                        style="margin-right: 55px; color: rgb(109, 243, 109); font-size: 1.6em; width: fit-content;height: max-content;">check</mat-icon>
+
+                    </div>
                     <div class="d-flex justify-content-center align-items-center">
                       <img alt="" class="profileIcon"
                         src="../../../assets/images/istockphoto-1495088043-612x612-removebg-preview.png" />
@@ -233,21 +252,12 @@
                             <mat-icon (click)="setRating(4)" [ngClass]="{ selected: reviewValue >= 4 }">star</mat-icon>
                             <mat-icon (click)="setRating(5)" [ngClass]="{ selected: reviewValue >= 5 }">star</mat-icon>
                           </div>
-
-
                         </div>
                       </div>
-                      <div class=" justify-content-center">
+                      <div class="d-flex justify-content-center align-items-center">
 
                         <p *ngIf="!editmode" class="h5 ">{{ item.title }} </p>
                         <p *ngIf="editmode"> <input type="text" [(ngModel)]="review"> </p>
-                        <div>                        
-                          <mat-icon style="color: blue;" class="mx-3" *ngIf="item?.user?._id === userId && !editmode" (click)="edit(item)">create</mat-icon>
-                          <mat-icon class="delete-icon" *ngIf="!editmode && item?.user?._id === userId" (click)="deleteReview(item._id)">delete</mat-icon>
-                          <mat-icon *ngIf="editmode" (click)="toggleEditMode()" style="color: red;">clear</mat-icon>
-                          <mat-icon  (click)="updateReview(item._id)"  class="mx-3" *ngIf="editmode " style="color: rgb(109, 243, 109);">check</mat-icon>
-
-                        </div>
 
                       </div>
                     </div>
@@ -291,20 +301,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
