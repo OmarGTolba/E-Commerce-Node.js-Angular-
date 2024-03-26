@@ -35,7 +35,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [{ path: '', component: HomeComponent }],
   },
-  { path: 'login', component: LoginComponent ,canActivate: [loginGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
@@ -43,7 +43,7 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
     children: [
-      { path: '', component: HomeComponent , pathMatch: 'full'},
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/category/:catname', component: ProductPageComponent },
       {

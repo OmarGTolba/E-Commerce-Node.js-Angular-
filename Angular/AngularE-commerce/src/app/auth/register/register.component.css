@@ -11,7 +11,7 @@
   width: 400px;
   height: 450px;
   margin: 2rem 0;
-  background-image: url('https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-image: url("https://images.pexels.com/photos/3771691/pexels-photo-3771691.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
   background-size: cover;
   background-position: left;
   border-radius: 5px;
@@ -21,9 +21,9 @@ h1 {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
-  font-size:30px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color:#3b5d50;
+  font-size: 30px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #3b5d50;
 }
 
 .register-form {
@@ -37,7 +37,6 @@ h1 {
   background-color: #eff2f1;
   border-radius: 5px;
 }
-
 
 .register-form input {
   padding: 10px;
@@ -71,7 +70,7 @@ a:hover {
   }
 
   .register-form {
-    width: 100%; 
+    width: 100%;
     height: auto;
   }
 
@@ -79,10 +78,6 @@ a:hover {
     display: none;
   }
 }
-
-
-
-
 
 body {
   display: flex;
@@ -98,7 +93,7 @@ body {
   );
   margin: auto;
 }
-.container1{
+.container1 {
   width: 65% !important;
 }
 .container {
@@ -144,8 +139,7 @@ form input:focus {
   text-align: center;
 }
 
-
-button:hover{
+button:hover {
   background-color: #3b5d50 !important;
   color: white !important;
 }
@@ -212,10 +206,9 @@ form button:active {
   border-radius: 50%;
   z-index: 1;
   transition: 0.4s ease;
-  
+
   border: 1px solid #3b5d50;
 }
-
 
 .circ {
   position: relative;
@@ -232,19 +225,17 @@ form button:active {
 }
 
 .circle.active::before {
-  content: '';
+  content: "";
   position: absolute;
-  
- 
+
   top: 30%;
-  left: -125px; 
-  width: 120px; 
-  height: 10px; 
-  background-color:#3b5d50;
+  left: -125px;
+  width: 120px;
+  height: 10px;
+  background-color: #3b5d50;
 
-  z-index: -1; 
+  z-index: -1;
 }
-
 
 .active {
   padding: 15px;
@@ -252,7 +243,6 @@ form button:active {
   color: white;
   background-color: #3b5d50; /* This sets the background color of the active circle */
 }
-
 
 .circle.no-before::before {
   display: none; /* Hide the ::before pseudo-element for circles with the "no-before" class */
