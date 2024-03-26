@@ -8,6 +8,7 @@ const ordeRouter = require("./routes/order.router.js");
 const searchRouter = require("./routes/search.router.js");
 const cartRouter = require("./routes/cart.router.js");
 const adminRouter = require("./routes/admin.router.js");
+const contactRouter = require("./routes/contact.router.js");
 const productFav = require("./routes/productFavourite.router.js");
 
 const { auth } = require("./middleware/auth");
@@ -51,6 +52,9 @@ app.use(`${process.env.API_URL}products/favourite`, productFav);
 app.use(`${process.env.API_URL}user`, userRouter);
 app.use(`${process.env.API_URL}categories`, categoryRouter);
 app.use(`${process.env.API_URL}orders`, ordeRouter);
+app.use(`${process.env.API_URL}contact`, contactRouter);
+
+app.use(auth);
 
 app.use(`${process.env.API_URL}payment`, paymentRouter);
 app.use(`${process.env.API_URL}cart`, cartRouter);

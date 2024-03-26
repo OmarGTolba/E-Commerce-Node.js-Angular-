@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { ProductsService } from '../../../services/products/products.service';
-import { UserService } from '../../../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
+import { ProductsService } from '../../../services/products/products.service';
 
 @Component({
   selector: 'app-product-page',
@@ -59,7 +58,6 @@ export class ProductPageComponent {
       .subscribe((response: any) => {
         this.products = response.data;
         console.log(this.products);
-
 
         this.displayedProducts = this.products.slice(
           0,

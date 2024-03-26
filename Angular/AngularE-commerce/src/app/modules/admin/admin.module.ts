@@ -6,7 +6,10 @@ import { AllUsersComponent } from './all-users/all-users.component';
 import { AllCategoriesComponent } from './all-categories/all-categories.component';
 import { AllOrdersComponent } from './all-orders/all-orders.component';
 import { AddComponent } from './addProduct/add.component';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AppComponent } from '../../app.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -22,37 +25,40 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AppRoutingModule } from '../../app-routing.module';
 import { AdminProductsDetailsComponent } from './admin-products-details/admin-products-details.component';
 
-
-
 @NgModule({
-  declarations: [    AdminComponent,
+  declarations: [
+    AdminComponent,
     AllProductsComponent,
     AllUsersComponent,
     AllCategoriesComponent,
     AllOrdersComponent,
     AddComponent,
-    AdminProductsDetailsComponent,],
+    AdminProductsDetailsComponent,
+  ],
   imports: [
-    CommonModule, 
+    CommonModule,
     BrowserModule,
-    AppRoutingModule, 
-    FormsModule, HttpClientModule, 
-    ReactiveFormsModule, MatIconModule,NgxSkeletonLoaderModule,MatPaginatorModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    NgxSkeletonLoaderModule,
+    MatPaginatorModule,
     MatTabsModule,
     MatSliderModule,
     MatSlideToggleModule,
     HttpClientModule,
-    MatPaginatorModule, TranslateModule.forRoot({
+    MatPaginatorModule,
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
     }),
- 
-    
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
-export class AdminModule { }
+export class AdminModule {}

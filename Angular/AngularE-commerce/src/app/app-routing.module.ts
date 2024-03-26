@@ -27,6 +27,7 @@ import { HomeComponent } from './modules/user/userHome/home.component';
 import { UserComponent } from './modules/user/userNav/user.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AdminProductsDetailsComponent } from './modules/admin/admin-products-details/admin-products-details.component';
+import { loginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [{ path: '', component: HomeComponent }],
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
@@ -42,7 +43,7 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
     children: [
-      { path: '', component: HomeComponent , pathMatch: 'full'},
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'search/:name', component: ProductPageComponent },
       { path: 'search/category/:catname', component: ProductPageComponent },
       {
@@ -89,6 +90,7 @@ const routes: Routes = [
       { path: 'addProduct', component: AddComponent },
       { path: 'addCategory', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },
+      { path: 'addProduct/:id', component: AddComponent }
     ],
   },
   { path: '', component: NotFoundComponent },
