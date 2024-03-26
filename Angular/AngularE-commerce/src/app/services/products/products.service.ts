@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:3000/api/v1/products';
+  baseUrl = 'https://node-project-5tke.onrender.com/api/v1/products';
   getAllProducts(token: string, email: string): Observable<any[]> {
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
@@ -19,9 +19,8 @@ export class ProductsService {
   }
 
   getAllCategories(token: string, email: string): Observable<any[]> {
-    const  Url = 'http://localhost:3000/api/v1/categories';
+    const Url = 'https://node-project-5tke.onrender.com/api/v1/categories';
     const headers = new HttpHeaders({
-
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
       email: email,
@@ -29,8 +28,6 @@ export class ProductsService {
     return this.http.get<any[]>(Url, { headers });
   }
 
- 
- 
   getReviewsByID(token: string, email: string, id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
@@ -47,7 +44,7 @@ export class ProductsService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -67,7 +64,7 @@ export class ProductsService {
   }
 
   getProductsByID(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -78,7 +75,7 @@ export class ProductsService {
 
   products: any[] = [];
   searchByName(token: string, email: string, name: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/product/${name}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/search/product/${name}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -87,9 +84,12 @@ export class ProductsService {
     return this.http.get<any[]>(updateUrl, { headers });
   }
 
-
-  searchByCategory(token: string, email: string, name: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/category/${name}`;
+  searchByCategory(
+    token: string,
+    email: string,
+    name: string
+  ): Observable<any[]> {
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/search/category/${name}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -97,7 +97,6 @@ export class ProductsService {
     });
     return this.http.get<any[]>(updateUrl, { headers });
   }
-
 
   updateProduct(
     token: string,
@@ -105,7 +104,7 @@ export class ProductsService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -113,10 +112,6 @@ export class ProductsService {
     });
     return this.http.patch<any[]>(updateUrl, body, { headers });
   }
-
-
-
-
 
   updateReview(
     token: string,
@@ -124,7 +119,7 @@ export class ProductsService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -133,14 +128,8 @@ export class ProductsService {
     return this.http.patch<any[]>(updateUrl, body, { headers });
   }
 
-
-
-  deleteReview(
-    token: string,
-    email: string,
-    id: string
-  ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+  deleteReview(token: string, email: string, id: string): Observable<any[]> {
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -149,9 +138,8 @@ export class ProductsService {
     return this.http.delete<any[]>(updateUrl, { headers });
   }
 
-
   deleteProduct(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -166,7 +154,7 @@ export class ProductsService {
     userId: string,
     id: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -180,7 +168,7 @@ export class ProductsService {
     userId: string,
     id: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -189,15 +177,13 @@ export class ProductsService {
     return this.http.delete<any[]>(updateUrl, { headers });
   }
 
-
-
   isFav(
     token: string,
     email: string,
     userId: string,
     id: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

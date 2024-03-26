@@ -8,27 +8,32 @@ import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  name: string = "";
-  email: string = "";
+  name: string = '';
+  email: string = '';
   password: any;
   registerForm = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
   });
 
-  constructor(private router: Router, private http: HttpClient, private fb: FormBuilder, private toast: NgToastService) {
-this.updateProgress()
-   }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private toast: NgToastService
+  ) {
+    this.updateProgress();
+  }
 
   onSubmit() {
-    console.log("2raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaf")
+    console.log('2raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaf');
     console.log(this.registerForm);
-    
-    const api = 'http://localhost:3000/api/v1/user';
+
+    const api = 'https://node-project-5tke.onrender.com/api/v1/user';
 
     const body = {
       name: this.name,
@@ -42,8 +47,8 @@ this.updateProgress()
       'Content-Type': 'application/json',
     });
 
-    this.http.post(api, body, { headers })
-      .subscribe((response: any) => {
+    this.http.post(api, body, { headers }).subscribe(
+      (response: any) => {
         if (response) {
           const role = response.role;
           if (role === 'Admin') {
@@ -59,97 +64,93 @@ this.updateProgress()
             detail: 'Registration successful!',
             summary: 'Success',
             duration: 5000,
-            position: 'topRight'
+            position: 'topRight',
           });
         } else {
-           console.error('Register failed: No response received');
+          console.error('Register failed: No response received');
         }
-      }, (error) => {
+      },
+      (error) => {
         console.error('Error occurred:', error.error.message);
         this.toast.error({
           detail: 'Error',
-          summary: error.error.message || "Registeration failed",
+          summary: error.error.message || 'Registeration failed',
           duration: 5000,
           position: 'topRight',
         });
-      });
+      }
+    );
   }
-
-
-
 
   progressWidth: string = '0%';
   currentActive: number = 1;
 
   nextOne() {
-    this.registerForm.controls.name.value ==this.name
-   console.log(this.name);
-   
- if(this.registerForm.controls.name.status =="VALID"){
+    this.registerForm.controls.name.value == this.name;
+    console.log(this.name);
 
-  const form1 = document.getElementById("form1");
-  const form2 = document.getElementById("form2");
-  if (form1 && form2) {
-    form1.style.left = "-450px";
-    form2.style.left = "25px";
-    this.incrementNumber();
-    this.updateProgress();
-  }
- }
- 
+    if (this.registerForm.controls.name.status == 'VALID') {
+      const form1 = document.getElementById('form1');
+      const form2 = document.getElementById('form2');
+      if (form1 && form2) {
+        form1.style.left = '-450px';
+        form2.style.left = '25px';
+        this.incrementNumber();
+        this.updateProgress();
+      }
+    }
   }
 
   backOne() {
-    const form1 = document.getElementById("form1");
-    const form2 = document.getElementById("form2");
+    const form1 = document.getElementById('form1');
+    const form2 = document.getElementById('form2');
     if (form1 && form2) {
-      form1.style.left = "25px";
-      form2.style.left = "450px";
+      form1.style.left = '25px';
+      form2.style.left = '450px';
       this.decrementNumber();
       this.updateProgress();
     }
   }
 
   nextTwo() {
-    const form2 = document.getElementById("form2");
-    const form3 = document.getElementById("form3");
+    const form2 = document.getElementById('form2');
+    const form3 = document.getElementById('form3');
     if (form2 && form3) {
-      form2.style.left = "-450px";
-      form3.style.left = "25px";
+      form2.style.left = '-450px';
+      form3.style.left = '25px';
       this.incrementNumber();
       this.updateProgress();
     }
   }
 
   backTwo() {
-    const form2 = document.getElementById("form2");
-    const form3 = document.getElementById("form3");
+    const form2 = document.getElementById('form2');
+    const form3 = document.getElementById('form3');
     if (form2 && form3) {
-      form2.style.left = "25px";
-      form3.style.left = "450px";
+      form2.style.left = '25px';
+      form3.style.left = '450px';
       this.decrementNumber();
       this.updateProgress();
     }
   }
-  
 
   updateProgress() {
-    const circles = document.querySelectorAll(".circle");
+    const circles = document.querySelectorAll('.circle');
     circles.forEach((circle, index) => {
       if (index < this.currentActive || this.currentActive == 0) {
-        circle.classList.add("active");  // Adds 'active' class to all previous and current circles
-      } else if (this.currentActive !==0){
-        circle.classList.remove("active");  // Removes 'active' class from future circles
+        circle.classList.add('active'); // Adds 'active' class to all previous and current circles
+      } else if (this.currentActive !== 0) {
+        circle.classList.remove('active'); // Removes 'active' class from future circles
       }
     });
-    
-    const actives = document.querySelectorAll(".active");
-    const progressBar = document.querySelector(".progress") as HTMLElement;
+
+    const actives = document.querySelectorAll('.active');
+    const progressBar = document.querySelector('.progress') as HTMLElement;
     if (progressBar) {
-      progressBar.style.width = ((actives.length - 1) / (circles.length - 1)) * 100 + '%';
+      progressBar.style.width =
+        ((actives.length - 1) / (circles.length - 1)) * 100 + '%';
     }
   }
-  
 
   incrementNumber() {
     this.currentActive++;
@@ -167,6 +168,6 @@ this.updateProgress()
 
   isActive(step: number): boolean {
     // return step === this.currentActive;
- return true
+    return true;
   }
 }
