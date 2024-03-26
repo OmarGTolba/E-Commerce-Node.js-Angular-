@@ -16,15 +16,15 @@ export class AllProductsComponent {
   constructor(
     private http: HttpClient,
     private productService: ProductsService
-  ) {}
- 
+  ) {
+    this.getAllProducts();
+  }
   products: Product[] = [];
   updatedId: any;
   sort_name = false;
   sort_price = false;
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  
   getAllProducts(): void {
     this.productService
       .getAllProducts(this.token, this.email)
@@ -48,13 +48,13 @@ export class AllProductsComponent {
 
   sortByPrice(): void {
     this.products = this.products.sort((a: any, b: any) => a.price - b.price);
-    this.sort_price = true
+    this.sort_price = true;
     this.sort_name = false;
   }
   edit(x: any) {
     let updated: any;
     this.updatedId = x;
-    const url = `http://localhost:3000/api/v1/products/${x}`;
+    const url = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${x}`;
     this.productService
       .getProductsByID(this.token, this.email, x)
       .pipe(
@@ -68,12 +68,13 @@ export class AllProductsComponent {
         this.price = updated.price;
         this.quantity = updated.countInStock;
       });
+    ////////////////////////////////////////////////////////////////////////////////////////
   }
 
   save() {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
-    const updateUrl = `http://localhost:3000/api/v1/products/${this.updatedId}`;
+    const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${this.updatedId}`;
     const body = {
       name: this.name,
       price: this.price,
@@ -96,16 +97,8 @@ export class AllProductsComponent {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${x}`;
+    const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${x}`;
 
-    this.productService.deleteProduct(this.token, this.email, x).subscribe(
-      (response: any) => {
-        this.getAllProducts();
-      },
-      (error) => {
-        console.error('Error fetching books:', error);
-      }
-    );
     this.productService.deleteProduct(this.token, this.email, x).subscribe(
       (response: any) => {
         this.getAllProducts();

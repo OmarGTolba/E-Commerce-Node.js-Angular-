@@ -16,7 +16,7 @@ export class CartService {
     userId: string,
     body: any
   ): Observable<any[]> {
-    const baseUrl = `http://localhost:3000/api/v1/cart?user=${userId}`;
+    const baseUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/cart?user=${userId}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

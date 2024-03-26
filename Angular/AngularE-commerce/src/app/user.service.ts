@@ -99,6 +99,9 @@ export class UserService {
     message: string;
     email: string;
   }): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/api/v1/contact', data);
+    return this.http.post<any>(
+      'https://ecommerce-node-wqwd.onrender.com/api/v1/contact',
+      data
+    );
   }
 }

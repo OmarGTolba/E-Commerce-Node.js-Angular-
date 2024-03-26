@@ -48,7 +48,7 @@ export class AdminProductsDetailsComponent {
     this.imgSrc = imgsrc;
   }
   updateProduct() {
-    const url = `http://localhost:3000/api/v1/products/${this.id}`;
+    const url = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${this.id}`;
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
@@ -72,4 +72,3 @@ export class AdminProductsDetailsComponent {
       );
   }
 }
-

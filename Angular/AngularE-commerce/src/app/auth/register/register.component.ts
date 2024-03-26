@@ -33,7 +33,7 @@ export class RegisterComponent {
     console.log('2raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaf');
     console.log(this.registerForm);
 
-    const api = 'http://localhost:3000/api/v1/user';
+    const api = 'https://ecommerce-node-wqwd.onrender.com/api/v1/user';
 
     const body = {
       name: this.name,

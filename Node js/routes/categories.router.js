@@ -12,7 +12,7 @@ const { admin } = require("../middleware/admin");
 
 router.get("/", getAllCategories);
 router.get("/:id", getCategoryById);
-router.put("/:id", admin, updateCategory);
+router.put("/:id", updateCategory);
 router.post("/", admin, addNewCategory);
 router.delete("/:id", admin, deleteCategory);
 
