@@ -20,7 +20,8 @@ const updateCategory = asyncHandler(async (req, res) => {
   };
   const updatedCategory = await categoryModule.findByIdAndUpdate(
     req.params.id,
-    category
+     category
+    // {new :true}
   );
   res.status(200).json({ data: updatedCategory });
 });

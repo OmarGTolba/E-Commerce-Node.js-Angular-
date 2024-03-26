@@ -8,6 +8,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const localData = localStorage.getItem('token');
   
   if (localData === null) {
+    console.log(localData);
     return true;
   } else {
     toast.error({
@@ -20,4 +21,3 @@ export const loginGuard: CanActivateFn = (route, state) => {
     return false; 
   }
 };
-

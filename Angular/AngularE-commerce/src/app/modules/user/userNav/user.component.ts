@@ -89,6 +89,8 @@ export class UserComponent implements OnInit {
     localStorage.setItem('userId', '');
     this.router.navigate(['/user']);
     this.loggedin = false;
+    localStorage.clear();
+
   }
   signIn() {
     this.router.navigate(['/login']);
