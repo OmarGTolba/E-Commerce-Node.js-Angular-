@@ -1,33 +1,50 @@
 .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
 
-  .table th, .table td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
+.table th,
+.table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
-  .table thead th {
-    background-color: #3b5d50;
-    color: white;
-  }
+.table thead th {
+  background-color: #3b5d50;
+  color: white;
+}
 
-  .table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  /* Responsive styles */
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
 @media screen and (max-width: 700px) {
-    .table {
-        width: 100%;
-        margin-left: 0;
-    }
+  .table {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .table th, .table td {
-        text-align: center;
-    }
+  .table th,
+  .table td {
+    text-align: center;
+  }
+}
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  width: 85%;
+  margin: 20px;
+}
+
+.card img {
+  width: 44%;
+}
+.card p {
+  font-weight: 800;
+  display: inline;
 }

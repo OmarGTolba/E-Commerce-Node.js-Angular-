@@ -85,10 +85,12 @@ const routes: Routes = [
     children: [
       { path: 'products', component: AllProductsComponent },
       { path: 'products/:id', component: AdminProductsDetailsComponent },
+      { path: 'addProduct/:id', component: AddComponent },
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
       { path: 'addCategory', component: AddcategoryComponent },
+      { path: 'updateCategory/:id', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },
       { path: 'addProduct/:id', component: AddComponent }
     ],

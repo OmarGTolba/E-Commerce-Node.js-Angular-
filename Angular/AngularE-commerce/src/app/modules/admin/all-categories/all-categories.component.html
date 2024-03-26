@@ -1,16 +1,22 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <table class="table table-striped" style="width: 50%; border-collapse: collapse;">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of categories; let i = index">
-                <td>{{categories[i].name_en}}</td>
-                <td>{{categories[i]._id}}</td>
-            </tr>
-        </tbody>
-    </table>
+<!-- <div style="display: flex; justify-content: center; align-items: center; "> -->
+<div class=" row" style="display: flex; justify-content: flex-end;">
+    <div class="col-5" *ngFor="let item of categories; let i = index">
+        <div class="card">
+
+            <img [src]="item.icon" />
+            <div>
+                <div style="position: absolute; top: 20px; right: 14px;display: flex; gap: 15px;">
+                    <p (click)="edit(item._id)" style="cursor: pointer;">
+                        <mat-icon>edit</mat-icon>
+                    </p>
+                    <p (click)="delete(item._id)" style="cursor: pointer;">
+                        <mat-icon style=" color: red;">delete</mat-icon>
+                    </p>
+                </div>
+                <p>Id : </p>{{item._id}} <br />
+                <p>Name : </p>{{item.name_en}}
+            </div>
+        </div>
+
+    </div>
 </div>

@@ -29,57 +29,69 @@
               </tr>
             </thead>
             <tbody>
+
+              <tr *ngIf="SkeletonLoading">
+                <td>
+                  <ngx-skeleton-loader
+                    [theme]="{ height: '150px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                </td>
+                <td>
+                  <ngx-skeleton-loader
+                    [theme]="{ height: '20px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                </td>
+                <td>
+                  <ngx-skeleton-loader
+                    [theme]="{ height: '20px', width: '30%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                </td>
+                <td>
+                  <ngx-skeleton-loader
+                    [theme]="{ height: '20px', width: '30%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                </td>
+                <td>
+                  <ngx-skeleton-loader
+                    [theme]="{ height: '20px', width: '30%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                </td>
+                <td>
+                  <ngx-skeleton-loader
+                    [theme]="{ height: '20px', width: '30%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                </td>
+
+
+              </tr>
+
               <tr *ngFor="let item of cart; let i = index">
-                <td class="product-thumbnail">
-                  <img
-                    src="{{ item.product_id.images[0] }}"
-                    alt="Image"
-                    class="img-fluid"
-                  />
-                </td>
-                <td class="product-name">
-                  <h2 class="h5 text-black">{{ item.product_id.name }}</h2>
-                </td>
-                <td>{{ item.product_id.price }}</td>
-                <td>
-                  <div
-                    class="input-group mb-3 d-flex align-items-center quantity-container"
-                    style="max-width: 120px"
-                  >
-                    <div class="input-group-prepend">
-                      <button
-                        class="btn btn-outline-black decrease"
-                        (click)="minus(item)"
-                        type="button"
-                      >
-                        &minus;
-                      </button>
+                <ng-container *ngIf="!SkeletonLoading">
+
+
+                  <td class="product-thumbnail">
+                    <img src="{{ item.product_id.images[0] }}" alt="Image" class="img-fluid" />
+                  </td>
+                  <td class="product-name">
+                    <h2 class="h5 text-black">{{ item.product_id.name }}</h2>
+                  </td>
+                  <td>{{ item.product_id.price }}</td>
+                  <td>
+                    <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-outline-black decrease" (click)="minus(item)" type="button">
+                          &minus;
+                        </button>
+                      </div>
+                      <input type="text" class="form-control text-center quantity-amount" value="{{ item.quantity }}"
+                        placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-black increase" (click)="plus(item)" type="button">
+                          &plus;
+                        </button>
+                      </div>
                     </div>
-                    <input
-                      type="text"
-                      class="form-control text-center quantity-amount"
-                      value="{{ item.quantity }}"
-                      placeholder=""
-                      aria-label="Example text with button addon"
-                      aria-describedby="button-addon1"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-outline-black increase"
-                        (click)="plus(item)"
-                        type="button"
-                      >
-                        &plus;
-                      </button>
-                    </div>
-                  </div>
-                </td>
-                <td>{{ item.product_id.price * item.quantity }}</td>
-                <td>
-                  <a (click)="deleteCart(item)" class="btn btn-black btn-sm"
-                    >X</a
-                  >
-                </td>
+                  </td>
+                  <td>{{ item.product_id.price * item.quantity }}</td>
+                  <td>
+                    <a (click)="deleteCart(item)" class="btn btn-black btn-sm">X</a>
+                  </td>
+                </ng-container>
+
               </tr>
             </tbody>
           </table>
@@ -96,10 +108,7 @@
             </button>
           </div>
           <div class="col-md-6">
-            <button
-              routerLink="/"
-              class="btn btn-outline-black btn-sm btn-block"
-            >
+            <button routerLink="/" class="btn btn-outline-black btn-sm btn-block">
               {{ "Continue Shopping" | translate }}
             </button>
           </div>
@@ -108,16 +117,11 @@
           <div class="col-md-12">
             <label class="text-black h4" for="coupon">{{
               "Coupon" | translate
-            }}</label>
+              }}</label>
             <p>{{ "coupon code" | translate }}</p>
           </div>
           <div class="col-md-8 mb-3 mb-md-0">
-            <input
-              type="text"
-              class="form-control py-3"
-              id="coupon"
-              placeholder="{{ 'coupon code' | translate }}"
-            />
+            <input type="text" class="form-control py-3" id="coupon" placeholder="{{ 'coupon code' | translate }}" />
           </div>
           <div class="col-md-4">
             <button class="btn btn-black">
@@ -155,10 +159,7 @@
 
             <div class="row">
               <div class="col-md-12">
-                <button
-                  class="btn btn-black btn-lg py-3 btn-block"
-                  routerLink="/user/checkout"
-                >
+                <button class="btn btn-black btn-lg py-3 btn-block" routerLink="/user/checkout">
                   {{ "Proceed To Checkout" | translate }}
                 </button>
               </div>
@@ -174,39 +175,23 @@
 <footer class="footer-section">
   <div class="container relative">
     <div class="sofa-img">
-      <img
-        src="../../../assets/images/sofa.png"
-        alt="Image"
-        class="img-fluid"
-      />
+      <img src="../../../assets/images/sofa.png" alt="Image" class="img-fluid" />
     </div>
 
     <div class="row">
       <div class="col-lg-8">
         <div class="subscription-form">
           <h3 class="d-flex align-items-center">
-            <span class="me-1"
-              ><img
-                src="../../../assets/images/envelope-outline.svg"
-                alt="Image"
-                class="img-fluid" /></span
-            ><span>{{ "Subscribe to Newsletter" | translate }}</span>
+            <span class="me-1"><img src="../../../assets/images/envelope-outline.svg" alt="Image"
+                class="img-fluid" /></span><span>{{ "Subscribe to Newsletter" | translate }}</span>
           </h3>
 
           <form action="#" class="row g-3">
             <div class="col-auto">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter your name"
-              />
+              <input type="text" class="form-control" placeholder="Enter your name" />
             </div>
             <div class="col-auto">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="{{ 'Enter your email' | translate }}"
-              />
+              <input type="email" class="form-control" placeholder="{{ 'Enter your email' | translate }}" />
             </div>
             <div class="col-auto">
               <button class="btn btn-primary">

@@ -13,19 +13,19 @@ export class PaymentService {
       jwt: token,
     });
     return this.httpClient.post<any>(
-      'http://localhost:3000/api/v1/payment/checkout',
+      'https://node-project-5tke.onrender.com/api/v1/payment/checkout',
       body,
       { headers }
     );
   }
 
-  showResult(token: string): Observable<string>{
+  showResult(token: string): Observable<string> {
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
     });
     return this.httpClient.post<string>(
-      'http://localhost:3000/api/v1/payment/result',
+      'https://node-project-5tke.onrender.com/api/v1/payment/result',
       { headers }
     );
   }

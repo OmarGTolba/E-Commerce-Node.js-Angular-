@@ -1,4 +1,5 @@
-<form (ngSubmit)="onSubmit()" #categoryForm="ngForm" class="d-flex justify-content-center align-items-center">
+<form (ngSubmit)="editMode ? onEdit() : onAdd()" #categoryForm="ngForm"
+    class="d-flex justify-content-center align-items-center">
     <div>
         <div class="form-group">
             <label for="categoryName_en">Category name in english :</label>

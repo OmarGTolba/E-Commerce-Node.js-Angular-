@@ -1,40 +1,24 @@
-<div class="container">
-  <form (submit)="onLoginSubmit()" [formGroup]="loginForm" class="login-form">
-    <h1>{{ "login" | translate }}</h1>
-    <input
-      type="email"
-      formControlName="email"
-      placeholder="{{ 'Enter your email' | translate }}"
-      [(ngModel)]="email"
-    />
-    <small
-      *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched"
-      class="error-border"
-    >
-      <span class="error-message">{{ "email error" | translate }}</span>
+<div class="container justify-content-center d-flex  px-1  m-auto mt-5" style="background-color: #3B5D50 ;">
+  <form (submit)=" onLoginSubmit()" [formGroup]="loginForm" class="login-form">
+    <h1>{{ "LogIn" | translate }}</h1>
+    <input type="email" formControlName="email" placeholder="{{ 'Enter your email' | translate }}"
+      [(ngModel)]="email" />
+    <small style="margin-top: -10px; margin-bottom: 16px;"
+      *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="error-border">
+      <span class="error-message">{{ "Invalid email" | translate }}</span>
     </small>
-    <small
-      *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched"
-    >
-      <span class="error-message">{{ "email valid" | translate }}</span>
+    <small style="margin-top: -10px; margin-bottom: 16px;"
+      *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched">
+      <span class="error-message">{{ "Invalid email" | translate }}</span>
     </small>
-    <input
-      type="password"
-      formControlName="password"
-      placeholder="{{ 'Enter your password' | translate }}"
-      [(ngModel)]="password"
-    />
-    <small
+    <input type="password" formControlName="password" placeholder="{{ 'Enter your password' | translate }}"
+      [(ngModel)]="password" />
+    <small style="margin-top: -10px; margin-bottom: 16px;"
       *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
-      class="error-border"
-    >
+      class="error-border">
       <span class="error-message">{{ "password error" | translate }}</span>
     </small>
-    <button
-      type="submit"
-      [disabled]="loginForm.invalid"
-      class="btn btn-primary"
-      style="
+    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary" style="
         padding: 10px;
         background-color: #3b5d50;
         border: none;
@@ -43,15 +27,14 @@
         margin-bottom: 20px;
         border-radius: 5px;
         cursor: pointer;
-      "
-    >
+      ">
       {{ "login" | translate }}
     </button>
     <a routerLink="/forgot-password" class="mb-2">{{
-      "Forgot password" | translate
-    }}</a>
-    <div class="mt-2" class="account">
-      {{ "Don't have an account" | translate }}
+      "Forgot password ?" | translate
+      }}</a>
+    <div class="account">
+      {{ "Don't have an account ? " | translate }}
       <a routerLink="/register">{{ "Register here" | translate }}</a>
     </div>
   </form>

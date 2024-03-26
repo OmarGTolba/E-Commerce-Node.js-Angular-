@@ -9,6 +9,7 @@ import { catchError } from 'rxjs';
   selector: 'app-admin-products-details',
   templateUrl: './admin-products-details.component.html',
   styleUrl: './admin-products-details.component.css',
+  styleUrl: './admin-products-details.component.css',
 })
 export class AdminProductsDetailsComponent {
   token = localStorage.getItem('token') || '';
@@ -72,3 +73,4 @@ export class AdminProductsDetailsComponent {
       );
   }
 }
+

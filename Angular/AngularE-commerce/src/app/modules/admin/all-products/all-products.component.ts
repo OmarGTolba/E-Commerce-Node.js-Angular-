@@ -8,11 +8,16 @@ import { Product } from '../../../Models/products';
   selector: 'app-all-products',
   templateUrl: './all-products.component.html',
   styleUrl: './all-products.component.css',
+  styleUrl: './all-products.component.css',
 })
 export class AllProductsComponent {
   name: any;
   price: any;
   quantity: any;
+  constructor(
+    private http: HttpClient,
+    private productService: ProductsService
+  ) {
   constructor(
     private http: HttpClient,
     private productService: ProductsService
@@ -26,6 +31,14 @@ export class AllProductsComponent {
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   getAllProducts(): void {
+    this.productService
+      .getAllProducts(this.token, this.email)
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
     this.productService
       .getAllProducts(this.token, this.email)
       .pipe(
@@ -97,8 +110,16 @@ export class AllProductsComponent {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    const updateUrl = `http://localhost:3000/api/v1/products/${x}`;
+    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/products/${x}`;
 
+    this.productService.deleteProduct(this.token, this.email, x).subscribe(
+      (response: any) => {
+        this.getAllProducts();
+      },
+      (error) => {
+        console.error('Error fetching books:', error);
+      }
+    );
     this.productService.deleteProduct(this.token, this.email, x).subscribe(
       (response: any) => {
         this.getAllProducts();

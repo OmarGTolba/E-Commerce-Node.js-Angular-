@@ -16,6 +16,7 @@
   padding: 16px;
   text-decoration: none;
   margin: 10px 0;
+  cursor: pointer;
 }
 
 /* Active/current link */
@@ -51,4 +52,15 @@
     text-align: center;
     float: none;
   }
+}
+
+.logout {
+  padding: 10px;
+  border: none;
+  background-color: #f8b810;
+  border-radius: 10px;
+  padding: 0 30px;
+  color: #f9f9f9;
+  height: 35px;
+  margin: 0 44px;
 }
