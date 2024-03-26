@@ -9,11 +9,13 @@ import { catchError } from 'rxjs';
   selector: 'app-admin-products-details',
   templateUrl: './admin-products-details.component.html',
   styleUrl: './admin-products-details.component.css',
+  styleUrl: './admin-products-details.component.css',
 })
 export class AdminProductsDetailsComponent {
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
+  imgSrc: any;
 
   id: any;
   product: any;
@@ -36,15 +38,18 @@ export class AdminProductsDetailsComponent {
             })
           )
           .subscribe((response: any) => {
-            console.log(response.data);
+            this.product = response.data;
+            this.imgSrc = this.product.images[0];
           });
       }
     });
     this.updateProduct();
   }
-
+  imgClick(imgsrc: string) {
+    this.imgSrc = imgsrc;
+  }
   updateProduct() {
-    const url = `https://node-project-5tke.onrender.com/api/v1/products/${this.id}`;
+    const url = `http://localhost:3000/api/v1/products/${this.id}`;
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
@@ -68,3 +73,4 @@ export class AdminProductsDetailsComponent {
       );
   }
 }
+

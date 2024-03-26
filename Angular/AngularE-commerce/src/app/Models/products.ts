@@ -4,7 +4,8 @@ export interface Product {
     categories: string;
     countInStock: number;
     dateCreated: string;
-    description: string;
+    description_en: string;
+    description_ar: string;
     images: string[];
     isFeatured: boolean;
     name_en: string;

@@ -35,7 +35,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [{ path: '', component: HomeComponent }],
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:id/:token', component: ResetPasswordComponent },
@@ -92,6 +92,7 @@ const routes: Routes = [
       { path: 'addCategory', component: AddcategoryComponent },
       { path: 'updateCategory/:id', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },
+      { path: 'addProduct/:id', component: AddComponent }
     ],
   },
   { path: '', component: NotFoundComponent },

@@ -1,110 +1,211 @@
-<div class="w-75 container d-flex  pe-5 me-5">
-<div class="container w-50 m-0">
-    
+<!-- <div class="w-75 container d-flex pe-5 me-5">
+  <div class="container w-50 m-0">
+    <div class="d-flex justify-content-between py-3 align-items-sm-start">
+      <div class="d-flex startDiv">
+        <h5>
+          number of reviews: <span>{{ product?.numReviews }}</span>
+        </h5>
+      </div>
+
+      <div class="startDiv d-flex -3">
+        <h5>price:</h5>
+        <p>{{ product?.price }}</p>
+      </div>
+
+      <div class="d-flex endDiv">
+        <p>{{ product?.name_ar }}</p>
+        <h5>:اسم المنتج</h5>
+      </div>
+    </div>
 
     <div class="d-flex justify-content-between py-3 align-items-sm-start">
+      <div class="startDiv d-flex">
+        <h5>Product Name:</h5>
+        <p>{{ product?.name_en }}</p>
+      </div>
 
+      <div class="startDiv d-flex">
+        <h5>Brand:</h5>
+        <p>{{ product?.brand_en }}</p>
+      </div>
 
-<div class="d-flex startDiv">
-    <h5>number of reviews: </h5>
-    <p>{{product?.numReviews}}</p>
-</div>
-
-
-
-<div class="startDiv d-flex  -3">
-    <h5>price:</h5>
-    <p>{{product?.price}}</p>
-</div>
-
-
-<div class="d-flex endDiv">
-    <p>{{product?.name_ar}}</p>
-    <h5>: اسم المنتج</h5>
-</div>
-
-
-</div>
-
-<div class="d-flex justify-content-between py-3 align-items-sm-start ">
-
-
-
-    <div class="startDiv d-flex ">
-        <h5>Product Name: </h5>
-    <p>{{product?.name_en}}</p>
+      <div class="endDiv d-flex">
+        <p>{{ product?.brand_ar }}</p>
+        <h5>:الماركه</h5>
+      </div>
     </div>
 
-    <div class="startDiv d-flex ">
-    <h5>Brand: </h5>
-<p>{{product?.brand_en}}</p>
-</div>
+    <div class="d-flex justify-content-between align-items-sm-start">
+      <div class="d-flex startDiv w-50 -3">
+        <h5 class="p-0 mx-2">Rating:</h5>
+        <p>{{ product?.rating.toFixed(2) }}</p>
+      </div>
 
-<div class="endDiv d-flex ">
-    <p>{{product?.brand_ar}}</p>
-    <h5>:الماركه</h5>
-</div>
+      <div class="startDiv d-flex w-50 -3">
+        <h5 class="m-0 p-0 mx-2">CountInStock:</h5>
+        <p>{{ product?.countInStock }}</p>
+      </div>
 
-
-
-</div>
-
-
-
-<div class="d-flex justify-content-between align-items-sm-start  ">
-
-    <div class="d-flex startDiv w-50 -3 ">
-        <h5 class="m-0 p-0 mx-2  " >Rating: </h5>
-    <p>{{product?.rating}}</p>
+      <div class="endDiv d-flex -3">
+        <p>{{ product?.categories.name_ar }}</p>
+        <h5>:الصنف</h5>
+      </div>
     </div>
 
-    <div class="startDiv d-flex w-50 -3 ">
-    <h5 class="m-0 p-0 mx-2  " >CountInStock: </h5>
-<p>{{product?.countInStock}}</p>
-</div>
-
-<div class="endDiv d-flex -3">
-    <p>{{product?.categories.name_ar}}</p>
-    <h5>:الصنف</h5>
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="d-flex justify-content-between align-items-sm-start  ">
-    <div class="startDiv d-flex -3">
-        <h5>category: </h5>
-    <p>{{product?.categories.name_en}}</p>
+    <div class="d-flex justify-content-between align-items-sm-start">
+      <div class="startDiv d-flex -3">
+        <h5>category:</h5>
+        <p>{{ product?.categories.name_en }}</p>
+      </div>
+      <div class="endDiv d-flex w-50 -3">
+        <p>{{ product?.description_ar }}</p>
+        <h5>:الوصف</h5>
+      </div>
     </div>
-        <div class="endDiv d-flex w-50 -3">
-            <p>{{product?.description_ar}}</p>
-            <h5>:الوصف</h5>
-        </div>        
+
+    <div class="d-flex justify-content-between align-items-sm-start">
+      <div class="startDiv d-flex w-50 -3">
+        <h5 class="p-0 mx-2">Description:</h5>
+        <p>{{ product?.description_en }}</p>
+      </div>
     </div>
+  </div>
+  <div
+    class="w-25 d-flex flex-column justify-content-between align-content-between p-3 mt-2"
+  >
+    <img
+      src="{{ product.images[0] }}"
+      class="w-50"
+      style="height: 30%"
+      alt=""
+    />
+    <img
+      src="{{ product.images[1] }}"
+      class="w-50"
+      style="height: 30%"
+      alt=""
+    />
+    <img
+      src="{{ product.images[2] }}"
+      class="w-50"
+      style="height: 30%"
+      alt=""
+    />
+  </div>
+</div>-->
+<div class="w-75 container d-flex pe-5 me-5">
+  <div class="container my-5 pa">
+    <div class="row justify-content-md-center">
+      <div id="carouselExample" class="carousel slide col-12 col-xl">
+        <div class="col-md-12 border-end">
+          <div class="d-flex flex-column justify-content-center">
+            <div class="main_image">
+              <img
+                src="{{ imgSrc }}"
+                id="main_product_image"
+                style="width: 500px !important; height: 500px !important"
+              />
+            </div>
+            <div class="thumbnail_images">
+              <ul id="thumbnail" class="d-flex gap-3">
+                <li *ngFor="let item of product.images; let i = index">
+                  <img (click)="imgClick(item)" width="70" [src]="item" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-xl-6">
+        <table class="table mt-3 mb-2">
+          <tr>
+            <th class="py-2">Name in English:</th>
+            <td class="py-2">{{product.name_en}}</td>
+          </tr>
+          <tr>
+            <th class="py-2">Name in Arabic:</th>
+            <td class="py-2 text-end">{{product.name_ar}}</td>
+          </tr>
+          <tr>
+            <th class="py-2">Price:</th>
+            <td class="py-2">${{ product.price }}</td>
+          </tr>
+          <tr>
+            <th class="py-2">Count in stock:</th>
+            <td class="py-2">{{ product.countInStock }}</td>
+          </tr>
+          <tr>
+            <th class="py-2">Category:</th>
+            <td class="py-2">{{ product.categories.name_en }}</td>
+          </tr>
+          <tr>
+            <th class="py-2">Brand in English</th>
+            <td class="py-2">{{product.brand_en}}</td>
+          </tr>
+          <tr>
+            <th class="py-2">Brand in Arabic</th>
+            <td class="py-2 text-end">{{product.brand_ar}}</td>
+          </tr>
+          <tr>
+            <th class="py-2">Rating:</th>
+            <td class="py-2">{{ product.rating }}</td>
+          </tr>
+        </table>
+          <div
+            class="d-flex justify-content-start align-items-center my-3"
+          >
+            <mat-icon [ngClass]="{ selected: product?.rating >= 1 }">star</mat-icon>
+            <mat-icon [ngClass]="{ selected: product?.rating >= 2 }">star</mat-icon>
+            <mat-icon [ngClass]="{ selected: product?.rating >= 3 }">star</mat-icon>
+            <mat-icon [ngClass]="{ selected: product?.rating >= 4 }">star</mat-icon>
+            <mat-icon [ngClass]="{ selected: product?.rating >= 5 }">star</mat-icon>
+          </div>
+          <div>
+            <p class="d-inline-flex gap-1">
+              <button
+                class="btn discription"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#en"
+                aria-expanded="true"
+                aria-controls="en"
+              >
+                English Description
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </p>
+            <div class="collapse pb-5 show" id="en">
+              <div class="card card-body">
+                {{
+                 product.description_en
+                }}
+              </div>
+            </div>
+          </div>
+          <div>
+            <p class="d-inline-flex gap-1">
+              <button
+                class="btn discription"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="true"
+                aria-controls="collapseExample"
+              >
+                Arabic Description
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </p>
+            <div class="collapse pb-5 show" id="collapseExample">
+              <div class="card card-body">
+                {{
+                 product.description_ar
+                }}
+              </div>
+            </div>
+          </div>
     
-    
-
-
-
-<div class="d-flex justify-content-between align-items-sm-start  ">
-    <div class="startDiv d-flex w-50 -3 ">
-        <h5 class="m-0 p-0 mx-2  " >Description: </h5>
-    <p>{{product?.description_en}}</p>
+      </div>
     </div>
-        
-</div>
-
-
-
-
-</div>
-<div class="w-25 d-flex flex-column  justify-content-between align-content-between p-3 mt-2">
-    <img src="{{product.images[0]}}" class="w-50 " style="height: 30%;" alt="">
-    <img src="{{product.images[1]}}" class="w-50  " style="height: 30%;" alt="">
-    <img src="{{product.images[2]}}" class="w-50  " style="height: 30%;" alt="">
-</div>
+  </div>
 </div>
