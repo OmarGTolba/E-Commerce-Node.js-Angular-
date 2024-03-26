@@ -9,10 +9,10 @@ import { catchError } from 'rxjs';
 })
 export class AllUsersComponent {
   constructor(private http: HttpClient) {
-    this.getAllProducts();
+    this.getAllUsers();
   }
   products: any[] = [];
-  getAllProducts(): void {
+  getAllUsers(): void {
     const url = 'https://node-project-5tke.onrender.com/api/v1/user';
 
     const token = localStorage.getItem('token') || '';

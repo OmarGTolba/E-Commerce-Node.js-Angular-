@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 import { Category } from '../../../Models/categoriesInterface';
+import { Router } from '@angular/router';
+import { CategoryService } from '../../../services/category/category.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-all-categories',
@@ -9,31 +12,49 @@ import { Category } from '../../../Models/categoriesInterface';
   styleUrl: './all-categories.component.css',
 })
 export class AllCategoriesComponent {
-  constructor(private http: HttpClient) {
+  token = localStorage.getItem('token') || '';
+  email = localStorage.getItem('email') || '';
+  categories: Category[] = [];
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private categoryService: CategoryService,
+    private toast: NgToastService
+  ) {
     this.getAllCategories();
   }
-  categories: Category[] = [];
   getAllCategories(): void {
-    const url = 'https://node-project-5tke.onrender.com/api/v1/categories';
-
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-
-    this.http
-      .get<any[]>(url, {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          jwt: token,
-          email: email,
-        },
-      })
+    this.categoryService
+      .getAllCategories(this.token, this.email)
+      .pipe(
+        catchError((error) => {
+          return of(error);
+        })
+      )
+      .subscribe((response: any) => {
+        this.categories = response.data;
+      });
+  }
+  edit(id: string) {
+    this.router.navigate([`admin/updateCategory/${id}`]);
+    console.log(id);
+  }
+  delete(id: string) {
+    this.categoryService
+      .deleteCategory(this.token, this.email, id)
       .pipe(
         catchError((error) => {
           return error;
         })
       )
       .subscribe((response: any) => {
-        this.categories = response.data;
+        this.toast.success({
+          detail: 'SUCCESS',
+          summary: 'category deleted',
+          duration: 5000,
+          position: 'topRight',
+        });
+        this.getAllCategories();
       });
   }
 }

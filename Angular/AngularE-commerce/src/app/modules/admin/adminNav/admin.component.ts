@@ -33,4 +33,8 @@ export class AdminComponent {
   addCategory() {
     this.router.navigate(['admin/addCategory']);
   }
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/user']);
+  }
 }

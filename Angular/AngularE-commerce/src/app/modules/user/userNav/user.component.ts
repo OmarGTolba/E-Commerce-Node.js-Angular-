@@ -83,6 +83,7 @@ export class UserComponent implements OnInit {
     localStorage.setItem('email', '');
     localStorage.setItem('token', '');
     localStorage.setItem('userId', '');
+    localStorage.clear();
     this.router.navigate(['/user']);
     this.loggedin = false;
   }
