@@ -16,6 +16,7 @@
   padding: 16px;
   text-decoration: none;
   margin: 10px 0;
+  cursor: pointer;
 }
 
 /* Active/current link */

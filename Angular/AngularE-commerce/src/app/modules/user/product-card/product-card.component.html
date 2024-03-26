@@ -6,23 +6,12 @@
           <mat-icon>visibility</mat-icon>
         </li>
         <li [class.favorite]="productFav">
-          <mat-icon
-            class="heart-icon"
-            [class.filled]="productFav"
-            (click)="toggleFavorite()"
-            >favorite</mat-icon
-          >
-          <mat-icon
-            class="heart-icon"
-            [class.filled]="productFav"
-            (click)="toggleFavorite()"
-            >favorite</mat-icon
-          >
+          <mat-icon class="heart-icon" [class.filled]="productFav" (click)="toggleFavorite()">favorite</mat-icon>
+
         </li>
       </ul>
       <img [src]="product.images[0]" alt="Product Image" />
       <ng-container *ngIf="product.isFeatured">
-        <div class="offer">50% off</div>
         <div class="offer">50% off</div>
       </ng-container>
     </div>
@@ -41,4 +30,3 @@
     </button>
   </div>
 </section>
-

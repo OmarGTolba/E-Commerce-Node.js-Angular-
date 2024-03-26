@@ -7,22 +7,27 @@ import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  name: string = "";
-  email: string = "";
+  name: string = '';
+  email: string = '';
   password: any;
   registerForm = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
   });
 
-  constructor(private router: Router, private http: HttpClient, private fb: FormBuilder, private toast: NgToastService) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private toast: NgToastService
+  ) {}
 
   onSubmit() {
-    const api = 'http://localhost:3000/api/v1/user';
+    const api = 'https://node-project-5tke.onrender.com/api/v1/user';
 
     const body = {
       name: this.name,
@@ -36,8 +41,8 @@ export class RegisterComponent {
       'Content-Type': 'application/json',
     });
 
-    this.http.post(api, body, { headers })
-      .subscribe((response: any) => {
+    this.http.post(api, body, { headers }).subscribe(
+      (response: any) => {
         if (response) {
           const role = response.role;
           if (role === 'Admin') {
@@ -53,19 +58,21 @@ export class RegisterComponent {
             detail: 'Registration successful!',
             summary: 'Success',
             duration: 5000,
-            position: 'topRight'
+            position: 'topRight',
           });
         } else {
           console.error('Register failed: No response received');
         }
-      }, (error) => {
+      },
+      (error) => {
         console.error('Error occurred:', error.error.message);
         this.toast.error({
           detail: 'Error',
-          summary: error.error.message || "Registeration failed",
+          summary: error.error.message || 'Registeration failed',
           duration: 5000,
           position: 'topRight',
         });
-      });
+      }
+    );
   }
 }
