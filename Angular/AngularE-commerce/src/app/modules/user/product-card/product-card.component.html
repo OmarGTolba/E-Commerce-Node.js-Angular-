@@ -25,7 +25,7 @@
       <h4 class="product-price">${{ product.price }}</h4>
     </div>
     <button class="view" (click)="AddToCart()">
-      {{ added ? "Added successfully ✔" : ("add to cart" | translate) }}
+      {{ added ? "Added successfully &check;" : ("add to cart" | translate) }}
       <span *ngIf="!added">🛒</span>
     </button>
   </div>

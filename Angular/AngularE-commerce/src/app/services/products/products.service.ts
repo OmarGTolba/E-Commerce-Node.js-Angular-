@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:3000/api/v1/products';
+  baseUrl = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
   getAllProducts(token: string, email: string): Observable<any[]> {
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
@@ -19,7 +19,7 @@ export class ProductsService {
   }
 
   getAllCategories(token: string, email: string): Observable<any[]> {
-    const Url = 'http://localhost:3000/api/v1/categories';
+    const Url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/categories';
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -44,7 +44,7 @@ export class ProductsService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -64,7 +64,7 @@ export class ProductsService {
   }
 
   getProductsByID(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -75,7 +75,7 @@ export class ProductsService {
 
   products: any[] = [];
   searchByName(token: string, email: string, name: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/product/${name}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/search/product/${name}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -89,7 +89,7 @@ export class ProductsService {
     email: string,
     name: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/category/${name}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/search/category/${name}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -104,7 +104,7 @@ export class ProductsService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -119,7 +119,7 @@ export class ProductsService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -129,7 +129,7 @@ export class ProductsService {
   }
 
   deleteReview(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -139,7 +139,7 @@ export class ProductsService {
   }
 
   deleteProduct(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -154,7 +154,7 @@ export class ProductsService {
     userId: string,
     id: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -168,7 +168,7 @@ export class ProductsService {
     userId: string,
     id: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -183,7 +183,7 @@ export class ProductsService {
     userId: string,
     id: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

@@ -13,7 +13,7 @@ export class PaymentService {
       jwt: token,
     });
     return this.httpClient.post<any>(
-      'http://localhost:3000/api/v1/payment/checkout',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/checkout',
       body,
       { headers }
     );
@@ -25,7 +25,7 @@ export class PaymentService {
       jwt: token,
     });
     return this.httpClient.post<string>(
-      'http://localhost:3000/api/v1/payment/result',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/result',
       { headers }
     );
   }

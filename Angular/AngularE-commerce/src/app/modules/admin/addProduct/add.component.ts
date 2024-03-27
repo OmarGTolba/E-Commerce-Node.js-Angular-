@@ -64,7 +64,7 @@ export class AddComponent implements OnInit {
     });
   }
 
-  formBody :Product= {
+  formBody: Product = {
     name_ar: '',
     name_en: '',
     brand_en: '',
@@ -96,7 +96,7 @@ export class AddComponent implements OnInit {
 
   addProduct() {
     console.log(this.Form.controls.brandAr);
-    const url = 'http://localhost:3000/api/v1/products';
+    const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
     const body = {
@@ -106,19 +106,13 @@ export class AddComponent implements OnInit {
       brand_ar: this.Form.controls.brandAr.value,
       brand_en: this.Form.controls.brandEn.value,
       description_en: this.Form.controls.descEn.value,
-      isFeatured: this.Form.controls.isFeatured.value == "false"?false: true,
+      isFeatured: this.Form.controls.isFeatured.value == 'false' ? false : true,
       categories: this.Form.controls.category.value,
       countInStock: this.Form.controls.countInStock.value,
       price: this.Form.controls.price.value,
-      images: [
-        this.Form.controls.img1.value,
-        this.Form.controls.img2.value,
-      ],
+      images: [this.Form.controls.img1.value, this.Form.controls.img2.value],
     };
-console.log([
-  this.Form.controls.img1.value,
-  this.Form.controls.img2.value,
-]);
+    console.log([this.Form.controls.img1.value, this.Form.controls.img2.value]);
 
     this.http
       .post<any[]>(url, body, {
@@ -139,7 +133,7 @@ console.log([
   }
 
   updateProduct() {
-    const url = `http://localhost:3000/api/v1/products/${this.id}`;
+    const url = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${this.id}`;
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
     const body = {
@@ -148,15 +142,12 @@ console.log([
       description_ar: this.Form.controls.descAr.value,
       brand_ar: this.Form.controls.brandAr.value,
       brand_en: this.Form.controls.brandEn.value,
-      isFeatured: this.Form.controls.isFeatured.value == "false" ? false: true,
+      isFeatured: this.Form.controls.isFeatured.value == 'false' ? false : true,
       description_en: this.Form.controls.descEn.value,
       categories: this.Form.controls.category.value,
       countInStock: this.Form.controls.countInStock.value,
       price: this.Form.controls.price.value,
-      images: [
-        this.Form.controls.img1.value,
-        this.Form.controls.img2.value,
-      ],
+      images: [this.Form.controls.img1.value, this.Form.controls.img2.value],
     };
 
     this.http

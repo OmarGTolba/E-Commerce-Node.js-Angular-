@@ -13,7 +13,7 @@ export class FavoritesService {
       jwt: localStorage.getItem('token') || '',
     });
     return this.httpClient.get<any[]>(
-      'http://localhost:3000/api/v1/products/favourite/' + id
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' + id
     );
   }
 
@@ -23,7 +23,7 @@ export class FavoritesService {
       jwt: localStorage.getItem('token') || '',
     });
     return this.httpClient.post(
-      'http://localhost:3000/api/v1/products/favourite/' +
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,
@@ -37,7 +37,7 @@ export class FavoritesService {
       jwt: localStorage.getItem('token') || '',
     });
     return this.httpClient.delete(
-      'http://localhost:3000/api/v1/products/favourite/' +
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,
