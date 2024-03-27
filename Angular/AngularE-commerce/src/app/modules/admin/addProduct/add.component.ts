@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../../services/products/products.service';
 import { catchError } from 'rxjs';
+import { Product } from '../../../Models/products';
 
 @Component({
   selector: 'app-add',
@@ -45,16 +46,17 @@ export class AddComponent implements OnInit {
           .subscribe((response: any) => {
             console.log(response.data);
             this.product = response.data;
-            this.formBody.brandAr = this.product.brand_ar;
-            this.formBody.brandEn = this.product.brand_en;
-            this.formBody.descAr = this.product.description_ar;
-            this.formBody.descEn = this.product.description_en;
+            this.formBody.brand_ar = this.product.brand_ar;
+            this.formBody.brand_en = this.product.brand_en;
+            this.formBody.description_ar = this.product.description_ar;
+            this.formBody.description_en = this.product.description_en;
             this.formBody.countInStock = this.product.countInStock;
-            this.formBody.category = this.product.categories._id;
+            this.formBody.categories = this.product.categories._id;
             this.formBody.price = this.product.price;
-            this.formBody.nameAr = this.product.name_ar;
-            this.formBody.nameEn = this.product.name_en;
+            this.formBody.name_ar = this.product.name_ar;
+            this.formBody.name_en = this.product.name_en;
             this.formBody.isFeatured = this.product.isFeatured;
+            this.formBody.images = this.product.images;
           });
       } else {
         console.log('bbbba');
@@ -62,18 +64,18 @@ export class AddComponent implements OnInit {
     });
   }
 
-  formBody = {
-    nameAr: '',
-    nameEn: '',
-    brandEn: '',
-    category: '',
-    brandAr: '',
-    descAr: '',
-    descEn: '',
-    countInStock: '',
-    price: '',
-    image: '',
-    isFeatured: '',
+  formBody :Product= {
+    name_ar: '',
+    name_en: '',
+    brand_en: '',
+    categories: '',
+    brand_ar: '',
+    description_ar: '',
+    description_en: '',
+    countInStock: 0,
+    price: 0,
+    images: [],
+    isFeatured: false,
   };
 
   Form = new FormGroup({
@@ -83,13 +85,11 @@ export class AddComponent implements OnInit {
     category: new FormControl(''),
     brandAr: new FormControl(''),
     descAr: new FormControl(''),
+    isFeatured: new FormControl(''),
     descEn: new FormControl(''),
     countInStock: new FormControl(''),
-    images: new FormGroup({
-      img1: new FormControl(''),
-      img2: new FormControl(''),
-      img3: new FormControl(''),
-    }),
+    img1: new FormControl(''),
+    img2: new FormControl(''),
     price: new FormControl(''),
     image: new FormControl(''),
   });
@@ -103,15 +103,22 @@ export class AddComponent implements OnInit {
       name_en: this.Form.controls.nameEn.value,
       name_ar: this.Form.controls.nameAr.value,
       description_ar: this.Form.controls.descAr.value,
-      brand_ar: this.Form.controls.descAr.value,
-      brand_en: this.Form.controls.brandAr.value,
-      description_en: this.Form.controls.brandEn.value,
+      brand_ar: this.Form.controls.brandAr.value,
+      brand_en: this.Form.controls.brandEn.value,
+      description_en: this.Form.controls.descEn.value,
+      isFeatured: this.Form.controls.isFeatured.value == "false"?false: true,
       categories: this.Form.controls.category.value,
       countInStock: this.Form.controls.countInStock.value,
       price: this.Form.controls.price.value,
-      images: [],
+      images: [
+        this.Form.controls.img1.value,
+        this.Form.controls.img2.value,
+      ],
     };
-    console.log(body);
+console.log([
+  this.Form.controls.img1.value,
+  this.Form.controls.img2.value,
+]);
 
     this.http
       .post<any[]>(url, body, {
@@ -132,7 +139,6 @@ export class AddComponent implements OnInit {
   }
 
   updateProduct() {
-    console.log(this.Form.controls.brandAr);
     const url = `http://localhost:3000/api/v1/products/${this.id}`;
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
@@ -140,18 +146,21 @@ export class AddComponent implements OnInit {
       name_en: this.Form.controls.nameEn.value,
       name_ar: this.Form.controls.nameAr.value,
       description_ar: this.Form.controls.descAr.value,
-      brand_ar: this.Form.controls.descAr.value,
-      brand_en: this.Form.controls.brandAr.value,
-      description_en: this.Form.controls.brandEn.value,
-      // categories:this.Form.controls.category.value,
+      brand_ar: this.Form.controls.brandAr.value,
+      brand_en: this.Form.controls.brandEn.value,
+      isFeatured: this.Form.controls.isFeatured.value == "false" ? false: true,
+      description_en: this.Form.controls.descEn.value,
+      categories: this.Form.controls.category.value,
       countInStock: this.Form.controls.countInStock.value,
       price: this.Form.controls.price.value,
-      images: [],
+      images: [
+        this.Form.controls.img1.value,
+        this.Form.controls.img2.value,
+      ],
     };
-    console.log(body);
 
     this.http
-      .patch<any[]>(url, body, {
+      .patch<any[]>(url, this.formBody, {
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
           jwt: token,

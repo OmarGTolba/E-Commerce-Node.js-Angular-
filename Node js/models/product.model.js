@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
   name_en: {
     type: String,
     required: [true, "Product required"],
-    maxlength: [32, "Too long Product name"],
+    maxlength: [100, "Too long Product name"],
     minlength: [3, "Too short Product name"],
   },
   name_ar: {
