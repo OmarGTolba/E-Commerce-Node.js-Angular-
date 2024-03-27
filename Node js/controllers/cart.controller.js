@@ -8,7 +8,9 @@ const getCart = async (req, res) => {
     const userCart = await cartService
       .findOne({ user })
       .populate('items.product_id')
-    res.json(userCart)
+    res.send(userCart)
+
+
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

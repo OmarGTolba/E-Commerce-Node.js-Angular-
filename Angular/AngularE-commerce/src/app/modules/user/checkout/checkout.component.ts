@@ -101,7 +101,7 @@ export class CheckoutComponent implements OnInit {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    // const updateUrl = `https://node-project-5tke.onrender.com/api/v1/cart/${item.product_id.id}`;
+    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: this.editFormGroup.controls.city.value,
       phone: this.editFormGroup.controls.phone.value,
@@ -128,7 +128,7 @@ export class CheckoutComponent implements OnInit {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    // const updateUrl = `https://node-project-5tke.onrender.com/api/v1/cart/${item.product_id.id}`;
+    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: this.editFormGroup.controls.city.value,
       phone: this.editFormGroup.controls.phone.value,
@@ -159,13 +159,13 @@ export class CheckoutComponent implements OnInit {
       this.editFormGroup.controls.paymentMethod.value == 'CASH'
     ) {
       this.makeOrder();
-      this.router.navigate(['user/allOrder']);
+      this.router.navigate(['user/profile/allOrder']);
     } else if (
       this.editFormGroup.controls.paymentMethod.value &&
       this.editFormGroup.controls.paymentMethod.value == 'CREDIT'
     ) {
       await this.makeCreditOrder();
-      this.router.navigate(['user/allOrder']);
+      this.router.navigate(['user/profile/allOrder']);
     }
     this.makeOrder();
   }
@@ -180,6 +180,7 @@ export class CheckoutComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           window.open(response.session.url, '_blank');
+      this.userService.cartLength.next(0);
         },
         error: (err) => {
           console.error('Payment error:', err);

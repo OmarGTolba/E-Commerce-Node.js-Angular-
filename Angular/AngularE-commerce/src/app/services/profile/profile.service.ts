@@ -27,20 +27,20 @@ export class ProfileService {
     });
 
     return this.httpClient.patch<IUser>(
-      'https://node-project-5tke.onrender.com/api/v1/user/profile/update',
+      'http://localhost:3000/api/v1/user/profile/update',
       data,
       { headers }
     );
   }
   forgotPassword(data: { email: string }) {
     return this.httpClient.post<{ email: string }>(
-      'https://node-project-5tke.onrender.com/api/v1/user/password/forgotPassword',
+      'http://localhost:3000/api/v1/user/password/forgotPassword',
       data
     );
   }
   resetPassword(id: string, token: string, data: { password: string }) {
     return this.httpClient.post<{ password: string }>(
-      `https://node-project-5tke.onrender.com/api/v1/user/password/reset-password/${id}/${token}`,
+      `http://localhost:3000/api/v1/user/password/reset-password/${id}/${token}`,
       data
     );
   }

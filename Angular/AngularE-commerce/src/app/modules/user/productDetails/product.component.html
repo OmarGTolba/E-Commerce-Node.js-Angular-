@@ -213,7 +213,7 @@
               <div class="carousel">
                 <div *ngFor="let item of reviews; let i = index" class="carousel-item" [class.active]="i === 0">
                   <div style="position: relative;">
-                    <div style="position: absolute; top: 18px; right: 18px;">
+                    <div style="position: absolute; top: 18px; right: 70px;">
                       <mat-icon
                         style="margin-right: 55px; color: white; cursor: pointer; font-size: 1.6em; width: fit-content;height: max-content; "
                         class="mx-3" *ngIf="item?.user?._id === userId && !editmode"
@@ -235,7 +235,7 @@
                     <div>
                       <div>
                         <div>
-                          <p>{{ item.title }}</p>
+                          <p>{{ item?.user?.name }}</p>
 
                           <div *ngIf="!editmode">
                             <mat-icon [ngClass]="{ selected: item.rating >= 1 }">star</mat-icon>

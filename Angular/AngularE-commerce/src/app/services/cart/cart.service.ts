@@ -11,12 +11,14 @@ export class CartService {
   cart: any[] = [];
 
   addToCart(
+    
     token: string,
     email: string,
     userId: string,
     body: any
-  ): Observable<any[]> {
-    const baseUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/cart?user=${userId}`;
+    ): Observable<any[]> {
+    console.log("hello from add to cart");
+    const baseUrl = `http://localhost:3000/api/v1/cart?user=${userId}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

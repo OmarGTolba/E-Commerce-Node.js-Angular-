@@ -96,7 +96,7 @@ export class AddComponent implements OnInit {
 
   addProduct() {
     console.log(this.Form.controls.brandAr);
-    const url = 'https://node-project-5tke.onrender.com/api/v1/products';
+    const url = 'http://localhost:3000/api/v1/products';
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
     const body = {
@@ -133,7 +133,7 @@ export class AddComponent implements OnInit {
 
   updateProduct() {
     console.log(this.Form.controls.brandAr);
-    const url = `https://node-project-5tke.onrender.com/api/v1/products/${this.id}`;
+    const url = `http://localhost:3000/api/v1/products/${this.id}`;
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
     const body = {

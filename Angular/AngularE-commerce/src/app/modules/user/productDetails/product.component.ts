@@ -190,11 +190,14 @@ export class ProductComponent {
   }
 
   addReview() {
+
     const body = {
       title: this.reviewForm.value.title,
       rating: this.reviewValue,
       user: this.userId,
     };
+    console.log(body);
+    
     console.log(body);
     this.productServices
       .addReview(this.token, this.email, this.productId, body)
