@@ -1,15 +1,12 @@
 <div class="container pa">
   <div class="row">
     <div id="carouselExample" class="carousel slide col-12 col-xl">
-      <ngx-skeleton-loader
-        [theme]="{
+      <ngx-skeleton-loader [theme]="{
           margin: '40px 0',
           height: '600px',
           width: '100%',
           borderRadius: '4px'
-        }"
-        *ngIf="skeletonLoading"
-      ></ngx-skeleton-loader>
+        }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
       <ng-container *ngIf="!skeletonLoading">
 
 
@@ -33,62 +30,45 @@
     </div>
 
     <div class="col-12 col-xl-6" [ngClass]="{ 'text-end': lang == 'ar' }">
-      <ngx-skeleton-loader
-        [theme]="{
+      <ngx-skeleton-loader [theme]="{
           margin: '40px 0',
           height: '20px',
           width: '100%',
           borderRadius: '4px'
-        }"
-        *ngIf="skeletonLoading"
-      ></ngx-skeleton-loader>
-      <ngx-skeleton-loader
-        [theme]="{
+        }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{
           margin: '40px 0',
           height: '10px',
           width: '100%',
           borderRadius: '4px'
-        }"
-        *ngIf="skeletonLoading"
-      ></ngx-skeleton-loader>
-      <ngx-skeleton-loader
-        [theme]="{
+        }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{
           margin: '40px 0',
           height: '10px',
           width: '100%',
           borderRadius: '4px'
-        }"
-        *ngIf="skeletonLoading"
-      ></ngx-skeleton-loader>
-      <ngx-skeleton-loader
-        [theme]="{
+        }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
+      <ngx-skeleton-loader [theme]="{
           margin: '40px 0',
           height: '100px',
           width: '100%',
           borderRadius: '4px'
-        }"
-        *ngIf="skeletonLoading"
-      ></ngx-skeleton-loader>
+        }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
 
-      <ngx-skeleton-loader
-        [theme]="{
+      <ngx-skeleton-loader [theme]="{
           margin: '40px 0',
           height: '20px',
           width: '100%',
           borderRadius: '4px'
-        }"
-        *ngIf="skeletonLoading"
-      ></ngx-skeleton-loader>
+        }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
 
       <ng-container *ngIf="!skeletonLoading">
         <p class="name">
           {{ lang == "ar" ? product.name_ar : product.name_en }}
         </p>
         <p class="price">${{ product.price }}</p>
-        <div
-          class="d-flex justify-content-start align-items-center my-3"
-          [ngClass]="{ 'justify-content-end': lang == 'ar' }"
-        >
+        <div class="d-flex justify-content-start align-items-center my-3"
+          [ngClass]="{ 'justify-content-end': lang == 'ar' }">
           <!-- <span class="me-3 fs-4">{{currentRating}}</span> -->
           <mat-icon [ngClass]="{ selected: currentRating >= 1 }">star</mat-icon>
           <mat-icon [ngClass]="{ selected: currentRating >= 2 }">star</mat-icon>
@@ -98,14 +78,8 @@
         </div>
         <div>
           <p class="d-inline-flex gap-1">
-            <button
-              class="btn discription"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseExample"
-              aria-expanded="true"
-              aria-controls="collapseExample"
-            >
+            <button class="btn discription" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+              aria-expanded="true" aria-controls="collapseExample">
               {{ "description" | translate }}
               <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
@@ -113,7 +87,7 @@
           <div class="collapse pb-5 show" id="collapseExample">
             <div class="card card-body">
               {{
-                lang == "ar" ? product.description_ar : product.description_en
+              lang == "ar" ? product.description_ar : product.description_en
               }}
             </div>
           </div>
@@ -122,50 +96,30 @@
         <div class="row justify-content-center align-items-center">
           <div class="col">
             <div class="quantity">
-              <button
-                type="button"
-                (click)="min()"
-                [class.disabled-input]="quantity === 1"
-              >
+              <button type="button" (click)="min()" [class.disabled-input]="quantity === 1">
                 -
               </button>
               <input type="text" disabled [value]="quantity" title="quantity" />
-              <button
-                type="button"
-                (click)="plus()"
-                [class.disabled-input]="quantity === product.countInStock"
-              >
+              <button type="button" (click)="plus()" [class.disabled-input]="quantity === product.countInStock">
                 +
               </button>
             </div>
 
-            <p
-              *ngIf="quantity === product.countInStock"
-              class="text-danger my-2"
-            >
+            <p *ngIf="quantity === product.countInStock" class="text-danger my-2">
               No more in stock
             </p>
           </div>
 
-          <button
-            class="add-btn col-2"
-            type="button"
-            [class.disabled-input]="added === true"
-            (click)="AddToCart()"
-          >
+          <button class="add-btn col-2" type="button" [class.disabled-input]="added === true" (click)="AddToCart()">
             {{ added ? "Added successfully ✔" : ("add to cart" | translate) }}
             <span *ngIf="!added">🛒</span>
           </button>
         </div>
 
-        <div
-          class="d-inline-flex justify-content-start align-items-center gap-3 mt-3 p-3 fav"
-          (click)="toggleFavorite()"
-        >
+        <div class="d-inline-flex justify-content-start align-items-center gap-3 mt-3 p-3 fav"
+          (click)="toggleFavorite()">
           <div class="d-flex" [class.favorite]="productFav">
-            <mat-icon class="heart-icon" [class.filled]="productFav"
-              >favorite</mat-icon
-            >
+            <mat-icon class="heart-icon" [class.filled]="productFav">favorite</mat-icon>
           </div>
           <div>{{ "add to fav" | translate }}</div>
         </div>
@@ -176,46 +130,21 @@
   <div class="section2">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
-        <button
-          class="btn active"
-          id="pills-discription-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-discription"
-          type="button"
-          role="tab"
-          aria-controls="pills-discription"
-          aria-selected="false"
-        >
+        <button class="btn active" id="pills-discription-tab" data-bs-toggle="pill" data-bs-target="#pills-discription"
+          type="button" role="tab" aria-controls="pills-discription" aria-selected="false">
           {{ "description" | translate }}
         </button>
       </li>
       <li class="nav-item" role="presentation">
-        <button
-          class="btn"
-          id="pills-review-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-review"
-          type="button"
-          role="tab"
-          aria-controls="pills-review"
-          aria-selected="false"
-          (click)="showReview(product._id)"
-        >
+        <button class="btn" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button"
+          role="tab" aria-controls="pills-review" aria-selected="false" (click)="showReview(product._id)">
           {{ "reviews" | translate }}
         </button>
       </li>
 
       <li class="nav-item" role="presentation">
-        <button
-          class="btn"
-          id="pills-add-review-tab"
-          data-bs-toggle="pill"
-          data-bs-target="#pills-add-review"
-          type="button"
-          role="tab"
-          aria-controls="pills-add-review"
-          aria-selected="false"
-        >
+        <button class="btn" id="pills-add-review-tab" data-bs-toggle="pill" data-bs-target="#pills-add-review"
+          type="button" role="tab" aria-controls="pills-add-review" aria-selected="false">
           {{ "add review" | translate }}
         </button>
       </li>
@@ -240,9 +169,7 @@
             height: '20px',
             width: '70%',
             borderRadius: '4px'
-          }"
-          *ngIf="skeletonLoading"
-        ></ngx-skeleton-loader>
+          }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
 
         <ng-container *ngIf="!skeletonLoading">
           <p>
@@ -254,13 +181,7 @@
         </ng-container>
       </div>
 
-      <div
-        class="tab-pane fade"
-        id="pills-review"
-        role="tabpanel"
-        aria-labelledby="pills-review-tab"
-        tabindex="0"
-      >
+      <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab" tabindex="0">
         <div id="review" class="carousel review">
           <ngx-skeleton-loader style="display: block;" [theme]="{
               margin: '10px 0',
@@ -292,19 +213,19 @@
               <div class="carousel">
                 <div *ngFor="let item of reviews; let i = index" class="carousel-item" [class.active]="i === 0">
                   <div style="position: relative;">
-                    <div style="position: absolute; top: 18px; right: 0;">
+                    <div style="position: absolute; top: 18px; right: 18px;">
                       <mat-icon
-                        style="color: white; cursor: pointer; font-size: 2em; width: fit-content;height: max-content; "
+                        style="margin-right: 55px; color: white; cursor: pointer; font-size: 1.6em; width: fit-content;height: max-content; "
                         class="mx-3" *ngIf="item?.user?._id === userId && !editmode"
                         (click)="edit(item)">create</mat-icon>
                       <mat-icon class="delete-icon"
-                        style="cursor: pointer; font-size: 2em; width: fit-content;height: max-content; margin-left: 10px; "
+                        style="margin-right: 55px; cursor: pointer; font-size: 1.6em; width: fit-content;height: max-content; margin-left: 10px; "
                         *ngIf="!editmode && item?.user?._id === userId"
                         (click)="deleteReview(item._id)">delete</mat-icon>
                       <mat-icon *ngIf="editmode" (click)="toggleEditMode()"
-                        style="color: red; font-size: 2em; width: fit-content;height: max-content;">clear</mat-icon>
+                        style="margin-right: 55px; color: red; font-size: 1.6em; width: fit-content;height: max-content;">clear</mat-icon>
                       <mat-icon (click)="updateReview(item._id)" class="mx-3" *ngIf="editmode "
-                        style="color: rgb(109, 243, 109); font-size: 2em; width: fit-content;height: max-content;">check</mat-icon>
+                        style="margin-right: 55px; color: rgb(109, 243, 109); font-size: 1.6em; width: fit-content;height: max-content;">check</mat-icon>
 
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
@@ -317,49 +238,19 @@
                           <p>{{ item.title }}</p>
 
                           <div *ngIf="!editmode">
-                            <mat-icon [ngClass]="{ selected: item.rating >= 1 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon [ngClass]="{ selected: item.rating >= 2 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon [ngClass]="{ selected: item.rating >= 3 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon [ngClass]="{ selected: item.rating >= 4 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon [ngClass]="{ selected: item.rating >= 5 }"
-                              >star</mat-icon
-                            >
+                            <mat-icon [ngClass]="{ selected: item.rating >= 1 }">star</mat-icon>
+                            <mat-icon [ngClass]="{ selected: item.rating >= 2 }">star</mat-icon>
+                            <mat-icon [ngClass]="{ selected: item.rating >= 3 }">star</mat-icon>
+                            <mat-icon [ngClass]="{ selected: item.rating >= 4 }">star</mat-icon>
+                            <mat-icon [ngClass]="{ selected: item.rating >= 5 }">star</mat-icon>
                           </div>
 
                           <div *ngIf="editmode" class="my-3">
-                            <mat-icon
-                              (click)="setRating(1)"
-                              [ngClass]="{ selected: reviewValue >= 1 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon
-                              (click)="setRating(2)"
-                              [ngClass]="{ selected: reviewValue >= 2 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon
-                              (click)="setRating(3)"
-                              [ngClass]="{ selected: reviewValue >= 3 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon
-                              (click)="setRating(4)"
-                              [ngClass]="{ selected: reviewValue >= 4 }"
-                              >star</mat-icon
-                            >
-                            <mat-icon
-                              (click)="setRating(5)"
-                              [ngClass]="{ selected: reviewValue >= 5 }"
-                              >star</mat-icon
-                            >
+                            <mat-icon (click)="setRating(1)" [ngClass]="{ selected: reviewValue >= 1 }">star</mat-icon>
+                            <mat-icon (click)="setRating(2)" [ngClass]="{ selected: reviewValue >= 2 }">star</mat-icon>
+                            <mat-icon (click)="setRating(3)" [ngClass]="{ selected: reviewValue >= 3 }">star</mat-icon>
+                            <mat-icon (click)="setRating(4)" [ngClass]="{ selected: reviewValue >= 4 }">star</mat-icon>
+                            <mat-icon (click)="setRating(5)" [ngClass]="{ selected: reviewValue >= 5 }">star</mat-icon>
                           </div>
                         </div>
                       </div>
@@ -377,72 +268,31 @@
                 </div>
               </div>
             </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#review"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#review" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#review"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#review" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
           </ng-container>
         </div>
       </div>
 
-      <div
-        class="tab-pane fade review"
-        id="pills-add-review"
-        role="tabpanel"
-        aria-labelledby="pills-add-review-tab"
-        tabindex="0"
-      >
+      <div class="tab-pane fade review" id="pills-add-review" role="tabpanel" aria-labelledby="pills-add-review-tab"
+        tabindex="0">
         <form [formGroup]="reviewForm" (ngSubmit)="addReview()">
           <div class="d-flex justify-content-center align-items-center">
             <label class="fw-bold" for="title">Review : </label>
             <textarea id="title" formControlName="title" required></textarea>
           </div>
           <div class="my-3">
-            <mat-icon
-              (click)="setRating(1)"
-              [ngClass]="{ selected: reviewValue >= 1 }"
-              >star</mat-icon
-            >
-            <mat-icon
-              (click)="setRating(2)"
-              [ngClass]="{ selected: reviewValue >= 2 }"
-              >star</mat-icon
-            >
-            <mat-icon
-              (click)="setRating(3)"
-              [ngClass]="{ selected: reviewValue >= 3 }"
-              >star</mat-icon
-            >
-            <mat-icon
-              (click)="setRating(4)"
-              [ngClass]="{ selected: reviewValue >= 4 }"
-              >star</mat-icon
-            >
-            <mat-icon
-              (click)="setRating(5)"
-              [ngClass]="{ selected: reviewValue >= 5 }"
-              >star</mat-icon
-            >
+            <mat-icon (click)="setRating(1)" [ngClass]="{ selected: reviewValue >= 1 }">star</mat-icon>
+            <mat-icon (click)="setRating(2)" [ngClass]="{ selected: reviewValue >= 2 }">star</mat-icon>
+            <mat-icon (click)="setRating(3)" [ngClass]="{ selected: reviewValue >= 3 }">star</mat-icon>
+            <mat-icon (click)="setRating(4)" [ngClass]="{ selected: reviewValue >= 4 }">star</mat-icon>
+            <mat-icon (click)="setRating(5)" [ngClass]="{ selected: reviewValue >= 5 }">star</mat-icon>
           </div>
 
           <button class="submitReview" type="submit">Submit</button>

@@ -19,7 +19,7 @@ export class AddComponent implements OnInit {
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
-
+  editMode: Boolean = false;
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
@@ -33,6 +33,7 @@ export class AddComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       if (params.get('id')) {
         const id = params.get('id');
+        this.editMode = true;
         this.id = params.get('id');
         this.productServices
           .getProductsByID(this.token, this.email, id!)

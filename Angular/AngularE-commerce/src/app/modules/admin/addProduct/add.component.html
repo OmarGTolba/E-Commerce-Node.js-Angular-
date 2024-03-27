@@ -1,16 +1,21 @@
-
 <div class="form-container pt-5">
-  <form [formGroup]="Form" class="pt-5"  >
+  <form [formGroup]="Form" class="pt-5">
     <label for="productName ">Product Name:</label>
-    <input type="text" placeholder="nameEn" value="{{formBody.nameEn}}" id="name_ar" formControlName="nameEn" required />
-    <input type="text" value="{{formBody.nameAr}}" placeholder="nameAr" id="name_en" formControlName="nameAr" required />
+    <input type="text" placeholder="nameEn" value="{{formBody.nameEn}}" id="name_ar" formControlName="nameEn"
+      required />
+    <input type="text" value="{{formBody.nameAr}}" placeholder="nameAr" id="name_en" formControlName="nameAr"
+      required />
 
-    <input type="text" value="{{formBody.countInStock}}" placeholder="countInStock"  id="countInStock" formControlName="countInStock" required />
-    <input type="text" value="{{formBody.brandAr}}" placeholder="brandAr" id="brandAr" formControlName="brandAr" required />
-    <input type="text" value="{{formBody.brandEn}}" placeholder="brandEn" id="brandEn" formControlName="brandEn" required />
+    <input type="text" value="{{formBody.countInStock}}" placeholder="countInStock" id="countInStock"
+      formControlName="countInStock" required />
+    <input type="text" value="{{formBody.brandAr}}" placeholder="brandAr" id="brandAr" formControlName="brandAr"
+      required />
+    <input type="text" value="{{formBody.brandEn}}" placeholder="brandEn" id="brandEn" formControlName="brandEn"
+      required />
     <input type="text" value="{{formBody.descEn}}" placeholder="descEn" id="descEn" formControlName="descEn" required />
     <input type="text" value="{{formBody.descAr}}" placeholder="descAr" id="descAr" formControlName="descAr" required />
-    <input type="text" value="{{formBody.isFeatured}}" placeholder="isFeatured" id="isFeatured" formControlName="isFeatured" required />
+    <input type="text" value="{{formBody.isFeatured}}" placeholder="isFeatured" id="isFeatured"
+      formControlName="isFeatured" required />
     <input type="text" placeholder="image" id="image" formControlName="image" required />
     <input type="text" value="{{formBody.price}}" placeholder="price" id="price" formControlName="price" required />
     <input type="text" placeholder="image" id="image" formControlName="image" required />
@@ -22,7 +27,8 @@
       <option value="66004b0b59b7f00817888c19">Sofa set</option>
     </select>
 
-    <button type="submit" (click)="addProduct()">Submit</button>
-    <button type="submit" (click)="updateProduct()">update</button>
+    <button type="submit" *ngIf="!editMode" (click)="addProduct()">Add</button>
+    <button type="submit" *ngIf="editMode" (click)="updateProduct()">Update</button>
+
   </form>
 </div>
