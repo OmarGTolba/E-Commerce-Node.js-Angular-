@@ -13,7 +13,7 @@ export class FavoritesService {
       jwt: localStorage.getItem('token') || '',
     });
     return this.httpClient.get<any[]>(
-      'https://node-project-5tke.onrender.com/api/v1/products/favourite/' + id
+      'http://localhost:3000/api/v1/products/favourite/' + id
     );
   }
 
@@ -23,7 +23,7 @@ export class FavoritesService {
       jwt: localStorage.getItem('token') || '',
     });
     return this.httpClient.post(
-      'https://node-project-5tke.onrender.com/api/v1/products/favourite/' +
+      'http://localhost:3000/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,
@@ -37,7 +37,7 @@ export class FavoritesService {
       jwt: localStorage.getItem('token') || '',
     });
     return this.httpClient.delete(
-      'https://node-project-5tke.onrender.com/api/v1/products/favourite/' +
+      'http://localhost:3000/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,

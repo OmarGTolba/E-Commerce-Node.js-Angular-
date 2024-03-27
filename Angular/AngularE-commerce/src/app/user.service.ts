@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 export class UserService {
   constructor(private http: HttpClient) {}
   getUserProducts(token: string, email: string): Observable<any[]> {
-    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/user/get`;
+    const updateUrl = `http://localhost:3000/api/v1/user/get`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -18,7 +18,7 @@ export class UserService {
   }
 
   getUserCart(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/cart?user=${id}`;
+    const updateUrl = `http://localhost:3000/api/v1/cart?user=${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -38,7 +38,7 @@ export class UserService {
         })
       )
       .subscribe(async (response: any) => {
-        this.cartLength.next(await response.items.length);
+        this.cartLength.next(await response?.items?.length);
 
         console.log(response.items.length);
 
@@ -55,7 +55,7 @@ export class UserService {
     productId: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/cart/${productId}?user=${id}`;
+    const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -70,7 +70,7 @@ export class UserService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/orders/${id}/user`;
+    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/user`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -85,7 +85,7 @@ export class UserService {
     id: string,
     productId: string
   ): Observable<any[]> {
-    const updateUrl = `https://node-project-5tke.onrender.com/api/v1/cart/${productId}?user=${id}`;
+    const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

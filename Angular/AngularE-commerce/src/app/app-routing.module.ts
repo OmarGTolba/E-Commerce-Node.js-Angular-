@@ -89,6 +89,7 @@ const routes: Routes = [
       { path: 'categories', component: AllCategoriesComponent },
       { path: 'orders', component: AllOrdersComponent },
       { path: 'addProduct', component: AddComponent },
+      { path: 'addProduct/:id', component: AddComponent },
       { path: 'addCategory', component: AddcategoryComponent },
       { path: 'updateCategory/:id', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },

@@ -108,7 +108,7 @@ export class CartComponent implements OnInit {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    // const updateUrl = `https://node-project-5tke.onrender.com/api/v1/cart/${item.product_id.id}`;
+    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
     const body = { quantity: newQuantity };
     console.log(item);
     console.log(newQuantity);
@@ -138,7 +138,7 @@ export class CartComponent implements OnInit {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    // const updateUrl = `https://node-project-5tke.onrender.com/api/v1/cart/${item.product_id.id}`;
+    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: 'Alexandria',
       phone: '01060702328',

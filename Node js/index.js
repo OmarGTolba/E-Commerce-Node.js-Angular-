@@ -56,8 +56,8 @@ app.use(`${process.env.API_URL}contact`, contactRouter);
 
 app.use(auth);
 
-app.use(`${process.env.API_URL}payment`, paymentRouter);
 app.use(`${process.env.API_URL}cart`, cartRouter);
+app.use(`${process.env.API_URL}payment`, paymentRouter);
 
 app.use(admin);
 
