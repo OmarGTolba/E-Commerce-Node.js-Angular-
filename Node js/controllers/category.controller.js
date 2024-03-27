@@ -16,7 +16,6 @@ const updateCategory = asyncHandler(async (req, res) => {
     name_en: req.body.name_en,
     name_ar: req.body.name_ar,
     icon: req.body.icon,
-    color: req.body.color,
   };
   const updatedCategory = await categoryModule.findByIdAndUpdate(
     req.params.id,
@@ -38,7 +37,8 @@ const addNewCategory = asyncHandler(async (req, res) => {
 
 const deleteCategory = asyncHandler(async (req, res) => {
   const cat = await categoryModule.findByIdAndDelete(req.params.id);
-  res.status(201).json({ data: cat, massage: "category deleted" });
+  const allcat = await categoryModule.find();
+  res.status(201).json({ data: allcat, massage: "category deleted" });
 });
 
 module.exports = {

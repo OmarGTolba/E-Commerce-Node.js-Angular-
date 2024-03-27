@@ -7,7 +7,7 @@ import { UserService } from '../../user.service';
   providedIn: 'root',
 })
 export class CartService {
-  constructor(private http: HttpClient,private userService:UserService) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
   cart: any[] = [];
 
   addToCart(
@@ -16,13 +16,13 @@ export class CartService {
     userId: string,
     body: any
   ): Observable<any[]> {
-    const baseUrl = `https://node-project-5tke.onrender.com/api/v1/cart?user=${userId}`;
+    const baseUrl = `http://localhost:3000/api/v1/cart?user=${userId}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
       email: email,
     });
-    this.userService.getCartCount(token,email,userId)
+    this.userService.getCartCount(token, email, userId);
     return this.http.post<any[]>(baseUrl, body, { headers });
   }
 }

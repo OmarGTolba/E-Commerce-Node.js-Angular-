@@ -1,76 +1,51 @@
 <div class="container1 justify-content-center d-flex py-5 px-1  m-auto mt-5" style="background-color: #3B5D50 ;">
   <div class="plant-img "></div>
-  <div class="container bg-white"> 
-    <form [formGroup]="registerForm"  id="form1">
+  <div class="container bg-white">
+    <h1>Register</h1>
+    <form [formGroup]="registerForm" id="form1">
       <h3>Name</h3>
-      <input
-      [(ngModel)]="name"
-      name="name"
-      type="text"
-      id="name"
-      formControlName="name"
-      required
-      placeholder="{{ 'Enter your name' | translate }}"
-    />
-    <small
-      *ngIf="registerForm.get('name')?.errors?.['required'] "
-      class="error-border"
-    >
-      <span class="error-message">{{ "name error" | translate }}</span>
-    </small>
+      <input [(ngModel)]="name" name="name" type="text" id="name" formControlName="name" required
+        placeholder="{{ 'Enter your name' | translate }}" />
+      <small *ngIf="registerForm.get('name')?.errors?.['required'] " class="error-border">
+        <span class="error-message">{{ "name error" | translate }}</span>
+      </small>
       <div class="btn_box">
         <button (click)="nextOne()" type="submit">Next</button>
       </div>
+      <div class="account">
+        {{ "Already have an account ? " | translate }}
+        <a routerLink="/login">{{ "Login" | translate }}</a>
+      </div>
     </form>
-    <form  [formGroup]="registerForm"  id="form2">
+    <form [formGroup]="registerForm" id="form2">
       <h3>Email</h3>
-   
-  <input
-  [(ngModel)]="email"
-  name="email"
-  type="email"
-  id="email"
-  formControlName="email"
-  required
-  placeholder="{{ 'Enter your email' | translate }}"
-/>
-<small
-  *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')"
-  class="error-border"
->
-  <span class="error-message">{{ "email error" | translate }}</span>
-</small>
-<small
-  *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')"
->
-  <span class="error-message">{{ "email valid" | translate }}</span>
-</small>
+
+      <input [(ngModel)]="email" name="email" type="email" id="email" formControlName="email" required
+        placeholder="{{ 'Enter your email' | translate }}" />
+      <small *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')" class="error-border">
+        <span class="error-message">{{ "email error" | translate }}</span>
+      </small>
+      <small *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')">
+        <span class="error-message">{{ "email valid" | translate }}</span>
+      </small>
       <div class="btn_box">
         <button (click)="backOne()" type="submit">Back</button>
         <button (click)="nextTwo()" type="button">Next</button>
       </div>
     </form>
-    <form  [formGroup]="registerForm"  id="form3">
+    <form [formGroup]="registerForm" id="form3">
       <h3>Password</h3>
-      <input
-    [(ngModel)]="password"
-    name="password"
-    type="password"
-    id="password"
-    formControlName="password"
-    required
-    placeholder="{{ 'Enter your password' | translate }}"
-  />
-  <small
-    *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')"
-    class="error-border"
-  >
-    <span class="error-message">{{ "password error" | translate }}</span>
-  </small>
+      <input [(ngModel)]="password" name="password" type="password" id="password" formControlName="password" required
+        placeholder="{{ 'Enter your password' | translate }}" />
+      <small *ngIf="registerForm.get('password')?.errors?.['required'] && registerForm.get('password')"
+        class="error-border">
+        <span class="error-message">{{ "password error" | translate }}</span>
+      </small>
       <div class="btn_box">
         <button (click)="backTwo()" type="button">Back</button>
-        <button id="Submit" type="submit"  (click)="onSubmit()" >Submit</button>
+        <button id="Submit" type="submit" (click)="onSubmit()">Submit</button>
       </div>
+
     </form>
     <div class="progress_container">
       <div class="progress" [style.width]="progressWidth"></div>

@@ -40,7 +40,7 @@ export class AllOrdersComponent {
 
       .subscribe((response: any) => {
         this.orders = response.data;
-        console.log(this.orders);
+        console.log(response);
       });
   }
 
