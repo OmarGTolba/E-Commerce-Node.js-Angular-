@@ -1,22 +1,35 @@
-<!-- <div style="display: flex; justify-content: center; align-items: center; "> -->
-<div class=" row" style="display: flex; justify-content: flex-end;">
-    <div class="col-5" *ngFor="let item of categories; let i = index">
-        <div class="card">
+<div class="parent">
 
-            <img [src]="item.icon" />
-            <div>
-                <div style="position: absolute; top: 20px; right: 14px;display: flex; gap: 15px;">
-                    <p (click)="edit(item._id)" style="cursor: pointer;">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name in English</th>
+                <th scope="col">Name in Arabic</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let item of categories; let i = index">
+                <td style="width: 250px;"><img [src]="item.icon " style="width: 100%;" /></td>
+                <td>{{item._id}}</td>
+                <td>{{item.name_en}}</td>
+                <td>{{item.name_ar}}</td>
+                <td>
+                    <p (click)="edit(item._id)" style="cursor: pointer;text-align: center;">
                         <mat-icon>edit</mat-icon>
                     </p>
-                    <p (click)="delete(item._id)" style="cursor: pointer;">
-                        <mat-icon style=" color: red;">delete</mat-icon>
+                </td>
+                <td>
+                    <p (click)="delete(item._id)" style="cursor: pointer;text-align: center;">
+                        <mat-icon style="color: red;">delete</mat-icon>
                     </p>
-                </div>
-                <p>Id : </p>{{item._id}} <br />
-                <p>Name : </p>{{item.name_en}}
-            </div>
-        </div>
 
-    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

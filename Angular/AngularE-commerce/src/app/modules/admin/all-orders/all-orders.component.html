@@ -1,39 +1,42 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Order Id</th>
-      <th scope="col">User Name</th>
-      <th scope="col">Phone</th>
-      <th scope="col">City</th>
-      <th scope="col">N.product</th>
-      <th scope="col">Total Price</th>
-      <th scope="col">Status</th>
-      <th scope="col">Cancel</th>
-      <th scope="col">Confirm</th>
-    </tr>
+<div class="parent">
 
-  </thead>
-  <tbody>
-    <tr *ngFor="let order of orders">
-      <td>{{ order._id }}</td>
-      <td>{{ order.user.name }}</td>
-      <td>{{ order.phone }}</td>
-      <td>{{ order.city }}</td>
-      <td>{{ order.orderItemsIds.length }}</td>
-      <td>{{ order.totalPrice }}</td>
-      <td>{{ order.status }}</td>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Order Id</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">City</th>
+        <th scope="col">N.product</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Status</th>
+        <th scope="col">Cancel</th>
+        <th scope="col">Confirm</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order._id }}</td>
+        <td>{{ order.user.name }}</td>
+        <td>{{ order.phone }}</td>
+        <td>{{ order.city }}</td>
+        <td>{{ order.orderItemsIds.length }}</td>
+        <td>{{ order.totalPrice }}</td>
+        <td>{{ order.status }}</td>
 
 
-      <td (click)="cancel(order._id)">
-        <div style="height: 80px;" class="d-flex justify-content-center align-items-center">
-          <mat-icon style="cursor: pointer; color: red;">cancel</mat-icon>
-        </div>
-      </td>
-      <td (click)="complete(order._id)">
-        <div style="height: 80px;" class="d-flex justify-content-center align-items-center">
-          <mat-icon style="cursor: pointer; color: green;">check_circle</mat-icon>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <td (click)="cancel(order._id)">
+          <div style="height: 80px;" class="d-flex justify-content-center align-items-center">
+            <mat-icon style="cursor: pointer; color: red;">cancel</mat-icon>
+          </div>
+        </td>
+        <td (click)="complete(order._id)">
+          <div style="height: 80px;" class="d-flex justify-content-center align-items-center">
+            <mat-icon style="cursor: pointer; color: green;">check_circle</mat-icon>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

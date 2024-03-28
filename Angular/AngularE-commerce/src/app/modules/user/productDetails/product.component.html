@@ -9,13 +9,9 @@
         }" *ngIf="skeletonLoading"></ngx-skeleton-loader>
       <ng-container *ngIf="!skeletonLoading">
 
-
-
-
         <div class="col-md-12 border-end">
           <div class="d-flex flex-column justify-content-center">
-            <div class="main_image"> <img src="{{imgSrc}}" id="main_product_image"
-                style="width: 500px !important; height: 500px !important"> </div>
+            <div class="main_image"> <img src="{{imgSrc}}" id="main_product_image"> </div>
             <div class="thumbnail_images">
               <ul id="thumbnail" class="d-flex gap-3">
                 <li *ngFor="let item of product.images; let i = index"><img (click)="imgClick(item)" width="70"
@@ -121,7 +117,7 @@
           <div class="d-flex" [class.favorite]="productFav">
             <mat-icon class="heart-icon" [class.filled]="productFav">favorite</mat-icon>
           </div>
-          <div>{{ "add to fav" | translate }}</div>
+          <div>{{ "add to favorite" | translate }}</div>
         </div>
       </ng-container>
     </div>
