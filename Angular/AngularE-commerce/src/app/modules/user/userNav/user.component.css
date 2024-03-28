@@ -43,14 +43,15 @@
   border: 1px solid #f9f9f9;
 }
 .signIn {
-  padding: 10px;
+  /* padding: 10px; */
   border: none;
   background-color: #f8b810;
   border-radius: 10px;
-  padding: 0 30px;
+  /* padding: 0 30px; */
   color: #f9f9f9;
   height: 35px;
   margin-top: 4px;
+  width: 124px;
 }
 .icon {
   font-size: 18px;
