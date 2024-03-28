@@ -63,3 +63,12 @@
 .mat-mdc-paginator-container {
   display: none !important;
 }
+
+@media only screen and (max-width: 600px) {
+  .dropdown-content {
+    right: unset;
+  }
+  .dropbtn {
+    margin: 0;
+  }
+}
