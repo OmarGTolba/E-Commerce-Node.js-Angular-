@@ -30,9 +30,6 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log('2raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaf');
-    console.log(this.registerForm);
-
     const api = 'https://ecommerce-node-wqwd.onrender.com/api/v1/user';
 
     const body = {
@@ -52,9 +49,9 @@ export class RegisterComponent {
         if (response) {
           const role = response.role;
           if (role === 'Admin') {
-            this.router.navigate(['admin']);
+            this.router.navigate(['admin', 'products']);
           } else {
-            this.router.navigate(['/']);
+            this.router.navigate(['/login']);
           }
           localStorage.setItem('userId', response._id);
           console.log('Register successful:', response);

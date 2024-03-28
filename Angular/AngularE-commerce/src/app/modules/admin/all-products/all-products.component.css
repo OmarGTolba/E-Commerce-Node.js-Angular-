@@ -83,6 +83,13 @@ i {
     width: 100%;
     margin-left: 0;
   }
+  .parent {
+    margin: 50px auto;
+    width: 90%;
+    height: 500px;
+    display: block;
+    overflow: auto;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -95,3 +102,4 @@ i {
 .center {
   text-align: center !important;
 }
+
