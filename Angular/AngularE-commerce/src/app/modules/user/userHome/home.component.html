@@ -1,44 +1,6 @@
-<!-- Start Header/Navigation -->
-<!-- <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
-
-	<div class="container">
-		<a class="navbar-brand" href="index.html">Furni<span>.</span></a>
-
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
-			aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarsFurni">
-			<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-				<li class="nav-item active">
-					<a class="nav-link" href="index.html">Home</a>
-				</li>
-				<li><a class="nav-link" href="shop.html">Shop</a></li>
-				<li><a class="nav-link" href="about.html">About us</a></li>
-				<li><a class="nav-link" href="services.html">Services</a></li>
-				<li><a class="nav-link" href="blog.html">Blog</a></li>
-				<li><a class="nav-link" href="contact.html">Contact us</a></li>
-			</ul>
-
-			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-				<li><a class="nav-link" href="#"><img src="images/user.svg"></a></li>
-				<li><a class="nav-link" href="cart.html"><img src="images/cart.svg"></a></li>
-			</ul>
-		</div>
-	</div>
-
-</nav> -->
-<!-- Start Header/Navigation -->
-
-<!-- End Product Section -->
-
-
-
-
-<div class="hero">
+<div class="hero mt-5">
   <div class="container">
-    <div class="row justify-content-between">
+    <div class="row justify-content-center justify-content-md-between ">
       <div class="col-lg-5">
         <div class="intro-excerpt">
           <h1>
@@ -50,10 +12,10 @@
           </p>
 
           <p>
-            <a href="" class="btn btn-secondary me-2">{{
+            <a routerLink="/user/products" class="btn btn-secondary me-2">{{
               "shop" | translate
             }}</a
-            ><a href="#" class="btn btn-white-outline">{{
+            ><a routerLink="/user/categories" class="btn btn-white-outline">{{
               "explore" | translate
             }}</a>
           </p>
@@ -80,7 +42,7 @@
           {{ "crafted2" | translate }}
         </p>
         <p>
-          <a href="shop.html" class="btn">{{ "explore" | translate }}</a>
+          <a routerLink="/user/categories" class="btn">{{ "explore" | translate }}</a>
         </p>
       </div>
       <!-- End Column 1 -->
@@ -240,7 +202,7 @@
           <li>{{ "categori6" | translate }}</li>
         </ul>
         <p>
-          <a herf="#" class="btn">{{ "explore" | translate }}</a>
+          <a routerLink="user/categories" class="btn">{{ "explore" | translate }}</a>
         </p>
       </div>
     </div>
@@ -520,7 +482,7 @@
       >
         <ng-container *ngIf="!catSkeletonLoading">
           <div class="post-entry">
-            <a href="#" class="post-thumbnail"
+            <a routerLink="#" class="post-thumbnail"
               ><img
                 src="{{ item.icon }}"
                 alt="Image"
@@ -531,7 +493,7 @@
               [ngClass]="{ 'text-end': lang == 'ar' }"
             >
               <h3>
-                <a href="#">{{ lang == "en" ? item.name_en : item.name_ar }}</a>
+                <a routerLink="#">{{ lang == "en" ? item.name_en : item.name_ar }}</a>
               </h3>
               <div class="meta"></div>
             </div>
@@ -594,7 +556,7 @@
     <div class="row g-5 mb-5">
       <div class="col-lg-4">
         <div class="mb-4 footer-logo-wrap">
-          <a href="#" class="footer-logo">Furni<span>.</span></a>
+          <a routerLink="#" class="footer-logo">CozyCorner<span>.</span></a>
         </div>
         <p class="mb-4">
           {{ "intro3" | translate }}
@@ -602,16 +564,16 @@
 
         <ul class="list-unstyled custom-social">
           <li>
-            <a href="#"><span class="fa fa-brands fa-facebook-f"></span></a>
+            <a routerLink="#"><span class="fa fa-brands fa-facebook-f"></span></a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-brands fa-twitter"></span></a>
+            <a routerLink="#"><span class="fa fa-brands fa-twitter"></span></a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-brands fa-instagram"></span></a>
+            <a routerLink="#"><span class="fa fa-brands fa-instagram"></span></a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-brands fa-linkedin"></span></a>
+            <a routerLink="#"><span class="fa fa-brands fa-linkedin"></span></a>
           </li>
         </ul>
       </div>
@@ -621,27 +583,13 @@
           <div class="col-6 col-sm-6 col-md-3">
             <ul class="list-unstyled">
               <li>
-                <a href="#">{{ "About" | translate }} </a>
+                <a routerLink="#">{{ "About" | translate }} </a>
               </li>
               <li>
-                <a href="#">{{ "Services" | translate }}</a>
+                <a routerLink="#">{{ "Services" | translate }}</a>
               </li>
               <li>
-                <a href="#">{{ "Contact" | translate }}</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-6 col-sm-6 col-md-3">
-            <ul class="list-unstyled">
-              <li>
-                <a href="#">{{ "Support" | translate }}</a>
-              </li>
-              <li>
-                <a href="#">{{ "Knowledge base" | translate }}</a>
-              </li>
-              <li>
-                <a href="#">{{ "Live chat" | translate }}</a>
+                <a routerLink="#">{{ "Contact" | translate }}</a>
               </li>
             </ul>
           </div>
@@ -649,13 +597,27 @@
           <div class="col-6 col-sm-6 col-md-3">
             <ul class="list-unstyled">
               <li>
-                <a href="#">{{ "Jobs" | translate }}</a>
+                <a routerLink="#">{{ "Support" | translate }}</a>
               </li>
               <li>
-                <a href="#">{{ "Our team" | translate }}</a>
+                <a routerLink="#">{{ "Knowledge base" | translate }}</a>
               </li>
               <li>
-                <a href="#">{{ "Privacy Policy" | translate }}</a>
+                <a routerLink="#">{{ "Live chat" | translate }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li>
+                <a routerLink="#">{{ "Jobs" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Our team" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Privacy Policy" | translate }}</a>
               </li>
             </ul>
           </div>
@@ -672,16 +634,15 @@
               document.write(new Date().getFullYear());
             </script>
             . All Rights Reserved. &mdash; Designed with love by
-            <a href="https://untree.co">Untree.co</a> Distributed By
-            <a hreff="https://themewagon.com">ThemeWagon</a>
-            <!-- License information: https://untree.co/license/ -->
+            <a routerLink="https://untree.co">Untree.co</a> Distributed By
+            <a routerLinkf="https://themewagon.com">ThemeWagon</a>
           </p>
         </div>
 
         <div class="col-lg-6 text-center text-lg-end">
           <ul class="list-unstyled d-inline-flex ms-auto">
-            <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li class="me-4"><a routerLink="#">Terms &amp; Conditions</a></li>
+            <li><a routerLink="#">Privacy Policy</a></li>
           </ul>
         </div>
       </div>

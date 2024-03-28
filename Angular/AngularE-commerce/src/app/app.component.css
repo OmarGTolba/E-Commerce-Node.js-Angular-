@@ -114,6 +114,12 @@ a.more {
 .custom-navbar .custom-navbar-cta li:not(last-child) {
   margin-right: 20px;
 }
+@media (max-width: 1000px) {
+  .custom-navbar .custom-navbar-cta li:not(last-child) {
+    /* margin-right: 5px; */
+    padding: 0;
+  }
+}
 li span {
   position: absolute;
   right: -9px;
@@ -146,6 +152,11 @@ li {
 @media (min-width: 992px) {
   .hero .intro-excerpt {
     max-width: 450px;
+  }
+}
+@media (max-width: 768px) {
+  .hero .intro-excerpt{
+    text-align: center !important;
   }
 }
 .hero h1 {

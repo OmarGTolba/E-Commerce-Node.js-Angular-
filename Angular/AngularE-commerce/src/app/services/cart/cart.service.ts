@@ -22,7 +22,7 @@ export class CartService {
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
       email: email,
-    });+
+    });
     this.userService.getCartCount(token, email, userId);
     return this.http.post<any[]>(baseUrl, body, { headers });
   }

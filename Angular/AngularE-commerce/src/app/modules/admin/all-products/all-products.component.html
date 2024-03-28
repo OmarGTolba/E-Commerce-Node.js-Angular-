@@ -31,13 +31,6 @@
         <mat-icon style="cursor: pointer; color: red;" (click)="delete(products[i]._id)">delete</mat-icon>
       </td>
       <td class="center edit">
-        <!-- <button
-          class="text-white rounded"
-          style="background-color: #3b5d50"
-          routerLink="/admin/addProduct/{{ products[i]._id }}"
-        >
-          edit
-        </button> -->
         <mat-icon style="cursor: pointer; color: #3b5d50;" routerLink="/admin/addProduct/{{ products[i]._id }}">edit</mat-icon>
       </td>
     </tr>
