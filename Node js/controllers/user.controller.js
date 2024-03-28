@@ -142,6 +142,7 @@ const forgotPassword = async (req, res) => {
     to: user.email,
     subject: 'Reset password',
     html: `<div>
+    <h3>Hello, <span style='color: #f8b810'>${user.name}</span></h3>
     <h4>Click on the link below to reset yor password</h4>
     <p>${link}</p>
     </div>`,
