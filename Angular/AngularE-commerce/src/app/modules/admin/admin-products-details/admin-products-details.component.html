@@ -93,24 +93,19 @@
     />
   </div>
 </div>-->
-<div class="w-75 container d-flex pe-5 me-5">
+<div class=" container d-flex me-5">
   <div class="container my-5 pa">
-    <div class="row justify-content-md-center">
+    <div class=" parent justify-content-md-center">
       <div id="carouselExample" class="carousel slide col-12 col-xl">
         <div class="col-md-12 border-end">
           <div class="d-flex flex-column justify-content-center">
-            <div class="main_image">
-              <img
-                src="{{ imgSrc }}"
-                id="main_product_image"
-                style="width: 500px !important; height: 500px !important"
-              />
-            </div>
+            <div class="main_image"> <img src="{{imgSrc}}" id="main_product_image"> </div>
             <div class="thumbnail_images">
               <ul id="thumbnail" class="d-flex gap-3">
-                <li *ngFor="let item of product.images; let i = index">
-                  <img (click)="imgClick(item)" width="70" [src]="item" />
+                <li *ngFor="let item of product.images; let i = index"><img (click)="imgClick(item)" width="70"
+                    [src]="item">
                 </li>
+
               </ul>
             </div>
           </div>
@@ -151,60 +146,46 @@
             <td class="py-2">{{ product.rating }}</td>
           </tr>
         </table>
-          <div
-            class="d-flex justify-content-start align-items-center my-3"
-          >
-            <mat-icon [ngClass]="{ selected: product?.rating >= 1 }">star</mat-icon>
-            <mat-icon [ngClass]="{ selected: product?.rating >= 2 }">star</mat-icon>
-            <mat-icon [ngClass]="{ selected: product?.rating >= 3 }">star</mat-icon>
-            <mat-icon [ngClass]="{ selected: product?.rating >= 4 }">star</mat-icon>
-            <mat-icon [ngClass]="{ selected: product?.rating >= 5 }">star</mat-icon>
-          </div>
-          <div>
-            <p class="d-inline-flex gap-1">
-              <button
-                class="btn discription"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#en"
-                aria-expanded="true"
-                aria-controls="en"
-              >
-                English Description
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </button>
-            </p>
-            <div class="collapse pb-5 show" id="en">
-              <div class="card card-body">
-                {{
-                 product.description_en
-                }}
-              </div>
+        <div class="d-flex justify-content-start align-items-center my-3">
+          <mat-icon [ngClass]="{ selected: product?.rating >= 1 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: product?.rating >= 2 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: product?.rating >= 3 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: product?.rating >= 4 }">star</mat-icon>
+          <mat-icon [ngClass]="{ selected: product?.rating >= 5 }">star</mat-icon>
+        </div>
+        <div>
+          <p class="d-inline-flex gap-1">
+            <button class="btn discription" type="button" data-bs-toggle="collapse" data-bs-target="#en"
+              aria-expanded="true" aria-controls="en">
+              English Description
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+          </p>
+          <div class="collapse pb-5 show" id="en">
+            <div class="card card-body">
+              {{
+              product.description_en
+              }}
             </div>
           </div>
-          <div>
-            <p class="d-inline-flex gap-1">
-              <button
-                class="btn discription"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseExample"
-                aria-expanded="true"
-                aria-controls="collapseExample"
-              >
-                Arabic Description
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </button>
-            </p>
-            <div class="collapse pb-5 show" id="collapseExample">
-              <div class="card card-body">
-                {{
-                 product.description_ar
-                }}
-              </div>
+        </div>
+        <div>
+          <p class="d-inline-flex gap-1">
+            <button class="btn discription" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+              aria-expanded="true" aria-controls="collapseExample">
+              Arabic Description
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+          </p>
+          <div class="collapse pb-5 show" id="collapseExample">
+            <div class="card card-body">
+              {{
+              product.description_ar
+              }}
             </div>
           </div>
-    
+        </div>
+
       </div>
     </div>
   </div>
