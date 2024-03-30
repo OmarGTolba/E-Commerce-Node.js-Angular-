@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../../services/products/products.service';
 import { catchError } from 'rxjs';
+import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-categories',
@@ -16,8 +17,11 @@ export class CategoriesComponent {
 
   SkeletonLoading = false;
 
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService,  private langService: LanguageService) {
     this.getAllCategories();
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
   }
 
   getAllCategories() {

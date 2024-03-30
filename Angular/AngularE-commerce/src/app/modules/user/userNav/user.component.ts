@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { Observable, catchError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -10,16 +10,36 @@ import { TranslateService } from '@ngx-translate/core';
 import { ProductsService } from '../../../services/products/products.service';
 import { ProfileService } from '../../../services/profile/profile.service';
 import { UserService } from '../../../user.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['../../../app.component.css', './user.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          opacity: 0,
+        })
+      ),
+      transition('void <=> *', animate(300)),
+    ]),
+  ],
 })
 export class UserComponent implements OnInit {
   lang: string;
+  // obsLang: BehaviorSubject<string> = new BehaviorSubject<string>("en")
   cartLength: number = 0;
-
+  show = false;
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
@@ -27,7 +47,9 @@ export class UserComponent implements OnInit {
     private profileService: ProfileService,
     private userService: UserService,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private langService: LanguageService
+
   ) {
     this.getAllProducts();
     this.initSearchForm();
@@ -40,6 +62,9 @@ export class UserComponent implements OnInit {
         this.cartLength = value;
       },
     });
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
   }
 
   products: any[] = [];
@@ -61,6 +86,9 @@ export class UserComponent implements OnInit {
       },
     });
   }
+  showSearch() {
+    this.show = !this.show;
+  }
   getAllProducts(): void {
     this.productService
       .getAllProducts(this.token, this.email)
@@ -77,7 +105,7 @@ export class UserComponent implements OnInit {
     this.lang = this.lang === 'en' ? 'ar' : 'en';
     localStorage.setItem('lang', this.lang);
     this.translateService.use(this.lang);
-    window.location.reload();
+    this.langService.setLang(this.lang)
   }
   logout() {
     localStorage.setItem('email', '');
@@ -87,7 +115,6 @@ export class UserComponent implements OnInit {
     this.router.navigate(['/user']);
     this.loggedin = false;
     localStorage.clear();
-
   }
   signIn() {
     this.router.navigate(['/login']);
