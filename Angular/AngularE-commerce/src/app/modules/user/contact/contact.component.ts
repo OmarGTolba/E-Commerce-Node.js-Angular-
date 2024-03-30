@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../user.service';
+import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,11 +18,17 @@ export class ContactComponent {
     firstname: '',
     lastname: '',
   };
+  lang = localStorage.getItem('lang') || 'en';
 
   constructor(
     private userService: UserService,
-    private toast: NgToastService
-  ) {}
+    private toast: NgToastService,
+    private langService: LanguageService
+  ) {
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
+  }
   contactFormGroup = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,

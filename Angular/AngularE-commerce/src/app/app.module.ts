@@ -59,7 +59,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     AdminModule,
     MatIconModule,
-     NgxSkeletonLoaderModule,
+    NgxSkeletonLoaderModule,
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,

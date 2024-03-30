@@ -3,6 +3,7 @@ import { UserService } from '../../../user.service';
 import { catchError, throwError } from 'rxjs';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { OrdersService } from '../../../services/orders/orders.service';
+import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,12 +11,17 @@ import { OrdersService } from '../../../services/orders/orders.service';
   styleUrl: '../../../app.component.css',
 })
 export class CartComponent implements OnInit {
+  lang = localStorage.getItem("lang") || "en"
   constructor(
     private userService: UserService,
     private paymentService: PaymentService,
-    private orderService: OrdersService
+    private orderService: OrdersService,
+    private langService: LanguageService
   ) {
     this.getCart();
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
   }
   SkeletonLoading = false;
 

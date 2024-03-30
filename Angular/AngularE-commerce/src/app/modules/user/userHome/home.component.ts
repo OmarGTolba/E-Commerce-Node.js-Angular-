@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { catchError } from 'rxjs';
 import { AppModule } from '../../../app.module';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { LanguageService } from '../../../services/language/language.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,9 +23,12 @@ export class HomeComponent {
   lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService, private langService: LanguageService) {
     this.getAllProducts();
     this.getAllCategories();
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
   }
   getAllProducts(): void {
     this.productSkeletonLoading = true;

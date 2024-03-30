@@ -7,6 +7,7 @@ import { of, throwError } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { log } from 'node:console';
+import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-product',
@@ -40,11 +41,15 @@ export class ProductComponent {
     private route: ActivatedRoute,
     private cartService: CartService,
     private productServices: ProductsService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private langService: LanguageService
   ) {
     this.reviewForm = this.fb.group({
       title: ['', Validators.required],
     });
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
   }
 
   setRating(rating: number): void {

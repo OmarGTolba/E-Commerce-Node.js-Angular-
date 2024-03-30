@@ -8,7 +8,6 @@ import { IUser } from '../../Models/userInterface';
 })
 export class ProfileService {
   constructor(private httpClient: HttpClient) {}
-
   getUserInfo(id: string): Observable<any> {
     let headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
@@ -44,4 +43,6 @@ export class ProfileService {
       data
     );
   }
+
+
 }

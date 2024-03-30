@@ -12,11 +12,10 @@
   border-radius: 50%;
   padding: 3px;
 }
-.form-control {
-  width: 80%;
-}
-.form-outline {
-  margin-top: 5px;
+
+mat-icon{
+  cursor: pointer;
+  margin: 9px 0;
 }
 
 @media (min-width: 768px) {
