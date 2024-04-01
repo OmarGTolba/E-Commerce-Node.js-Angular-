@@ -1,7 +1,7 @@
+<div>
 <nav
   class="custom-navbar navbar navbar navbar-expand-md position-fixed w-100 top-0"
-  arial-label="Furni navigation bar"
->
+  arial-label="Furni navigation bar">
   <div class="container">
     <a class="navbar-brand text-white">CozyCorner<span>.</span></a>
 
@@ -108,6 +108,16 @@
             ><img src="../../../assets/images/cart.svg" alt=""
           /></a>
         </li>
+
+<li>
+  <!-- Rounded switch -->
+  <label class="switch mt-2">
+    <input (click)="toggleMode()" type="checkbox">
+    <span class="slider round"></span>
+  </label>
+  
+</li>
+
         <li (click)="changeLang()">
           <a class="nav-link">
             <img
@@ -147,5 +157,5 @@
     </div>
   </div>
 </nav>
-
+</div>
 <router-outlet></router-outlet>

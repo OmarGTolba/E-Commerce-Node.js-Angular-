@@ -40,6 +40,8 @@ export class UserComponent implements OnInit {
   // obsLang: BehaviorSubject<string> = new BehaviorSubject<string>("en")
   cartLength: number = 0;
   show = false;
+  darkMode:boolean =false
+
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
@@ -49,8 +51,9 @@ export class UserComponent implements OnInit {
     private router: Router,
     private translateService: TranslateService,
     private langService: LanguageService
-
+   
   ) {
+   
     this.getAllProducts();
     this.initSearchForm();
     this.lang = localStorage.getItem('lang') || 'en';
@@ -65,8 +68,22 @@ export class UserComponent implements OnInit {
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
     })
-  }
+  
 
+
+
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
+  }
+toggleMode()
+{
+
+   this.userService.mode.next(!this.darkMode);
+
+}
   products: any[] = [];
   searchInput: any;
   token = localStorage.getItem('token') || '';

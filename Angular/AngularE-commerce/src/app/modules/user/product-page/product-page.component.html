@@ -1,4 +1,4 @@
-<div class="hero">
+<div [ngClass]="{ '': !darkMode, 'dark': darkMode }"><div class="hero"  >
   <div class="container">
     <h1>{{"Products" | translate}}</h1>
   </div>
@@ -77,3 +77,4 @@
   [pageSizeOptions]="[6, 10]"
   (page)="onPageChange($event)"
 ></mat-paginator>
+</div>

@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { ProductsService } from '../../../services/products/products.service';
+import { UserService } from '../../../user.service';
 
 @Component({
   selector: 'app-product-page',
@@ -24,9 +25,19 @@ export class ProductPageComponent {
   constructor(
     private productService: ProductsService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private userService: UserService
+ 
+    ) {
 
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
+  }
+
+  darkMode:boolean = false;
   ngOnInit() {
     this.skeletonLoading = true;
     this.route.paramMap.subscribe((params) => {

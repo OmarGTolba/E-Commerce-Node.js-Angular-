@@ -1,5 +1,8 @@
 <!-- Start Hero Section -->
+
+<div [ngClass]="{ '': !darkMode, 'dark': darkMode }">
 <div class="hero">
+
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-5">
@@ -16,7 +19,7 @@
 </div>
 <!-- End Hero Section -->
 
-
+<form action="" #authform></form>
 
 <!-- Start Blog Section -->
 <div class="blog-section">
@@ -186,3 +189,4 @@
     </div>
 </footer>
 <!-- End Footer Section -->
+</div>
