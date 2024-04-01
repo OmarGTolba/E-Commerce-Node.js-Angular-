@@ -9,11 +9,11 @@ import { UserService } from '../../../user.service';
 })
 export class AboutComponent {
   lang = localStorage.getItem("lang") || "en"
+  darkMode:boolean = false
   constructor( private langService: LanguageService, private userService:UserService){
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
     })
-  darkMode:boolean = false
   this.userService.mode.subscribe({
     next: (value) => {
       this.darkMode = value;

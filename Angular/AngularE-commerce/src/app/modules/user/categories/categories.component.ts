@@ -18,9 +18,9 @@ export class CategoriesComponent {
 
   SkeletonLoading = false;
 
-  constructor(private productService: ProductsService,  private langService: LanguageService) {
-darkMode:boolean  = false
-  constructor(private productService: ProductsService , private userService:UserService) {
+  darkMode:boolean  = false
+  constructor(private productService: ProductsService,  private langService: LanguageService ,private userService:UserService) {
+
     this.getAllCategories();
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang

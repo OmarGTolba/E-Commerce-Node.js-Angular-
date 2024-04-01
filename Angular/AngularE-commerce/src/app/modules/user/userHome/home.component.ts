@@ -24,14 +24,13 @@ export class HomeComponent {
   lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  constructor(private productService: ProductsService, private langService: LanguageService) {
-  constructor(private productService: ProductsService ,private userService:UserService) {
+  constructor(private productService: ProductsService, private langService: LanguageService,private userService:UserService) {
     this.getAllProducts();
     this.getAllCategories();
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
     })
-  }
+  
     
     localStorage.setItem('mode',`false`)
 

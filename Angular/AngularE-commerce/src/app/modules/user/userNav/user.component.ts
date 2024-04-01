@@ -51,10 +51,9 @@ export class UserComponent implements OnInit {
     private router: Router,
     private translateService: TranslateService,
     private langService: LanguageService
-
+   
   ) {
-    private translateService: TranslateService
-    ) {
+   
     this.getAllProducts();
     this.initSearchForm();
     this.lang = localStorage.getItem('lang') || 'en';
@@ -69,7 +68,7 @@ export class UserComponent implements OnInit {
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
     })
-  }
+  
 
 
 
