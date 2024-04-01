@@ -3,17 +3,17 @@ export interface Product {
     brand_ar: string;
     categories: string;
     countInStock: number;
-    dateCreated: string;
+    dateCreated?: string;
     description_en: string;
     description_ar: string;
     images: string[];
     isFeatured: boolean;
     name_en: string;
     name_ar: string;
-    numReviews: number;
+    numReviews?: number;
     price: number;
-    rating: number;
-    _id: string;
+    rating?: number;
+    _id?: string;
 }
 
 export interface ApiResponse {

@@ -5,6 +5,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { NgToastService } from 'ng-angular-popup';
 import { ProductsService } from '../../../services/products/products.service';
 import { CartService } from '../../../services/cart/cart.service';
+import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-product-card',
@@ -24,8 +25,13 @@ export class ProductCardComponent {
     private productService: ProductsService,
     private cartService: CartService,
     private router: Router,
-    private toast: NgToastService
-  ) {}
+    private toast: NgToastService,
+    private langService: LanguageService
+  ) {
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
+  }
   @Input() product: any;
 
   productFav: boolean = false;
@@ -133,7 +139,14 @@ export class ProductCardComponent {
           setTimeout(() => {
             this.added = false;
           }, 5000);
-        } else {
+        }else if (response.status === 401) {
+          this.toast.error({
+            detail: 'ERROR',
+            summary: 'Please login first',
+            duration: 5000,
+            position: 'topRight',
+          })
+         }else {
           this.toast.error({
             detail: 'ERROR',
             summary: 'Oops the product out of the stock!',

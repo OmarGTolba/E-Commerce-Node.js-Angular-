@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 export class UserService {
   constructor(private http: HttpClient) {}
   getUserProducts(token: string, email: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/user/get`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/user/get`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -18,7 +18,7 @@ export class UserService {
   }
 
   getUserCart(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/cart?user=${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart?user=${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -55,7 +55,7 @@ mode = new BehaviorSubject(false)
     productId: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${productId}?user=${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -70,7 +70,7 @@ mode = new BehaviorSubject(false)
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/user`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -85,7 +85,7 @@ mode = new BehaviorSubject(false)
     id: string,
     productId: string
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${productId}?user=${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

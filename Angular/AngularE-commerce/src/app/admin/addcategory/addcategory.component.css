@@ -24,3 +24,9 @@ button:hover {
   background-color: #f9bf29;
   transform: scale(1.08);
 }
+@media only screen and (max-width: 600px) {
+  form {
+    width: 90%;
+    margin-top: 20px;
+  }
+}

@@ -22,7 +22,7 @@ export class AllOrdersComponent {
   email = localStorage.getItem('email') || '';
 
   getAllOrders(): void {
-    const url = 'http://localhost:3000/api/v1/orders';
+    const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/orders';
 
     this.http
       .get<any[]>(url, {

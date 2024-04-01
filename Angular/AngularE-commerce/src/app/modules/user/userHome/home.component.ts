@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { catchError } from 'rxjs';
 import { AppModule } from '../../../app.module';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { LanguageService } from '../../../services/language/language.service';
 import { UserService } from '../../../user.service';
 @Component({
   selector: 'app-home',
@@ -23,9 +24,14 @@ export class HomeComponent {
   lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
+  constructor(private productService: ProductsService, private langService: LanguageService) {
   constructor(private productService: ProductsService ,private userService:UserService) {
     this.getAllProducts();
     this.getAllCategories();
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
+  }
     
     localStorage.setItem('mode',`false`)
 

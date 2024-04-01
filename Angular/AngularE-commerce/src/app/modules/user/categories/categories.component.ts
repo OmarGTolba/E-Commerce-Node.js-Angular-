@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ProductsService } from '../../../services/products/products.service';
 import { catchError } from 'rxjs';
+import { LanguageService } from '../../../services/language/language.service';
 import { UserService } from '../../../user.service';
 
 @Component({
@@ -16,9 +17,14 @@ export class CategoriesComponent {
   email = localStorage.getItem('email') || '';
 
   SkeletonLoading = false;
+
+  constructor(private productService: ProductsService,  private langService: LanguageService) {
 darkMode:boolean  = false
   constructor(private productService: ProductsService , private userService:UserService) {
     this.getAllCategories();
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
     this.userService.mode.subscribe({
       next: (value) => {
         this.darkMode = value;

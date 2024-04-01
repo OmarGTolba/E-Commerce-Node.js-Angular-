@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../../Models/userInterface';
 import { ProfileService } from '../../../services/profile/profile.service';
+import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -16,8 +17,11 @@ export class EditProfileComponent implements OnInit{
     phone: '',
     address: ''
   }
-  constructor(private profileService : ProfileService){
-
+  lang = localStorage.getItem("lang") || "en"
+  constructor(private profileService : ProfileService,  private langService: LanguageService){
+    this.langService.getLang().subscribe((lang)=>{
+      this.lang = lang
+    })
   }
   editFormGroup = new FormGroup({
     name: new FormControl({ value: '', disabled: this.isDisabled },[Validators.required, Validators.minLength(3)]),

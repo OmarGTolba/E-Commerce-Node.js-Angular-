@@ -1,11 +1,10 @@
 .form-container {
-  max-width: 800px;
-  margin: 0 auto;
   background-color: #3b5d50;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
-  top: 50px;
+  width: 90%;
+  margin: 0px auto;
+  padding: 50px 50px;
+  color: white;
+  border-radius: 0 0 10px 10px;
 }
 
 form {
@@ -53,5 +52,8 @@ form button:hover {
   form input,
   form select {
     width: 100%;
+  }
+  .form-container {
+    margin: 20px;
   }
 }

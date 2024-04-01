@@ -1,26 +1,41 @@
-<div class="position-absolute col-5 container my-3" style="right: 0" *ngIf="!isLoading">
+<div
+  class="position-absolute col-5 container my-3"
+  style="right: 0"
+  *ngIf="!isLoading"
+>
   <div
     class="d-flex flex-column col-12 gap-2 rounded position-relative p-3 p-sm-4"
     style="background-color: #3b5d50"
   >
-  <div *ngIf="orders.length==0" class="text-white">
-    No orders available
-  </div>
+    <div *ngIf="orders.length == 0" class="text-white">No orders available</div>
     <div
       *ngFor="let order of orders; let i = index"
-      
       class="order d-flex justify-content-between"
-
-    > 
-    <div (click)="getOrder(order._id)">
-      <div class="text-white">  <span>Order status:</span> {{ order.status }}</div>
-      <div class="text-white"><span>Order date:</span> {{ order.dateOrdered }}</div>
-    </div>
-      <button class="bg-danger rounded border-0 text-white py-2 px-3" *ngIf="order.status !== 'cancel'" (click)="cancelOrder(order._id)">Cancel</button>
+    >
+      <div (click)="getOrder(order._id)">
+        <div class="text-white">
+          <span>Order status:</span> {{ order.status }}
+        </div>
+        <div class="text-white">
+          <span>Order date:</span> {{ order.dateOrdered }}
+        </div>
+      </div>
+      <!-- <button
+        class="bg-danger rounded border-0 text-white py-2 px-3"
+        *ngIf="order.status !== 'cancel'"
+        (click)="cancelOrder(order._id)"
+      >
+        Cancel
+      </button> -->
+      <i class="fa-solid fa-xmark text-danger fs-4 py-1"  *ngIf="order.status !== 'cancel'" (click)="cancelOrder(order._id)"></i>
     </div>
   </div>
 </div>
-<div class="position-absolute col-5 bg-light my-3" style="right: 0" *ngIf="isLoading">
+<div
+  class="position-absolute col-5 bg-light my-3"
+  style="right: 0"
+  *ngIf="isLoading"
+>
   <div class="d-flex flex-column col-12 gap-2 p-5 rounded position-relative">
     <div>
       <ngx-skeleton-loader

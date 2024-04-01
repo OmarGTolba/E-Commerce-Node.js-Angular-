@@ -9,7 +9,7 @@ import { ApiResponse } from '../../Models/userInterface';
 export class OrdersService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:3000/api/v1/orders';
+  baseUrl = 'https://ecommerce-node-yxgy.onrender.com/api/v1/orders';
 
   getAllOrders(token: string, email: string): Observable<any[]> {
     //for admin
@@ -22,7 +22,7 @@ export class OrdersService {
   }
 
   getUserOrder(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/user`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -36,7 +36,7 @@ export class OrdersService {
     email: string,
     id: string
   ): Observable<ApiResponse> {
-    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/user/orders`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user/orders`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -46,7 +46,7 @@ export class OrdersService {
   }
 
   getOrderByID(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/orders/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -56,7 +56,7 @@ export class OrdersService {
   }
 
   cancelOrder(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/cancel`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/cancel`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,
@@ -65,7 +65,7 @@ export class OrdersService {
     return this.http.patch<any[]>(updateUrl, { headers });
   }
   confirmeOrder(token: string, email: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/success`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/success`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

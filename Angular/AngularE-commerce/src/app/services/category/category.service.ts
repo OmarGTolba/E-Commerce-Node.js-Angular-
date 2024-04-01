@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CategoryService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:3000/api/v1/categories';
+  baseUrl = 'https://ecommerce-node-yxgy.onrender.com/api/v1/categories';
   getAllCategories(token: string, email: string): Observable<any[]> {
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
@@ -51,7 +51,7 @@ export class CategoryService {
     id: string,
     body: any
   ): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/categories/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/categories/${id}`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
       jwt: token,

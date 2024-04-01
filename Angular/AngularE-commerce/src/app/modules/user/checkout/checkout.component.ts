@@ -101,7 +101,7 @@ export class CheckoutComponent implements OnInit {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
+    // const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: this.editFormGroup.controls.city.value,
       phone: this.editFormGroup.controls.phone.value,
@@ -128,7 +128,7 @@ export class CheckoutComponent implements OnInit {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
 
-    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
+    // const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: this.editFormGroup.controls.city.value,
       phone: this.editFormGroup.controls.phone.value,
@@ -180,7 +180,7 @@ export class CheckoutComponent implements OnInit {
       .subscribe({
         next: (response: any) => {
           window.open(response.session.url, '_blank');
-      this.userService.cartLength.next(0);
+          this.userService.cartLength.next(0);
         },
         error: (err) => {
           console.error('Payment error:', err);
