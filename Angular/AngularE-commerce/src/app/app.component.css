@@ -980,3 +980,32 @@ nav {
 .cc {
   width: 100% !important;
 }
+.dark{
+background-color: #161b22;
+color: white;
+h2{
+  color: white;
+}
+p{
+  color: white !important;
+}
+h3{
+  color: white !important;
+
+}
+a{
+  color: white;
+}
+button{
+  background-color: white;
+
+}
+footer{
+  background-color:  #161b22 !important;
+  color: white !important;
+}
+span{
+  color: #3b5d50;
+}
+}
+

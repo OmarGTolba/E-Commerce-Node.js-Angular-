@@ -11,6 +11,8 @@ import { UserService } from '../../../user.service';
   styleUrls: ['../../../app.component.css'],
 })
 export class ContactComponent {
+  darkMode:boolean = false
+
   data = {
     email: '',
     message: '',
@@ -21,7 +23,13 @@ export class ContactComponent {
   constructor(
     private userService: UserService,
     private toast: NgToastService
-  ) {}
+  ) {
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
+  }
   contactFormGroup = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,

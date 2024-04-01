@@ -1,5 +1,6 @@
-<nav class="custom-navbar navbar navbar navbar-expand-md position-fixed w-100 top-0" arial-label="Furni navigation bar">
-  <div class="container">
+<div >
+<nav   class="custom-navbar navbar  navbar navbar-expand-md bg-black position-fixed w-100 top-0" arial-label="Furni navigation bar">
+  <div class="container ">
     <a class="navbar-brand text-white">Namosa<span>.</span></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni"
@@ -39,6 +40,16 @@
           <span class="quantity">{{ cartLength }}</span>
           <a class="nav-link" routerLink="/user/cart"><img src="../../../assets/images/cart.svg" alt="" /></a>
         </li>
+
+<li>
+  <!-- Rounded switch -->
+  <label class="switch mt-2">
+    <input (click)="toggleMode()" type="checkbox">
+    <span class="slider round"></span>
+  </label>
+  
+</li>
+
         <li (click)="changeLang()">
           <a class="nav-link">
             <img src="../../../assets/images/earth.svg" alt=""
@@ -73,5 +84,5 @@
     </div>
   </div>
 </nav>
-
+</div>
 <router-outlet></router-outlet>

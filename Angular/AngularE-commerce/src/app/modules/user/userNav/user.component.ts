@@ -19,6 +19,7 @@ import { UserService } from '../../../user.service';
 export class UserComponent implements OnInit {
   lang: string;
   cartLength: number = 0;
+  darkMode:boolean =false
 
   constructor(
     private elRef: ElementRef,
@@ -28,7 +29,7 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private translateService: TranslateService
-  ) {
+    ) {
     this.getAllProducts();
     this.initSearchForm();
     this.lang = localStorage.getItem('lang') || 'en';
@@ -40,8 +41,20 @@ export class UserComponent implements OnInit {
         this.cartLength = value;
       },
     });
-  }
 
+
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
+  }
+toggleMode()
+{
+
+   this.userService.mode.next(!this.darkMode);
+
+}
   products: any[] = [];
   searchInput: any;
   token = localStorage.getItem('token') || '';

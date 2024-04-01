@@ -28,7 +28,7 @@ export class UserService {
   }
 
   cartLength = new BehaviorSubject(0);
-
+mode = new BehaviorSubject(false)
   getCartCount(token: any, email: any, id: any) {
     this.getUserCart(token, email, id)
       .pipe(

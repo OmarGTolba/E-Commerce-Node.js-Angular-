@@ -35,11 +35,12 @@
 
 
 
-
+<div      [ngClass]="{ '': !darkMode, 'dark': darkMode }"
+>
 <div class="hero">
   <div class="container">
-    <div class="row justify-content-between">
-      <div class="col-lg-5">
+    <div class="row flex-wrap justify-content-between">
+      <div class="col-sm-12 col-lg-5">
         <div class="intro-excerpt">
           <h1>
             {{ "intro" | translate }}
@@ -59,9 +60,9 @@
           </p>
         </div>
       </div>
-      <div class="col-lg-7">
+      <div class=" col-12 col-lg-7">
         <div class="hero-img-wrap">
-          <img src="../../../assets/images/couch.png" class="img-fluid" />
+          <img src="../../../assets/images/couch.png" class="img-fluid w-100" />
         </div>
       </div>
     </div>
@@ -70,7 +71,7 @@
 
 <!-- End Product Section -->
 
-<div class="product-section">
+<div class="product-section ">
   <div class="container">
     <div class="row">
       <!-- Start Column 1 -->
@@ -544,7 +545,7 @@
 <!-- End Blog Section -->
 
 <!-- Start Footer Section -->
-<footer class="footer-section">
+<footer   class="footer-section " >
   <div class="container relative">
     <div class="sofa-img">
       <img
@@ -690,3 +691,6 @@
 
   <!-- End Footer Section -->
 </footer>
+
+
+</div>

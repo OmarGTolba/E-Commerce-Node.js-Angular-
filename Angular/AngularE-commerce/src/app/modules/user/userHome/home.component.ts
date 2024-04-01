@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { catchError } from 'rxjs';
 import { AppModule } from '../../../app.module';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { UserService } from '../../../user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -22,10 +23,49 @@ export class HomeComponent {
   lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  constructor(private productService: ProductsService) {
+  constructor(private productService: ProductsService ,private userService:UserService) {
     this.getAllProducts();
     this.getAllCategories();
+    
+    localStorage.setItem('mode',`false`)
+
+
+
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
   }
+  
+
+
+
+  
+  darkmode:boolean = false;
+toggle(){
+
+
+ let mode = localStorage.getItem('mode') 
+ if(mode == 'false'){
+  mode ='true'
+
+}
+ else{
+  mode ='false' 
+ }
+
+ localStorage.setItem('mode',`${mode}`)
+  if(localStorage.getItem('mode') =='true'){
+    document.body.style.backgroundColor = 'black'
+  }else{
+    document.body.style.backgroundColor = 'white'
+    
+  }
+}
+
+
+
   getAllProducts(): void {
     this.productSkeletonLoading = true;
     this.productService
@@ -60,5 +100,14 @@ export class HomeComponent {
 
         // this.loading = false; // Set loading to false when data is loaded
       });
+  }
+
+
+darkMode:boolean = false
+
+  toggleDarkMode(): void {
+    this.darkMode = !this.darkMode;
+    // Optionally, you can save the theme state to localStorage for persistence
+    // localStorage.setItem('darkMode', this.darkMode ? 'true' : 'false');
   }
 }
