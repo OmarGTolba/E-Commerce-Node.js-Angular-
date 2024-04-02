@@ -39,7 +39,7 @@ export class UserComponent implements OnInit {
   lang: string;
   cartLength: number = 0;
   show = false;
-  darkMode:boolean =false
+  darkMode: boolean = localStorage.getItem('moode') === 'dark';
 
   constructor(
     private elRef: ElementRef,
@@ -50,7 +50,6 @@ export class UserComponent implements OnInit {
     private router: Router,
     private translateService: TranslateService,
     private langService: LanguageService
-
   ) {
     this.getAllProducts();
     this.initSearchForm();
@@ -63,21 +62,18 @@ export class UserComponent implements OnInit {
         this.cartLength = value;
       },
     });
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
-    const html = document.getElementsByTagName('html')[0];
-    html.dir = localStorage.getItem("dir") || 'ltr'
-
-    this.userService.mode.subscribe({
-      next: (value) => {
-        this.darkMode = value;
-      },
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
     });
+    const html = document.getElementsByTagName('html')[0];
+    html.dir = localStorage.getItem('dir') || 'ltr';
+    
+    this.userService.mode.next(localStorage.getItem('moode') === 'dark');
   }
-  toggleMode()
-  {
-    this.userService.mode.next(!this.darkMode);
+  toggleMode() {
+    this.darkMode = !this.darkMode;
+    this.userService.mode.next(this.darkMode);
+    localStorage.setItem('moode', this.darkMode ? 'dark' : 'light');
   }
   products: any[] = [];
   searchInput: any;
@@ -117,7 +113,7 @@ export class UserComponent implements OnInit {
     this.lang = this.lang === 'en' ? 'ar' : 'en';
     localStorage.setItem('lang', this.lang);
     this.translateService.use(this.lang);
-    this.langService.setLang(this.lang)
+    this.langService.setLang(this.lang);
   }
   logout() {
     localStorage.setItem('email', '');

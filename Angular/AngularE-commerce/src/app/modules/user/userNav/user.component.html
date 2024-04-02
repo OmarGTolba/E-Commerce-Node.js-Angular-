@@ -4,7 +4,7 @@
     arial-label="Furni navigation bar"
   >
     <div class="container">
-      <a class="navbar-brand text-white">CozyCorner<span>.</span></a>
+      <a class="navbar-brand text-white" dir="ltr">CozyCorner<span>.</span></a>
 
       <button
         style="color: white; background-color: white"
@@ -82,7 +82,7 @@
           />
         </form>
 
-        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0" [ngClass]="{ 'ms-5': lang == 'en' }">
           <li>
             <mat-icon
               [ngStyle]="{ color: 'white' }"
@@ -103,6 +103,16 @@
               ><img src="../../../assets/images/cart.svg" alt=""
             /></a>
           </li>
+          <li>
+            <!-- Rounded switch -->
+
+            <mat-slide-toggle
+              class="pt-2"
+              (click)="toggleMode()"
+              #darkModeSwitch
+            ></mat-slide-toggle>
+          </li>
+
           <li (click)="changeLang()">
             <a class="nav-link">
               <img

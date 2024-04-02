@@ -1,80 +1,82 @@
-<div [ngClass]="{ '': !darkMode, 'dark': darkMode }"><div class="hero"  >
-  <div class="container">
-    <h1>{{"Products" | translate}}</h1>
-  </div>
-</div>
-
-<div class="dropdown">
-  <button class="dropbtn">
-    <mat-icon>sort</mat-icon>{{ "sort" | translate }}
-  </button>
-  <div class="dropdown-content">
-    <p (click)="sortbyName()">{{ "sort name" | translate }}</p>
-    <p (click)="sortByPrice()">{{ "sort price" | translate }}</p>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row" *ngIf="skeletonLoading">
-    <ngx-skeleton-loader
-      class="col-lg-4 col-xl-3"
-      *ngIf="skeletonLoading"
-      [theme]="{
-        margin: '40px 0',
-        height: '350px',
-        width: '100%',
-        borderRadius: '4px'
-      }"
-    ></ngx-skeleton-loader>
-    <ngx-skeleton-loader
-      class="col-lg-4 col-xl-3"
-      [theme]="{
-        margin: '40px 0',
-        height: '350px',
-        width: '100%',
-        borderRadius: '4px'
-      }"
-    ></ngx-skeleton-loader>
-    <ngx-skeleton-loader
-      class="col-lg-4 col-xl-3"
-      [theme]="{
-        margin: '40px 0',
-        height: '350px',
-        width: '100%',
-        borderRadius: '4px'
-      }"
-    ></ngx-skeleton-loader>
-    <ngx-skeleton-loader
-      class="col-lg-4 col-xl-3"
-      [theme]="{
-        margin: '40px 0',
-        height: '350px',
-        width: '100%',
-        borderRadius: '4px'
-      }"
-    ></ngx-skeleton-loader>
-  </div>
-
-  <div class="row">
-    <div
-      class="col-md-6 col-lg-4 col-xl-3"
-      *ngFor="let item of displayedProducts"
-    >
-      <ng-container *ngIf="!skeletonLoading">
-        <app-product-card [product]="item"></app-product-card>
-      </ng-container>
+<div [ngClass]="{ '': !darkMode, 'dark': darkMode }">
+  <div class="hero">
+    <div class="container">
+      <h1>{{ "Products" | translate }}</h1>
     </div>
   </div>
-  <div *ngIf="!skeletonLoading && displayedProducts.length === 0">
-    <h3 class="text-center my-5">No products!😥</h3>
-  </div>
-</div>
 
-<mat-paginator
-  [length]="products.length"
-  [pageSize]="4"
-  class="pag"
-  [pageSizeOptions]="[6, 10]"
-  (page)="onPageChange($event)"
-></mat-paginator>
+  <div class="dropdown">
+    <button class="dropbtn" [ngStyle]="{'background-color': darkMode ? '#0d1117': '#f9f9f9'}">
+      <mat-icon>sort</mat-icon>{{ "sort" | translate }}
+    </button>
+    <div class="dropdown-content" [ngStyle]="{'background-color': darkMode ? '#0d1117': '#f9f9f9'}">
+      <p (click)="sortbyName()">{{ "sort name" | translate }}</p>
+      <p (click)="sortByPrice()">{{ "sort price" | translate }}</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row" *ngIf="skeletonLoading">
+      <ngx-skeleton-loader
+        class="col-lg-4 col-xl-3"
+        *ngIf="skeletonLoading"
+        [theme]="{
+          margin: '40px 0',
+          height: '350px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        class="col-lg-4 col-xl-3"
+        [theme]="{
+          margin: '40px 0',
+          height: '350px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        class="col-lg-4 col-xl-3"
+        [theme]="{
+          margin: '40px 0',
+          height: '350px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        class="col-lg-4 col-xl-3"
+        [theme]="{
+          margin: '40px 0',
+          height: '350px',
+          width: '100%',
+          borderRadius: '4px'
+        }"
+      ></ngx-skeleton-loader>
+    </div>
+
+    <div class="row">
+      <div
+        class="col-md-6 col-lg-4 col-xl-3"
+        *ngFor="let item of displayedProducts"
+      >
+        <ng-container *ngIf="!skeletonLoading">
+          <app-product-card [product]="item"></app-product-card>
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="!skeletonLoading && displayedProducts.length === 0">
+      <h3 class="text-center my-5">No products!😥</h3>
+    </div>
+  </div>
+
+  <mat-paginator
+    [length]="products.length"
+    [ngStyle]="{'background-color': darkMode ? '#0d1117': '#f9f9f9', 'color': darkMode ? '#f9f9f9': '#0d1117'}"
+    [pageSize]="4"
+    class="pag"
+    [pageSizeOptions]="[6, 10]"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
 </div>
