@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FavoritesService } from '../../services/favorites/favorites.service';
+import { FavoritesService } from '../../../services/favorites/favorites.service';
 import { catchError, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';

@@ -5,9 +5,10 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { ProfileService } from '../../services/profile/profile.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { ProfileService } from '../../../services/profile/profile.service';
 
 @Component({
   selector: 'app-reset-password',

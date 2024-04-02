@@ -5,7 +5,7 @@ import { catchError } from 'rxjs';
 import { AppModule } from '../../../app.module';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { LanguageService } from '../../../services/language/language.service';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -74,7 +74,7 @@ toggle(){
   getAllProducts(): void {
     this.productSkeletonLoading = true;
     this.productService
-      .getAllProducts(this.token, this.email)
+      .getAllProducts()
       .pipe((error) => {
         return error;
       })
@@ -91,7 +91,7 @@ toggle(){
   getAllCategories() {
     this.catSkeletonLoading = true;
     this.productService
-      .getAllCategories(this.token, this.email)
+      .getAllCategories()
       .pipe((error) => {
         return error;
       })

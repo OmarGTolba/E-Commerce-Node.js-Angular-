@@ -11,8 +11,8 @@ import { catchError } from 'rxjs';
   styleUrl: './admin-products-details.component.css',
 })
 export class AdminProductsDetailsComponent {
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
+  // token = localStorage.getItem('token') || '';
+  // email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
   imgSrc: any;
 
@@ -30,7 +30,7 @@ export class AdminProductsDetailsComponent {
         const id = params.get('id');
         this.id = params.get('id');
         this.productServices
-          .getProductsByID(this.token, this.email, id!)
+          .getProductsByID( id!)
           .pipe(
             catchError((error) => {
               return error;
@@ -49,16 +49,16 @@ export class AdminProductsDetailsComponent {
   }
   updateProduct() {
     const url = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${this.id}`;
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
+    // const token = localStorage.getItem('token') || '';
+    // const email = localStorage.getItem('email') || '';
 
     this.http
       .get<any[]>(url, {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          jwt: token,
-          email: email,
-        },
+        // headers: {
+        //   'Content-type': 'application/json; charset=UTF-8',
+        //   jwt: token,
+        //   email: email,
+        // },
       })
       .subscribe(
         (response: any) => {

@@ -12,8 +12,8 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrl: './all-categories.component.css',
 })
 export class AllCategoriesComponent {
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
+  // token = localStorage.getItem('token') || '';
+  // email = localStorage.getItem('email') || '';
   categories: Category[] = [];
   constructor(
     private http: HttpClient,
@@ -25,7 +25,7 @@ export class AllCategoriesComponent {
   }
   getAllCategories(): void {
     this.categoryService
-      .getAllCategories(this.token, this.email)
+      .getAllCategories()
       .pipe(
         catchError((error) => {
           return of(error);
@@ -41,7 +41,7 @@ export class AllCategoriesComponent {
   }
   delete(id: string) {
     this.categoryService
-      .deleteCategory(this.token, this.email, id)
+      .deleteCategory(id)
       .pipe(
         catchError((error) => {
           return error;

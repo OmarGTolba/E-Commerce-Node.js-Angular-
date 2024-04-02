@@ -17,8 +17,8 @@ import { Product } from '../../../Models/products';
   styleUrls: ['./add.component.css'],
 })
 export class AddComponent implements OnInit {
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
+  // token = localStorage.getItem('token') || '';
+  // email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
   editMode: Boolean = false;
   constructor(
@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
         this.editMode = true;
         this.id = params.get('id');
         this.productServices
-          .getProductsByID(this.token, this.email, id!)
+          .getProductsByID( id!)
           .pipe(
             catchError((error) => {
               return error;
@@ -97,8 +97,8 @@ export class AddComponent implements OnInit {
   addProduct() {
     console.log(this.Form.controls.brandAr);
     const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
+    // const token = localStorage.getItem('token') || '';
+    // const email = localStorage.getItem('email') || '';
     const body = {
       name_en: this.Form.controls.nameEn.value,
       name_ar: this.Form.controls.nameAr.value,
@@ -116,11 +116,11 @@ export class AddComponent implements OnInit {
 
     this.http
       .post<any[]>(url, body, {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          jwt: token,
-          email: email,
-        },
+        // headers: {
+        //   'Content-type': 'application/json; charset=UTF-8',
+        //   jwt: token,
+        //   email: email,
+        // },
       })
       .subscribe(
         (response: any) => {
@@ -134,8 +134,8 @@ export class AddComponent implements OnInit {
 
   updateProduct() {
     const url = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${this.id}`;
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
+    // const token = localStorage.getItem('token') || '';
+    // const email = localStorage.getItem('email') || '';
     const body = {
       name_en: this.Form.controls.nameEn.value,
       name_ar: this.Form.controls.nameAr.value,
@@ -152,11 +152,11 @@ export class AddComponent implements OnInit {
 
     this.http
       .patch<any[]>(url, this.formBody, {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          jwt: token,
-          email: email,
-        },
+        // headers: {
+        //   'Content-type': 'application/json; charset=UTF-8',
+        //   jwt: token,
+        //   email: email,
+        // },
       })
       .subscribe(
         (response: any) => {

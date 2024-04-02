@@ -19,14 +19,13 @@ export class PaymentService {
     );
   }
 
-  showResult(token: string): Observable<string> {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-    });
+  showResult(): Observable<string> {
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    // });
     return this.httpClient.post<string>(
-      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/result',
-      { headers }
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/result',{}
     );
   }
 }

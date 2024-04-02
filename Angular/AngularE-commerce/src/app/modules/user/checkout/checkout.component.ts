@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../../Models/userInterface';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { OrdersService } from '../../../services/orders/orders.service';
 import { catchError, throwError } from 'rxjs';
@@ -56,7 +56,7 @@ export class CheckoutComponent implements OnInit {
   getCart() {
     this.total = 0;
     this.userService
-      .getUserCart(this.token, this.email, this.userId)
+      .getUserCart( this.userId)
       .pipe(
         catchError((error) => {
           return error;
@@ -109,7 +109,7 @@ export class CheckoutComponent implements OnInit {
     console.log(token, email, this.userId, body);
 
     this.userService
-      .getUserOrder(token, email, this.userId, body)
+      .getUserOrder( this.userId, body)
       .pipe(
         catchError((error) => {
           return error;
@@ -136,7 +136,7 @@ export class CheckoutComponent implements OnInit {
     console.log(token, email, this.userId, body);
 
     this.userService
-      .getUserOrder(token, email, this.userId, body)
+      .getUserOrder( this.userId, body)
       .pipe(
         catchError((error) => {
           return error;

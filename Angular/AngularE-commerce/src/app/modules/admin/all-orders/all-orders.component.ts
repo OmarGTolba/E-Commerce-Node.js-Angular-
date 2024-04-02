@@ -18,19 +18,19 @@ export class AllOrdersComponent {
     this.getAllOrders();
   }
   orders: any[] = [];
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
+  // token = localStorage.getItem('token') || '';
+  // email = localStorage.getItem('email') || '';
 
   getAllOrders(): void {
     const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/orders';
 
     this.http
       .get<any[]>(url, {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          jwt: this.token,
-          email: this.email,
-        },
+        // headers: {
+        //   'Content-type': 'application/json; charset=UTF-8',
+        //   jwt: this.token,
+        //   email: this.email,
+        // },
       })
       .pipe(
         catchError((error) => {
@@ -46,7 +46,7 @@ export class AllOrdersComponent {
 
   cancel(id: string) {
     this.orderService
-      .cancelOrder(this.token, this.email, id)
+      .cancelOrder( id)
       .pipe(
         catchError((error) => {
           return of(error);
@@ -74,7 +74,7 @@ export class AllOrdersComponent {
   }
   complete(id: string) {
     this.orderService
-      .confirmeOrder(this.token, this.email, id)
+      .confirmeOrder( id)
       .pipe(
         catchError((error) => {
           return of(error);
