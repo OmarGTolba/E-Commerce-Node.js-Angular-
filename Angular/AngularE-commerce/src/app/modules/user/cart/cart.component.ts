@@ -19,12 +19,15 @@ export class CartComponent implements OnInit {
     private langService: LanguageService
   ) {
     this.getCart();
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
+
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
   }
   SkeletonLoading = false;
-
+  darkMode:boolean  = false
   cart: any[] = [];
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
@@ -113,14 +116,13 @@ export class CartComponent implements OnInit {
   updateQuantity(item: any, newQuantity: number) {
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';
-
-    // const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${item.product_id.id}`;
+    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
     const body = { quantity: newQuantity };
     console.log(item);
     console.log(newQuantity);
-
     this.userService
-      .updateUserCart(token, this.email, this.userId, item.product_id._id, body)
+      .updateUserCart
+      (token, this.email, this.userId, item.product_id._id, body)
       .pipe(
         catchError((error) => {
           return error;

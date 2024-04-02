@@ -39,6 +39,8 @@ export class UserComponent implements OnInit {
   lang: string;
   cartLength: number = 0;
   show = false;
+  darkMode:boolean =false
+
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
@@ -64,10 +66,19 @@ export class UserComponent implements OnInit {
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
     })
-     const html = document.getElementsByTagName('html')[0];
+    const html = document.getElementsByTagName('html')[0];
     html.dir = localStorage.getItem("dir") || 'ltr'
-  }
 
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
+  }
+  toggleMode()
+  {
+    this.userService.mode.next(!this.darkMode);
+  }
   products: any[] = [];
   searchInput: any;
   token = localStorage.getItem('token') || '';

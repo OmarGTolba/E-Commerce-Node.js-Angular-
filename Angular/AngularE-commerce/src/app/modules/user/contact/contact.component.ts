@@ -12,6 +12,8 @@ import { LanguageService } from '../../../services/language/language.service';
   styleUrls: ['../../../app.component.css'],
 })
 export class ContactComponent {
+  darkMode:boolean = false
+
   data = {
     email: '',
     message: '',
@@ -28,6 +30,13 @@ export class ContactComponent {
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
     })
+  
+    
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
   }
   contactFormGroup = new FormGroup({
     firstname: new FormControl('', [

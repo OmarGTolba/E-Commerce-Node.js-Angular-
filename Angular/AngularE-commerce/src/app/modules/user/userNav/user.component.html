@@ -1,151 +1,146 @@
-<nav
-  class="custom-navbar navbar navbar navbar-expand-md position-fixed w-100 top-0"
-  arial-label="Furni navigation bar"
->
-  <div class="container">
-    <a class="navbar-brand text-white">CozyCorner<span>.</span></a>
+<div>
+  <nav
+    class="custom-navbar navbar navbar navbar-expand-md position-fixed w-100 top-0"
+    arial-label="Furni navigation bar"
+  >
+    <div class="container">
+      <a class="navbar-brand text-white">CozyCorner<span>.</span></a>
 
-    <button
-      style="color: white; background-color: white"
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarsFurni"
-      aria-controls="navbarsFurni"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span
+      <button
         style="color: white; background-color: white"
-        class="navbar-toggler-icon"
-      ></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsFurni">
-      <!-- [ngClass]="{ 'flex-row-reverse': lang == 'ar' }" -->
-      <ul
-        class="navbar-nav me-auto mb-2 mb-lg-0 custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0"
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarsFurni"
+        aria-controls="navbarsFurni"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
-        <li class="nav-item" #homenav>
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            routerLink="/user"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >{{ "Home" | translate }}</a
-          >
-        </li>
-        <li class="nav-item" #pronav>
-          <a
-            class="nav-link"
-            #pronav
-            routerLinkActive="active"
-            routerLink="/user/products"
-            >{{ "Products" | translate }}</a
-          >
-        </li>
-        <li class="nav-item" #catnav>
-          <a
-            class="nav-link"
-            routerLink="/user/categories"
-            routerLinkActive="active"
-            >{{ "Categories" | translate }}</a
-          >
-        </li>
-        <li *ngIf="!show">
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            routerLink="/user/about"
-            >{{ "About" | translate }}</a
-          >
-        </li>
-        <li *ngIf="!show">
-          <a
-            class="nav-link"
-            routerLinkActive="active"
-            routerLink="/user/contact"
-            >{{ "Contact" | translate }}</a
-          >
-        </li>
-      </ul>
+        <span
+          style="color: white; background-color: white"
+          class="navbar-toggler-icon"
+        ></span>
+      </button>
 
-      <form
-        class="form-outline"
-        data-mdb-input-init
-        *ngIf="show"
-        @fadeInOut
-      >
-        <input
-          id="search-focus"
-          placeholder="{{ 'Search' | translate }}"
-          [formControl]="searchFormControl"
-          type="search"
-          id="form1"
-          class="form-control"
-          [ngClass]="{ 'text-end': lang == 'ar' }"
-        />
-      </form>
+      <div class="collapse navbar-collapse" id="navbarsFurni">
+        <ul
+          class="navbar-nav me-auto mb-2 mb-lg-0 custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0"
+        >
+          <li class="nav-item" #homenav>
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="/user"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >{{ "Home" | translate }}</a
+            >
+          </li>
+          <li class="nav-item" #pronav>
+            <a
+              class="nav-link"
+              #pronav
+              routerLinkActive="active"
+              routerLink="/user/products"
+              >{{ "Products" | translate }}</a
+            >
+          </li>
+          <li class="nav-item" #catnav>
+            <a
+              class="nav-link"
+              routerLink="/user/categories"
+              routerLinkActive="active"
+              >{{ "Categories" | translate }}</a
+            >
+          </li>
+          <li *ngIf="!show">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="/user/about"
+              >{{ "About" | translate }}</a
+            >
+          </li>
+          <li *ngIf="!show">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              routerLink="/user/contact"
+              >{{ "Contact" | translate }}</a
+            >
+          </li>
+        </ul>
 
-      <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-        <li>
-          <mat-icon
-            [ngStyle]="{ color: 'white' }"
-            (click)="showSearch()"
-            *ngIf="!show"
-            >search</mat-icon
-          >
-          <mat-icon
-            [ngStyle]="{ color: 'white' }"
-            (click)="showSearch()"
-            *ngIf="show"
-            >clear</mat-icon
-          >
-        </li>
-        <li class="parentCart">
-          <span class="quantity">{{ cartLength }}</span>
-          <a class="nav-link" routerLink="/user/cart"
-            ><img src="../../../assets/images/cart.svg" alt=""
-          /></a>
-        </li>
-        <li (click)="changeLang()">
-          <a class="nav-link">
-            <img
-              src="../../../assets/images/earth.svg"
-              alt=""
-              style="width: 23px; cursor: pointer; background-color: #3b5d50"
-          /></a>
-          <span class="lang">{{ lang.toUpperCase() }}</span>
-        </li>
-        <ng-container *ngIf="loggedin; else signInButton">
+        <form class="form-outline" data-mdb-input-init *ngIf="show" @fadeInOut>
+          <input
+            id="search-focus"
+            placeholder="{{ 'Search' | translate }}"
+            [formControl]="searchFormControl"
+            type="search"
+            id="form1"
+            class="form-control"
+            [ngClass]="{ 'text-end': lang == 'ar' }"
+          />
+        </form>
+
+        <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
           <li>
-            <div class="dropdown">
-              <a class="nav-link"
-                ><img src="../../assets/images/user.svg" alt=""
-              /></a>
-              <div class="dropdown-content">
-                <p routerLink="/user/profile">{{ "Profile" | translate }}</p>
-                <div
-                  class="d-flex align-items-center justify-content-evenly"
-                  (click)="logout()"
-                >
-                  {{ "Logout" | translate }}
-                  <mat-icon class="icon">logout</mat-icon>
+            <mat-icon
+              [ngStyle]="{ color: 'white' }"
+              (click)="showSearch()"
+              *ngIf="!show"
+              >search</mat-icon
+            >
+            <mat-icon
+              [ngStyle]="{ color: 'white' }"
+              (click)="showSearch()"
+              *ngIf="show"
+              >clear</mat-icon
+            >
+          </li>
+          <li class="parentCart">
+            <span class="quantity">{{ cartLength }}</span>
+            <a class="nav-link" routerLink="/user/cart"
+              ><img src="../../../assets/images/cart.svg" alt=""
+            /></a>
+          </li>
+          <li (click)="changeLang()">
+            <a class="nav-link">
+              <img
+                src="../../../assets/images/earth.svg"
+                alt=""
+                style="width: 23px; cursor: pointer; background-color: #3b5d50"
+            /></a>
+            <span class="lang">{{ lang.toUpperCase() }}</span>
+          </li>
+          <ng-container *ngIf="loggedin; else signInButton">
+            <li>
+              <div class="dropdown">
+                <a class="nav-link"
+                  ><img src="../../assets/images/user.svg" alt=""
+                /></a>
+                <div class="dropdown-content">
+                  <p routerLink="/user/profile">{{ "Profile" | translate }}</p>
+                  <div
+                    class="d-flex align-items-center justify-content-evenly"
+                    (click)="logout()"
+                  >
+                    {{ "Logout" | translate }}
+                    <mat-icon class="icon">logout</mat-icon>
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </ng-container>
-        <ng-template #signInButton>
-          <li class="d-flex align-items-center justify-content-center">
-            <button class="signIn" (click)="signIn()">
-              {{ "login" | translate }}
-            </button>
-          </li>
-        </ng-template>
-      </ul>
+            </li>
+          </ng-container>
+          <ng-template #signInButton>
+            <li class="d-flex align-items-center justify-content-center">
+              <button class="signIn" (click)="signIn()">
+                {{ "login" | translate }}
+              </button>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-
+  </nav>
+</div>
 <router-outlet></router-outlet>

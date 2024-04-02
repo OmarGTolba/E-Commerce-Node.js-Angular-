@@ -6,6 +6,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { ProductsService } from '../../../services/products/products.service';
 import { CartService } from '../../../services/cart/cart.service';
 import { LanguageService } from '../../../services/language/language.service';
+import { UserService } from '../../../user.service';
 
 @Component({
   selector: 'app-product-card',
@@ -26,7 +27,8 @@ export class ProductCardComponent {
     private cartService: CartService,
     private router: Router,
     private toast: NgToastService,
-    private langService: LanguageService
+    private langService: LanguageService,
+   private userService:UserService
   ) {
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
@@ -139,6 +141,7 @@ export class ProductCardComponent {
           setTimeout(() => {
             this.added = false;
           }, 5000);
+          this.userService.getCartCount(this.token, this.email, this.userId);
         }else if (response.status === 401) {
           this.toast.error({
             detail: 'ERROR',

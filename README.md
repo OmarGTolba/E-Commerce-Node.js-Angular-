@@ -17,7 +17,7 @@
 
 ## 🔗 Our Team
 
-[![linkedin](https://img.shields.io/badge/Areeg&nbsp;Mohamed-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/areeg-mahmoud-941818287/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BdTkrTTC6Squ4z60YOd75Mw%3D%3D)
+[![linkedin](https://img.shields.io/badge/Areeg&nbsp;Mahmoud-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/areeg-mahmoud-941818287/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BdTkrTTC6Squ4z60YOd75Mw%3D%3D)
 
 [![linkedin](https://img.shields.io/badge/MennatAllah&nbsp;Khalil-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mennatallah-khalil-9b46b7276/?lipi=urn%3Ali%3Apage%3Ad_flagship3_people_connections%3BdTkrTTC6Squ4z60YOd75Mw%3D%3D)
 

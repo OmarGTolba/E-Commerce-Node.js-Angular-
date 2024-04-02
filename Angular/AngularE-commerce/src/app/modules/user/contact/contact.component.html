@@ -1,4 +1,6 @@
 <!-- Start Hero Section -->
+<div [ngClass]="{ '': !darkMode, 'dark': darkMode }">
+<!-- Start Hero Section -->
 <div class="hero">
   <div class="container">
     <div class="row justify-content-between">
@@ -277,7 +279,7 @@
                 />
               </div>
               <div class="col-auto">
-                <button class="btn btn-primary">
+                <button title="send" type='button' class="btn btn-primary">
                   <span class="fa fa-paper-plane"></span>
                 </button>
               </div>
@@ -388,4 +390,5 @@
 
   <!-- End Footer Section -->
 </footer>
+</div>
 
