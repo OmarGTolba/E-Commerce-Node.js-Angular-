@@ -10,6 +10,14 @@ export class LanguageService {
 
   setLang(lang: string){
     this.myLang.next(lang)
+    const html = document.getElementsByTagName('html')[0];
+        if(lang == "ar"){
+          html.dir = 'rtl'
+          localStorage.setItem("dir", 'rtl')
+        }else{
+          html.dir = 'ltr'
+          localStorage.setItem("dir", 'ltr')
+        }
   }
 
   getLang(){
