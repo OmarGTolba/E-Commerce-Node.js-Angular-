@@ -11,66 +11,62 @@ export class OrdersService {
 
   baseUrl = 'https://ecommerce-node-yxgy.onrender.com/api/v1/orders';
 
-  getAllOrders(token: string, email: string): Observable<any[]> {
+  getAllOrders(): Observable<any[]> {
     //for admin
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(this.baseUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(this.baseUrl);
   }
 
-  getUserOrder(token: string, email: string, id: string): Observable<any[]> {
+  getUserOrder( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
 
   getUserOrders(
-    token: string,
-    email: string,
     id: string
   ): Observable<ApiResponse> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user/orders`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<ApiResponse>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<ApiResponse>(updateUrl);
   }
 
-  getOrderByID(token: string, email: string, id: string): Observable<any[]> {
+  getOrderByID( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
 
-  cancelOrder(token: string, email: string, id: string): Observable<any[]> {
+  cancelOrder( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/cancel`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
+
     });
-    return this.http.patch<any[]>(updateUrl, { headers });
+    return this.http.patch<any[]>(updateUrl,{});
   }
-  confirmeOrder(token: string, email: string, id: string): Observable<any[]> {
+  confirmeOrder(id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/success`;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
+
     });
-    return this.http.patch<any[]>(updateUrl, { headers });
+    return this.http.patch<any[]>(updateUrl,{headers});
   }
 }

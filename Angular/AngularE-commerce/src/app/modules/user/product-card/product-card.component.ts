@@ -6,7 +6,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { ProductsService } from '../../../services/products/products.service';
 import { CartService } from '../../../services/cart/cart.service';
 import { LanguageService } from '../../../services/language/language.service';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-product-card',
@@ -50,7 +50,7 @@ export class ProductCardComponent {
 
   getProduct(productId: string) {
     this.productService
-      .getProductsByID(this.token, this.email, productId)
+      .getProductsByID( productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -72,7 +72,7 @@ export class ProductCardComponent {
 
   addToFav(productId: string) {
     this.productService
-      .AddToFav(this.token, this.email, this.userId, productId)
+      .AddToFav( this.userId, productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -85,7 +85,7 @@ export class ProductCardComponent {
 
   removeFromFav(productId: string) {
     this.productService
-      .removeFromFav(this.token, this.email, this.userId, productId)
+      .removeFromFav( this.userId, productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -98,7 +98,7 @@ export class ProductCardComponent {
 
   isFav() {
     this.productService
-      .isFav(this.token, this.email, this.userId, this.product._id)
+      .isFav( this.userId, this.product._id)
       .pipe(
         catchError((error) => {
           return error;
@@ -122,7 +122,7 @@ export class ProductCardComponent {
     };
 
     this.cartService
-      .addToCart(this.token, this.email, this.userId, body)
+      .addToCart( this.userId, body)
       .pipe(
         catchError((error) => {
           return of(error);
@@ -141,7 +141,7 @@ export class ProductCardComponent {
           setTimeout(() => {
             this.added = false;
           }, 5000);
-          this.userService.getCartCount(this.token, this.email, this.userId);
+          this.userService.getCartCount( this.userId);
         }else if (response.status === 401) {
           this.toast.error({
             detail: 'ERROR',

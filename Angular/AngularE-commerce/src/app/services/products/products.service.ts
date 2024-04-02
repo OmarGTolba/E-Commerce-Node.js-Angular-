@@ -9,186 +9,174 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   baseUrl = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
-  getAllProducts(token: string, email: string): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(this.baseUrl, { headers });
+  getAllProducts(): Observable<any[]> {
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(this.baseUrl);
   }
 
-  getAllCategories(token: string, email: string): Observable<any[]> {
+  getAllCategories(): Observable<any[]> {
     const Url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/categories';
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(Url, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(Url);
   }
 
-  getReviewsByID(token: string, email: string, id: string): Observable<any[]> {
+  getReviewsByID( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${id}/reviews`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
 
   addReview(
-    token: string,
-    email: string,
     id: string,
     body: any
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.post<any[]>(updateUrl, body, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.post<any[]>(updateUrl, body);
   }
 
-  getRatingByID(token: string, email: string, id: string): Observable<any[]> {
+  getRatingByID( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${id}/ratings`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.post<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.post<any[]>(updateUrl,{});
   }
 
-  getProductsByID(token: string, email: string, id: string): Observable<any[]> {
+  getProductsByID( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
 
   products: any[] = [];
-  searchByName(token: string, email: string, name: string): Observable<any[]> {
+  searchByName( name: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/search/product/${name}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
 
   searchByCategory(
-    token: string,
-    email: string,
     name: string
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/search/category/${name}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
 
   updateProduct(
-    token: string,
-    email: string,
     id: string,
     body: any
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.patch<any[]>(updateUrl, body, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.patch<any[]>(updateUrl, body);
   }
 
   updateReview(
-    token: string,
-    email: string,
     id: string,
     body: any
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.patch<any[]>(updateUrl, body, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.patch<any[]>(updateUrl, body);
   }
 
-  deleteReview(token: string, email: string, id: string): Observable<any[]> {
+  deleteReview( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.delete<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.delete<any[]>(updateUrl);
   }
 
-  deleteProduct(token: string, email: string, id: string): Observable<any[]> {
+  deleteProduct( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.delete<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.delete<any[]>(updateUrl);
   }
 
   AddToFav(
-    token: string,
-    email: string,
+
     userId: string,
     id: string
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.post<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.post<any[]>(updateUrl,{});
   }
   removeFromFav(
-    token: string,
-    email: string,
+
     userId: string,
     id: string
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.delete<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.delete<any[]>(updateUrl);
   }
 
   isFav(
-    token: string,
-    email: string,
     userId: string,
     id: string
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
 }

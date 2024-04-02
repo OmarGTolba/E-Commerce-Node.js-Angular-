@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { ProductsService } from '../../../services/products/products.service';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-product-page',
@@ -60,7 +60,7 @@ export class ProductPageComponent {
 
   getAllProducts(): void {
     this.productService
-      .getAllProducts(this.token, this.email)
+      .getAllProducts()
       .pipe(
         catchError((error) => {
           return error;
@@ -81,7 +81,7 @@ export class ProductPageComponent {
 
   search() {
     this.productService
-      .searchByName(this.token, this.email, this.name!)
+      .searchByName( this.name!)
       .pipe(
         catchError((error) => {
           return error;
@@ -96,7 +96,7 @@ export class ProductPageComponent {
   }
   searchByCategory() {
     this.productService
-      .searchByCategory(this.token, this.email, this.catname!)
+      .searchByCategory( this.catname!)
       .pipe(
         catchError((error) => {
           return error;
@@ -127,7 +127,7 @@ export class ProductPageComponent {
 
   getProduct(productId: string) {
     this.productService
-      .getProductsByID(this.token, this.email, productId)
+      .getProductsByID( productId)
       .pipe(
         catchError((error) => {
           return error;

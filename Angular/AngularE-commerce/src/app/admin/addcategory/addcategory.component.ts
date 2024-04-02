@@ -16,9 +16,9 @@ export class AddcategoryComponent implements OnInit {
   id: string | null = '';
   editMode: boolean = false;
 
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
-  userId = localStorage.getItem('userId') || '';
+  // token = localStorage.getItem('token') || '';
+  // email = localStorage.getItem('email') || '';
+  // userId = localStorage.getItem('userId') || '';
 
   constructor(
     private http: HttpClient,
@@ -33,7 +33,7 @@ export class AddcategoryComponent implements OnInit {
         this.editMode = true;
         console.log(this.editMode);
         this.categoryService
-          .getCategoryById(this.token, this.email, this.id!)
+          .getCategoryById( this.id!)
           .pipe(
             catchError((error) => {
               return of(error);
@@ -51,7 +51,7 @@ export class AddcategoryComponent implements OnInit {
 
   onAdd() {
     this.categoryService
-      .addCategories(this.token, this.email, {
+      .addCategories( {
         name_en: this.categoryName_en,
         name_ar: this.categoryName_ar,
         icon: this.categoryImage,
@@ -68,7 +68,7 @@ export class AddcategoryComponent implements OnInit {
 
   onEdit() {
     this.categoryService
-      .updateCategory(this.token, this.email, this.id!, {
+      .updateCategory( this.id!, {
         name_en: this.categoryName_en,
         name_ar: this.categoryName_ar,
         icon: this.categoryImage,

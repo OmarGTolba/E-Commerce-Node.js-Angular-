@@ -8,10 +8,7 @@ import { Observable } from 'rxjs';
 export class FavoritesService {
   constructor(private httpClient: HttpClient) {}
   getUserFavProduct(id: string): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: localStorage.getItem('token') || '',
-    });
+  
     return this.httpClient.get<any[]>(
       'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' + id
     );
@@ -20,7 +17,6 @@ export class FavoritesService {
   AddNewFavProduct(id: string, prdId: string) {
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=UTF-8',
-      jwt: localStorage.getItem('token') || '',
     });
     return this.httpClient.post(
       'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
@@ -32,16 +28,13 @@ export class FavoritesService {
   }
 
   delFavProduct(id: string, prdId: string) {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: localStorage.getItem('token') || '',
-    });
+  
     return this.httpClient.delete(
       'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,
-      { headers }
+  
     );
   }
 }

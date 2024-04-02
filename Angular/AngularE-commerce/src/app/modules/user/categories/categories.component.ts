@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ProductsService } from '../../../services/products/products.service';
 import { catchError } from 'rxjs';
 import { LanguageService } from '../../../services/language/language.service';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-categories',
@@ -35,7 +35,7 @@ export class CategoriesComponent {
   getAllCategories() {
     this.SkeletonLoading = true;
     this.productService
-      .getAllCategories(this.token, this.email)
+      .getAllCategories()
       .pipe((error) => {
         return error;
       })

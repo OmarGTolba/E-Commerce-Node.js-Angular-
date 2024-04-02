@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LanguageService } from '../../../services/language/language.service';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-about',

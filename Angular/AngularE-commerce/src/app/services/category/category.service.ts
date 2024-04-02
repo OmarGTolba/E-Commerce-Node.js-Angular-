@@ -9,55 +9,50 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   baseUrl = 'https://ecommerce-node-yxgy.onrender.com/api/v1/categories';
-  getAllCategories(token: string, email: string): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(this.baseUrl, { headers });
+  getAllCategories(): Observable<any[]> {
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(this.baseUrl);
   }
 
-  addCategories(token: string, email: string, body: any): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.post<any[]>(this.baseUrl, { headers });
+  addCategories( body: any): Observable<any[]> {
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.post<any[]>(this.baseUrl,body);
   }
 
-  getCategoryById(token: string, email: string, id: string): Observable<any[]> {
+  getCategoryById( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/categories/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.get<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.get<any[]>(updateUrl);
   }
-  deleteCategory(token: string, email: string, id: string): Observable<any[]> {
+  deleteCategory( id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/categories/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
-    return this.http.delete<any[]>(updateUrl, { headers });
+    // const headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=UTF-8',
+    //   jwt: token,
+    //   email: email,
+    // });
+    return this.http.delete<any[]>(updateUrl);
   }
   updateCategory(
-    token: string,
-    email: string,
+   
     id: string,
     body: any
   ): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/categories/${id}`;
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-      email: email,
-    });
+  
     console.log(body);
-    return this.http.put<any[]>(updateUrl, body, { headers });
+    return this.http.put<any[]>(updateUrl, body);
   }
 }

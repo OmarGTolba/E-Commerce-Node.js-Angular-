@@ -67,7 +67,7 @@ export class ProductComponent {
     });
 
     this.productServices
-      .getProductsByID(this.token, this.email, this.productId)
+      .getProductsByID( this.productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -80,7 +80,7 @@ export class ProductComponent {
       });
 
     this.productServices
-      .getRatingByID(this.token, this.email, this.productId)
+      .getRatingByID( this.productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -105,7 +105,7 @@ export class ProductComponent {
 
   addToFav(productId: string) {
     this.productServices
-      .AddToFav(this.token, this.email, this.userId, productId)
+      .AddToFav(this.userId, productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -118,7 +118,7 @@ export class ProductComponent {
 
   removeFromFav(productId: string) {
     this.productServices
-      .removeFromFav(this.token, this.email, this.userId, productId)
+      .removeFromFav( this.userId, productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -131,7 +131,7 @@ export class ProductComponent {
 
   isFav() {
     this.productServices
-      .isFav(this.token, this.email, this.userId, this.productId)
+      .isFav( this.userId, this.productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -164,7 +164,7 @@ export class ProductComponent {
     };
 
     this.cartService
-      .addToCart(this.token, this.email, this.userId, body)
+      .addToCart( this.userId, body)
       .pipe(
         catchError((error) => {
           return of(error);
@@ -205,7 +205,7 @@ export class ProductComponent {
     
     console.log(body);
     this.productServices
-      .addReview(this.token, this.email, this.productId, body)
+      .addReview( this.productId, body)
       .pipe(
         catchError((error) => {
           return of(error);
@@ -243,7 +243,7 @@ export class ProductComponent {
       rating: this.reviewValue,
     };
     this.productServices
-      .updateReview(this.token, this.email, id, body)
+      .updateReview( id, body)
       .subscribe((response: any) => {
         console.log(response);
         this.showReview(this.product_id);
@@ -256,7 +256,7 @@ export class ProductComponent {
     console.log(this.userId);
 
     this.productServices
-      .deleteReview(this.token, this.email, id)
+      .deleteReview( id)
       .subscribe((response: any) => {
         console.log(response);
         this.editmode = false;
@@ -280,7 +280,7 @@ export class ProductComponent {
     this.product_id = id;
     this.ReviewskeletonLoading = true;
     this.productServices
-      .getReviewsByID(this.token, this.email, id)
+      .getReviewsByID( id)
       .pipe(
         catchError((error) => {
           return error;

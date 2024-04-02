@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 import { catchError, throwError } from 'rxjs';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { OrdersService } from '../../../services/orders/orders.service';
@@ -41,7 +41,7 @@ export class CartComponent implements OnInit {
 
     console.log(this.token, this.email, this.userId);
     this.orderService
-      .getUserOrders(this.token, this.email, this.userId)
+      .getUserOrders( this.userId)
       .subscribe((res) => {
         res.data.forEach((order) => {
           console.log(order.status);
@@ -62,7 +62,7 @@ export class CartComponent implements OnInit {
     this.SkeletonLoading = true;
     this.total = 0;
     this.userService
-      .getUserCart(this.token, this.email, this.userId)
+      .getUserCart( this.userId)
       .pipe(
         catchError((error) => {
           return error;
@@ -122,7 +122,7 @@ export class CartComponent implements OnInit {
     console.log(newQuantity);
     this.userService
       .updateUserCart
-      (token, this.email, this.userId, item.product_id._id, body)
+      ( this.userId, item.product_id._id, body)
       .pipe(
         catchError((error) => {
           return error;
@@ -152,7 +152,7 @@ export class CartComponent implements OnInit {
       phone: '01060702328',
     };
     this.userService
-      .getUserOrder(token, email, this.userId, body)
+      .getUserOrder( this.userId, body)
       .pipe(
         catchError((error) => {
           return error;
@@ -174,7 +174,7 @@ export class CartComponent implements OnInit {
     console.log(item);
 
     this.userService
-      .deleteCartItem(token, this.email, this.userId, item.product_id._id)
+      .deleteCartItem( this.userId, item.product_id._id)
       .pipe(
         catchError((error) => {
           return error;
@@ -182,7 +182,7 @@ export class CartComponent implements OnInit {
       )
       .subscribe((response: any) => {
         console.log(response);
-        this.userService.getCartCount(this.token, this.email, this.userId);
+        this.userService.getCartCount( this.userId);
         this.getCart();
       });
   }

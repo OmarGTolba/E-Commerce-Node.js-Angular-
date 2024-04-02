@@ -164,19 +164,6 @@ export class UserComponent implements OnInit {
         this.products = searchResults;
       });
   }
-  //on
-  // search() {
-  //   this.productService.searchByName(this.token, this.email ,this.name ).pipe(
-  //     catchError((error) => {
-  //       return (error);
-  //     })
-  //   ).subscribe(
-  //     (response: any) => {
-  //       this.products = response.data;
-  //       console.log(this.products);
-  //     }
-  //   )
-  // }
   setActive(element: HTMLElement) {
     // Remove active class from all navigation items
     const navItems: NodeListOf<HTMLElement> =

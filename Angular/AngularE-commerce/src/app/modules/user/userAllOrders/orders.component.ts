@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../../../services/orders/orders.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 import { catchError, of } from 'rxjs';
 
 @Component({
@@ -24,7 +24,7 @@ export class OrdersComponent implements OnInit {
 
   getUserOrders() {
     this.isLoading = true
-    this.orderServices.getUserOrders(this.token, this.email, this.userId).subscribe(
+    this.orderServices.getUserOrders( this.userId).subscribe(
       (response: any) => {
         this.orders = response.data;
         this.isLoading = false
@@ -33,7 +33,7 @@ export class OrdersComponent implements OnInit {
   }
   
   getOrder(orderId: string) {
-    this.orderServices.getOrderByID(this.token, this.email, orderId).pipe(
+    this.orderServices.getOrderByID( orderId).pipe(
       catchError((error) => {
         return of(error);
       })
@@ -46,7 +46,7 @@ export class OrdersComponent implements OnInit {
 
 
   cancelOrder(orderId: string) {
-    this.orderServices.cancelOrder(this.token, this.email, orderId).pipe(
+    this.orderServices.cancelOrder( orderId).pipe(
       catchError((error) => {
         return (error);
       })

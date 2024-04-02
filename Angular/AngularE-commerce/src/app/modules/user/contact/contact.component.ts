@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 import { LanguageService } from '../../../services/language/language.service';
 
 @Component({
