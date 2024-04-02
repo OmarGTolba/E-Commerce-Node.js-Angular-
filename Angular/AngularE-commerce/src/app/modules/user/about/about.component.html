@@ -34,12 +34,9 @@
     <div class="row justify-content-between">
       <div class="col-lg-5">
         <div class="intro-excerpt">
-          <h1>About Us</h1>
+          <h1>{{"About" | translate}}</h1>
           <p class="mb-4">
-            We specialize in providing high-quality furniture crafted with
-            precision and care. Our mission is to transform houses into homes by
-            offering stylish pieces.Join us in creating spaces that inspire
-            comfort, beauty, and lasting memories.
+           {{"About us" | translate}}
           </p>
         </div>
       </div>
@@ -52,14 +49,10 @@
 <!-- Start Why Choose Us Section -->
 <div class="why-choose-section">
   <div class="container">
-    <div class="row justify-content-between align-items-center">
+    <div class="row justify-content-between">
       <div class="col-lg-6">
-        <h2 class="section-title">Why Choose Us</h2>
-        <p>
-          Choose us for our commitment to quality craftsmanship, ensuring each
-          piece of furniture is meticulously crafted to elevate your space with
-          style and durability.
-        </p>
+        <h2 class="section-title">{{ "why us" | translate }}</h2>
+        <p>{{ "why us2" | translate }}</p>
 
         <div class="row my-5">
           <div class="col-6 col-md-6">
@@ -71,11 +64,8 @@
                   class="imf-fluid"
                 />
               </div>
-              <h3>Fast &amp; Free Shipping</h3>
-              <p>
-                Enjoy the convenience of free shipping on all orders,
-                eliminating any extra costs for delivery.
-              </p>
+              <h3>{{ "shipping" | translate }}</h3>
+              <p>{{ "shipping2" | translate }}</p>
             </div>
           </div>
 
@@ -88,11 +78,9 @@
                   class="imf-fluid"
                 />
               </div>
-              <h3>Easy to Shop</h3>
+              <h3>{{ "shoping" | translate }}</h3>
               <p>
-                Our user-friendly website ensures a seamless shopping
-                experience, allowing you to find the perfect furniture with
-                ease.
+                {{ "shoping2" | translate }}
               </p>
             </div>
           </div>
@@ -106,11 +94,8 @@
                   class="imf-fluid"
                 />
               </div>
-              <h3>24/7 Support</h3>
-              <p>
-                Access our knowledgeable support team around the clock for
-                assistance with any inquiries or concerns.
-              </p>
+              <h3>{{ "24/support" | translate }}</h3>
+              <p>{{ "24/support2" | translate }}</p>
             </div>
           </div>
 
@@ -123,11 +108,8 @@
                   class="imf-fluid"
                 />
               </div>
-              <h3>Hassle Free Returns</h3>
-              <p>
-                Experience worry-free shopping with our straightforward returns
-                process, ensuring your satisfaction with every purchase.
-              </p>
+              <h3>{{ "Return" | translate }}</h3>
+              <p>{{ "Return2" | translate }}.</p>
             </div>
           </div>
         </div>
@@ -160,10 +142,10 @@
       <!-- Start Column 1 -->
       <div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
         <img src="../../../assets/images/person-1.jpg" class="img-fluid mb-5" />
-        <h3 clas>
+        <h3  class="text-center">
           <a href="#"><span class="">Lawson</span> Arnold</a>
         </h3>
-        <span class="d-block position mb-4">visionary CEO and founder</span>
+        <span class="d-block position mb-4 text-center">visionary CEO and founder</span>
         <p>
           stands as a prominent figure in the realm of entrepreneurship and
           legal advocacy. With a multifaceted background that seamlessly
@@ -176,10 +158,10 @@
       <div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
         <img src="../../../assets/images/person_2.jpg" class="img-fluid mb-5" />
 
-        <h3 clas>
+        <h3 class="text-center">
           <a href="#"><span class="">Jeremy</span> Walker</a>
         </h3>
-        <span class="d-block position mb-4">Product Manager</span>
+        <span class="d-block position mb-4 text-center">Product Manager</span>
         <p>
           overseeing the entire lifecycle of our furniture offerings from
           conception to delivery. With a background in product development and
@@ -189,12 +171,12 @@
       <!-- End Column 2 -->
 
       <!-- Start Column 3 -->
-      <div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+      <div class="col-12 col-md-6 col-lg-3 mb-5 mb-md ">
         <img src="../../../assets/images/person_3.jpg" class="img-fluid mb-5" />
-        <h3 clas>
+        <h3 class="text-center">
           <a href="#"><span class="">David </span> Patel</a>
         </h3>
-        <span class="d-block position mb-4">Marketing Strategist.</span>
+        <span class="d-block position mb-4 text-center">Marketing Strategist.</span>
         <p>
           As our Marketing Strategist, David Patel spearheads our efforts to
           connect with customers and elevate the Furnishify brand. With a
@@ -207,10 +189,10 @@
       <div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
         <img src="../../../assets/images/person_4.jpg" class="img-fluid mb-5" />
 
-        <h3 clas>
-          <a href="#"><span class="">Kathryn</span> Ryan</a>
+        <h3  class="text-center">
+          <a href="#"><span>Kathryn</span> Ryan</a>
         </h3>
-        <span class="d-block position mb-4">
+        <span class="d-block position mb-4 text-center">
           Customer Experience Specialist</span
         >
         <p>
@@ -227,67 +209,80 @@
 
 <!-- Start Footer Section -->
 <footer class="footer-section">
-  <div class="container relative">
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="subscription-form">
-          <h3 class="d-flex align-items-center">
-            <span class="me-1"
-              ><img
-                src="../../../assets/images/envelope-outline.svg"
-                alt="Image"
-                class="img-fluid" /></span
-            ><span>Subscribe to Newsletter</span>
-          </h3>
+  <div class="container">
+    <!-- <div class="sofa-img">
+    </div> -->
+    <div
+      class="col-12 row justify-content-center align-items-center justify-content-md-between"
+    >
+      <img
+        src="../../../assets/images/sofa.png"
+        alt="Image"
+        class="img-fluid col-12 col-md-6"
+      />
 
-          <form action="#" class="row g-3">
-            <div class="col-auto">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter your name"
-              />
-            </div>
-            <div class="col-auto">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Enter your email"
-              />
-            </div>
-            <div class="col-auto">
-              <button class="btn btn-primary">
-                <span class="fa fa-paper-plane"></span>
-              </button>
-            </div>
-          </form>
+      <div class="col-12 col-md-5">
+        <div>
+          <div class="subscription-form">
+            <h3 class="d-flex align-items-center">
+              <span class="me-1"
+                ><img
+                  src="../../../assets/images/envelope-outline.svg"
+                  alt="Image"
+                  class="img-fluid" /></span
+              ><span>{{ "Subscribe to Newsletter" | translate }}</span>
+            </h3>
+
+            <form action="#" class="d-flex flex-column g-3 gap-2">
+              <div class="col-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ 'Enter your name' | translate }}"
+                />
+              </div>
+              <div class="col-auto">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="{{ 'Enter your email' | translate }}"
+                />
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-primary">
+                  <span class="fa fa-paper-plane"></span>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-
     <div class="row g-5 mb-5">
       <div class="col-lg-4">
         <div class="mb-4 footer-logo-wrap">
-          <a href="#" class="footer-logo">Furni<span>.</span></a>
+          <a routerLink="#" class="footer-logo">CozyCorner<span>.</span></a>
         </div>
         <p class="mb-4">
-          Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis
-          nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate
-          velit imperdiet dolor tempor tristique. Pellentesque habitant
+          {{ "intro3" | translate }}
         </p>
 
         <ul class="list-unstyled custom-social">
           <li>
-            <a href="#"><span class="fa fa-brands fa-facebook-f"></span></a>
+            <a routerLink="#"
+              ><span class="fa fa-brands fa-facebook-f"></span
+            ></a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-brands fa-twitter"></span></a>
+            <a routerLink="#"><span class="fa fa-brands fa-twitter"></span></a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-brands fa-instagram"></span></a>
+            <a routerLink="#"
+              ><span class="fa fa-brands fa-instagram"></span
+            ></a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-brands fa-linkedin"></span></a>
+            <a routerLink="#"><span class="fa fa-brands fa-linkedin"></span></a>
           </li>
         </ul>
       </div>
@@ -296,35 +291,43 @@
         <div class="row links-wrap">
           <div class="col-6 col-sm-6 col-md-3">
             <ul class="list-unstyled">
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Contact us</a></li>
+              <li>
+                <a routerLink="#">{{ "About" | translate }} </a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Services" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Contact" | translate }}</a>
+              </li>
             </ul>
           </div>
 
           <div class="col-6 col-sm-6 col-md-3">
             <ul class="list-unstyled">
-              <li><a href="#">Support</a></li>
-              <li><a href="#">Knowledge base</a></li>
-              <li><a href="#">Live chat</a></li>
+              <li>
+                <a routerLink="#">{{ "Support" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Knowledge base" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Live chat" | translate }}</a>
+              </li>
             </ul>
           </div>
 
           <div class="col-6 col-sm-6 col-md-3">
             <ul class="list-unstyled">
-              <li><a href="#">Jobs</a></li>
-              <li><a href="#">Our team</a></li>
-              <li><a href="#">Leadership</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-6 col-sm-6 col-md-3">
-            <ul class="list-unstyled">
-              <li><a href="#">Nordic Chair</a></li>
-              <li><a href="#">Kruzo Aero</a></li>
-              <li><a href="#">Ergonomic Chair</a></li>
+              <li>
+                <a routerLink="#">{{ "Jobs" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Our team" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Privacy Policy" | translate }}</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -340,20 +343,20 @@
               document.write(new Date().getFullYear());
             </script>
             . All Rights Reserved. &mdash; Designed with love by
-            <a href="https://untree.co">Untree.co</a> Distributed By
-            <a hreff="https://themewagon.com">ThemeWagon</a>
-            <!-- License information: https://untree.co/license/ -->
+            <a routerLink="https://untree.co">Untree.co</a> Distributed By
+            <a routerLinkf="https://themewagon.com">ThemeWagon</a>
           </p>
         </div>
 
         <div class="col-lg-6 text-center text-lg-end">
           <ul class="list-unstyled d-inline-flex ms-auto">
-            <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li class="me-4"><a routerLink="#">Terms &amp; Conditions</a></li>
+            <li><a routerLink="#">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- End Footer Section -->
 </footer>
-<!-- End Footer Section -->

@@ -37,7 +37,6 @@ import { LanguageService } from '../../../services/language/language.service';
 })
 export class UserComponent implements OnInit {
   lang: string;
-  // obsLang: BehaviorSubject<string> = new BehaviorSubject<string>("en")
   cartLength: number = 0;
   show = false;
   constructor(
@@ -65,6 +64,8 @@ export class UserComponent implements OnInit {
     this.langService.getLang().subscribe((lang)=>{
       this.lang = lang
     })
+     const html = document.getElementsByTagName('html')[0];
+    html.dir = localStorage.getItem("dir") || 'ltr'
   }
 
   products: any[] = [];
