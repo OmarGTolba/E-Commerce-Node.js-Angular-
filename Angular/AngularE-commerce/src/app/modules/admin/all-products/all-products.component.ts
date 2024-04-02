@@ -23,11 +23,11 @@ export class AllProductsComponent {
   updatedId: any;
   sort_name = false;
   sort_price = false;
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
+  // token = localStorage.getItem('token') || '';
+  // email = localStorage.getItem('email') || '';
   getAllProducts(): void {
     this.productService
-      .getAllProducts(this.token, this.email)
+      .getAllProducts()
       .pipe(
         catchError((error) => {
           return error;
@@ -56,7 +56,7 @@ export class AllProductsComponent {
     this.updatedId = x;
     const url = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${x}`;
     this.productService
-      .getProductsByID(this.token, this.email, x)
+      .getProductsByID( x)
       .pipe(
         catchError((error) => {
           return error;
@@ -81,7 +81,7 @@ export class AllProductsComponent {
       countInStock: this.quantity,
     };
     this.productService
-      .updateProduct(this.token, this.email, this.updatedId, body)
+      .updateProduct( this.updatedId, body)
       .subscribe(
         (response: any) => {
           this.getAllProducts();
@@ -99,7 +99,7 @@ export class AllProductsComponent {
 
     const updateUrl = `https://ecommerce-node-wqwd.onrender.com/api/v1/products/${x}`;
 
-    this.productService.deleteProduct(this.token, this.email, x).subscribe(
+    this.productService.deleteProduct(x).subscribe(
       (response: any) => {
         this.getAllProducts();
       },

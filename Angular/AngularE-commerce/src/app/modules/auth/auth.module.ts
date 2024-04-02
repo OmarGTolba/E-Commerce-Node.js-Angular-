@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app-routing.module';
+// import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+// import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+// import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {
   NgxSkeletonLoaderComponent,
   NgxSkeletonLoaderModule,
@@ -15,6 +15,9 @@ import {
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { AppRoutingModule } from '../../app-routing.module';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');

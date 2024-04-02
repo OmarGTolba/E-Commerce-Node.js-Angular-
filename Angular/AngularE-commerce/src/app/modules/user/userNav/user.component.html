@@ -111,11 +111,8 @@
 
 <li>
   <!-- Rounded switch -->
-  <label class="switch mt-2">
-    <input (click)="toggleMode()" type="checkbox">
-    <span class="slider round"></span>
-  </label>
-  
+
+<mat-slide-toggle class="pt-2" (click)="toggleMode()" #darkModeSwitch></mat-slide-toggle>
 </li>
 
         <li (click)="changeLang()">

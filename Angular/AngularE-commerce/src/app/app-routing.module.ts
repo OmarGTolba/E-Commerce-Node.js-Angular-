@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './auth/register/register.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { RegisterComponent } from './modules/auth/register/register.component';
+import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { authGuard } from './guard/auth.guard';
 import { adminGuard } from './guard/admin.guard';
 import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
@@ -25,7 +25,7 @@ import { UserOrderComponent } from './modules/user/user-order/user-order.compone
 import { OrdersComponent } from './modules/user/userAllOrders/orders.component';
 import { HomeComponent } from './modules/user/userHome/home.component';
 import { UserComponent } from './modules/user/userNav/user.component';
-import { LoginComponent } from './auth/login/login.component';
+import { LoginComponent } from './modules/auth/login/login.component';
 import { AdminProductsDetailsComponent } from './modules/admin/admin-products-details/admin-products-details.component';
 import { loginGuard } from './guard/login.guard';
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProfileService } from '../../services/profile/profile.service';
+import { ProfileService } from '../../../services/profile/profile.service';
+
 
 @Component({
   selector: 'app-forgot-password',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../../services/orders/orders.service';
-import { UserService } from '../../../user.service';
+import { UserService } from '../../../services/user/user.service';
 import { catchError } from 'rxjs';
 
 @Component({
@@ -25,7 +25,7 @@ export class UserOrderComponent {
       this.orderId = params['orderId'];
     });
     this.orderServices
-      .getOrderByID(this.token, this.email, this.orderId)
+      .getOrderByID( this.orderId)
       .pipe(
         catchError((error) => {
           return error;
