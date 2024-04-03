@@ -33,7 +33,6 @@ export class AllProductsComponent {
       )
       .subscribe((response: any) => {
         this.products = response.data;
-        console.log(this.products);
       });
   }
   sortbyName(): void {

@@ -47,9 +47,9 @@ export class ProductComponent {
     this.reviewForm = this.fb.group({
       title: ['', Validators.required],
     });
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
+    });
   }
 
   setRating(rating: number): void {
@@ -67,7 +67,7 @@ export class ProductComponent {
     });
 
     this.productServices
-      .getProductsByID( this.productId)
+      .getProductsByID(this.productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -80,7 +80,7 @@ export class ProductComponent {
       });
 
     this.productServices
-      .getRatingByID( this.productId)
+      .getRatingByID(this.productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -88,7 +88,6 @@ export class ProductComponent {
       )
       .subscribe((response: any) => {
         this.currentRating = Math.floor(response[0].ratingsAvg);
-        console.log(this.currentRating);
       });
 
     this.isFav();
@@ -111,27 +110,23 @@ export class ProductComponent {
           return error;
         })
       )
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+      .subscribe((response: any) => {});
   }
 
   removeFromFav(productId: string) {
     this.productServices
-      .removeFromFav( this.userId, productId)
+      .removeFromFav(this.userId, productId)
       .pipe(
         catchError((error) => {
           return error;
         })
       )
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+      .subscribe((response: any) => {});
   }
 
   isFav() {
     this.productServices
-      .isFav( this.userId, this.productId)
+      .isFav(this.userId, this.productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -143,7 +138,6 @@ export class ProductComponent {
         } else {
           this.productFav = true;
         }
-        console.log(response);
       });
   }
 
@@ -164,7 +158,7 @@ export class ProductComponent {
     };
 
     this.cartService
-      .addToCart( this.userId, body)
+      .addToCart(this.userId, body)
       .pipe(
         catchError((error) => {
           return of(error);
@@ -190,22 +184,18 @@ export class ProductComponent {
             position: 'topRight',
           });
         }
-        console.log(response);
       });
   }
 
   addReview() {
-
     const body = {
       title: this.reviewForm.value.title,
       rating: this.reviewValue,
       user: this.userId,
     };
-    console.log(body);
-    
-    console.log(body);
+
     this.productServices
-      .addReview( this.productId, body)
+      .addReview(this.productId, body)
       .pipe(
         catchError((error) => {
           return of(error);
@@ -230,37 +220,25 @@ export class ProductComponent {
 
         this.reviewForm.reset();
         this.reviewValue = 0;
-
-        console.log(response);
       });
   }
 
   updateReview(id: any) {
-    console.log(this.review);
-
     const body = {
       title: this.review,
       rating: this.reviewValue,
     };
-    this.productServices
-      .updateReview( id, body)
-      .subscribe((response: any) => {
-        console.log(response);
-        this.showReview(this.product_id);
+    this.productServices.updateReview(id, body).subscribe((response: any) => {
+      this.showReview(this.product_id);
 
-        this.editmode = false;
-      });
+      this.editmode = false;
+    });
   }
 
   deleteReview(id: any) {
-    console.log(this.userId);
-
-    this.productServices
-      .deleteReview( id)
-      .subscribe((response: any) => {
-        console.log(response);
-        this.editmode = false;
-      });
+    this.productServices.deleteReview(id).subscribe((response: any) => {
+      this.editmode = false;
+    });
     this.showReview(this.product_id);
   }
 
@@ -276,11 +254,10 @@ export class ProductComponent {
     this.toggleEditMode();
   }
   showReview(id: string) {
-    console.log(this.userId);
     this.product_id = id;
     this.ReviewskeletonLoading = true;
     this.productServices
-      .getReviewsByID( id)
+      .getReviewsByID(id)
       .pipe(
         catchError((error) => {
           return error;
@@ -288,7 +265,6 @@ export class ProductComponent {
       )
       .subscribe((response: any) => {
         this.reviews = response;
-        console.log(this.reviews);
         this.ReviewskeletonLoading = false;
       });
   }

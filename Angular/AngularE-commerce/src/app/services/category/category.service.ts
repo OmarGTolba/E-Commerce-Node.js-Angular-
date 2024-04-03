@@ -30,7 +30,6 @@ export class CategoryService {
   updateCategory(id: string, body: any): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/categories/${id}`;
 
-    console.log(body);
     return this.http.put<any[]>(updateUrl, body);
   }
 }

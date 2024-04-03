@@ -144,7 +144,6 @@ export class UserComponent implements OnInit {
               )
               .subscribe((response: any) => {
                 this.productService.products = response.data;
-                console.log(this.productService.products);
                 this.router.navigate([`user/search/${searchInput}`]);
               });
             return of([]);

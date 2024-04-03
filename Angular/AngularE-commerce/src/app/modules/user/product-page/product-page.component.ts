@@ -60,7 +60,6 @@ export class ProductPageComponent {
       )
       .subscribe((response: any) => {
         this.products = response.data;
-        console.log(this.products);
 
         this.displayedProducts = this.products.slice(
           0,
@@ -97,7 +96,6 @@ export class ProductPageComponent {
       .subscribe((response: any) => {
         this.products = response.data;
         this.displayedProducts = this.products[0];
-        console.log(this.products[0]);
         this.skeletonLoading = false;
         this.skeletonLoading = false;
       });

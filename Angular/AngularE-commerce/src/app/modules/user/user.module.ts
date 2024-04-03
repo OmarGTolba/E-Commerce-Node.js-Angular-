@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { AppRoutingModule } from '../../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -13,9 +16,12 @@ import { CategoriesComponent } from './categories/categories.component';
 import { UserOrderComponent } from './user-order/user-order.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CartComponent } from './cart/cart.component';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './userHome/home.component';
-import { NgxSkeletonLoaderComponent, NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import {
+  NgxSkeletonLoaderComponent,
+  NgxSkeletonLoaderModule,
+} from 'ngx-skeleton-loader';
 import { ProductComponent } from './productDetails/product.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -28,35 +34,48 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AppComponent } from '../../app.component';
 import { FooterComponent } from './footer/footer.component';
 
-
-
 @NgModule({
   declarations: [
-    AboutComponent, ContactComponent, CheckoutComponent, UserComponent, OrdersComponent, ContactComponent,
-     CategoriesComponent, HomeComponent,ProductPageComponent
-    , UserOrderComponent, ProductCardComponent, CartComponent,ProductComponent, FooterComponent
+    AboutComponent,
+    ContactComponent,
+    CheckoutComponent,
+    UserComponent,
+    OrdersComponent,
+    ContactComponent,
+    CategoriesComponent,
+    HomeComponent,
+    ProductPageComponent,
+    UserOrderComponent,
+    ProductCardComponent,
+    CartComponent,
+    ProductComponent,
+    FooterComponent,
   ],
   imports: [
-    CommonModule, 
+    CommonModule,
     BrowserModule,
-    AppRoutingModule, 
-    FormsModule, HttpClientModule, 
-    ReactiveFormsModule, MatIconModule,NgxSkeletonLoaderModule,MatPaginatorModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    NgxSkeletonLoaderModule,
+    MatPaginatorModule,
     MatTabsModule,
     MatSliderModule,
     MatSlideToggleModule,
     HttpClientModule,
-    MatPaginatorModule, TranslateModule.forRoot({
+    MatIcon,
+    MatPaginatorModule,
+    TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient],
       },
     }),
- 
-    
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
-export class UserModule { }
+export class UserModule {}

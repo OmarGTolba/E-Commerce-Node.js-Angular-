@@ -42,7 +42,6 @@ export class AddComponent implements OnInit {
             })
           )
           .subscribe((response: any) => {
-            console.log(response.data);
             this.product = response.data;
             this.formBody.brand_ar = this.product.brand_ar;
             this.formBody.brand_en = this.product.brand_en;
@@ -57,7 +56,6 @@ export class AddComponent implements OnInit {
             this.formBody.images = this.product.images;
           });
       } else {
-        console.log('bbbba');
       }
     });
   }
@@ -96,7 +94,6 @@ export class AddComponent implements OnInit {
     }
    }
   addProduct() {
-    console.log(this.Form.controls.brandAr);
     const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
 
     const formData = new FormData();
@@ -110,6 +107,7 @@ export class AddComponent implements OnInit {
     formData.append('isFeatured', this.Form.get('isFeatured')?.value || 'false') ;
     formData.append('countInStock', this.Form.get('countInStock')?.value || '');
     formData.append('price', this.Form.get('price')?.value || '0');
+
 
     for (let i = 0; i < this.formBody.images.length; i++) {
       formData.append('images', this.formBody.images[i]);
@@ -146,6 +144,7 @@ export class AddComponent implements OnInit {
       (response: any) => {
         console.log('done');
       },
+
       (error) => {
         console.error('Error fetching products:', error);
         console.log(this.formBody);

@@ -8,7 +8,7 @@ import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   email: string = '';
@@ -16,14 +16,19 @@ export class LoginComponent {
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
   });
 
-  constructor(private router: Router, private http: HttpClient, private fb: FormBuilder, private toast: NgToastService) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private toast: NgToastService
+  ) {}
 
   onLoginSubmit(): void {
     const url = 'https://ecommerce-nodejs-slwh.onrender.com/api/v1/user/login';
-  
+
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
@@ -31,7 +36,8 @@ export class LoginComponent {
 
     const body = { email: this.email, password: this.password };
 
-    this.http.post(url, body, { headers })
+    this.http
+      .post(url, body, { headers })
       .pipe(
         catchError((error) => {
           this.toast.error({
@@ -40,14 +46,12 @@ export class LoginComponent {
             duration: 5000,
             position: 'topRight',
           });
-          throw error; 
+          throw error;
         })
       )
       .subscribe((response: any) => {
         if (response) {
           const role = response.role;
-
-          console.log(response);
 
           localStorage.setItem('email', response.email);
           localStorage.setItem('token', response.token);
@@ -65,7 +69,6 @@ export class LoginComponent {
             duration: 5000,
             position: 'topRight',
           });
-          console.log('Login successful:', response);
         } else {
           console.error('Login failed: No response received');
         }
