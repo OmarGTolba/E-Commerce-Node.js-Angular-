@@ -19,10 +19,7 @@
         required />
       <input type="text" [(ngModel)]="formBody.isFeatured" placeholder="isFeatured" id="isFeatured"
         formControlName="isFeatured" required />
-      <input type="text" placeholder="image" id="image" formControlName="img1" required
-        [(ngModel)]="formBody.images[0]" />
-      <input type="text" placeholder="image" id="image" formControlName="img2" required
-        [(ngModel)]="formBody.images[1]" />
+        <input type="file" multiple placeholder="image" id="image" formControlName="images" required (change)="handleChange($event)"/>
       <input type="text" [(ngModel)]="formBody.price" placeholder="price" id="price" formControlName="price" required />
 
       <select id="category" formControlName="category">

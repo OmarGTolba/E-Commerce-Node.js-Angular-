@@ -6,7 +6,7 @@ export interface Product {
     dateCreated?: string;
     description_en: string;
     description_ar: string;
-    images: string[];
+    images: File[];
     isFeatured: boolean;
     name_en: string;
     name_ar: string;
