@@ -12,7 +12,7 @@ import { LanguageService } from '../../../services/language/language.service';
   styleUrls: ['../../../app.component.css'],
 })
 export class ContactComponent {
-  darkMode:boolean = false
+  darkMode: boolean = false;
 
   data = {
     email: '',
@@ -27,11 +27,10 @@ export class ContactComponent {
     private toast: NgToastService,
     private langService: LanguageService
   ) {
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
-  
-    
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
+    });
+
     this.userService.mode.subscribe({
       next: (value) => {
         this.darkMode = value;
@@ -69,7 +68,8 @@ export class ContactComponent {
           lastname: '',
         };
         this.contactFormGroup.markAsPristine();
-        this.contactFormGroup.markAsUntouched();      },
+        this.contactFormGroup.markAsUntouched();
+      },
     });
   }
 

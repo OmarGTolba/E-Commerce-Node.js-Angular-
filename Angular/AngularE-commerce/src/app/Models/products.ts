@@ -2,7 +2,7 @@ export interface Product {
     brand_en: string;
     brand_ar: string;
     categories: string;
-    countInStock: number;
+    countInStock: string;
     dateCreated?: string;
     description_en: string;
     description_ar: string;
@@ -11,7 +11,7 @@ export interface Product {
     name_en: string;
     name_ar: string;
     numReviews?: number;
-    price: number;
+    price: string;
     rating?: number;
     _id?: string;
 }
