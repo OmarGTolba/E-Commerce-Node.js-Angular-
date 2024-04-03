@@ -1,6 +1,6 @@
 {
   "login": "Log in",
-
+  
   "Register": "Register",
 
   "name": "Name",
@@ -22,7 +22,7 @@
   "password": "Password",
 
   "Enter your password": "Enter your password",
-
+  
   " Write password again": " Write password again",
 
   "Password inputs don't match": "Password inputs don't match",
@@ -38,11 +38,11 @@
   "email invalid": "Invalid Email",
 
   "rest pass": "Reset password",
-
+  
   "check email": "Please Check your Email",
-
+  
   "password error": "Password is required!",
-
+  
   "Forgot password": "Forgot password?",
 
   "Don't have an account": "Don't have an account?",
@@ -92,7 +92,7 @@
   "add review": "Add review",
 
   "intro": "Modern Interior ",
-
+  
   "intro2": " Design Studio",
 
   "intro3": "  Give your home a makeover with our curated collection of furniture!",
@@ -162,7 +162,7 @@
   "chair3": "Ergonomic Chair",
 
   "chair details3": "Comfortable",
-
+  
   "Our Categories": "Our Categories",
 
   "View All Categories": "View All Categories",
@@ -182,7 +182,7 @@
   "Privacy Policy": "Privacy Policy",
 
   "No favorite products": "No favorite products",
-
+  
   "checkout": "Checkout",
 
   "address": "address",
@@ -222,7 +222,7 @@
   "Logout": "Logout",
 
   "Profile": "Profile",
-
+  
   "Search": "Search",
 
   "SignIn": "SignIn",
@@ -230,7 +230,7 @@
   "About": "About",
 
   "About us": "We specialize in providing high-quality furniture crafted with precision and care. Our mission is to transform houses into homes by offering stylish pieces.Join us in creating spaces that inspire comfort, beauty, and lasting memories.",
-
+  
   "location": "cairo, Egypt",
 
   "First name": "First name",
@@ -241,5 +241,15 @@
 
   "Send Message": "Send Message",
 
-  "Mail us": "Mail us"
+  "Mail us": "Mail us",
+
+  "Areeg": "Areeg Mahmoud",
+
+  "Menna": "Mennatallah Khalil",
+
+  "Nada":"Nada Elhosary",
+
+  "Omar": "Omar Gaber",
+
+  "Sohila": "Sohila Karaly"
 }
