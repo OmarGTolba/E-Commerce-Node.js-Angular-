@@ -1,19 +1,11 @@
-
-
-<div
-  class="container col-5 text-white h-auto my-0 w-50 mx-auto"
-  style="background-color: #eff2f1 !important"
->
+<div class="container col-5 text-white h-auto my-0 w-50 mx-auto" style="background-color: #eff2f1 !important">
   <div class="p-5 user w-100 m-0 d-flex justify-content-between">
     <div class="d-flex flex-column h5 justify-content-start">
       <p>Name: {{ order?.user.name }}</p>
       <p>
         order status:
-        <span
-          style="color: green"
-          *ngIf="order?.status === 'cancel' || order?.status === 'Pending'"
-          [ngStyle]="{ color: order.status === 'cancel' ? 'red' : 'blue' }"
-        >
+        <span style="color: green" *ngIf="order?.status === 'cancel' || order?.status === 'Pending'"
+          [ngStyle]="{ color: order.status === 'cancel' ? 'red' : 'blue' }">
           {{ order.status }}
         </span>
       </p>
@@ -36,16 +28,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of order?.orderItemsIds">
-        <td><img src="{{ item?.product.images[0] }}" class="product_img" /></td>
+        <td><img src="https://ecommerce-node-yxgy.onrender.com/uploads/{{item?.product.images[0] }}"
+            class="product_img" /></td>
         <td class="product-name">
           <p class="text-black">{{ item.product.name_en }}</p>
         </td>
         <td>{{ item.product.price }}</td>
         <td>
-          <div
-            class="input-group d-flex align-items-center quantity-container"
-            style="max-width: 120px"
-          ></div>
+          <div class="input-group d-flex align-items-center quantity-container" style="max-width: 120px"></div>
           <label class="text-center"> {{ item?.quantity }}</label>
           <div class="input-group-append"></div>
         </td>
