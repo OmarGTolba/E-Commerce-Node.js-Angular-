@@ -31,7 +31,6 @@ export class UserOrderComponent {
       )
       .subscribe((response: any) => {
         this.order = response.data;
-        console.log(this.order);
         this.imgsrc = this.order?.orderItemsIds[0].product.images[0];
       });
   }

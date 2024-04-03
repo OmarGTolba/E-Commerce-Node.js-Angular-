@@ -11,7 +11,6 @@ export class CartService {
   cart: any[] = [];
 
   addToCart(userId: string, body: any): Observable<any[]> {
-    console.log('hello from add to cart');
     const baseUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart?user=${userId}`;
 
     this.userService.getCartCount(userId);

@@ -28,11 +28,11 @@ export class ProductCardComponent {
     private router: Router,
     private toast: NgToastService,
     private langService: LanguageService,
-   private userService:UserService
+    private userService: UserService
   ) {
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
+    });
   }
   @Input() product: any;
 
@@ -50,7 +50,7 @@ export class ProductCardComponent {
 
   getProduct(productId: string) {
     this.productService
-      .getProductsByID( productId)
+      .getProductsByID(productId)
       .pipe(
         catchError((error) => {
           return error;
@@ -72,33 +72,29 @@ export class ProductCardComponent {
 
   addToFav(productId: string) {
     this.productService
-      .AddToFav( this.userId, productId)
+      .AddToFav(this.userId, productId)
       .pipe(
         catchError((error) => {
           return error;
         })
       )
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+      .subscribe((response: any) => {});
   }
 
   removeFromFav(productId: string) {
     this.productService
-      .removeFromFav( this.userId, productId)
+      .removeFromFav(this.userId, productId)
       .pipe(
         catchError((error) => {
           return error;
         })
       )
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+      .subscribe((response: any) => {});
   }
 
   isFav() {
     this.productService
-      .isFav( this.userId, this.product._id)
+      .isFav(this.userId, this.product._id)
       .pipe(
         catchError((error) => {
           return error;
@@ -110,7 +106,6 @@ export class ProductCardComponent {
         } else {
           this.productFav = true;
         }
-        console.log(response);
       });
   }
 
@@ -122,7 +117,7 @@ export class ProductCardComponent {
     };
 
     this.cartService
-      .addToCart( this.userId, body)
+      .addToCart(this.userId, body)
       .pipe(
         catchError((error) => {
           return of(error);
@@ -141,15 +136,15 @@ export class ProductCardComponent {
           setTimeout(() => {
             this.added = false;
           }, 5000);
-          this.userService.getCartCount( this.userId);
-        }else if (response.status === 401) {
+          this.userService.getCartCount(this.userId);
+        } else if (response.status === 401) {
           this.toast.error({
             detail: 'ERROR',
             summary: 'Please login first',
             duration: 5000,
             position: 'topRight',
-          })
-         }else {
+          });
+        } else {
           this.toast.error({
             detail: 'ERROR',
             summary: 'Oops the product out of the stock!',
@@ -157,7 +152,6 @@ export class ProductCardComponent {
             position: 'topRight',
           });
         }
-        console.log(response);
       });
   }
 }

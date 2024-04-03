@@ -53,7 +53,6 @@ export class RegisterComponent {
             this.router.navigate(['/login']);
           }
           localStorage.setItem('userId', response._id);
-          console.log('Register successful:', response);
 
           this.toast.success({
             detail: 'Registration successful!',
@@ -82,7 +81,6 @@ export class RegisterComponent {
 
   nextOne() {
     this.registerForm.controls.name.value == this.name;
-    console.log(this.name);
 
     if (this.registerForm.controls.name.status == 'VALID') {
       const form1 = document.getElementById('form1');

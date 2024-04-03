@@ -42,7 +42,6 @@ export class AddComponent implements OnInit {
             })
           )
           .subscribe((response: any) => {
-            console.log(response.data);
             this.product = response.data;
             this.formBody.brand_ar = this.product.brand_ar;
             this.formBody.brand_en = this.product.brand_en;
@@ -57,7 +56,6 @@ export class AddComponent implements OnInit {
             this.formBody.images = this.product.images;
           });
       } else {
-        console.log('bbbba');
       }
     });
   }
@@ -93,7 +91,6 @@ export class AddComponent implements OnInit {
   });
 
   addProduct() {
-    console.log(this.Form.controls.brandAr);
     const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
 
     const body = {
@@ -109,7 +106,6 @@ export class AddComponent implements OnInit {
       price: this.Form.controls.price.value,
       images: [this.Form.controls.img1.value, this.Form.controls.img2.value],
     };
-    console.log([this.Form.controls.img1.value, this.Form.controls.img2.value]);
 
     this.http.post<any[]>(url, body, {}).subscribe(
       (response: any) => {},
@@ -137,9 +133,7 @@ export class AddComponent implements OnInit {
     };
 
     this.http.patch<any[]>(url, this.formBody, {}).subscribe(
-      (response: any) => {
-        console.log('done');
-      },
+      (response: any) => {},
       (error) => {
         console.error('Error fetching books:', error);
       }

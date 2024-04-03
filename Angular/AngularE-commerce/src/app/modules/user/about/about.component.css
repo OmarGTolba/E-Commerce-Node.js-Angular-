@@ -39,3 +39,36 @@
 .untree_co-section .col-lg-3:hover h3 a {
   color: #f9bf29;
 }
+
+.link,
+.git {
+  width: 200px;
+  padding: 3px 0;
+  background-color: transparent;
+  border: 1px solid #0a66c2;
+  border-radius: 7px;
+  color: #0a66c2;
+
+  height: 45px;
+}
+.link a,
+.git a {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+.link img,
+.git img {
+  width: 30px;
+}
+.link p,
+.git p {
+  font-size: large;
+  margin: 0;
+  font-weight: 600;
+}
+.git {
+  border: 1px solid;
+  color: black;
+}
