@@ -56,7 +56,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
     isFeatured,
-    images,
+    image,
   } = req.body;
   const newProduct = await productModel.create({
     name_en,
@@ -71,7 +71,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
     isFeatured,
-    images: req.files.map((file) => file.filename),
+    image: req.files.map(file => file.filename),
   });
   res.status(201).json({ data: newProduct });
 });
