@@ -596,6 +596,8 @@ li {
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
   transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+  -ms-transition: 0.3s all ease;
 }
 .testimonial-slider-wrap #testimonial-nav > span:hover {
   background: #3b5d50;
@@ -614,6 +616,8 @@ li {
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 .testimonial-slider-wrap .tns-nav button {
   background: none;
@@ -641,10 +645,12 @@ li {
   position: absolute;
   content: "";
   border-radius: 50%;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
+  -webkit-transition:;
+  -o-transition:;
   transition: 0.3s all ease;
   background-color: #d6d6d6;
+  -moz-transition:;
+  -ms-transition:;
 }
 .testimonial-slider-wrap .tns-nav button:hover:before,
 .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
@@ -667,9 +673,11 @@ li {
 }
 .blog-section .post-entry .post-thumbnail img {
   border-radius: 20px;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
+  -webkit-transition:;
+  -o-transition:;
   transition: 0.3s all ease;
+  -moz-transition:;
+  -ms-transition:;
 }
 .blog-section .post-entry .post-content-entry {
   padding-left: 15px;
@@ -702,9 +710,11 @@ li {
 .footer-section a {
   text-decoration: none;
   color: #2f2f2f;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
+  -webkit-transition:;
+  -o-transition:;
   transition: 0.3s all ease;
+  -moz-transition:;
+  -ms-transition:;
 }
 .footer-section a:hover {
   color: rgba(47, 47, 47, 0.5);
@@ -804,6 +814,9 @@ li {
 }
 .footer-section .custom-social li a:hover {
   background: #3b5d50;
+  color: #ffffff;
+}
+.footer-section .custom-social li a:hover span{
   color: #ffffff;
 }
 .footer-section .border-top {
