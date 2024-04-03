@@ -15,8 +15,6 @@ import { Router } from '@angular/router';
   styleUrl: './checkout.component.css',
 })
 export class CheckoutComponent implements OnInit {
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
   userId = localStorage.getItem('userId') || '';
   userData: any = {
     name: '',
@@ -33,6 +31,7 @@ export class CheckoutComponent implements OnInit {
     private paymentService: PaymentService,
     private orderService: OrdersService,
     private profileService: ProfileService,
+    // private profileService: ProfileService,
     private router: Router
   ) {
     this.total = this.userService.total;
@@ -56,7 +55,7 @@ export class CheckoutComponent implements OnInit {
   getCart() {
     this.total = 0;
     this.userService
-      .getUserCart( this.userId)
+      .getUserCart(this.userId)
       .pipe(
         catchError((error) => {
           return error;
@@ -70,8 +69,6 @@ export class CheckoutComponent implements OnInit {
           this.userService.total = this.total;
           console.log(this.userService.total);
         });
-        // this.cart[0].quantity = this.quantity;
-        // console.log(this.cart[0].product_id._id);
       });
   }
 
@@ -98,18 +95,12 @@ export class CheckoutComponent implements OnInit {
   });
 
   makeOrder() {
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-
-    // const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: this.editFormGroup.controls.city.value,
       phone: this.editFormGroup.controls.phone.value,
     };
-    console.log(token, email, this.userId, body);
-
     this.userService
-      .getUserOrder( this.userId, body)
+      .getUserOrder(this.userId, body)
       .pipe(
         catchError((error) => {
           return error;
@@ -121,22 +112,18 @@ export class CheckoutComponent implements OnInit {
           user: this.userId,
           orderId: response.data._id,
         };
+        this.userService.cartLength.next(0);
       });
   }
 
   makeCreditOrder() {
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-
-    // const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: this.editFormGroup.controls.city.value,
       phone: this.editFormGroup.controls.phone.value,
     };
-    console.log(token, email, this.userId, body);
 
     this.userService
-      .getUserOrder( this.userId, body)
+      .getUserOrder(this.userId, body)
       .pipe(
         catchError((error) => {
           return error;
@@ -149,11 +136,10 @@ export class CheckoutComponent implements OnInit {
           orderId: response.data._id,
         };
         this.pay();
+        this.userService.cartLength.next(0);
       });
   }
   async click() {
-    console.log(this.editFormGroup.controls.paymentMethod.value);
-
     if (
       this.editFormGroup.controls.paymentMethod.value &&
       this.editFormGroup.controls.paymentMethod.value == 'CASH'
@@ -171,7 +157,7 @@ export class CheckoutComponent implements OnInit {
   }
   pay() {
     this.paymentService
-      .showPayment(this.token, this.body)
+      .showPayment(this.body)
       .pipe(
         catchError((error) => {
           return throwError(error);

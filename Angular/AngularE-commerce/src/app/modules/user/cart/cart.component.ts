@@ -10,8 +10,8 @@ import { LanguageService } from '../../../services/language/language.service';
   templateUrl: './cart.component.html',
   styleUrl: '../../../app.component.css',
 })
-export class CartComponent implements OnInit {
-  lang = localStorage.getItem("lang") || "en"
+export class CartComponent {
+  lang = localStorage.getItem('lang') || 'en';
   constructor(
     private userService: UserService,
     private paymentService: PaymentService,
@@ -27,42 +27,21 @@ export class CartComponent implements OnInit {
     });
   }
   SkeletonLoading = false;
-  darkMode:boolean  = false
+  darkMode: boolean = false;
   cart: any[] = [];
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
+
   userId = localStorage.getItem('userId') || '';
   quantity: any = 0;
   show = false;
   userOrder = '';
   body = {};
-  ngOnInit(): void {
-    console.log('hello');
 
-    console.log(this.token, this.email, this.userId);
-    this.orderService
-      .getUserOrders( this.userId)
-      .subscribe((res) => {
-        res.data.forEach((order) => {
-          console.log(order.status);
-
-          if (order.status.toLowerCase() == 'pending') {
-            this.userOrder = order._id;
-            console.log(this.userOrder);
-            this.body = {
-              user: this.userId,
-              orderId: this.userOrder,
-            };
-          }
-        });
-      });
-  }
   total: number = 0;
   getCart() {
     this.SkeletonLoading = true;
     this.total = 0;
     this.userService
-      .getUserCart( this.userId)
+      .getUserCart(this.userId)
       .pipe(
         catchError((error) => {
           return error;
@@ -70,21 +49,19 @@ export class CartComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.cart = response?.items;
-        console.log(this.cart);
-        this.cart.forEach((element) => {
-          this.total += element.quantity * element.product_id.price;
-          this.userService.total = this.total;
-          console.log(this.userService.total);
-
-          this.SkeletonLoading = false;
-        });
-        // this.cart[0].quantity = this.quantity;
-        // console.log(this.cart[0].product_id._id);
+        if (this.cart) {
+          this.cart.forEach((element) => {
+            this.total += element.quantity * element.product_id.price;
+            this.userService.total = this.total;
+            console.log(this.userService.total);
+          });
+        }
+        this.SkeletonLoading = false;
       });
   }
   pay() {
     this.paymentService
-      .showPayment(this.token, this.body)
+      .showPayment(this.body)
       .pipe(
         catchError((error) => {
           return throwError(error);
@@ -114,15 +91,11 @@ export class CartComponent implements OnInit {
     this.userService.total = this.total;
   }
   updateQuantity(item: any, newQuantity: number) {
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-    // const updateUrl = `http://localhost:3000/api/v1/cart/${item.product_id.id}`;
     const body = { quantity: newQuantity };
     console.log(item);
     console.log(newQuantity);
     this.userService
-      .updateUserCart
-      ( this.userId, item.product_id._id, body)
+      .updateUserCart(this.userId, item.product_id._id, body)
       .pipe(
         catchError((error) => {
           return error;
@@ -143,16 +116,12 @@ export class CartComponent implements OnInit {
   }
 
   makeOrder() {
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-
-    // const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${item.product_id.id}`;
     const body = {
       city: 'Alexandria',
       phone: '01060702328',
     };
     this.userService
-      .getUserOrder( this.userId, body)
+      .getUserOrder(this.userId, body)
       .pipe(
         catchError((error) => {
           return error;
@@ -168,13 +137,8 @@ export class CartComponent implements OnInit {
   }
 
   deleteCart(item: any) {
-    const token = localStorage.getItem('token') || '';
-    const email = localStorage.getItem('email') || '';
-
-    console.log(item);
-
     this.userService
-      .deleteCartItem( this.userId, item.product_id._id)
+      .deleteCartItem(this.userId, item.product_id._id)
       .pipe(
         catchError((error) => {
           return error;
@@ -182,7 +146,7 @@ export class CartComponent implements OnInit {
       )
       .subscribe((response: any) => {
         console.log(response);
-        this.userService.getCartCount( this.userId);
+        this.userService.getCartCount(this.userId);
         this.getCart();
       });
   }

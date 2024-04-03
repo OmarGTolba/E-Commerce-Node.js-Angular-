@@ -6,11 +6,11 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
-  HttpClientModule
+  HttpClientModule,
 } from '@angular/common/http';
 
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSliderModule } from '@angular/material/slider';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {  MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -29,7 +29,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UserModule } from './modules/user/user.module';
 import { AdminModule } from './modules/admin/admin.module';
-import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
+import { AddcategoryComponent } from './modules/admin/addcategory/addcategory.component';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { AuthModule } from './modules/auth/auth.module';
 
@@ -37,11 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
 }
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent,
-    AddcategoryComponent
-  ],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     BrowserModule,
     MatTabsModule,
@@ -57,7 +53,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSkeletonLoaderModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonModule,
     NgToastModule,
     CommonModule,
     TranslateModule.forRoot({
@@ -68,11 +63,15 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [provideClientHydration(), provideAnimationsAsync(), {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
+  providers: [
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

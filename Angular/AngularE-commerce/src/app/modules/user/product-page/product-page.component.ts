@@ -18,7 +18,6 @@ export class ProductPageComponent {
   displayedProducts: any;
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  // loading = true; // Initialize loading to true
   skeletonLoading = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -27,9 +26,7 @@ export class ProductPageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService
- 
-    ) {
-
+  ) {
     this.userService.mode.subscribe({
       next: (value) => {
         this.darkMode = value;
@@ -37,7 +34,7 @@ export class ProductPageComponent {
     });
   }
 
-  darkMode:boolean = false;
+  darkMode: boolean = false;
   ngOnInit() {
     this.skeletonLoading = true;
     this.route.paramMap.subscribe((params) => {
@@ -51,11 +48,6 @@ export class ProductPageComponent {
         this.getAllProducts();
       }
     });
-
-    // this.getAllProducts();
-    // setTimeout(() => {
-    //   this.skeletonLoading = false;
-    // }, 2000);
   }
 
   getAllProducts(): void {
@@ -81,7 +73,7 @@ export class ProductPageComponent {
 
   search() {
     this.productService
-      .searchByName( this.name!)
+      .searchByName(this.name!)
       .pipe(
         catchError((error) => {
           return error;
@@ -96,7 +88,7 @@ export class ProductPageComponent {
   }
   searchByCategory() {
     this.productService
-      .searchByCategory( this.catname!)
+      .searchByCategory(this.catname!)
       .pipe(
         catchError((error) => {
           return error;
@@ -116,18 +108,16 @@ export class ProductPageComponent {
       a.name_en.localeCompare(b.name_en)
     );
     this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
-    // this.loading = false; // Set loading to false when data is loaded
   }
 
   sortByPrice(): void {
     this.products = this.products.sort((a: any, b: any) => a.price - b.price);
     this.displayedProducts = this.products.slice(0, this.paginator.pageSize);
-    // this.loading = false; // Set loading to false when data is loaded
   }
 
   getProduct(productId: string) {
     this.productService
-      .getProductsByID( productId)
+      .getProductsByID(productId)
       .pipe(
         catchError((error) => {
           return error;

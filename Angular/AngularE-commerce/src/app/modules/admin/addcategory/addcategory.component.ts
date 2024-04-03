@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, catchError, of } from 'rxjs';
-import { CategoryService } from '../../services/category/category.service';
+import { CategoryService } from '../../../services/category/category.service';
 
 @Component({
   selector: 'app-addcategory',
@@ -15,11 +15,6 @@ export class AddcategoryComponent implements OnInit {
   categoryImage: string = '';
   id: string | null = '';
   editMode: boolean = false;
-
-  // token = localStorage.getItem('token') || '';
-  // email = localStorage.getItem('email') || '';
-  // userId = localStorage.getItem('userId') || '';
-
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -33,7 +28,7 @@ export class AddcategoryComponent implements OnInit {
         this.editMode = true;
         console.log(this.editMode);
         this.categoryService
-          .getCategoryById( this.id!)
+          .getCategoryById(this.id!)
           .pipe(
             catchError((error) => {
               return of(error);
@@ -51,7 +46,7 @@ export class AddcategoryComponent implements OnInit {
 
   onAdd() {
     this.categoryService
-      .addCategories( {
+      .addCategories({
         name_en: this.categoryName_en,
         name_ar: this.categoryName_ar,
         icon: this.categoryImage,
@@ -68,7 +63,7 @@ export class AddcategoryComponent implements OnInit {
 
   onEdit() {
     this.categoryService
-      .updateCategory( this.id!, {
+      .updateCategory(this.id!, {
         name_en: this.categoryName_en,
         name_ar: this.categoryName_ar,
         icon: this.categoryImage,

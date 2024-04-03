@@ -3,52 +3,85 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '../../../Models/userInterface';
 import { ProfileService } from '../../../services/profile/profile.service';
 import { LanguageService } from '../../../services/language/language.service';
+import { NgToastService } from 'ng-angular-popup';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
-  styleUrl: './edit-profile.component.css'
+  styleUrl: './edit-profile.component.css',
 })
-export class EditProfileComponent implements OnInit{
-  isDisabled:boolean = true
-  userData: IUser ={
-    name: "",
+export class EditProfileComponent implements OnInit {
+  isDisabled: boolean = true;
+  userData: IUser = {
+    name: '',
     email: '',
     phone: '',
-    address: ''
-  }
-  lang = localStorage.getItem("lang") || "en"
-  constructor(private profileService : ProfileService,  private langService: LanguageService){
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
+    address: '',
+  };
+  lang = localStorage.getItem('lang') || 'en';
+  constructor(
+    private profileService: ProfileService,
+    private toast: NgToastService,
+    private langService: LanguageService
+  ) {
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
+    });
   }
   editFormGroup = new FormGroup({
-    name: new FormControl({ value: '', disabled: this.isDisabled },[Validators.required, Validators.minLength(3)]),
-    email: new FormControl({ value: '', disabled: this.isDisabled }, [Validators.required, Validators.pattern(/^[\w]+@[\w]+.com$/)]),
-    phone: new FormControl({ value: '', disabled: this.isDisabled }, Validators.pattern(/^01[0-2]\d{8}$/)),
+    name: new FormControl({ value: '', disabled: this.isDisabled }, [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    email: new FormControl({ value: '', disabled: this.isDisabled }, [
+      Validators.required,
+      Validators.pattern(/^[\w]+@[\w]+.com$/),
+    ]),
+    phone: new FormControl(
+      { value: '', disabled: this.isDisabled },
+      Validators.pattern(/^01[0-2]\d{8}$/)
+    ),
     address: new FormControl({ value: '', disabled: this.isDisabled }),
-  })
-  
-  getFormControl(controlName:string){
-    // @ts-ignore    
-    return this.editFormGroup.controls[controlName]
+  });
+
+  getFormControl(controlName: string) {
+    // @ts-ignore
+    return this.editFormGroup.controls[controlName];
   }
 
   ngOnInit(): void {
-    let userId = localStorage.getItem("userId") || ""
-    this.profileService.getUserInfo(userId).subscribe((res)=>{
-      this.userData = {name: res.name, email:res.email, phone: res.phone, address: res.address}      
-    })
+    let userId = localStorage.getItem('userId') || '';
+    this.profileService.getUserInfo(userId).subscribe((res) => {
+      this.userData = {
+        name: res.name,
+        email: res.email,
+        phone: res.phone,
+        address: res.address,
+      };
+    });
   }
 
-  update(){
-    this.profileService.updateProfile(this.userData).subscribe({next:(res)=>{
-      console.log(res)
-    },error: (err)=>{console.log("err",err)}})
+  update() {
+    this.profileService
+      .updateProfile(this.userData)
+      .pipe(
+        catchError((error) => {
+          return of(error);
+        })
+      )
+      .subscribe((response: any) => {
+        this.toast.success({
+          detail: 'SUCCESS',
+          summary: 'Data updated',
+          duration: 5000,
+          position: 'topRight',
+        });
+      });
+    // {next:(res)=>{
   }
 
-  toggleInput(formControlNmae:string) {
+  toggleInput(formControlNmae: string) {
     if (this.isDisabled) {
       this.editFormGroup.get(formControlNmae)!.enable();
     } else {

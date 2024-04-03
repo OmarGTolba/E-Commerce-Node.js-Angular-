@@ -1,22 +1,13 @@
 <div class="sidebar">
-  <a class="nav-link" id="addProducts" routerLink="/admin/addProduct"
-    >Add Product</a
-  >
-  <a class="nav-link" id="addCategory" routerLink="/admin/addCategory"
-    >Add Category</a
-  >
+  <p style="font-size: 1.5em ;font-weight: bolder; padding: 15px; margin: 0; color: #F8B810;">CozyCorner<span>.</span>
+  </p>
+  <a class="nav-link" id="addProducts" routerLink="/admin/addProduct">Add Product</a>
+  <a class="nav-link" id="addCategory" routerLink="/admin/addCategory">Add Category</a>
 
   <a class="nav-link" (click)="getAllUsers()" id="getAllUsers"> Users</a>
   <a class="nav-link" (click)="getAllCategories()"> Categories</a>
-  <a
-    class="nav-link"
-    [(ngModel)]="allProducts"
-    name="fieldName"
-    ngDefaultControl
-    (click)="getAllProducts()"
-  >
-    Products</a
-  >
+  <a class="nav-link" [(ngModel)]="allProducts" name="fieldName" ngDefaultControl (click)="getAllProducts()">
+    Products</a>
 
   <a class="nav-link" (click)="getAllOrders()"> Orders</a>
 
