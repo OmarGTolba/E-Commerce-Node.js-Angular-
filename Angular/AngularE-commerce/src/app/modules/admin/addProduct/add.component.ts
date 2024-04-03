@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../../services/products/products.service';
 import { catchError } from 'rxjs';
 import { Product } from '../../../Models/products';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add',
@@ -24,7 +25,8 @@ export class AddComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private productServices: ProductsService
+    private productServices: ProductsService,
+    private toast: NgToastService
   ) {}
   id: any = '';
   product: any;
@@ -68,8 +70,8 @@ export class AddComponent implements OnInit {
     brand_ar: '',
     description_ar: '',
     description_en: '',
-    countInStock: 0,
-    price: 0,
+    countInStock: '',
+    price: '',
     images: [],
     isFeatured: false,
   };
@@ -106,19 +108,39 @@ export class AddComponent implements OnInit {
     formData.append('description_ar', this.Form.get('descAr')?.value || '');
     formData.append('isFeatured', this.Form.get('isFeatured')?.value || 'false') ;
     formData.append('countInStock', this.Form.get('countInStock')?.value || '');
-    formData.append('price', this.Form.get('price')?.value || '0');
+    formData.append('price', this.Form.get('price')?.value || '');
 
 
     for (let i = 0; i < this.formBody.images.length; i++) {
       formData.append('images', this.formBody.images[i]);
     }
-    this.http.post<any[]>(url, formData).subscribe(
-      (response: any) => {},
-      (error) => {
-        console.error('Error fetching products:', error);
-      }
-    );
+    this.http.post<any[]>(url, formData).subscribe({
+      next: () => {
+        this.toast.success({
+          detail: 'Success',
+          summary: 'Product added successfully',
+          duration: 5000,
+          position: 'topRight',
+        });
+        this.formBody = {
+          name_ar: '',
+          name_en: '',
+          brand_en: '',
+          categories: '',
+          brand_ar: '',
+          description_ar: '',
+          description_en: '',
+          countInStock: '',
+          price: '',
+          images: [],
+          isFeatured: false,
+        };
+        this.Form.markAsPristine();
+        this.Form.markAsUntouched();
+      },
+    });
   }
+
 
   updateProduct() {
     const url = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${this.id}`;
@@ -139,16 +161,15 @@ export class AddComponent implements OnInit {
       formData.append('images', this.formBody.images[i]);
     }
 
-    this.http.patch<any[]>(url, formData, {}).subscribe(
-      
-      (response: any) => {
-        console.log('done');
+    this.http.patch<any[]>(url, formData, {}).subscribe({
+      next: () => {
+        this.toast.success({
+          detail: 'Success',
+          summary: 'Product updated successfully',
+          duration: 5000,
+          position: 'topRight',
+        });
       },
-
-      (error) => {
-        console.error('Error fetching products:', error);
-        console.log(this.formBody);
-      }
-    );
+    });
   }
 }
