@@ -99,7 +99,6 @@ const topRating = asyncHandler(async (req, res) => {
   if (!topProducts || topProducts.length === 0) {
     return res.status(404).send(`There are no products.`);
   }
-  console.log(topProducts);
   res.send(topProducts);
 });
 
