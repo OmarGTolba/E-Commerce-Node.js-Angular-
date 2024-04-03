@@ -53,7 +53,6 @@ export class CartComponent {
           this.cart.forEach((element) => {
             this.total += element.quantity * element.product_id.price;
             this.userService.total = this.total;
-            console.log(this.userService.total);
           });
         }
         this.SkeletonLoading = false;
@@ -77,23 +76,16 @@ export class CartComponent {
       });
   }
   plus(i: any) {
-    console.log(i);
-
     this.updateQuantity(i, ++i.quantity);
-    console.log(this.userService.total);
   }
 
   minus(i: any) {
-    console.log(i);
-
     this.updateQuantity(i, --i.quantity);
 
     this.userService.total = this.total;
   }
   updateQuantity(item: any, newQuantity: number) {
     const body = { quantity: newQuantity };
-    console.log(item);
-    console.log(newQuantity);
     this.userService
       .updateUserCart(this.userId, item.product_id._id, body)
       .pipe(
@@ -103,11 +95,8 @@ export class CartComponent {
       )
       .subscribe({
         next: (response: any) => {
-          console.log(response);
           this.userService.total = this.total;
-          console.log(this.userService.total);
           this.getCart();
-          console.log(this.total);
         },
         error: (err) => {
           console.error('Payment error:', err);
@@ -128,7 +117,6 @@ export class CartComponent {
         })
       )
       .subscribe((response: any) => {
-        console.log(response.data._id);
         this.body = {
           user: this.userId,
           orderId: response.data._id,
@@ -145,7 +133,6 @@ export class CartComponent {
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
         this.userService.getCartCount(this.userId);
         this.getCart();
       });

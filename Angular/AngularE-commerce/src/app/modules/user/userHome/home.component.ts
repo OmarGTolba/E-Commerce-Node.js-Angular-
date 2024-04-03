@@ -84,7 +84,6 @@ export class HomeComponent {
       })
       .subscribe((response: any) => {
         this.categories = response.data;
-        console.log(this.categories);
 
         this.categories = this.categories.slice(0, 3);
         this.catSkeletonLoading = false;

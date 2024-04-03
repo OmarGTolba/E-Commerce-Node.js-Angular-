@@ -26,11 +26,8 @@ export class ForgotPasswordComponent {
   }
 
   sendEmail() {
-    this.profileService.forgotPassword(this.userData).subscribe((data) => {
-      console.log(data);
-    });
+    this.profileService.forgotPassword(this.userData).subscribe((data) => {});
 
     this.sent = true;
-    console.log(this.sent);
   }
 }

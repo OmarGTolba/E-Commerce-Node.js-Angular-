@@ -35,7 +35,6 @@ export class AllCategoriesComponent {
   }
   edit(id: string) {
     this.router.navigate([`admin/updateCategory/${id}`]);
-    console.log(id);
   }
   delete(id: string) {
     this.categoryService

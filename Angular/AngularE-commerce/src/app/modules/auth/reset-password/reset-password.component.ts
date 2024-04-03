@@ -15,26 +15,29 @@ import { ProfileService } from '../../../services/profile/profile.service';
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.css',
 })
-export class ResetPasswordComponent implements OnInit{
+export class ResetPasswordComponent implements OnInit {
   userData: { password: string } = {
     password: '',
   };
-  id: string = "";
-  token: string = "";
+  id: string = '';
+  token: string = '';
   showPass = false;
   showConfirmPass = false;
-  resetFormGroup = new FormGroup(
-    {
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required),
-    }
-  );
-  constructor(private profileService: ProfileService, private route: ActivatedRoute, private router: Router, private toast:NgToastService){}
+  resetFormGroup = new FormGroup({
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required),
+  });
+  constructor(
+    private profileService: ProfileService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private toast: NgToastService
+  ) {}
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get("id") || "";
-    this.token = this.route.snapshot.paramMap.get("token") || "";
+    this.id = this.route.snapshot.paramMap.get('id') || '';
+    this.token = this.route.snapshot.paramMap.get('token') || '';
   }
-  getFormControl(controlName: string) {    
+  getFormControl(controlName: string) {
     // @ts-ignore
     return this.resetFormGroup.controls[controlName];
   }
@@ -43,22 +46,27 @@ export class ResetPasswordComponent implements OnInit{
       this.resetFormGroup.get('password')!.value ==
       this.resetFormGroup.get('confirmPassword')!.value
     ) {
-      return true
+      return true;
     } else {
       return false;
     }
   }
-  toggleConfirmPass(){
-    this.showConfirmPass = !this.showConfirmPass
+  toggleConfirmPass() {
+    this.showConfirmPass = !this.showConfirmPass;
   }
-  togglePass(){
+  togglePass() {
     this.showPass = !this.showPass;
   }
   reset() {
-    this.profileService.resetPassword(this.id, this.token, this.userData).subscribe((res)=>{
-      console.log(res);
-    })
-    this.router.navigate(["/"])
-    this.toast.success({detail:"Success",summary:'Password reset successfully',duration:5000, position:'topRight'});
+    this.profileService
+      .resetPassword(this.id, this.token, this.userData)
+      .subscribe((res) => {});
+    this.router.navigate(['/']);
+    this.toast.success({
+      detail: 'Success',
+      summary: 'Password reset successfully',
+      duration: 5000,
+      position: 'topRight',
+    });
   }
 }

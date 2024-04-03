@@ -35,18 +35,14 @@ export class CheckoutComponent implements OnInit {
     private router: Router
   ) {
     this.total = this.userService.total;
-    console.log(this.total);
-    console.log(this.userService.total);
     this.getCart();
   }
 
   ngOnInit(): void {
     this.profileService.getUserInfo(this.userId).subscribe((res) => {
-      console.log(res);
       this.userData.name = res.name;
       this.userData.email = res.email;
       this.userData.address = res.address;
-      console.log(res.name);
     });
   }
 
@@ -63,11 +59,9 @@ export class CheckoutComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.cart = response?.items;
-        console.log(this.cart);
         this.cart.forEach((element) => {
           this.total += element.quantity * element.product_id.price;
           this.userService.total = this.total;
-          console.log(this.userService.total);
         });
       });
   }
@@ -107,7 +101,6 @@ export class CheckoutComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log(response.data._id);
         this.body = {
           user: this.userId,
           orderId: response.data._id,
@@ -130,7 +123,6 @@ export class CheckoutComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log(response.data._id);
         this.body = {
           user: this.userId,
           orderId: response.data._id,

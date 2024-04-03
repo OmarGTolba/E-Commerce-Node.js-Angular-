@@ -34,7 +34,6 @@ export class UserService {
         } else {
           this.cartLength.next(0);
         }
-        console.log(response);
       });
   }
 

@@ -44,7 +44,6 @@ export class CategoriesComponent {
       })
       .subscribe((response: any) => {
         this.categories = response.data;
-        console.log(this.categories);
         this.SkeletonLoading = false;
       });
   }
