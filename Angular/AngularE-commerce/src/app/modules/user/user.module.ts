@@ -32,6 +32,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AppComponent } from '../../app.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AppComponent } from '../../app.component';
     ProductCardComponent,
     CartComponent,
     ProductComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
