@@ -26,6 +26,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AppComponent } from '../../app.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -33,7 +34,7 @@ import { AppComponent } from '../../app.component';
   declarations: [
     AboutComponent, ContactComponent, CheckoutComponent, UserComponent, OrdersComponent, ContactComponent,
      CategoriesComponent, HomeComponent,ProductPageComponent
-    , UserOrderComponent, ProductCardComponent, CartComponent,ProductComponent
+    , UserOrderComponent, ProductCardComponent, CartComponent,ProductComponent, FooterComponent
   ],
   imports: [
     CommonModule, 
