@@ -11,11 +11,11 @@
 
         <div class="col-md-12 border-end">
           <div class="d-flex flex-column justify-content-center">
-            <div class="main_image"> <img src="{{imgSrc}}" id="main_product_image"> </div>
+            <div class="main_image"> <img src="https://ecommerce-node-yxgy.onrender.com/uploads/{{imgSrc}}" id="main_product_image"> </div>
             <div class="thumbnail_images">
               <ul id="thumbnail" class="d-flex gap-3">
                 <li *ngFor="let item of product.images; let i = index"><img (click)="imgClick(item)" width="70"
-                    [src]="item">
+                    src="https://ecommerce-node-yxgy.onrender.com/uploads/{{item}}">
                 </li>
 
               </ul>

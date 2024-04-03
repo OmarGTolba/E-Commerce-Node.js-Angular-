@@ -25,9 +25,9 @@ router.get('/', getAllProducts)
 router.get('/topRating', topRating)
 
 router.get('/:id', getProductById)
-router.patch('/:id', upload.array('image', 2),admin, updateProduct)
+router.patch('/:id', upload.array('images', 3),admin, updateProduct)
 
-router.post('/', upload.single('image'), admin, addNewProduct)
+router.post('/', upload.array('images', 3), admin, addNewProduct)
 router.delete('/:id', admin, deleteProduct)
 
 router.post('/:id/reviews', auth, addNewReview)

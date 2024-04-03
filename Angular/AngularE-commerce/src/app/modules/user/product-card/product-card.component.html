@@ -10,8 +10,8 @@
 
         </li>
       </ul>
-      <img [src]="product.images[0]" alt="Product Image" />
-      <ng-container *ngIf="product.isFeatured">
+      <img src="https://ecommerce-node-yxgy.onrender.com/uploads/{{product.images[0]}}" alt="Product Image" />
+      <ng-container *ngIf="product.isFeatured == 'true'">
         <div class="offer">50% off</div>
       </ng-container>
     </div>

@@ -71,15 +71,43 @@ const addNewProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
     isFeatured,
-    images: req.files.map((file) => file.filename),
+    images: req.files.map(file => file.filename),
   });
   res.status(201).json({ data: newProduct });
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
   const id = req.params.id;
-
-  const Updates = await productModel.updateOne({ _id: id }, req.body);
+  const {
+    name_en,
+    name_ar,
+    description_en,
+    description_ar,
+    categories,
+    brand_en,
+    brand_ar,
+    price,
+    countInStock,
+    rating,
+    numReviews,
+    isFeatured,
+    images,
+  } = req.body;
+  const Updates = await productModel.updateOne({ _id: id }, {
+    name_en,
+    name_ar,
+    description_en,
+    description_ar,
+    categories,
+    brand_en,
+    brand_ar,
+    price,
+    countInStock,
+    rating,
+    numReviews,
+    isFeatured,
+    images: req.files.map(file => file.filename),
+  });
   res.send(Updates);
 });
 

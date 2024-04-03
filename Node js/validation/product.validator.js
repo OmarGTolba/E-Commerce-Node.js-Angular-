@@ -11,7 +11,8 @@ const validateAddProduct=(user)=>{
         brand_ar: joi.string(),
         countInStock:joi.required(),
         price:joi.number().required(),
-        categories:joi.string().required()
+        categories:joi.string().required(),
+        isFeatured: joi.string()
     })
     return schema.validate(user)
 }
