@@ -33,6 +33,7 @@ a.more {
   background: #3b5d50 !important;
   /* padding-top: 20px;
   padding-bottom: 20px; */
+  max-width: 100vw !important;
 }
 .custom-navbar .navbar-brand {
   font-size: 32px;

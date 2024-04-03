@@ -71,10 +71,10 @@ const addNewProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
     isFeatured,
-    images,
-  });
-  res.status(201).json({ data: newProduct });
-});
+    images: req.files.map((file) => file.filename)
+  })
+  res.status(201).json({ data: newProduct })
+})
 
 const updateProduct = asyncHandler(async (req, res) => {
   const id = req.params.id;

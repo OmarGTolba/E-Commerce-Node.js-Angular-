@@ -1,78 +1,76 @@
-<!-- Start Hero Section -->
-
 <div [ngClass]="{ '': !darkMode, 'dark': darkMode }">
+<!-- Start Hero Section -->
 <div class="hero">
-
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-lg-5">
-                <div class="intro-excerpt">
-                    <h1>Categories</h1>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="hero-img-wrap">
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="container">
+      <div class="row justify-content-between">
+          <div class="col-lg-5">
+              <div class="intro-excerpt">
+                  <h1>{{"Categories" | translate}}</h1>
+              </div>
+          </div>
+          <div class="col-lg-7">
+              <div class="hero-img-wrap">
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 <!-- End Hero Section -->
 
-<form action="" #authform></form>
+
 
 <!-- Start Blog Section -->
 <div class="blog-section">
-    <div class="container">
+  <div class="container">
 
-        <div class="row">
-            <div class="row col-12 col" *ngIf="SkeletonLoading">
-                <div class="col-4">
-                    <ngx-skeleton-loader
-                        [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                    <ngx-skeleton-loader
-                        [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                </div>
-                <div class="col-4">
-                    <ngx-skeleton-loader
-                        [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                    <ngx-skeleton-loader
-                        [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                </div>
-                <div class="col-4">
-                    <ngx-skeleton-loader
-                        [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                    <ngx-skeleton-loader
-                        [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                </div>
-                <div class="col-4">
-                    <ngx-skeleton-loader
-                        [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                    <ngx-skeleton-loader
-                        [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
-                </div>
-            </div>
-
-
-            <div *ngFor="let item of categories" [routerLink]="'/user/search/category/' + item.name_en.split(' ')[0].slice(0, -1)" class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                <ng-container *ngIf="!SkeletonLoading">
+      <div class="row">
+          <div class="row col-12 col" *ngIf="SkeletonLoading">
+              <div class="col-4">
+                  <ngx-skeleton-loader
+                      [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader
+                      [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
+              </div>
+              <div class="col-4">
+                  <ngx-skeleton-loader
+                      [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader
+                      [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
+              </div>
+              <div class="col-4">
+                  <ngx-skeleton-loader
+                      [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader
+                      [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
+              </div>
+              <div class="col-4">
+                  <ngx-skeleton-loader
+                      [theme]="{margin:'20px 0', height: '350px', width: '100%', borderRadius: '4px' }"></ngx-skeleton-loader>
+                  <ngx-skeleton-loader
+                      [theme]="{ height: '20px', width: '70%', borderRadius: '4px' }"></ngx-skeleton-loader>
+              </div>
+          </div>
 
 
-                    <div class="post-entry">
-                        <a  class="post-thumbnail"><img src={{item.icon}} alt="Image"
-                                class="img-fluid catimg h-50"></a>
-                        <div class="post-content-entry mb-5"  [ngClass]="{'text-end':lang == 'ar'}">
-                            <h3><a>{{lang == "en" ? item.name_en : item.name_ar}}</a></h3>
-                            <div class="meta">
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
-            </div>
+          <div *ngFor="let item of categories" [routerLink]="'/user/search/category/' + item.name_en.split(' ')[0].slice(0, -1)" class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+              <ng-container *ngIf="!SkeletonLoading">
 
 
-        </div>
-    </div>
+                  <div class="post-entry">
+                      <a  class="post-thumbnail"><img src={{item.icon}} alt="Image"
+                              class="img-fluid catimg h-50"></a>
+                      <div class="post-content-entry mb-5"  [ngClass]="{'text-end':lang == 'ar'}">
+                          <h3><a>{{lang == "en" ? item.name_en : item.name_ar}}</a></h3>
+                          <div class="meta">
+                          </div>
+                      </div>
+                  </div>
+              </ng-container>
+          </div>
+
+
+      </div>
+  </div>
 </div>
 <!-- End Blog Section -->
 
@@ -80,113 +78,155 @@
 
 <!-- Start Footer Section -->
 <footer class="footer-section">
-    <div class="container relative">
+  <div class="container">
+    <!-- <div class="sofa-img">
+    </div> -->
+    <div
+      class="col-12 row justify-content-center align-items-center justify-content-md-between"
+    >
+      <img
+        src="../../../assets/images/sofa.png"
+        alt="Image"
+        class="img-fluid col-12 col-md-6"
+      />
 
-        <div class="sofa-img">
-            <img src="../../../assets/images/sofa.png" alt="Image" class="img-fluid">
+      <div class="col-12 col-md-5">
+        <div>
+          <div class="subscription-form">
+            <h3 class="d-flex align-items-center">
+              <span class="me-1"
+                ><img
+                  src="../../../assets/images/envelope-outline.svg"
+                  alt="Image"
+                  class="img-fluid" /></span
+              ><span>{{ "Subscribe to Newsletter" | translate }}</span>
+            </h3>
+
+            <form action="#" class="d-flex flex-column g-3 gap-2">
+              <div class="col-auto">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="{{ 'Enter your name' | translate }}"
+                />
+              </div>
+              <div class="col-auto">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="{{ 'Enter your email' | translate }}"
+                />
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-primary">
+                  <span class="fa fa-paper-plane"></span>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="subscription-form">
-                    <h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg"
-                                alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
-
-                    <form action="#" class="row g-3">
-                        <div class="col-auto">
-                            <input type="text" class="form-control" placeholder="Enter your name">
-                        </div>
-                        <div class="col-auto">
-                            <input type="email" class="form-control" placeholder="Enter your email">
-                        </div>
-                        <div class="col-auto">
-                            <button class="btn btn-primary">
-                                <span class="fa fa-paper-plane"></span>
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row g-5 mb-5">
-            <div class="col-lg-4">
-                <div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Furni<span>.</span></a></div>
-                <p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus
-                    malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
-                    Pellentesque habitant</p>
-
-                <ul class="list-unstyled custom-social">
-                    <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-8">
-                <div class="row links-wrap">
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact us</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Knowledge base</a></li>
-                            <li><a href="#">Live chat</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Our team</a></li>
-                            <li><a href="#">Leadership</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Nordic Chair</a></li>
-                            <li><a href="#">Kruzo Aero</a></li>
-                            <li><a href="#">Ergonomic Chair</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="border-top copyright">
-            <div class="row pt-4">
-                <div class="col-lg-6">
-                    <p class="mb-2 text-center text-lg-start">Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash;
-                        Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a
-                            hreff="https://themewagon.com">ThemeWagon</a>
-                        <!-- License information: https://untree.co/license/ -->
-                    </p>
-                </div>
-
-                <div class="col-lg-6 text-center text-lg-end">
-                    <ul class="list-unstyled d-inline-flex ms-auto">
-                        <li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-
+      </div>
     </div>
+    <div class="row g-5 mb-5">
+      <div class="col-lg-4">
+        <div class="mb-4 footer-logo-wrap">
+          <a routerLink="#" class="footer-logo">CozyCorner<span>.</span></a>
+        </div>
+        <p class="mb-4">
+          {{ "intro3" | translate }}
+        </p>
+
+        <ul class="list-unstyled custom-social">
+          <li>
+            <a routerLink="#"
+              ><span class="fa fa-brands fa-facebook-f"></span
+            ></a>
+          </li>
+          <li>
+            <a routerLink="#"><span class="fa fa-brands fa-twitter"></span></a>
+          </li>
+          <li>
+            <a routerLink="#"
+              ><span class="fa fa-brands fa-instagram"></span
+            ></a>
+          </li>
+          <li>
+            <a routerLink="#"><span class="fa fa-brands fa-linkedin"></span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="row links-wrap">
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li>
+                <a routerLink="#">{{ "About" | translate }} </a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Services" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Contact" | translate }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li>
+                <a routerLink="#">{{ "Support" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Knowledge base" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Live chat" | translate }}</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-sm-6 col-md-3">
+            <ul class="list-unstyled">
+              <li>
+                <a routerLink="#">{{ "Jobs" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Our team" | translate }}</a>
+              </li>
+              <li>
+                <a routerLink="#">{{ "Privacy Policy" | translate }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-top copyright">
+      <div class="row pt-4">
+        <div class="col-lg-6">
+          <p class="mb-2 text-center text-lg-start">
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            . All Rights Reserved. &mdash; Designed with love by
+            <a routerLink="https://untree.co">Untree.co</a> Distributed By
+            <a routerLinkf="https://themewagon.com">ThemeWagon</a>
+          </p>
+        </div>
+
+        <div class="col-lg-6 text-center text-lg-end">
+          <ul class="list-unstyled d-inline-flex ms-auto">
+            <li class="me-4"><a routerLink="#">Terms &amp; Conditions</a></li>
+            <li><a routerLink="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Footer Section -->
 </footer>
-<!-- End Footer Section -->
 </div>
