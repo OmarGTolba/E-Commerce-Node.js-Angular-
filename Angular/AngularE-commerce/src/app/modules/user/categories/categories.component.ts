@@ -18,13 +18,16 @@ export class CategoriesComponent {
 
   SkeletonLoading = false;
 
-  darkMode:boolean  = false
-  constructor(private productService: ProductsService,  private langService: LanguageService ,private userService:UserService) {
-
+  darkMode: boolean = false;
+  constructor(
+    private productService: ProductsService,
+    private langService: LanguageService,
+    private userService: UserService
+  ) {
     this.getAllCategories();
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
+    });
     this.userService.mode.subscribe({
       next: (value) => {
         this.darkMode = value;
@@ -41,12 +44,8 @@ export class CategoriesComponent {
       })
       .subscribe((response: any) => {
         this.categories = response.data;
-        //    this.sortbyName()
         console.log(this.categories);
         this.SkeletonLoading = false;
       });
   }
-
-  
-
 }

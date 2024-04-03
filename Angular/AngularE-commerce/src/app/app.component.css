@@ -31,9 +31,6 @@ a.more {
 
 .custom-navbar {
   background: #3b5d50 !important;
-  /* padding-top: 20px;
-  padding-bottom: 20px; */
-  max-width: 100vw !important;
 }
 .custom-navbar .navbar-brand {
   font-size: 32px;
@@ -113,7 +110,6 @@ a.more {
 }
 @media (max-width: 1000px) {
   .custom-navbar .custom-navbar-cta li:not(last-child) {
-    /* margin-right: 5px; */
     padding: 0;
   }
 }
@@ -153,7 +149,7 @@ li {
   }
 }
 @media (max-width: 768px) {
-  .hero .intro-excerpt{
+  .hero .intro-excerpt {
     text-align: center !important;
   }
 }
@@ -169,7 +165,6 @@ li {
 }
 .hero p {
   color: rgba(255, 255, 255, 0.5);
-  /* margin-botom: 30px; */
 }
 .hero .hero-img-wrap {
   position: relative;
@@ -208,7 +203,6 @@ li {
   position: absolute;
   width: 255px;
   height: 217px;
-  /* background-image: url("../images/dots-light.svg"); */
   background-size: contain;
   background-repeat: no-repeat;
   right: -100px;
@@ -248,7 +242,6 @@ li {
   border-color: #314d43;
 }
 .btn.btn-secondary {
-  /* color: #2f2f2f; */
   background: #f9bf29;
   border-color: #f9bf29;
 }
@@ -366,7 +359,6 @@ li {
   content: "";
   width: 255px;
   height: 217px;
-  /* background-image: url("../images/dots-yellow.svg"); */
   background-repeat: no-repeat;
   background-size: contain;
   -webkit-transform: translate(-40%, -40%);
@@ -425,8 +417,8 @@ li {
   content: "";
   width: 255px;
   height: 217px;
-  /*background-image: url("../images/dots-green.svg");
-  */background-size: contain;
+
+  background-size: contain;
   background-repeat: no-repeat;
   -webkit-transform: translate(-40%, -40%);
   -ms-transform: translate(-40%, -40%);
@@ -826,7 +818,6 @@ li {
 }
 
 .form-control {
-  /* height: 50px; */
   border-radius: 10px;
   font-family: "Inter", sans-serif;
 }
@@ -974,7 +965,6 @@ textarea {
   height: 20rem !important;
 }
 .testimonal_image {
-  /* position: relative; */
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -1010,32 +1000,29 @@ nav {
 .cc {
   width: 100% !important;
 }
-.dark{
-background-color: #161b22;
-color: white;
-h2{
+.dark {
+  background-color: #161b22;
   color: white;
+  h2 {
+    color: white;
+  }
+  p {
+    color: white !important;
+  }
+  h3 {
+    color: white !important;
+  }
+  a {
+    color: white;
+  }
+  button {
+    background-color: white;
+  }
+  footer {
+    background-color: #161b22 !important;
+    color: white !important;
+  }
+  span {
+    color: #3b5d50;
+  }
 }
-p{
-  color: white !important;
-}
-h3{
-  color: white !important;
-
-}
-a{
-  color: white;
-}
-button{
-  background-color: white;
-
-}
-footer{
-  background-color:  #161b22 !important;
-  color: white !important;
-}
-span{
-  color: #3b5d50;
-}
-}
-

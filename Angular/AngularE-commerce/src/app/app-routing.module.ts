@@ -5,7 +5,7 @@ import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-p
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { authGuard } from './guard/auth.guard';
 import { adminGuard } from './guard/admin.guard';
-import { AddcategoryComponent } from './admin/addcategory/addcategory.component';
+import { AddcategoryComponent } from './modules/admin/addcategory/addcategory.component';
 import { AllProductsComponent } from './modules/admin/all-products/all-products.component';
 import { AllCategoriesComponent } from './modules/admin/all-categories/all-categories.component';
 import { AllOrdersComponent } from './modules/admin/all-orders/all-orders.component';
@@ -93,7 +93,7 @@ const routes: Routes = [
       { path: 'addCategory', component: AddcategoryComponent },
       { path: 'updateCategory/:id', component: AddcategoryComponent },
       { path: 'users', component: AllUsersComponent },
-      { path: 'addProduct/:id', component: AddComponent }
+      { path: 'addProduct/:id', component: AddComponent },
     ],
   },
   { path: '', component: NotFoundComponent },

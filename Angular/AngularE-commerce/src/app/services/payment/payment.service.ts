@@ -7,25 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class PaymentService {
   constructor(private httpClient: HttpClient) {}
-  showPayment(token: string, body: any): Observable<any[]> {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=UTF-8',
-      jwt: token,
-    });
+  showPayment(body: any): Observable<any[]> {
     return this.httpClient.post<any>(
       'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/checkout',
-      body,
-      { headers }
+      body
     );
   }
 
   showResult(): Observable<string> {
-    // const headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=UTF-8',
-    //   jwt: token,
-    // });
     return this.httpClient.post<string>(
-      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/result',{}
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/result',
+      {}
     );
   }
 }

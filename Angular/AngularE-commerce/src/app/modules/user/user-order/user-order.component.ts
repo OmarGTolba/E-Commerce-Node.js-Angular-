@@ -11,8 +11,6 @@ import { catchError } from 'rxjs';
 })
 export class UserOrderComponent {
   orderId: string = '';
-  token = localStorage.getItem('token') || '';
-  email = localStorage.getItem('email') || '';
   order: any;
 
   constructor(
@@ -25,7 +23,7 @@ export class UserOrderComponent {
       this.orderId = params['orderId'];
     });
     this.orderServices
-      .getOrderByID( this.orderId)
+      .getOrderByID(this.orderId)
       .pipe(
         catchError((error) => {
           return error;

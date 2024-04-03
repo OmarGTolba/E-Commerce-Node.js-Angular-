@@ -24,17 +24,18 @@ export class HomeComponent {
   lang = localStorage.getItem('lang') || 'en';
   token = localStorage.getItem('token') || '';
   email = localStorage.getItem('email') || '';
-  constructor(private productService: ProductsService, private langService: LanguageService,private userService:UserService) {
+  constructor(
+    private productService: ProductsService,
+    private langService: LanguageService,
+    private userService: UserService
+  ) {
     this.getAllProducts();
     this.getAllCategories();
-    this.langService.getLang().subscribe((lang)=>{
-      this.lang = lang
-    })
-  
-    
-    localStorage.setItem('mode',`false`)
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
+    });
 
-
+    localStorage.setItem('mode', `false`);
 
     this.userService.mode.subscribe({
       next: (value) => {
@@ -42,34 +43,23 @@ export class HomeComponent {
       },
     });
   }
-  
 
+  darkmode: boolean = false;
+  toggle() {
+    let mode = localStorage.getItem('mode');
+    if (mode == 'false') {
+      mode = 'true';
+    } else {
+      mode = 'false';
+    }
 
-
-  
-  darkmode:boolean = false;
-toggle(){
-
-
- let mode = localStorage.getItem('mode') 
- if(mode == 'false'){
-  mode ='true'
-
-}
- else{
-  mode ='false' 
- }
-
- localStorage.setItem('mode',`${mode}`)
-  if(localStorage.getItem('mode') =='true'){
-    document.body.style.backgroundColor = 'black'
-  }else{
-    document.body.style.backgroundColor = 'white'
-    
+    localStorage.setItem('mode', `${mode}`);
+    if (localStorage.getItem('mode') == 'true') {
+      document.body.style.backgroundColor = 'black';
+    } else {
+      document.body.style.backgroundColor = 'white';
+    }
   }
-}
-
-
 
   getAllProducts(): void {
     this.productSkeletonLoading = true;
@@ -80,11 +70,8 @@ toggle(){
       })
       .subscribe((response: any) => {
         this.products = response.data;
-        //    this.sortbyName()
         this.displayedProducts = this.products.slice(0, 3);
         this.productSkeletonLoading = false;
-
-        // this.loading = false; // Set loading to false when data is loaded
       });
   }
 
@@ -97,22 +84,16 @@ toggle(){
       })
       .subscribe((response: any) => {
         this.categories = response.data;
-        //    this.sortbyName()
         console.log(this.categories);
 
         this.categories = this.categories.slice(0, 3);
         this.catSkeletonLoading = false;
-
-        // this.loading = false; // Set loading to false when data is loaded
       });
   }
 
-
-darkMode:boolean = false
+  darkMode: boolean = false;
 
   toggleDarkMode(): void {
     this.darkMode = !this.darkMode;
-    // Optionally, you can save the theme state to localStorage for persistence
-    // localStorage.setItem('darkMode', this.darkMode ? 'true' : 'false');
   }
 }

@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AppRoutingModule } from '../../app-routing.module';
 import { AdminProductsDetailsComponent } from './admin-products-details/admin-products-details.component';
+import { AddcategoryComponent } from './addcategory/addcategory.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AdminProductsDetailsComponent } from './admin-products-details/admin-pr
     AllOrdersComponent,
     AddComponent,
     AdminProductsDetailsComponent,
+    AddcategoryComponent,
   ],
   imports: [
     CommonModule,

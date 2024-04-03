@@ -6,85 +6,55 @@ import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   getUserProducts(): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/user/get`;
-    // const headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=UTF-8',
-    //   jwt: token,
-    //   email: email,
-    // });
+
     return this.http.get<any[]>(updateUrl);
   }
 
-  getUserCart( id: string): Observable<any[]> {
+  getUserCart(id: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart?user=${id}`;
-    // const headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=UTF-8',
-    //   jwt: token,
-    //   email: email,
-    // });
+
     return this.http.get<any[]>(updateUrl);
   }
 
   cartLength = new BehaviorSubject(0);
-  mode = new BehaviorSubject(false)
-  getCartCount( id: any) {
+  mode = new BehaviorSubject(false);
+  getCartCount(id: any) {
     this.getUserCart(id)
       .pipe(
         catchError((error) => {
-          // this.cartLength = 0;
           return of(error);
         })
       )
       .subscribe(async (response: any) => {
-        this.cartLength.next(await response?.items?.length);
-
-        console.log(response.items.length);
-
+        if (response !== null) {
+          this.cartLength.next(await response?.items?.length);
+        } else {
+          this.cartLength.next(0);
+        }
         console.log(response);
       });
   }
 
   total: any;
 
-  updateUserCart(
-    id: string,
-    productId: string,
-    body: any
-  ): Observable<any[]> {
+  updateUserCart(id: string, productId: string, body: any): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${productId}?user=${id}`;
-    // const headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=UTF-8',
-    //   jwt: token,
-    //   email: email,
-    // });
+
     return this.http.patch<any[]>(updateUrl, body);
   }
 
-  getUserOrder(
-    id: string,
-    body: any
-  ): Observable<any[]> {
+  getUserOrder(id: string, body: any): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user`;
-    // const headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=UTF-8',
-    //   jwt: token,
-    //   email: email,
-    // });
+
     return this.http.post<any[]>(updateUrl, body);
   }
 
-  deleteCartItem(
-    id: string,
-    productId: string
-  ): Observable<any[]> {
+  deleteCartItem(id: string, productId: string): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${productId}?user=${id}`;
-    // const headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=UTF-8',
-    //   jwt: token,
-    //   email: email,
-    // });
+
     return this.http.delete<any[]>(updateUrl);
   }
   contact(data: {

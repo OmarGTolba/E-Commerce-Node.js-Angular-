@@ -9,7 +9,6 @@ import { of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductsService } from '../../../services/products/products.service';
 import { ProfileService } from '../../../services/profile/profile.service';
-import { UserService } from '../../../user.service';
 import {
   animate,
   state,
@@ -18,6 +17,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { LanguageService } from '../../../services/language/language.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-user',
@@ -56,7 +56,7 @@ export class UserComponent implements OnInit {
     this.lang = localStorage.getItem('lang') || 'en';
     this.translateService.setDefaultLang(this.lang);
     this.translateService.use(this.lang);
-    this.userService.getCartCount(this.token, this.email, this.id);
+    this.userService.getCartCount(this.id);
     this.userService.cartLength.subscribe({
       next: (value) => {
         this.cartLength = value;
@@ -67,7 +67,7 @@ export class UserComponent implements OnInit {
     });
     const html = document.getElementsByTagName('html')[0];
     html.dir = localStorage.getItem('dir') || 'ltr';
-    
+
     this.userService.mode.next(localStorage.getItem('moode') === 'dark');
   }
   toggleMode() {
@@ -99,7 +99,7 @@ export class UserComponent implements OnInit {
   }
   getAllProducts(): void {
     this.productService
-      .getAllProducts(this.token, this.email)
+      .getAllProducts()
       .pipe(
         catchError((error) => {
           return error;
@@ -136,7 +136,7 @@ export class UserComponent implements OnInit {
           if (searchInput) {
             this.searchInput = searchInput;
             this.productService
-              .searchByName(this.token, this.email, searchInput)
+              .searchByName(searchInput)
               .pipe(
                 catchError((error) => {
                   return error;
@@ -160,7 +160,6 @@ export class UserComponent implements OnInit {
         })
       )
       .subscribe((searchResults) => {
-        //   this.router.navigate([user/search]);
         this.products = searchResults;
       });
   }

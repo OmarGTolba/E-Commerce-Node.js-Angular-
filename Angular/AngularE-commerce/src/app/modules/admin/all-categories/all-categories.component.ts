@@ -12,8 +12,6 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrl: './all-categories.component.css',
 })
 export class AllCategoriesComponent {
-  // token = localStorage.getItem('token') || '';
-  // email = localStorage.getItem('email') || '';
   categories: Category[] = [];
   constructor(
     private http: HttpClient,

@@ -36,7 +36,6 @@ export class RegisterComponent {
       name: this.name,
       email: this.email,
       password: this.password,
-      // role: "User"
     };
 
     const headers = new HttpHeaders({
@@ -56,7 +55,6 @@ export class RegisterComponent {
           localStorage.setItem('userId', response._id);
           console.log('Register successful:', response);
 
-          // Display toast for successful registration
           this.toast.success({
             detail: 'Registration successful!',
             summary: 'Success',
@@ -164,7 +162,6 @@ export class RegisterComponent {
   }
 
   isActive(step: number): boolean {
-    // return step === this.currentActive;
     return true;
   }
 }
