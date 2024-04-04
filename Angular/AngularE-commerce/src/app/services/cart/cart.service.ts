@@ -17,11 +17,18 @@ export class CartService {
     return this.http.post<any[]>(baseUrl, body);
   }
 
+
   clearCart(userId: string): Observable<any[]> {
     const baseUrl = `http://localhost:3000/api/v1/cart?user=${userId}`;
+
+
 
     this.userService.getCartCount(userId);
 
     return this.http.delete<any[]>(baseUrl);
-  }
+
+  
+
+  }
+
 }
