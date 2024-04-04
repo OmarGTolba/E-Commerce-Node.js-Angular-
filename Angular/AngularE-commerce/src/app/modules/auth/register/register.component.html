@@ -44,7 +44,7 @@
       </small>
       <div class="btn_box">
         <button (click)="backTwo()" type="button">Back</button>
-        <button id="Submit" type="submit" (click)="onSubmit()">Submit</button>
+        <button id="Submit"  [disabled]="!registerForm.valid" type="submit"  (click)="onSubmitValid()">Submit</button>
       </div>
 
     </form>

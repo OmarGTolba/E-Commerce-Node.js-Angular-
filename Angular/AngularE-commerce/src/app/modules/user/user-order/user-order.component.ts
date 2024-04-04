@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../../services/orders/orders.service';
 import { UserService } from '../../../services/user/user.service';
 import { catchError } from 'rxjs';
+import { log } from 'console';
 
 @Component({
   selector: 'app-user-order',
@@ -30,8 +31,10 @@ export class UserOrderComponent {
         })
       )
       .subscribe((response: any) => {
+        
         this.order = response.data;
         this.imgsrc = this.order?.orderItemsIds[0].product.images[0];
+        console.log(this.order);
       });
   }
   changeImg(i: string) {

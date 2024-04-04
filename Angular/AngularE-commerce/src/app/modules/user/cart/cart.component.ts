@@ -18,7 +18,11 @@ export class CartComponent {
     private paymentService: PaymentService,
     private orderService: OrdersService,
     private langService: LanguageService,
-    private cartService: CartService
+
+    private cartService:CartService
+
+
+
   ) {
     this.getCart();
 
@@ -52,8 +56,10 @@ export class CartComponent {
       .subscribe((response: any) => {
         this.cart = response?.items;
         if (this.cart) {
+          console.log(this.cart);
+          
           this.cart.forEach((element) => {
-            this.total += element.quantity * element.product_id.price;
+            this.total += element?.quantity * element?.product_id?.price;
             this.userService.total = this.total;
           });
         }
@@ -137,6 +143,19 @@ export class CartComponent {
           orderId: response.data._id,
         };
       });
+  }
+
+  clear() {
+    this.cartService.clearCart(this.userId).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.userService.cartLength.next(0);
+        this.getCart();
+      },
+      error: (err) => {
+        console.error('clear error:', err);
+      },
+    });
   }
 
   deleteCart(item: any) {

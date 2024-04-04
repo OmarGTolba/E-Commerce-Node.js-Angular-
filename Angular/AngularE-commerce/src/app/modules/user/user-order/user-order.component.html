@@ -28,8 +28,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of order?.orderItemsIds">
-        <td><img src="https://ecommerce-node-yxgy.onrender.com/uploads/{{item?.product.images[0] }}"
-            class="product_img" /></td>
+
+        <td><img src="../../../assets/images/uploads/{{item.product.images[0]}}"
+          alt="Image" style="width: 100px !important; height: 100px !important;" class="img-fluid" /></td>
+
         <td class="product-name">
           <p class="text-black">{{ item.product.name_en }}</p>
         </td>

@@ -1,4 +1,5 @@
-<div class="container pa">
+
+<div  [ngClass]="{ '': !darkMode, 'dark': darkMode }"><div class="container pt-5 mt-5" >
   <div class="row">
     <div id="carouselExample" class="carousel slide col-12 col-xl">
       <ngx-skeleton-loader [theme]="{
@@ -11,11 +12,12 @@
 
         <div class="col-md-12 border-end">
           <div class="d-flex flex-column justify-content-center">
-            <div class="main_image"> <img src="https://ecommerce-node-yxgy.onrender.com/uploads/{{imgSrc}}" id="main_product_image"> </div>
+            <div class="main_image"> <img src="../../../assets/images/uploads/{{imgSrc}}" id="main_product_image"> </div>
+            <!-- C:\Users\ME\OneDrive\Desktop\the last edit of our project\E-Commerce-Node.js-Angular-\Angular\AngularE-commerce\src\assets\images\uploads\1712199964093-Screenshot (237).png -->
             <div class="thumbnail_images">
               <ul id="thumbnail" class="d-flex gap-3">
                 <li *ngFor="let item of product.images; let i = index"><img (click)="imgClick(item)" width="70"
-                    src="https://ecommerce-node-yxgy.onrender.com/uploads/{{item}}">
+                    src="../../../assets/images/uploads/{{item}}">
                 </li>
 
               </ul>
@@ -296,4 +298,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

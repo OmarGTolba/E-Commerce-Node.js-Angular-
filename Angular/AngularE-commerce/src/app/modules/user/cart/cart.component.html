@@ -18,7 +18,9 @@
       <div class="row mb-5">
         <form class="col-md-12" method="post">
           <div class="site-blocks-table">
-            <table class="table">
+
+            <table  class="table">
+
               <thead>
                 <tr *ngIf="cart?.length!==0 || !cart">
                   <th class="product-thumbnail">{{ "Image" | translate }}</th>
@@ -78,8 +80,10 @@
                 <tr *ngFor="let item of cart; let i = index">
                   <ng-container *ngIf="!SkeletonLoading">
                     <td class="product-thumbnail">
-                      <img src="https://ecommerce-node-yxgy.onrender.com/uploads/{{item.product_id.images[0] }}"
-                        alt="Image" class="img-fluid" />
+
+                      <img src="../../../assets/images/uploads/{{item.product_id.images[0] }}"
+                      alt="Image" class="img-fluid" />
+
                     </td>
                     <td class="product-name">
                       <h2 class="h5 text-black">{{ item.product_id.name }}</h2>
@@ -110,12 +114,15 @@
                   </ng-container>
                 </tr>
               </tbody>
+              
             </table>
 
             <h1 style="display: flex; justify-content: center; margin: 50px 0"
-              *ngIf="!SkeletonLoading && cart?.length===0 || !cart">
-              No Items in cart😥
-            </h1>
+
+            *ngIf="!SkeletonLoading && cart?.length===0 || !cart">
+            No Items in cart😥
+           </h1>
+
           </div>
         </form>
       </div>

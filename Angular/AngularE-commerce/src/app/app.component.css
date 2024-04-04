@@ -1029,7 +1029,10 @@ nav {
     color: white;
   }
   button {
-    background-color: white;
+    background-color: #3b5d50;
+  }
+  .card{
+    background-color: #161b22;
   }
   footer {
     background-color: #161b22 !important;
