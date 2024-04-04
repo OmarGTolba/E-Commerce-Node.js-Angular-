@@ -54,7 +54,9 @@ export class ContactComponent {
   });
   contactUs() {
     this.userService.contact(this.data).subscribe({
-      next: () => {
+      next: (res) => {
+console.log(res);
+
         this.toast.success({
           detail: 'SUCCESS',
           summary: 'Email sent successfully',

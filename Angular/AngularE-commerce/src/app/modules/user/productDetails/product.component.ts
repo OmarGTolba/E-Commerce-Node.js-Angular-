@@ -8,11 +8,12 @@ import { NgToastService } from 'ng-angular-popup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { log } from 'node:console';
 import { LanguageService } from '../../../services/language/language.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.css',
+  styleUrls: ['./product.component.css','../../../app.component.css']
 })
 export class ProductComponent {
   productId: string = '';
@@ -35,15 +36,22 @@ export class ProductComponent {
 
   skeletonLoading = false;
   ReviewskeletonLoading = false;
-
+  darkMode:boolean = false
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private cartService: CartService,
     private productServices: ProductsService,
     private toast: NgToastService,
-    private langService: LanguageService
+    private langService: LanguageService,
+    private userService:UserService
   ) {
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
+
     this.reviewForm = this.fb.group({
       title: ['', Validators.required],
     });

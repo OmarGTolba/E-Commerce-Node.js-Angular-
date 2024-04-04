@@ -78,6 +78,7 @@ export class EditProfileComponent implements OnInit {
           position: 'topRight',
         });
       });
+      
     // {next:(res)=>{
   }
 

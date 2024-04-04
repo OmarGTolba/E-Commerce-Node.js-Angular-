@@ -10,7 +10,7 @@ export class FavoritesService {
   getUserFavProduct(id: string): Observable<any[]> {
   
     return this.httpClient.get<any[]>(
-      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' + id
+      'http://localhost:3000/api/v1/products/favourite/' + id
     );
   }
 
@@ -19,7 +19,7 @@ export class FavoritesService {
       'Content-type': 'application/json; charset=UTF-8',
     });
     return this.httpClient.post(
-      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
+      'http://localhost:3000/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,
@@ -30,7 +30,7 @@ export class FavoritesService {
   delFavProduct(id: string, prdId: string) {
   
     return this.httpClient.delete(
-      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
+      'http://localhost:3000/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,

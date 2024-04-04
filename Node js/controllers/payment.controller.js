@@ -41,8 +41,8 @@ const checkoutSession = async (req, res) => {
         currency: "egp",
         unit_amount: item.product.price * 100,
         product_data: {
-          name: item.product.name,
-          description: item.product.description,
+          name: item.product.name_en,
+          description: item.product.description_en,
         },
       },
       quantity: 1,

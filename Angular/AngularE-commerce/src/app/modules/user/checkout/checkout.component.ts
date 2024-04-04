@@ -4,7 +4,7 @@ import { IUser } from '../../../Models/userInterface';
 import { UserService } from '../../../services/user/user.service';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { OrdersService } from '../../../services/orders/orders.service';
-import { catchError, throwError } from 'rxjs';
+import { catchError, of, throwError } from 'rxjs';
 import { log } from 'console';
 import { ProfileService } from '../../../services/profile/profile.service';
 import { Router } from '@angular/router';
@@ -44,6 +44,8 @@ export class CheckoutComponent implements OnInit {
       this.userData.email = res.email;
       this.userData.address = res.address;
     });
+  console.log(this.userData);
+  
   }
 
   cart: any[] = [];
@@ -128,7 +130,7 @@ export class CheckoutComponent implements OnInit {
           orderId: response.data._id,
         };
         this.pay();
-        this.userService.cartLength.next(0);
+        // this.userService.cartLength.next(0);
       });
   }
   async click() {
@@ -142,7 +144,7 @@ export class CheckoutComponent implements OnInit {
       this.editFormGroup.controls.paymentMethod.value &&
       this.editFormGroup.controls.paymentMethod.value == 'CREDIT'
     ) {
-      await this.makeCreditOrder();
+      this.makeCreditOrder();
       this.router.navigate(['user/profile/allOrder']);
     }
     this.makeOrder();
@@ -152,13 +154,16 @@ export class CheckoutComponent implements OnInit {
       .showPayment(this.body)
       .pipe(
         catchError((error) => {
-          return throwError(error);
+          return of(error) ;
         })
       )
       .subscribe({
         next: (response: any) => {
+
+          console.log(response.session);
+          
           window.open(response.session.url, '_blank');
-          this.userService.cartLength.next(0);
+          // this.userService.cartLength.next(0);
         },
         error: (err) => {
           console.error('Payment error:', err);
