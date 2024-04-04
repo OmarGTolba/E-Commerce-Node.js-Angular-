@@ -20,10 +20,11 @@ const contact = async function(req, res){
       transporter.sendMail(mailOptions, (err, success) => {
         if (err) {
           console.log(err)
+          res.send({message:'err'})
         } else {
           console.log('Email sent: ' + success.response)
+          res.send({message:'sent'})
         }
       })
-      res.send({message:'sent'})
 }
 module.exports = contact

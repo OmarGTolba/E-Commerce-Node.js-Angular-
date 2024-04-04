@@ -11,6 +11,7 @@ import { ProductsService } from '../../../services/products/products.service';
 import { catchError } from 'rxjs';
 import { Product } from '../../../Models/products';
 import { NgToastService } from 'ng-angular-popup';
+import { error } from 'console';
 
 @Component({
   selector: 'app-add',
@@ -96,7 +97,7 @@ export class AddComponent implements OnInit {
     }
    }
   addProduct() {
-    const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
+    const url = 'http://localhost:3000/api/v1/products';
 
     const formData = new FormData();
     formData.append('name_ar', this.Form.get('nameAr')?.value || '');
@@ -143,7 +144,7 @@ export class AddComponent implements OnInit {
 
 
   updateProduct() {
-    const url = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${this.id}`;
+    const url = `http://localhost:3000/api/v1/products/${this.id}`;
 
     const formData = new FormData();
     formData.append('name_ar', this.Form.get('nameAr')?.value || '');
@@ -169,7 +170,10 @@ export class AddComponent implements OnInit {
           duration: 5000,
           position: 'topRight',
         });
-      },
+      },error: (err)=>{
+        console.log(err);
+        
+      }
     });
   }
 }

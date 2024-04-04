@@ -76,6 +76,19 @@ export class RegisterComponent {
     );
   }
 
+onSubmitValid(){
+ console.log(this.registerForm);
+ 
+  if(this.registerForm.status === "VALID"){
+return true
+  }else{
+    return false
+  }
+  
+}
+
+
+
   progressWidth: string = '0%';
   currentActive: number = 1;
 
@@ -95,6 +108,8 @@ export class RegisterComponent {
   }
 
   backOne() {
+    
+    
     const form1 = document.getElementById('form1');
     const form2 = document.getElementById('form2');
     if (form1 && form2) {
@@ -106,13 +121,17 @@ export class RegisterComponent {
   }
 
   nextTwo() {
-    const form2 = document.getElementById('form2');
-    const form3 = document.getElementById('form3');
-    if (form2 && form3) {
-      form2.style.left = '-450px';
-      form3.style.left = '25px';
-      this.incrementNumber();
-      this.updateProgress();
+    this.registerForm.controls.email.value == this.email;
+
+    if (this.registerForm.controls.name.status == 'VALID') {
+      const form2 = document.getElementById('form2');
+      const form3 = document.getElementById('form3');
+      if (form3 && form2) {
+        form2.style.left = '-450px';
+        form3.style.left = '25px';
+        this.incrementNumber();
+        this.updateProgress();
+      }
     }
   }
 

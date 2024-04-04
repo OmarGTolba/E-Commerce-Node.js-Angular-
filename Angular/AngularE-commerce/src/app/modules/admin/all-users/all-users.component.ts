@@ -13,7 +13,7 @@ export class AllUsersComponent {
   }
   products: any[] = [];
   getAllUsers(): void {
-    const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/user';
+    const url = 'http://localhost:3000/api/v1/user';
 
     const token = localStorage.getItem('token') || '';
     const email = localStorage.getItem('email') || '';

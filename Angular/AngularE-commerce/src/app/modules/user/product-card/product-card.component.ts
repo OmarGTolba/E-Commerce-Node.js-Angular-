@@ -101,7 +101,7 @@ export class ProductCardComponent {
         })
       )
       .subscribe((response: any) => {
-        if (response.isFavorite == false) {
+        if (response?.isFavorite == false) {
           this.productFav = false;
         } else {
           this.productFav = true;
