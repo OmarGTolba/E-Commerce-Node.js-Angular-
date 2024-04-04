@@ -16,4 +16,11 @@ export class CartService {
     this.userService.getCartCount(userId);
     return this.http.post<any[]>(baseUrl, body);
   }
+  clearCart(userId: string): Observable<any[]> {
+    const baseUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart?user=${userId}`;
+
+    this.userService.getCartCount(userId);
+
+    return this.http.delete<any[]>(baseUrl);
+  }
 }
