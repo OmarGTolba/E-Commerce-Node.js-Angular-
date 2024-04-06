@@ -656,8 +656,10 @@ li {
   content: "";
   border-radius: 50%;
 
+
   transition: 0.3s all ease;
   background-color: #d6d6d6;
+
 }
 .testimonial-slider-wrap .tns-nav button:hover:before,
 .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
@@ -681,7 +683,9 @@ li {
 .blog-section .post-entry .post-thumbnail img {
   border-radius: 20px;
 
+  
   transition: 0.3s all ease;
+
 }
 .blog-section .post-entry .post-content-entry {
   padding-left: 15px;
@@ -715,7 +719,9 @@ li {
   text-decoration: none;
   color: #2f2f2f;
 
+
   transition: 0.3s all ease;
+
 }
 .footer-section a:hover {
   color: rgba(47, 47, 47, 0.5);
@@ -1012,36 +1018,38 @@ li {
     z-index: 999 !important;
   }
 
-  .cc {
-    width: 100% !important;
+.cc {
+  width: 100% !important;
+}
+.dark {
+  background-color: #161b22;
+  color: white;
+  .product_name{
+    color: #000000 !important;
   }
-  .dark {
-    background-color: #161b22;
+  h2 {
     color: white;
-    h2 {
-      color: white;
-    }
-    p {
-      color: white !important;
-    }
-    h3 {
-      color: white !important;
-    }
-    a {
-      color: white;
-    }
-    button {
-      background-color: #3b5d50;
-    }
-    .card {
-      background-color: #161b22;
-    }
-    footer {
-      background-color: #161b22 !important;
-      color: white !important;
-    }
-    span {
-      color: #3b5d50;
-    }
+  }
+  p {
+    color: white !important;
+  }
+  h3 {
+    color: white !important;
+  }
+  a {
+    color: white;
+  }
+  button {
+    background-color: #3b5d50;
+  }
+  .card{
+    background-color: #161b22;
+  }
+  footer {
+    background-color: #161b22 !important;
+    color: white !important;
+  }
+  span {
+    color: #3b5d50;
   }
 }
