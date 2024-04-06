@@ -4,6 +4,7 @@ import { catchError, throwError } from 'rxjs';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { OrdersService } from '../../../services/orders/orders.service';
 import { LanguageService } from '../../../services/language/language.service';
+import { CartService } from '../../../services/cart/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,12 @@ export class CartComponent {
     private userService: UserService,
     private paymentService: PaymentService,
     private orderService: OrdersService,
-    private langService: LanguageService
+    private langService: LanguageService,
+
+    private cartService:CartService
+
+
+
   ) {
     this.getCart();
 
@@ -50,14 +56,28 @@ export class CartComponent {
       .subscribe((response: any) => {
         this.cart = response?.items;
         if (this.cart) {
+          console.log(this.cart);
+          
           this.cart.forEach((element) => {
-            this.total += element.quantity * element.product_id.price;
+            this.total += element?.quantity * element?.product_id?.price;
             this.userService.total = this.total;
-            console.log(this.userService.total);
           });
         }
         this.SkeletonLoading = false;
       });
+  }
+
+  clear() {
+    this.cartService.clearCart(this.userId).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.userService.cartLength.next(0);
+        this.getCart();
+      },
+      error: (err) => {
+        console.error('clear error:', err);
+      },
+    });
   }
   pay() {
     this.paymentService
@@ -77,23 +97,16 @@ export class CartComponent {
       });
   }
   plus(i: any) {
-    console.log(i);
-
     this.updateQuantity(i, ++i.quantity);
-    console.log(this.userService.total);
   }
 
   minus(i: any) {
-    console.log(i);
-
     this.updateQuantity(i, --i.quantity);
 
     this.userService.total = this.total;
   }
   updateQuantity(item: any, newQuantity: number) {
     const body = { quantity: newQuantity };
-    console.log(item);
-    console.log(newQuantity);
     this.userService
       .updateUserCart(this.userId, item.product_id._id, body)
       .pipe(
@@ -103,11 +116,8 @@ export class CartComponent {
       )
       .subscribe({
         next: (response: any) => {
-          console.log(response);
           this.userService.total = this.total;
-          console.log(this.userService.total);
           this.getCart();
-          console.log(this.total);
         },
         error: (err) => {
           console.error('Payment error:', err);
@@ -128,7 +138,6 @@ export class CartComponent {
         })
       )
       .subscribe((response: any) => {
-        console.log(response.data._id);
         this.body = {
           user: this.userId,
           orderId: response.data._id,
@@ -145,7 +154,6 @@ export class CartComponent {
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
         this.userService.getCartCount(this.userId);
         this.getCart();
       });

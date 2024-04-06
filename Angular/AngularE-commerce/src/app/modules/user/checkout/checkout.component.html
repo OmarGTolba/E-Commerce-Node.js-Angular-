@@ -1,11 +1,10 @@
+<div  [ngClass]="{ '': !darkMode, 'dark': darkMode }">
 <div class="hero">
   <div class="container ">
     <h3></h3>
     <h1>checkout</h1>
   </div>
 </div>
-
-
 
 <div class="container w-50  m-auto mt-5">
   <div class="row d-flex">
@@ -15,8 +14,10 @@
       <div>
         <label for="name" class="yellow text-white mb-1">Name</label>
         <div class="rounded p-2 inp">
-          <input #name type="text" formControlName="name" name="name" value="{{userData.name_en}}" id="name"
+
+          <input #name type="text" formControlName="name" name="name" value="{{userData.name}}" id="name"
             title="name" placeholder="name" class="text-white col-11" />
+
         </div>
         <label for="email" class="yellow text-white mb-1">Email</label>
         <div class="rounded p-2 inp">
@@ -59,10 +60,10 @@
       </div>
 
       <div class="mt-5">
-        <input class="text-black" type="radio" formControlName="paymentMethod" id="html" name="fav_language"
+        <input class="text-black" type="radio" formControlName="paymentMethod" id="html" 
           value="CASH">
         <label class="h5 text-white px-3" for="html">Cash on delivery</label><br>
-        <input type="radio" id="css" formControlName="paymentMethod" name="fav_language" value="CREDIT">
+        <input type="radio" id="css" formControlName="paymentMethod"  value="CREDIT">
         <label class="h5 px-3 text-white" for="css">credit/debit Card</label><br>
       </div>
 
@@ -85,7 +86,7 @@
         <tbody>
           <tr *ngFor="let item of cart; let i = index">
             <td class="product-name">
-              <p class=" text-black">{{item.product_id.name_en.split(' ').slice(0, 2).join(' ') }}</p>
+              <p class="product_name text-black">{{item.product_id.name_en.split(' ').slice(0, 2).join(' ') }}</p>
             </td>
             <td>${{item.product_id.price}}</td>
             <td>
@@ -109,7 +110,7 @@
       <div class="col-md-7 mt-5 pt-5 align-self-end justify-content-end h-auto">
         <div class="row">
           <div class="col-md-12 text-right border-bottom mb-3">
-            <h3 class="text-black h5 text-uppercase">Cart Totals</h3>
+            <h3 class="text-black h5 text-uppercase product_name">Cart Totals</h3>
           </div>
         </div>
         <div class="row ">
@@ -138,4 +139,5 @@
       </button>
     </div>
   </div>
+</div>
 </div>

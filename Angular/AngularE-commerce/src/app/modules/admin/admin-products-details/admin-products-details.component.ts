@@ -50,8 +50,6 @@ export class AdminProductsDetailsComponent {
 
     this.http.get<any[]>(url, {}).subscribe(
       (response: any) => {
-        console.log(response);
-
         this.product = response.data;
       },
       (error) => {

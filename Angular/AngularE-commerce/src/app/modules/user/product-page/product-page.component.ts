@@ -60,7 +60,6 @@ export class ProductPageComponent {
       )
       .subscribe((response: any) => {
         this.products = response.data;
-        console.log(this.products);
 
         this.displayedProducts = this.products.slice(
           0,
@@ -80,8 +79,10 @@ export class ProductPageComponent {
         })
       )
       .subscribe((response: any) => {
+        console.log(response);
+        
         this.products = response.data;
-        this.displayedProducts = this.products;
+        this.displayedProducts = this.products.slice(0, this.paginator.pageSize);;
         this.skeletonLoading = false;
         this.skeletonLoading = false;
       });
@@ -95,9 +96,10 @@ export class ProductPageComponent {
         })
       )
       .subscribe((response: any) => {
-        this.products = response.data;
-        this.displayedProducts = this.products[0];
-        console.log(this.products[0]);
+        console.log(response);
+        
+        this.products = response.data[0];
+        this.displayedProducts = this.products.slice(0, this.paginator.pageSize);;
         this.skeletonLoading = false;
         this.skeletonLoading = false;
       });

@@ -1,0 +1,110 @@
+<div [ngClass]="{ '': !darkMode, dark: darkMode }">
+  <!-- Start Footer Section -->
+  <footer class="footer-section">
+    <div class="container">
+      <!-- <div class="sofa-img">
+    </div> -->
+      <div class="col-12 row justify-content-center align-items-center justify-content-md-between">
+        <img src="../../../assets/images/sofa.png" alt="Image" class="img-fluid col-12 col-md-6" />
+
+        <div class="col-12 col-md-5">
+          <div>
+            <div class="subscription-form">
+              <h3 class="d-flex align-items-center">
+                <span class="me-1"><img src="../../../assets/images/envelope-outline.svg" alt="Image"
+                    class="img-fluid" /></span><span>{{ "Subscribe to Newsletter" | translate }}</span>
+              </h3>
+
+              <form action="#" class="d-flex flex-column g-3 gap-2">
+                <div class="col-auto">
+                  <input type="text" class="form-control" placeholder="{{ 'Enter your name' | translate }}" />
+                </div>
+                <div class="col-auto">
+                  <input type="email" class="form-control" placeholder="{{ 'Enter your email' | translate }}" />
+                </div>
+                <div class="col-auto">
+                  <button class="btn btn-primary">
+                    <span class="fa fa-paper-plane"></span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-5 mt-2 mx-0">
+        <div class="col-lg-4" style="width: 90%;padding:0 ;">
+          <div class="mb-4 footer-logo-wrap">
+            <a routerLink="#" class="footer-logo" dir="ltr">CozyCorner<span>.</span></a>
+          </div>
+          <p class="mb-4">
+            {{ "intro3" | translate }}
+          </p>
+
+          <ul class="list-unstyled custom-social">
+            <li>
+              <a routerLink="#"><span class="fa fa-brands fa-facebook-f"></span></a>
+            </li>
+            <li>
+              <a routerLink="#"><span class="fa fa-brands fa-twitter"></span></a>
+            </li>
+            <li>
+              <a routerLink="#"><span class="fa fa-brands fa-instagram"></span></a>
+            </li>
+            <li>
+              <a routerLink="#"><span class="fa fa-brands fa-linkedin"></span></a>
+            </li>
+          </ul>
+        </div>
+
+        <div style="width: 90%;" class="col-lg-8">
+          <div class="row links-wrap justify-content-between">
+            <div class="col-6 col-sm-6 col-md-3">
+              <ul class="list-unstyled">
+                <li>
+                  <a routerLink="#">{{ "About" | translate }} </a>
+                </li>
+                <li>
+                  <a routerLink="#">{{ "Services" | translate }}</a>
+                </li>
+                <li>
+                  <a routerLink="#">{{ "Contact" | translate }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3">
+              <ul class="list-unstyled">
+                <li>
+                  <a routerLink="#">{{ "Support" | translate }}</a>
+                </li>
+                <li>
+                  <a routerLink="#">{{ "Knowledge base" | translate }}</a>
+                </li>
+                <li>
+                  <a routerLink="#">{{ "Live chat" | translate }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3">
+              <ul class="list-unstyled">
+                <li>
+                  <a routerLink="#">{{ "Jobs" | translate }}</a>
+                </li>
+                <li>
+                  <a routerLink="#">{{ "Our team" | translate }}</a>
+                </li>
+                <li>
+                  <a routerLink="#">{{ "Privacy Policy" | translate }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Footer Section -->
+  </footer>
+</div>

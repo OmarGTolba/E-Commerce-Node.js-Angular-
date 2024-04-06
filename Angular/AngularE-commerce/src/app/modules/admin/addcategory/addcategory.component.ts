@@ -26,7 +26,6 @@ export class AddcategoryComponent implements OnInit {
       if (params.get('id')) {
         this.id = params.get('id');
         this.editMode = true;
-        console.log(this.editMode);
         this.categoryService
           .getCategoryById(this.id!)
           .pipe(
@@ -38,7 +37,6 @@ export class AddcategoryComponent implements OnInit {
             this.categoryName_en = response.data.name_en;
             this.categoryName_ar = response.data.name_ar;
             this.categoryImage = response.data.icon;
-            console.log(response.data);
           });
       }
     });
@@ -56,9 +54,7 @@ export class AddcategoryComponent implements OnInit {
           return of(error);
         })
       )
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+      .subscribe((response: any) => {});
   }
 
   onEdit() {
@@ -73,13 +69,6 @@ export class AddcategoryComponent implements OnInit {
           return of(error);
         })
       )
-      .subscribe((response: any) => {
-        console.log(response);
-        console.log(
-          this.categoryName_ar,
-          this.categoryName_en,
-          this.categoryImage
-        );
-      });
+      .subscribe((response: any) => {});
   }
 }

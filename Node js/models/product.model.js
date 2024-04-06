@@ -55,15 +55,13 @@ const productSchema = new mongoose.Schema({
     default: 0,
   },
   isFeatured: {
-    type: Boolean,
-    default: false,
+    type: String,
+    default: 'false',
   },
   dateCreated: {
     type: Date,
     default: Date.now,
-  },
-
-  image: String,
+  }
 });
 const Product = mongoose.model("Product", productSchema);
 

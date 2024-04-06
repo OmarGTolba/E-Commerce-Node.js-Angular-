@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 export class FavoritesService {
   constructor(private httpClient: HttpClient) {}
   getUserFavProduct(id: string): Observable<any[]> {
-  
     return this.httpClient.get<any[]>(
       'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' + id
     );
@@ -28,13 +27,11 @@ export class FavoritesService {
   }
 
   delFavProduct(id: string, prdId: string) {
-  
     return this.httpClient.delete(
       'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
         id +
         '/' +
-        prdId,
-  
+        prdId
     );
   }
 }

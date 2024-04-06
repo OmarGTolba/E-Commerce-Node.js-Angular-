@@ -177,6 +177,11 @@ li {
   max-width: 780px;
   left: -20px;
 }
+@media (max-width: 900px) {
+  .hero .hero-img-wrap img {
+    display: none;
+  }
+}
 @media (min-width: 768px) {
   .hero .hero-img-wrap img {
     right: 0px;
@@ -211,6 +216,11 @@ li {
 @media (min-width: 1200px) {
   .hero .hero-img-wrap:after {
     top: -40px;
+  }
+}
+@media (max-width: 768px) {
+  .hero .hero-img-wrap {
+    display: none;
   }
 }
 
@@ -596,6 +606,8 @@ li {
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
   transition: 0.3s all ease;
+  -moz-transition: 0.3s all ease;
+  -ms-transition: 0.3s all ease;
 }
 .testimonial-slider-wrap #testimonial-nav > span:hover {
   background: #3b5d50;
@@ -614,6 +626,8 @@ li {
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 .testimonial-slider-wrap .tns-nav button {
   background: none;
@@ -641,8 +655,7 @@ li {
   position: absolute;
   content: "";
   border-radius: 50%;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
+
   transition: 0.3s all ease;
   background-color: #d6d6d6;
 }
@@ -667,8 +680,7 @@ li {
 }
 .blog-section .post-entry .post-thumbnail img {
   border-radius: 20px;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
+
   transition: 0.3s all ease;
 }
 .blog-section .post-entry .post-content-entry {
@@ -702,8 +714,7 @@ li {
 .footer-section a {
   text-decoration: none;
   color: #2f2f2f;
-  -webkit-transition: 0.3s all ease;
-  -o-transition: 0.3s all ease;
+
   transition: 0.3s all ease;
 }
 .footer-section a:hover {
@@ -804,6 +815,9 @@ li {
 }
 .footer-section .custom-social li a:hover {
   background: #3b5d50;
+  color: #ffffff;
+}
+.footer-section .custom-social li a:hover span {
   color: #ffffff;
 }
 .footer-section .border-top {
@@ -936,7 +950,7 @@ textarea {
 .testbtn-nex {
   background-color: rgba(59, 93, 80, 0.1);
   top: 40% !important;
-  left: 0px !important;
+  left: -24px !important;
   width: 50px;
   transform: translateY(-50%);
 
@@ -947,7 +961,7 @@ textarea {
 .testbtn-pre {
   background-color: rgba(59, 93, 80, 0.1);
   top: 40% !important;
-  right: 0px !important ;
+  right: -24px !important ;
   width: 50px;
   transform: translateY(-50%);
   height: 50px;
@@ -1016,7 +1030,10 @@ nav {
     color: white;
   }
   button {
-    background-color: white;
+    background-color: #3b5d50;
+  }
+  .card {
+    background-color: #161b22;
   }
   footer {
     background-color: #161b22 !important;

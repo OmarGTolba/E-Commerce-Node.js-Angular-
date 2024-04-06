@@ -6,9 +6,8 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const toast = new NgToastService();
   const router = inject(Router);
   const localData = localStorage.getItem('token');
-  
+
   if (localData === null) {
-    console.log(localData);
     return true;
   } else {
     toast.error({
@@ -16,8 +15,8 @@ export const loginGuard: CanActivateFn = (route, state) => {
       summary: 'Error',
       duration: 5000,
       position: 'topRight',
-    }); 
+    });
     router.navigateByUrl('/');
-    return false; 
+    return false;
   }
 };

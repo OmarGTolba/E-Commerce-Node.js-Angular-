@@ -1,10 +1,12 @@
+/* <li class=""> */
 .parentCart {
   position: relative;
 }
 .quantity {
   position: absolute;
   top: -3px;
-
+  /* background-color: red;
+    color: white !important; */
   right: -9px !important;
   bottom: unset !important;
   border-radius: 50%;
@@ -19,6 +21,12 @@ mat-icon {
 @media (min-width: 768px) {
   .container {
     min-width: 781px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamada {
+    width: 85% !important;
   }
 }
 
@@ -40,9 +48,11 @@ mat-icon {
   border: 1px solid #f9f9f9;
 }
 .signIn {
+  /* padding: 10px; */
   border: none;
   background-color: #f8b810;
   border-radius: 10px;
+  /* padding: 0 30px; */
   color: #f9f9f9;
   height: 35px;
   margin-top: 4px;

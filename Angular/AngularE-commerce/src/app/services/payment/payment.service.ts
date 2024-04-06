@@ -16,7 +16,7 @@ export class PaymentService {
 
   showResult(): Observable<string> {
     return this.httpClient.post<string>(
-      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/result',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/checkout',
       {}
     );
   }

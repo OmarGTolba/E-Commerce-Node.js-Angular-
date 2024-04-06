@@ -34,7 +34,6 @@ export class UserService {
         } else {
           this.cartLength.next(0);
         }
-        console.log(response);
       });
   }
 
@@ -48,8 +47,11 @@ export class UserService {
 
   getUserOrder(id: string, body: any): Observable<any[]> {
     const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user`;
-
-    return this.http.post<any[]>(updateUrl, body);
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<any[]>(updateUrl, body, { headers });
   }
 
   deleteCartItem(id: string, productId: string): Observable<any[]> {
@@ -64,7 +66,7 @@ export class UserService {
     email: string;
   }): Observable<any> {
     return this.http.post<any>(
-      'https://ecommerce-node-wqwd.onrender.com/api/v1/contact',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/contact',
       data
     );
   }

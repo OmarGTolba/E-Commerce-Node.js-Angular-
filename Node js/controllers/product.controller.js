@@ -58,6 +58,8 @@ const addNewProduct = asyncHandler(async (req, res) => {
     isFeatured,
     images,
   } = req.body;
+  const imageUrl = req.imageUrl;
+
   const newProduct = await productModel.create({
     name_en,
     name_ar,
@@ -71,15 +73,45 @@ const addNewProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
     isFeatured,
-    images: req.files.map((file) => file.filename),
+    images: imageUrl,
   });
   res.status(201).json({ data: newProduct });
 });
 
 const updateProduct = asyncHandler(async (req, res) => {
   const id = req.params.id;
+  const {
+    name_en,
+    name_ar,
+    description_en,
+    description_ar,
+    categories,
+    brand_en,
+    brand_ar,
+    price,
+    countInStock,
+    rating,
+    numReviews,
+    isFeatured,
+    images,
+  } = req.body;
+  const imageUrl = req.imageUrl;
 
-  const Updates = await productModel.updateOne({ _id: id }, req.body);
+  const Updates = await productModel.updateOne({ _id: id }, {
+    name_en,
+    name_ar,
+    description_en,
+    description_ar,
+    categories,
+    brand_en,
+    brand_ar,
+    price,
+    countInStock,
+    rating,
+    numReviews,
+    isFeatured,
+    images: imageUrl
+  });
   res.send(Updates);
 });
 
@@ -99,7 +131,6 @@ const topRating = asyncHandler(async (req, res) => {
   if (!topProducts || topProducts.length === 0) {
     return res.status(404).send(`There are no products.`);
   }
-  console.log(topProducts);
   res.send(topProducts);
 });
 

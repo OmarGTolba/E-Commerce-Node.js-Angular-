@@ -32,7 +32,6 @@ export class AllOrdersComponent {
 
       .subscribe((response: any) => {
         this.orders = response.data;
-        console.log(response);
       });
   }
 
@@ -60,8 +59,6 @@ export class AllOrdersComponent {
           duration: 5000,
           position: 'topRight',
         });
-
-        console.log(response);
       });
   }
   complete(id: string) {
@@ -88,8 +85,6 @@ export class AllOrdersComponent {
           duration: 5000,
           position: 'topRight',
         });
-
-        console.log(response);
       });
   }
 }

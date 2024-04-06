@@ -4,17 +4,18 @@ import { IUser } from '../../../Models/userInterface';
 import { UserService } from '../../../services/user/user.service';
 import { PaymentService } from '../../../services/payment/payment.service';
 import { OrdersService } from '../../../services/orders/orders.service';
-import { catchError, throwError } from 'rxjs';
+import { catchError, of, throwError } from 'rxjs';
 import { log } from 'console';
 import { ProfileService } from '../../../services/profile/profile.service';
 import { Router } from '@angular/router';
-
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrl: './checkout.component.css',
+  styleUrls: ['./checkout.component.css', '../../../app.component.css'],
 })
 export class CheckoutComponent implements OnInit {
+   
   userId = localStorage.getItem('userId') || '';
   userData: any = {
     name: '',
@@ -25,6 +26,7 @@ export class CheckoutComponent implements OnInit {
     phoneno: '',
   };
   body = {};
+  darkMode:any;
   total: any;
   constructor(
     private userService: UserService,
@@ -32,22 +34,26 @@ export class CheckoutComponent implements OnInit {
     private orderService: OrdersService,
     private profileService: ProfileService,
     // private profileService: ProfileService,
-    private router: Router
+    private router: Router, private toast: NgToastService
   ) {
     this.total = this.userService.total;
-    console.log(this.total);
-    console.log(this.userService.total);
     this.getCart();
+
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
   }
 
   ngOnInit(): void {
     this.profileService.getUserInfo(this.userId).subscribe((res) => {
-      console.log(res);
       this.userData.name = res.name;
       this.userData.email = res.email;
       this.userData.address = res.address;
-      console.log(res.name);
     });
+  console.log(this.userData);
+  
   }
 
   cart: any[] = [];
@@ -63,30 +69,28 @@ export class CheckoutComponent implements OnInit {
       )
       .subscribe((response: any) => {
         this.cart = response?.items;
-        console.log(this.cart);
         this.cart.forEach((element) => {
           this.total += element.quantity * element.product_id.price;
           this.userService.total = this.total;
-          console.log(this.userService.total);
         });
       });
   }
 
   editFormGroup = new FormGroup({
     name: new FormControl({ value: '', disabled: true }, [
-      Validators.required,
+      
       Validators.minLength(3),
     ]),
     email: new FormControl({ value: '', disabled: true }, [
-      Validators.required,
+   
       Validators.pattern(/^[\w]+@[\w]+.com$/),
     ]),
     phone: new FormControl({ value: '', disabled: false }, [
-      Validators.pattern(/^01[0-2]\d{8}$/),
-      Validators.required,
+      // Validators.pattern(/^01[0-2]\d{8}$/),
+
     ]),
     address: new FormControl({ value: '', disabled: false }, [
-      Validators.required,
+      
     ]),
     city: new FormControl({ value: '', disabled: false }, [
       Validators.required,
@@ -107,7 +111,6 @@ export class CheckoutComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log(response.data._id);
         this.body = {
           user: this.userId,
           orderId: response.data._id,
@@ -130,16 +133,17 @@ export class CheckoutComponent implements OnInit {
         })
       )
       .subscribe((response: any) => {
-        console.log(response.data._id);
         this.body = {
           user: this.userId,
           orderId: response.data._id,
         };
         this.pay();
-        this.userService.cartLength.next(0);
+        // this.userService.cartLength.next(0);
       });
   }
   async click() {
+    
+    if(this.editFormGroup.valid){
     if (
       this.editFormGroup.controls.paymentMethod.value &&
       this.editFormGroup.controls.paymentMethod.value == 'CASH'
@@ -150,23 +154,36 @@ export class CheckoutComponent implements OnInit {
       this.editFormGroup.controls.paymentMethod.value &&
       this.editFormGroup.controls.paymentMethod.value == 'CREDIT'
     ) {
-      await this.makeCreditOrder();
+      this.makeCreditOrder();
       this.router.navigate(['user/profile/allOrder']);
     }
-    this.makeOrder();
+    this.makeOrder();}
+    else{
+      this.toast.error({
+        detail: 'City and Phone are required',
+        summary: 'Error',
+        duration: 5000,
+        position: 'topRight',
+      }); 
+      
+    }
+    
   }
   pay() {
     this.paymentService
       .showPayment(this.body)
       .pipe(
         catchError((error) => {
-          return throwError(error);
+          return of(error) ;
         })
       )
       .subscribe({
         next: (response: any) => {
+
+          console.log(response.session);
+          
           window.open(response.session.url, '_blank');
-          this.userService.cartLength.next(0);
+          // this.userService.cartLength.next(0);
         },
         error: (err) => {
           console.error('Payment error:', err);

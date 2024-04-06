@@ -1,7 +1,7 @@
 <div class=" container d-flex  me-5">
   <div class="form-container pt-5 d-flex justify-center align-items-center">
     <form [formGroup]="Form" class="pt-5">
-      <label for="productName ">Product Name:</label>
+      <label for="productName ">Product Details:</label>
       <input type="text" placeholder="nameEn" [(ngModel)]="formBody.name_en" id="name_ar" formControlName="nameEn"
         required />
       <input type="text" [(ngModel)]="formBody.name_ar" placeholder="nameAr" id="name_en" formControlName="nameAr"
@@ -19,10 +19,7 @@
         required />
       <input type="text" [(ngModel)]="formBody.isFeatured" placeholder="isFeatured" id="isFeatured"
         formControlName="isFeatured" required />
-      <input type="text" placeholder="image" id="image" formControlName="img1" required
-        [(ngModel)]="formBody.images[0]" />
-      <input type="text" placeholder="image" id="image" formControlName="img2" required
-        [(ngModel)]="formBody.images[1]" />
+        <input type="file" multiple placeholder="image" id="image" formControlName="images" required (change)="handleChange($event)"/>
       <input type="text" [(ngModel)]="formBody.price" placeholder="price" id="price" formControlName="price" required />
 
       <select id="category" formControlName="category">

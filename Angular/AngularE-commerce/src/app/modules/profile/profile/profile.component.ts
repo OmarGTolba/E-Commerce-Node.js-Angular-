@@ -1,16 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../../services/profile/profile.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css', '../../../app.component.css']
 })
 export class ProfileComponent implements OnInit{
   id = localStorage.getItem('userId') || '';
   username = '';
-
-  constructor(private profileService: ProfileService){
+  darkMode:any;
+  constructor(private profileService: ProfileService, private userService:UserService){
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
   }
   ngOnInit(): void {
     this.profileService.getUserInfo(this.id).subscribe({

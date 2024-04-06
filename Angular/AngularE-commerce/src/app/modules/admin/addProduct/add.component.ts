@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from '../../../services/products/products.service';
 import { catchError } from 'rxjs';
 import { Product } from '../../../Models/products';
+import { NgToastService } from 'ng-angular-popup';
+import { error } from 'console';
 
 @Component({
   selector: 'app-add',
@@ -24,7 +26,8 @@ export class AddComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private productServices: ProductsService
+    private productServices: ProductsService,
+    private toast: NgToastService
   ) {}
   id: any = '';
   product: any;
@@ -42,7 +45,6 @@ export class AddComponent implements OnInit {
             })
           )
           .subscribe((response: any) => {
-            console.log(response.data);
             this.product = response.data;
             this.formBody.brand_ar = this.product.brand_ar;
             this.formBody.brand_en = this.product.brand_en;
@@ -57,7 +59,6 @@ export class AddComponent implements OnInit {
             this.formBody.images = this.product.images;
           });
       } else {
-        console.log('bbbba');
       }
     });
   }
@@ -70,8 +71,8 @@ export class AddComponent implements OnInit {
     brand_ar: '',
     description_ar: '',
     description_en: '',
-    countInStock: 0,
-    price: 0,
+    countInStock: '',
+    price: '',
     images: [],
     isFeatured: false,
   };
@@ -83,66 +84,100 @@ export class AddComponent implements OnInit {
     category: new FormControl(''),
     brandAr: new FormControl(''),
     descAr: new FormControl(''),
-    isFeatured: new FormControl(''),
+    isFeatured: new FormControl('false'),
     descEn: new FormControl(''),
     countInStock: new FormControl(''),
-    img1: new FormControl(''),
-    img2: new FormControl(''),
     price: new FormControl(''),
-    image: new FormControl(''),
+    images: new FormControl([]),
   });
-
+  handleChange(e: Event) {
+    const inputElement = e.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      this.formBody.images = Array.from(inputElement.files);
+    }
+  }
   addProduct() {
-    console.log(this.Form.controls.brandAr);
     const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
 
-    const body = {
-      name_en: this.Form.controls.nameEn.value,
-      name_ar: this.Form.controls.nameAr.value,
-      description_ar: this.Form.controls.descAr.value,
-      brand_ar: this.Form.controls.brandAr.value,
-      brand_en: this.Form.controls.brandEn.value,
-      description_en: this.Form.controls.descEn.value,
-      isFeatured: this.Form.controls.isFeatured.value == 'false' ? false : true,
-      categories: this.Form.controls.category.value,
-      countInStock: this.Form.controls.countInStock.value,
-      price: this.Form.controls.price.value,
-      images: [this.Form.controls.img1.value, this.Form.controls.img2.value],
-    };
-    console.log([this.Form.controls.img1.value, this.Form.controls.img2.value]);
-
-    this.http.post<any[]>(url, body, {}).subscribe(
-      (response: any) => {},
-      (error) => {
-        console.error('Error fetching books:', error);
-      }
+    const formData = new FormData();
+    formData.append('name_ar', this.Form.get('nameAr')?.value || '');
+    formData.append('name_en', this.Form.get('nameEn')?.value || '');
+    formData.append('brand_en', this.Form.get('brandEn')?.value || '');
+    formData.append('brand_ar', this.Form.get('brandAr')?.value || '');
+    formData.append('categories', this.Form.get('category')?.value || '');
+    formData.append('description_en', this.Form.get('descEn')?.value || '');
+    formData.append('description_ar', this.Form.get('descAr')?.value || '');
+    formData.append(
+      'isFeatured',
+      this.Form.get('isFeatured')?.value || 'false'
     );
+    formData.append('countInStock', this.Form.get('countInStock')?.value || '');
+    formData.append('price', this.Form.get('price')?.value || '');
+
+    for (let i = 0; i < this.formBody.images.length; i++) {
+      formData.append('images', this.formBody.images[i]);
+    }
+    this.http.post<any[]>(url, formData).subscribe({
+      next: () => {
+        this.toast.success({
+          detail: 'Success',
+          summary: 'Product added successfully',
+          duration: 5000,
+          position: 'topRight',
+        });
+        this.formBody = {
+          name_ar: '',
+          name_en: '',
+          brand_en: '',
+          categories: '',
+          brand_ar: '',
+          description_ar: '',
+          description_en: '',
+          countInStock: '',
+          price: '',
+          images: [],
+          isFeatured: false,
+        };
+        this.Form.markAsPristine();
+        this.Form.markAsUntouched();
+      },
+    });
   }
 
   updateProduct() {
     const url = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${this.id}`;
 
-    const body = {
-      name_en: this.Form.controls.nameEn.value,
-      name_ar: this.Form.controls.nameAr.value,
-      description_ar: this.Form.controls.descAr.value,
-      brand_ar: this.Form.controls.brandAr.value,
-      brand_en: this.Form.controls.brandEn.value,
-      isFeatured: this.Form.controls.isFeatured.value == 'false' ? false : true,
-      description_en: this.Form.controls.descEn.value,
-      categories: this.Form.controls.category.value,
-      countInStock: this.Form.controls.countInStock.value,
-      price: this.Form.controls.price.value,
-      images: [this.Form.controls.img1.value, this.Form.controls.img2.value],
-    };
-
-    this.http.patch<any[]>(url, this.formBody, {}).subscribe(
-      (response: any) => {
-        console.log('done');
-      },
-      (error) => {
-        console.error('Error fetching books:', error);
-      }
+    const formData = new FormData();
+    formData.append('name_ar', this.Form.get('nameAr')?.value || '');
+    formData.append('name_en', this.Form.get('nameEn')?.value || '');
+    formData.append('brand_en', this.Form.get('brandEn')?.value || '');
+    formData.append('brand_ar', this.Form.get('brandAr')?.value || '');
+    formData.append('categories', this.Form.get('category')?.value || '');
+    formData.append('description_en', this.Form.get('descEn')?.value || '');
+    formData.append('description_ar', this.Form.get('descAr')?.value || '');
+    formData.append(
+      'isFeatured',
+      this.Form.get('isFeatured')?.value || 'false'
     );
+    formData.append('countInStock', this.Form.get('countInStock')?.value || '');
+    formData.append('price', this.Form.get('price')?.value || '0');
+
+    for (let i = 0; i < this.formBody.images.length; i++) {
+      formData.append('images', this.formBody.images[i]);
+    }
+
+    this.http.patch<any[]>(url, formData, {}).subscribe({
+      next: () => {
+        this.toast.success({
+          detail: 'Success',
+          summary: 'Product updated successfully',
+          duration: 5000,
+          position: 'topRight',
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

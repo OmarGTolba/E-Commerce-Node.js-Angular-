@@ -8,7 +8,7 @@
             <div class="thumbnail_images">
               <ul id="thumbnail" class="d-flex gap-3">
                 <li *ngFor="let item of product.images; let i = index"><img (click)="imgClick(item)" width="70"
-                    [src]="item">
+                    src="{{item}}">
                 </li>
 
               </ul>

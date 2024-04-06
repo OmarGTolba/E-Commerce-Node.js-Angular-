@@ -1,6 +1,5 @@
 require("dotenv").config();
 require("./db");
-
 var cors = require("cors");
 const productRouter = require("./routes/product.router.js");
 const categoryRouter = require("./routes/categories.router.js");
@@ -21,6 +20,7 @@ const paymentRouter = require("./routes/payment.router.js");
 const ejs = require("ejs");
 
 app.use(cors());
+app.use('/uploads', express.static('uploads'))
 app.use((req, res, next) => {
   req.header("Access-Control-Allow-Origin", "*");
   req.header("Access-Control-Allo w-Origin", "*");

@@ -238,3 +238,11 @@ form button:active {
 .circle.no-before::before {
   display: none; /* Hide the ::before pseudo-element for circles with the "no-before" class */
 }
+
+
+button[disabled]:hover{
+ background-color: transparent !important;
+ color: black !important;
+}
+
+

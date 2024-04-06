@@ -1,7 +1,7 @@
-const orderSchema = require('../models/order.model')
-const Payment = require('../models/payment.model')
-const User = require('../models/user.model')
-const Product = require('../models/product.model')
+const orderSchema = require("../models/order.model");
+const Payment = require("../models/payment.model");
+const User = require("../models/user.model");
+const Product = require("../models/product.model");
 
 const getAllPayments = async (req, res) => {
   const payments = await Payment.find();
@@ -11,7 +11,7 @@ const getAllPayments = async (req, res) => {
 const findUserEmailById = async (userId) => {
   const user = await User.findById(userId);
   if (!user) {
-    console.log("User not found");
+    res.status(404).send({ message: `User not found ` });
     return;
   }
   return user.email;
@@ -41,24 +41,24 @@ const checkoutSession = async (req, res) => {
         currency: "egp",
         unit_amount: item.product.price * 100,
         product_data: {
-          name: item.product.name,
-          description: item.product.description,
+          name: item.product.name_en,
+          description: item.product.description_en,
         },
       },
       quantity: 1,
     })),
-    mode: 'payment',
-    success_url: `${req.protocol}://${req.get('host')}/orders?success=true`,
-    cancel_url: `${req.protocol}://${req.get('host')}/cart?canceled=true`,
+    mode: "payment",
+    success_url: `${req.protocol}://${req.get("host")}/orders?success=true`,
+    cancel_url: `${req.protocol}://${req.get("host")}/cart?canceled=true`,
     customer_email: await findUserEmailById(req.body.user),
-  })
-  res.status(200).json({ status: 'success', session })
-  result = res.statusCode
-}
+  });
+  res.status(200).json({ status: "success", session });
+  result = res.statusCode;
+};
 
 const getResult = async (req, res) => {
   if (result == 200) {
-    res.status(200).send('payment suucceeded')
+    res.status(200).send("payment suucceeded");
     const orderUpdate = orderSchema.findByIdAndUpdate(order._id, {
       $set: { status: "success" },
     });
@@ -77,5 +77,5 @@ const getResult = async (req, res) => {
 module.exports = {
   checkoutSession,
   getAllPayments,
-  getResult
-}
+  getResult,
+};
