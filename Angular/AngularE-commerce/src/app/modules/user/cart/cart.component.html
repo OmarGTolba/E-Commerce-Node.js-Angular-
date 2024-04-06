@@ -18,11 +18,9 @@
       <div class="row mb-5">
         <form class="col-md-12" method="post">
           <div class="site-blocks-table">
-
-            <table  class="table">
-
+            <table class="table">
               <thead>
-                <tr *ngIf="cart?.length!==0 || !cart">
+                <tr *ngIf="cart?.length !== 0 || !cart">
                   <th class="product-thumbnail">{{ "Image" | translate }}</th>
                   <th class="product-name">{{ "Product" | translate }}</th>
                   <th class="product-price">{{ "Price" | translate }}</th>
@@ -34,74 +32,103 @@
               <tbody>
                 <tr *ngIf="SkeletonLoading">
                   <td>
-                    <ngx-skeleton-loader [theme]="{
+                    <ngx-skeleton-loader
+                      [theme]="{
                         height: '150px',
                         width: '100%',
                         borderRadius: '4px'
-                      }"></ngx-skeleton-loader>
+                      }"
+                    ></ngx-skeleton-loader>
                   </td>
                   <td>
-                    <ngx-skeleton-loader [theme]="{
+                    <ngx-skeleton-loader
+                      [theme]="{
                         height: '20px',
                         width: '100%',
                         borderRadius: '4px'
-                      }"></ngx-skeleton-loader>
+                      }"
+                    ></ngx-skeleton-loader>
                   </td>
                   <td>
-                    <ngx-skeleton-loader [theme]="{
+                    <ngx-skeleton-loader
+                      [theme]="{
                         height: '20px',
                         width: '30%',
                         borderRadius: '4px'
-                      }"></ngx-skeleton-loader>
+                      }"
+                    ></ngx-skeleton-loader>
                   </td>
                   <td>
-                    <ngx-skeleton-loader [theme]="{
+                    <ngx-skeleton-loader
+                      [theme]="{
                         height: '20px',
                         width: '30%',
                         borderRadius: '4px'
-                      }"></ngx-skeleton-loader>
+                      }"
+                    ></ngx-skeleton-loader>
                   </td>
                   <td>
-                    <ngx-skeleton-loader [theme]="{
+                    <ngx-skeleton-loader
+                      [theme]="{
                         height: '20px',
                         width: '30%',
                         borderRadius: '4px'
-                      }"></ngx-skeleton-loader>
+                      }"
+                    ></ngx-skeleton-loader>
                   </td>
                   <td>
-                    <ngx-skeleton-loader [theme]="{
+                    <ngx-skeleton-loader
+                      [theme]="{
                         height: '20px',
                         width: '30%',
                         borderRadius: '4px'
-                      }"></ngx-skeleton-loader>
+                      }"
+                    ></ngx-skeleton-loader>
                   </td>
                 </tr>
 
                 <tr *ngFor="let item of cart; let i = index">
                   <ng-container *ngIf="!SkeletonLoading">
                     <td class="product-thumbnail">
-
-                      <img src="../../../assets/images/uploads/{{item.product_id.images[0] }}"
-                      alt="Image" class="img-fluid" />
-
+                      <img
+                        src="{{ item.product_id.images[0] }}"
+                        alt="Image"
+                        class="img-fluid"
+                      />
                     </td>
                     <td class="product-name">
                       <h2 class="h5 text-black">{{ item.product_id.name }}</h2>
                     </td>
                     <td>${{ item.product_id.price }}</td>
                     <td>
-                      <div class="input-group mb-3 d-flex align-items-center quantity-container"
-                        style="max-width: 120px">
+                      <div
+                        class="input-group mb-3 d-flex align-items-center quantity-container"
+                        style="max-width: 120px"
+                      >
                         <div class="input-group-prepend">
-                          <button class="btn btn-outline-black decrease" (click)="minus(item)"
-                            [disabled]="item.quantity === 1" type="button">
+                          <button
+                            class="btn btn-outline-black decrease"
+                            (click)="minus(item)"
+                            [disabled]="item.quantity === 1"
+                            type="button"
+                          >
                             &minus;
                           </button>
                         </div>
-                        <input type="text" class="form-control text-center quantity-amount" value="{{ item.quantity }}"
-                          placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                        <input
+                          type="text"
+                          class="form-control text-center quantity-amount"
+                          value="{{ item.quantity }}"
+                          placeholder=""
+                          aria-label="Example text with button addon"
+                          aria-describedby="button-addon1"
+                        />
                         <div class="input-group-append">
-                          <button class="btn btn-outline-black increase" (click)="plus(item)" type="button">
+                          <button
+                            class="btn btn-outline-black increase"
+                            (click)="plus(item)"
+                            type="button"
+                          >
                             &plus;
                           </button>
                         </div>
@@ -109,20 +136,21 @@
                     </td>
                     <td>${{ item.product_id.price * item.quantity }}</td>
                     <td>
-                      <a (click)="deleteCart(item)" class="btn btn-black btn-sm">X</a>
+                      <a (click)="deleteCart(item)" class="btn btn-black btn-sm"
+                        >X</a
+                      >
                     </td>
                   </ng-container>
                 </tr>
               </tbody>
-              
             </table>
 
-            <h1 style="display: flex; justify-content: center; margin: 50px 0"
-
-            *ngIf="!SkeletonLoading && cart?.length===0 || !cart">
-            No Items in cart😥
-           </h1>
-
+            <h1
+              style="display: flex; justify-content: center; margin: 50px 0"
+              *ngIf="(!SkeletonLoading && cart?.length === 0) || !cart"
+            >
+              No Items in cart😥            
+            </h1>
           </div>
         </form>
       </div>
@@ -131,16 +159,20 @@
         <div class="col-md-6">
           <div class="row mb-5">
             <div class="col-md-6">
-              <button routerLink="/" class="btn btn-outline-black btn-sm btn-block">
+              <button
+                routerLink="/"
+                class="btn btn-outline-black btn-sm btn-block"
+              >
                 {{ "Continue Shopping" | translate }}
               </button>
-
             </div>
             <div class="col-md-6">
-              <button (click)="clear()" class="btn btn-outline-black btn-sm btn-block">
-                {{"Clear Cart" | translate}}
+              <button
+                (click)="clear()"
+                class="btn btn-outline-black btn-sm btn-block"
+              >
+                {{ "Clear Cart" | translate }}
               </button>
-
             </div>
           </div>
         </div>
@@ -173,8 +205,11 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <button class="btn btn-black btn-lg py-3 btn-block" routerLink="/user/checkout"
-                    [disabled]="cart.length === 0">
+                  <button
+                    class="btn btn-black btn-lg py-3 btn-block"
+                    routerLink="/user/checkout"
+                    [disabled]="cart.length === 0"
+                  >
                     {{ "Proceed To Checkout" | translate }}
                   </button>
                 </div>

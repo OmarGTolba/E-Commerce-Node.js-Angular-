@@ -9,14 +9,14 @@ export class PaymentService {
   constructor(private httpClient: HttpClient) {}
   showPayment(body: any): Observable<any[]> {
     return this.httpClient.post<any>(
-      'http://localhost:3000/api/v1/payment/checkout',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/checkout',
       body
     );
   }
 
   showResult(): Observable<string> {
     return this.httpClient.post<string>(
-      'http://localhost:3000/api/v1/payment/checkout',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/payment/checkout',
       {}
     );
   }

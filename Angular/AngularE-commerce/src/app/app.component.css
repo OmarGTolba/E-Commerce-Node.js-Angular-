@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 body {
   overflow-x: hidden;
   position: relative;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   line-height: 28px;
   color: #6a6a6a;
@@ -65,7 +65,7 @@ a.more {
 }
 @media (min-width: 768px) {
   .custom-navbar .custom-navbar-nav li a:before {
-    content: "";
+    content: '';
     position: absolute;
     bottom: 0;
     left: 8px;
@@ -177,6 +177,11 @@ li {
   max-width: 780px;
   left: -20px;
 }
+@media (max-width: 900px) {
+  .hero .hero-img-wrap img {
+    display: none;
+  }
+}
 @media (min-width: 768px) {
   .hero .hero-img-wrap img {
     right: 0px;
@@ -199,7 +204,7 @@ li {
   }
 }
 .hero .hero-img-wrap:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 255px;
   height: 217px;
@@ -327,7 +332,7 @@ li {
   left: 0;
   right: 0;
   position: absolute;
-  content: "";
+  content: '';
   background: #dce5e4;
   height: 0%;
   z-index: -1;
@@ -356,7 +361,7 @@ li {
 }
 .why-choose-section .img-wrap:before {
   position: absolute;
-  content: "";
+  content: '';
   width: 255px;
   height: 217px;
   background-repeat: no-repeat;
@@ -379,7 +384,7 @@ li {
   margin-bottom: 20px;
 }
 .feature .icon:before {
-  content: "";
+  content: '';
   width: 33px;
   height: 33px;
   position: absolute;
@@ -414,7 +419,7 @@ li {
 }
 .we-help-section .imgs-grid:before {
   position: absolute;
-  content: "";
+  content: '';
   width: 255px;
   height: 217px;
 
@@ -473,7 +478,7 @@ li {
   padding-left: 20px;
 }
 .custom-list li:before {
-  content: "";
+  content: '';
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -520,7 +525,7 @@ li {
   position: relative;
 }
 .popular-product .product-item-sm .thumbnail:before {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 20px;
   background: #dce5e4;
@@ -643,14 +648,14 @@ li {
   left: 0;
   top: 0;
   position: absolute;
-  content: "";
+  content: '';
   border-radius: 50%;
-  -webkit-transition:;
-  -o-transition:;
+  -webkit-transition: ;
+  -o-transition: ;
   transition: 0.3s all ease;
   background-color: #d6d6d6;
-  -moz-transition:;
-  -ms-transition:;
+  -moz-transition: ;
+  -ms-transition: ;
 }
 .testimonial-slider-wrap .tns-nav button:hover:before,
 .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
@@ -673,11 +678,11 @@ li {
 }
 .blog-section .post-entry .post-thumbnail img {
   border-radius: 20px;
-  -webkit-transition:;
-  -o-transition:;
+  -webkit-transition: ;
+  -o-transition: ;
   transition: 0.3s all ease;
-  -moz-transition:;
-  -ms-transition:;
+  -moz-transition: ;
+  -ms-transition: ;
 }
 .blog-section .post-entry .post-content-entry {
   padding-left: 15px;
@@ -710,11 +715,11 @@ li {
 .footer-section a {
   text-decoration: none;
   color: #2f2f2f;
-  -webkit-transition:;
-  -o-transition:;
+  -webkit-transition: ;
+  -o-transition: ;
   transition: 0.3s all ease;
-  -moz-transition:;
-  -ms-transition:;
+  -moz-transition: ;
+  -ms-transition: ;
 }
 .footer-section a:hover {
   color: rgba(47, 47, 47, 0.5);
@@ -739,7 +744,7 @@ li {
 .footer-section .subscription-form .form-control {
   height: 50px;
   border-radius: 10px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -816,7 +821,7 @@ li {
   background: #3b5d50;
   color: #ffffff;
 }
-.footer-section .custom-social li a:hover span{
+.footer-section .custom-social li a:hover span {
   color: #ffffff;
 }
 .footer-section .border-top {
@@ -832,7 +837,7 @@ li {
 
 .form-control {
   border-radius: 10px;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 .form-control:active,
 .form-control:focus {
@@ -933,7 +938,7 @@ textarea {
 }
 .thankyou-icon:before {
   position: absolute;
-  content: "";
+  content: '';
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1031,7 +1036,7 @@ nav {
   button {
     background-color: #3b5d50;
   }
-  .card{
+  .card {
     background-color: #161b22;
   }
   footer {

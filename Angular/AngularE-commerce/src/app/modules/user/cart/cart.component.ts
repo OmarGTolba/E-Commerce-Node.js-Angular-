@@ -145,19 +145,6 @@ export class CartComponent {
       });
   }
 
-  clear() {
-    this.cartService.clearCart(this.userId).subscribe({
-      next: (response: any) => {
-        console.log(response);
-        this.userService.cartLength.next(0);
-        this.getCart();
-      },
-      error: (err) => {
-        console.error('clear error:', err);
-      },
-    });
-  }
-
   deleteCart(item: any) {
     this.userService
       .deleteCartItem(this.userId, item.product_id._id)

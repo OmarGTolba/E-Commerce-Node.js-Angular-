@@ -6,18 +6,21 @@
           <mat-icon>visibility</mat-icon>
         </li>
         <li [class.favorite]="productFav">
-          <mat-icon class="heart-icon" [class.filled]="productFav" (click)="toggleFavorite()">favorite</mat-icon>
-
+          <mat-icon
+            class="heart-icon"
+            [class.filled]="productFav"
+            (click)="toggleFavorite()"
+            >favorite</mat-icon
+          >
         </li>
       </ul>
-      <img src="../../../assets/images/uploads/{{product?.images[0]}}" alt="Product Image" />
+      <img src="{{ product?.images[0] }}" alt="Product Image" />
       <ng-container *ngIf="product.isFeatured == 'true'">
         <div class="offer">50% off</div>
       </ng-container>
     </div>
     <div class="part-2" [ngClass]="{ 'text-end': lang == 'ar' }">
       <h3 class="product-title">
-        
         {{ lang == "ar" ? product.name_ar : product.name_en }}
       </h3>
       <ng-container *ngIf="product.isFeatured">
