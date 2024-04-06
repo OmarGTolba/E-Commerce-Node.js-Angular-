@@ -5,6 +5,7 @@ import { ProfileService } from '../../../services/profile/profile.service';
 import { LanguageService } from '../../../services/language/language.service';
 import { NgToastService } from 'ng-angular-popup';
 import { catchError, of } from 'rxjs';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,14 +20,20 @@ export class EditProfileComponent implements OnInit {
     phone: '',
     address: '',
   };
+  darkMode:any;
   lang = localStorage.getItem('lang') || 'en';
   constructor(
     private profileService: ProfileService,
     private toast: NgToastService,
-    private langService: LanguageService
+    private langService: LanguageService,private userService:UserService
   ) {
     this.langService.getLang().subscribe((lang) => {
       this.lang = lang;
+    });
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
     });
   }
   editFormGroup = new FormGroup({

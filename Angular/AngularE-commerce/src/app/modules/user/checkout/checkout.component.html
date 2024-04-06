@@ -1,11 +1,10 @@
+<div  [ngClass]="{ '': !darkMode, 'dark': darkMode }">
 <div class="hero">
   <div class="container ">
     <h3></h3>
     <h1>checkout</h1>
   </div>
 </div>
-
-
 
 <div class="container w-50  m-auto mt-5">
   <div class="row d-flex">
@@ -85,7 +84,7 @@
         <tbody>
           <tr *ngFor="let item of cart; let i = index">
             <td class="product-name">
-              <p class=" text-black">{{item.product_id.name_en.split(' ').slice(0, 2).join(' ') }}</p>
+              <p class="product_name text-black">{{item.product_id.name_en.split(' ').slice(0, 2).join(' ') }}</p>
             </td>
             <td>${{item.product_id.price}}</td>
             <td>
@@ -109,7 +108,7 @@
       <div class="col-md-7 mt-5 pt-5 align-self-end justify-content-end h-auto">
         <div class="row">
           <div class="col-md-12 text-right border-bottom mb-3">
-            <h3 class="text-black h5 text-uppercase">Cart Totals</h3>
+            <h3 class="text-black h5 text-uppercase product_name">Cart Totals</h3>
           </div>
         </div>
         <div class="row ">
@@ -138,4 +137,5 @@
       </button>
     </div>
   </div>
+</div>
 </div>

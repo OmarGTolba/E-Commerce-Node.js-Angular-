@@ -1,9 +1,10 @@
+<div class="cont" [ngClass]="{ '': !darkMode, 'dark': darkMode }"> 
 <div class="hero">
   <div class="container">
     <h1>{{ "Your profile" | translate }}</h1>
   </div>
 </div>
-<div class="container" *ngIf="username">
+<div class="container"  [ngClass]="{ '': !darkMode, 'dark': darkMode }" *ngIf="username">
   <!-- <h2 class="m-4 my-4 mx-md-0 text-left">Your profile</h2> -->
   <div class="rounded position-fixed left-0 bottom-0 col-5 p-3 profile">
     <h3 class="text-center text-white">
@@ -39,7 +40,7 @@
   </div>
   <router-outlet></router-outlet>
 </div>
-<div class="container" *ngIf="!username">
+<div class="container"  [ngClass]="{ '': !darkMode, 'dark': darkMode }" *ngIf="!username">
   <!-- <h2 class="m-4 my-4 mx-md-0 text-left">
     <ngx-skeleton-loader [theme]="{width: '25%'}" count="1" appearance="line" animation="pulse">
     </ngx-skeleton-loader>
@@ -78,5 +79,6 @@
       ></a>
     </div>
   </div>
-  <router-outlet></router-outlet>
 </div>
+</div>
+<router-outlet [ngClass]="{ '': !darkMode, 'dark': darkMode }"></router-outlet>

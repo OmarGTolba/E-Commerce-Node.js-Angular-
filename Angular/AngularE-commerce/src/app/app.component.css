@@ -645,12 +645,11 @@ li {
   position: absolute;
   content: "";
   border-radius: 50%;
-  -webkit-transition:;
-  -o-transition:;
+
+
   transition: 0.3s all ease;
   background-color: #d6d6d6;
-  -moz-transition:;
-  -ms-transition:;
+
 }
 .testimonial-slider-wrap .tns-nav button:hover:before,
 .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
@@ -673,11 +672,10 @@ li {
 }
 .blog-section .post-entry .post-thumbnail img {
   border-radius: 20px;
-  -webkit-transition:;
-  -o-transition:;
+
+  
   transition: 0.3s all ease;
-  -moz-transition:;
-  -ms-transition:;
+
 }
 .blog-section .post-entry .post-content-entry {
   padding-left: 15px;
@@ -710,11 +708,10 @@ li {
 .footer-section a {
   text-decoration: none;
   color: #2f2f2f;
-  -webkit-transition:;
-  -o-transition:;
+
+
   transition: 0.3s all ease;
-  -moz-transition:;
-  -ms-transition:;
+
 }
 .footer-section a:hover {
   color: rgba(47, 47, 47, 0.5);
@@ -1016,6 +1013,9 @@ nav {
 .dark {
   background-color: #161b22;
   color: white;
+  .product_name{
+    color: #000000 !important;
+  }
   h2 {
     color: white;
   }
