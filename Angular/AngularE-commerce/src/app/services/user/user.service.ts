@@ -8,13 +8,13 @@ import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 export class UserService {
   constructor(private http: HttpClient) {}
   getUserProducts(): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/user/get`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/user/get`;
 
     return this.http.get<any[]>(updateUrl);
   }
 
   getUserCart(id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/cart?user=${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart?user=${id}`;
 
     return this.http.get<any[]>(updateUrl);
   }
@@ -40,22 +40,22 @@ export class UserService {
   total: any;
 
   updateUserCart(id: string, productId: string, body: any): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${productId}?user=${id}`;
 
     return this.http.patch<any[]>(updateUrl, body);
   }
 
   getUserOrder(id: string, body: any): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/orders/${id}/user`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/orders/${id}/user`;
     const headers = new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     });
-    return this.http.post<any[]>(updateUrl, body , {headers});
+    return this.http.post<any[]>(updateUrl, body, { headers });
   }
 
   deleteCartItem(id: string, productId: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/cart/${productId}?user=${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart/${productId}?user=${id}`;
 
     return this.http.delete<any[]>(updateUrl);
   }
@@ -66,7 +66,7 @@ export class UserService {
     email: string;
   }): Observable<any> {
     return this.http.post<any>(
-      'http://localhost:3000/api/v1/contact',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/contact',
       data
     );
   }

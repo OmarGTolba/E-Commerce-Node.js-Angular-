@@ -1,4 +1,6 @@
 const express = require('express')
+const uploadImage = require('../services/cloudinary.service');
+
 const {
   getAllProducts,
   getProductById,
@@ -15,6 +17,7 @@ const {
   updateReviews,
   deletereview,
 } = require('../controllers/review.controller')
+
 const { auth } = require('../middleware/auth')
 const { admin } = require('../middleware/admin')
 const upload = require('../services/upload.service')
@@ -25,9 +28,9 @@ router.get('/', getAllProducts)
 router.get('/topRating', topRating)
 
 router.get('/:id', getProductById)
-router.patch('/:id', upload.array('images', 3),admin, updateProduct)
+router.patch('/:id', upload.array('images', 3),admin, uploadImage, updateProduct)
 
-router.post('/', upload.array('images', 3), admin, addNewProduct)
+router.post('/', upload.array('images', 3), admin, uploadImage, addNewProduct)
 router.delete('/:id', admin, deleteProduct)
 
 router.post('/:id/reviews', auth, addNewReview)

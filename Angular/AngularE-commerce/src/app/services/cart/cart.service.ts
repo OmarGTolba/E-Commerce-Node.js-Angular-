@@ -11,17 +11,17 @@ export class CartService {
   cart: any[] = [];
 
   addToCart(userId: string, body: any): Observable<any[]> {
-    const baseUrl = `http://localhost:3000/api/v1/cart?user=${userId}`;
+    const baseUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart?user=${userId}`;
 
     this.userService.getCartCount(userId);
     return this.http.post<any[]>(baseUrl, body);
   }
 
   clearCart(userId: string): Observable<any[]> {
-    const baseUrl = `http://localhost:3000/api/v1/cart?user=${userId}`;
+    const baseUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/cart?user=${userId}`;
 
     this.userService.getCartCount(userId);
 
     return this.http.delete<any[]>(baseUrl);
-  }
+  }
 }
