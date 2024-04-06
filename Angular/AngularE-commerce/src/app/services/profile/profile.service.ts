@@ -15,19 +15,19 @@ export class ProfileService {
   }
   updateProfile(data: IUser): Observable<any> {
     return this.httpClient.patch<IUser>(
-      'http://localhost:3000/api/v1/user/profile/update',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/user/profile/update',
       data
     );
   }
   forgotPassword(data: { email: string }) {
     return this.httpClient.post<{ email: string }>(
-      'http://localhost:3000/api/v1/user/password/forgotPassword',
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/user/password/forgotPassword',
       data
     );
   }
   resetPassword(id: string, token: string, data: { password: string }) {
     return this.httpClient.post<{ password: string }>(
-      `http://localhost:3000/api/v1/user/password/reset-password/${id}/${token}`,
+      `https://ecommerce-node-yxgy.onrender.com/api/v1/user/password/reset-password/${id}/${token}`,
       data
     );
   }

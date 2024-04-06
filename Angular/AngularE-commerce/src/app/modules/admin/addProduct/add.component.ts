@@ -90,14 +90,14 @@ export class AddComponent implements OnInit {
     price: new FormControl(''),
     images: new FormControl([]),
   });
-  handleChange(e:Event){
+  handleChange(e: Event) {
     const inputElement = e.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       this.formBody.images = Array.from(inputElement.files);
     }
-   }
+  }
   addProduct() {
-    const url = 'http://localhost:3000/api/v1/products';
+    const url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
 
     const formData = new FormData();
     formData.append('name_ar', this.Form.get('nameAr')?.value || '');
@@ -107,10 +107,12 @@ export class AddComponent implements OnInit {
     formData.append('categories', this.Form.get('category')?.value || '');
     formData.append('description_en', this.Form.get('descEn')?.value || '');
     formData.append('description_ar', this.Form.get('descAr')?.value || '');
-    formData.append('isFeatured', this.Form.get('isFeatured')?.value || 'false') ;
+    formData.append(
+      'isFeatured',
+      this.Form.get('isFeatured')?.value || 'false'
+    );
     formData.append('countInStock', this.Form.get('countInStock')?.value || '');
     formData.append('price', this.Form.get('price')?.value || '');
-
 
     for (let i = 0; i < this.formBody.images.length; i++) {
       formData.append('images', this.formBody.images[i]);
@@ -142,9 +144,8 @@ export class AddComponent implements OnInit {
     });
   }
 
-
   updateProduct() {
-    const url = `http://localhost:3000/api/v1/products/${this.id}`;
+    const url = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${this.id}`;
 
     const formData = new FormData();
     formData.append('name_ar', this.Form.get('nameAr')?.value || '');
@@ -154,7 +155,10 @@ export class AddComponent implements OnInit {
     formData.append('categories', this.Form.get('category')?.value || '');
     formData.append('description_en', this.Form.get('descEn')?.value || '');
     formData.append('description_ar', this.Form.get('descAr')?.value || '');
-    formData.append('isFeatured', this.Form.get('isFeatured')?.value || 'false') ;
+    formData.append(
+      'isFeatured',
+      this.Form.get('isFeatured')?.value || 'false'
+    );
     formData.append('countInStock', this.Form.get('countInStock')?.value || '');
     formData.append('price', this.Form.get('price')?.value || '0');
 
@@ -170,10 +174,10 @@ export class AddComponent implements OnInit {
           duration: 5000,
           position: 'topRight',
         });
-      },error: (err)=>{
+      },
+      error: (err) => {
         console.log(err);
-        
-      }
+      },
     });
   }
 }
