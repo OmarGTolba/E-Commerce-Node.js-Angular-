@@ -18,7 +18,11 @@ export class CartComponent {
     private paymentService: PaymentService,
     private orderService: OrdersService,
     private langService: LanguageService,
+
     private cartService:CartService
+
+
+
   ) {
     this.getCart();
 
@@ -61,6 +65,19 @@ export class CartComponent {
         }
         this.SkeletonLoading = false;
       });
+  }
+
+  clear() {
+    this.cartService.clearCart(this.userId).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.userService.cartLength.next(0);
+        this.getCart();
+      },
+      error: (err) => {
+        console.error('clear error:', err);
+      },
+    });
   }
   pay() {
     this.paymentService
@@ -126,19 +143,6 @@ export class CartComponent {
           orderId: response.data._id,
         };
       });
-  }
-
-  clear() {
-    this.cartService.clearCart(this.userId).subscribe({
-      next: (response: any) => {
-        console.log(response);
-        this.userService.cartLength.next(0);
-        this.getCart();
-      },
-      error: (err) => {
-        console.error('clear error:', err);
-      },
-    });
   }
 
   deleteCart(item: any) {

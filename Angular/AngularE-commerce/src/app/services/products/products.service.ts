@@ -8,13 +8,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ProductsService {
   constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:3000/api/v1/products';
+  baseUrl = 'https://ecommerce-node-yxgy.onrender.com/api/v1/products';
   getAllProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
 
   getAllCategories(): Observable<any[]> {
-    const Url = 'http://localhost:3000/api/v1/categories';
+    const Url = 'https://ecommerce-node-yxgy.onrender.com/api/v1/categories';
     return this.http.get<any[]>(Url);
   }
 
@@ -24,7 +24,7 @@ export class ProductsService {
   }
 
   addReview(id: string, body: any): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
     return this.http.post<any[]>(updateUrl, body);
   }
 
@@ -34,52 +34,52 @@ export class ProductsService {
   }
 
   getProductsByID(id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
     return this.http.get<any[]>(updateUrl);
   }
 
   products: any[] = [];
   searchByName(name: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/product/${name}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/search/product/${name}`;
     return this.http.get<any[]>(updateUrl);
   }
 
   searchByCategory(name: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/search/category/${name}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/search/category/${name}`;
     return this.http.get<any[]>(updateUrl);
   }
 
   updateProduct(id: string, body: any): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
     return this.http.patch<any[]>(updateUrl, body);
   }
 
   updateReview(id: string, body: any): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
     return this.http.patch<any[]>(updateUrl, body);
   }
 
   deleteReview(id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}/reviews`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}/reviews`;
     return this.http.delete<any[]>(updateUrl);
   }
 
   deleteProduct(id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/${id}`;
     return this.http.delete<any[]>(updateUrl);
   }
 
   AddToFav(userId: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     return this.http.post<any[]>(updateUrl, {});
   }
   removeFromFav(userId: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     return this.http.delete<any[]>(updateUrl);
   }
 
   isFav(userId: string, id: string): Observable<any[]> {
-    const updateUrl = `http://localhost:3000/api/v1/products/favourite/${userId}/${id}`;
+    const updateUrl = `https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/${userId}/${id}`;
     return this.http.get<any[]>(updateUrl);
   }
 }

@@ -58,6 +58,8 @@ const addNewProduct = asyncHandler(async (req, res) => {
     isFeatured,
     images,
   } = req.body;
+  const imageUrl = req.imageUrl;
+
   const newProduct = await productModel.create({
     name_en,
     name_ar,
@@ -71,7 +73,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
     isFeatured,
-    images: req.files.map(file => file.filename),
+    images: imageUrl,
   });
   res.status(201).json({ data: newProduct });
 });
@@ -93,6 +95,8 @@ const updateProduct = asyncHandler(async (req, res) => {
     isFeatured,
     images,
   } = req.body;
+  const imageUrl = req.imageUrl;
+
   const Updates = await productModel.updateOne({ _id: id }, {
     name_en,
     name_ar,
@@ -106,7 +110,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     rating,
     numReviews,
     isFeatured,
-    images: req.files.map(file => file.filename),
+    images: imageUrl
   });
   res.send(Updates);
 });

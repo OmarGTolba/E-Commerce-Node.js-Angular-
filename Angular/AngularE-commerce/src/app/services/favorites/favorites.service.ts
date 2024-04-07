@@ -8,9 +8,8 @@ import { Observable } from 'rxjs';
 export class FavoritesService {
   constructor(private httpClient: HttpClient) {}
   getUserFavProduct(id: string): Observable<any[]> {
-  
     return this.httpClient.get<any[]>(
-      'http://localhost:3000/api/v1/products/favourite/' + id
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' + id
     );
   }
 
@@ -19,7 +18,7 @@ export class FavoritesService {
       'Content-type': 'application/json; charset=UTF-8',
     });
     return this.httpClient.post(
-      'http://localhost:3000/api/v1/products/favourite/' +
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
         id +
         '/' +
         prdId,
@@ -28,13 +27,11 @@ export class FavoritesService {
   }
 
   delFavProduct(id: string, prdId: string) {
-  
     return this.httpClient.delete(
-      'http://localhost:3000/api/v1/products/favourite/' +
+      'https://ecommerce-node-yxgy.onrender.com/api/v1/products/favourite/' +
         id +
         '/' +
-        prdId,
-  
+        prdId
     );
   }
 }
