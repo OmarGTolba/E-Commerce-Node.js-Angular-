@@ -8,13 +8,14 @@ import { catchError, of, throwError } from 'rxjs';
 import { log } from 'console';
 import { ProfileService } from '../../../services/profile/profile.service';
 import { Router } from '@angular/router';
-
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrl: './checkout.component.css',
+  styleUrls: ['./checkout.component.css', '../../../app.component.css'],
 })
 export class CheckoutComponent implements OnInit {
+   
   userId = localStorage.getItem('userId') || '';
   userData: any = {
     name: '',
@@ -25,6 +26,7 @@ export class CheckoutComponent implements OnInit {
     phoneno: '',
   };
   body = {};
+  darkMode:any;
   total: any;
   constructor(
     private userService: UserService,
@@ -32,10 +34,16 @@ export class CheckoutComponent implements OnInit {
     private orderService: OrdersService,
     private profileService: ProfileService,
     // private profileService: ProfileService,
-    private router: Router
+    private router: Router, private toast: NgToastService
   ) {
     this.total = this.userService.total;
     this.getCart();
+
+    this.userService.mode.subscribe({
+      next: (value) => {
+        this.darkMode = value;
+      },
+    });
   }
 
   ngOnInit(): void {
@@ -70,19 +78,19 @@ export class CheckoutComponent implements OnInit {
 
   editFormGroup = new FormGroup({
     name: new FormControl({ value: '', disabled: true }, [
-      Validators.required,
+      
       Validators.minLength(3),
     ]),
     email: new FormControl({ value: '', disabled: true }, [
-      Validators.required,
+   
       Validators.pattern(/^[\w]+@[\w]+.com$/),
     ]),
     phone: new FormControl({ value: '', disabled: false }, [
-      Validators.pattern(/^01[0-2]\d{8}$/),
-      Validators.required,
+      // Validators.pattern(/^01[0-2]\d{8}$/),
+
     ]),
     address: new FormControl({ value: '', disabled: false }, [
-      Validators.required,
+      
     ]),
     city: new FormControl({ value: '', disabled: false }, [
       Validators.required,
@@ -134,6 +142,8 @@ export class CheckoutComponent implements OnInit {
       });
   }
   async click() {
+    
+    if(this.editFormGroup.valid){
     if (
       this.editFormGroup.controls.paymentMethod.value &&
       this.editFormGroup.controls.paymentMethod.value == 'CASH'
@@ -147,7 +157,17 @@ export class CheckoutComponent implements OnInit {
       this.makeCreditOrder();
       this.router.navigate(['user/profile/allOrder']);
     }
-    this.makeOrder();
+    this.makeOrder();}
+    else{
+      this.toast.error({
+        detail: 'City and Phone are required',
+        summary: 'Error',
+        duration: 5000,
+        position: 'topRight',
+      }); 
+      
+    }
+    
   }
   pay() {
     this.paymentService

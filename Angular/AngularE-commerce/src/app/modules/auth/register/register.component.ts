@@ -123,7 +123,7 @@ return true
   nextTwo() {
     this.registerForm.controls.email.value == this.email;
 
-    if (this.registerForm.controls.name.status == 'VALID') {
+    if (this.registerForm.controls.email.status == 'VALID') {
       const form2 = document.getElementById('form2');
       const form3 = document.getElementById('form3');
       if (form3 && form2) {
