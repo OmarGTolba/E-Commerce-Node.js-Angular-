@@ -19,13 +19,12 @@ export class CartComponent {
     private orderService: OrdersService,
     private langService: LanguageService,
 
-    private cartService:CartService
-
-
-
+    private cartService: CartService
   ) {
     this.getCart();
-
+    this.langService.getLang().subscribe((lang) => {
+      this.lang = lang;
+    });
     this.userService.mode.subscribe({
       next: (value) => {
         this.darkMode = value;
@@ -57,7 +56,7 @@ export class CartComponent {
         this.cart = response?.items;
         if (this.cart) {
           console.log(this.cart);
-          
+
           this.cart.forEach((element) => {
             this.total += element?.quantity * element?.product_id?.price;
             this.userService.total = this.total;

@@ -48,7 +48,7 @@ const checkoutSession = async (req, res) => {
       quantity: 1,
     })),
     mode: "payment",
-    success_url: `${req.protocol}://${req.get("host")}/orders?success=true`,
+    success_url: `http://localhost:4200/user/profile/allOrder?success=true`,
     cancel_url: `${req.protocol}://${req.get("host")}/cart?canceled=true`,
     customer_email: await findUserEmailById(req.body.user),
   });
