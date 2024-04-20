@@ -6,7 +6,12 @@
   color: white;
   border-radius: 0 0 10px 10px;
 }
-
+input {
+  border: none;
+}
+input:focus {
+  outline: none;
+}
 form {
   display: flex;
   flex-wrap: wrap;

@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { log } from 'console';
 import { NgToastService } from 'ng-angular-popup';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -43,9 +44,17 @@ export class RegisterComponent {
       'Content-Type': 'application/json',
     });
 
-    this.http.post(api, body, { headers }).subscribe(
-      (response: any) => {
-        if (response) {
+    this.http
+      .post(api, body, { headers })
+      .pipe(
+        catchError((error) => {
+          return error;
+        })
+      )
+      .subscribe((response: any) => {
+        if (response.status) {
+          console.log(response);
+
           const role = response.role;
           if (role === 'Admin') {
             this.router.navigate(['admin', 'products']);
@@ -61,33 +70,25 @@ export class RegisterComponent {
             position: 'topRight',
           });
         } else {
-          console.error('Register failed: No response received');
+          this.toast.error({
+            detail: 'Email already exist!',
+            summary: 'Erroe',
+            duration: 5000,
+            position: 'topRight',
+          });
         }
-      },
-      (error) => {
-        console.error('Error occurred:', error.error.message);
-        this.toast.error({
-          detail: 'Error',
-          summary: error.error.message || 'Registeration failed',
-          duration: 5000,
-          position: 'topRight',
-        });
-      }
-    );
+      });
   }
 
-onSubmitValid(){
- console.log(this.registerForm);
- 
-  if(this.registerForm.status === "VALID"){
-return true
-  }else{
-    return false
+  onSubmitValid() {
+    console.log(this.registerForm);
+
+    if (this.registerForm.status === 'VALID') {
+      return true;
+    } else {
+      return false;
+    }
   }
-  
-}
-
-
 
   progressWidth: string = '0%';
   currentActive: number = 1;
@@ -108,8 +109,6 @@ return true
   }
 
   backOne() {
-    
-    
     const form1 = document.getElementById('form1');
     const form2 = document.getElementById('form2');
     if (form1 && form2) {
